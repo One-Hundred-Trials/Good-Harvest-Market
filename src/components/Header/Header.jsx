@@ -1,5 +1,5 @@
 import React from 'react';
 
-export default function GlobalStyles() {
+export default function Header() {
   return <div></div>;
 }
