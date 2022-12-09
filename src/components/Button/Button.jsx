@@ -1,5 +1,5 @@
 import React from 'react';
 
 export default function Button() {
-  return <div></div>;
+  return <div>Button</div>;
 }

@@ -1,5 +1,5 @@
 import React from 'react';
 
 export default function PostTxt() {
-  return <div></div>;
+  return <div>PostTxt</div>;
 }
