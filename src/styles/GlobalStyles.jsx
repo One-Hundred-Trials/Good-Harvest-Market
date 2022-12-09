@@ -1,10 +1,12 @@
 import React from 'react';
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, css } from 'styled-components';
 import reset from 'styled-reset';
 
-const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
     ${reset};
+
     @import url('//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css');
+
     * {
       box-sizing: border-box;
     }
@@ -56,24 +58,25 @@ const GlobalStyle = createGlobalStyle`
       box-shadow: none;
       resize: none;
     }
-    .ir {
-      position: absolute;
-      clip-path: inset(50%);
-      width: 1px;
-      height: 1px;
-      margin: -1px;
-      overflow: hidden;
-    }
-    .wrap {
-      width: 390px;
-      margin: 0 auto;
-    }
-    .ellipsis {
-      display: block;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
 `;
 
-export default GlobalStyle;
+export const IR = css`
+    position: absolute;
+    clip-path: inset(50%);
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+`;
+
+export const Ellipsis = css`
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+`;
+
+export const Wrap = css`
+    width: 390px;
+    margin: 0 auto;
+`;
