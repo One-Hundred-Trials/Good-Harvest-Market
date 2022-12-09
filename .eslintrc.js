@@ -25,5 +25,8 @@ module.exports = {
     "no-useless-concat": "off",
     "react/no-unknown-property": "off",
     "react/jsx-props-no-spreading": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
   },
+
 };
