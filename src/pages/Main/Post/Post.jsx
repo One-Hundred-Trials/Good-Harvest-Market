@@ -1,5 +1,5 @@
 import React from 'react';
 
 export default function Post() {
-  return <div></div>;
+  return <div>Post</div>;
 }

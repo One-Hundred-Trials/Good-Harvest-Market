@@ -1,5 +1,5 @@
 import React from 'react';
 
 export default function PostUpload() {
-  return <div></div>;
+  return <div>PostUpload</div>;
 }

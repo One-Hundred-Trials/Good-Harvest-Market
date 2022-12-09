@@ -1,5 +1,5 @@
 import React from 'react';
 
 export default function ChatRoom() {
-  return <div></div>;
+  return <div>ChatRoom</div>;
 }
