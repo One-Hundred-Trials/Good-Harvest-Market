@@ -1,5 +1,6 @@
-import React from 'react';
+import React from 'react'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import GlobalStyle from './styles/GlobalStyles';
 import Home from './pages/Main/Home/Home'
 import Login from './pages/Login/Login';
 import Signup from "./pages/Signup/Signup";
@@ -16,24 +17,27 @@ import NotFound from './pages/NotFound/NotFound'
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />}/>
-        <Route path="/login" element={<Login />}/>
-        <Route path="/login/login_email" element={<Login />}/>
-        <Route path="/login/sign_up" element={<Signup />}/>
-        <Route path="/search" element={<Search />}/>
-        <Route path="/user_profile/:id" element={<UserProfile />}/>
-        <Route path="/my_profile" element={<MyProfile />}/>
-        <Route path="/profile_edit" element={<ProfileEdit />}/>
-        <Route path="/product_upload" element={<ProductUpload />}/>
-        <Route path="/post/:id" element={<Post />}/>
-        <Route path="/post_upload" element={<PostUpload />}/>
-        <Route path="/chat" element={<Chat />}/>
-        <Route path="/chat/:id" element={<ChatRoom />}/>
-        <Route path="/not_found" element={<NotFound />}/>
-      </Routes>
-    </BrowserRouter>
+    <React.StrictMode>
+      <GlobalStyle />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />}/>
+          <Route path="/login" element={<Login />}/>
+          <Route path="/login/login_email" element={<Login />}/>
+          <Route path="/login/sign_up" element={<Signup />}/>
+          <Route path="/search" element={<Search />}/>
+          <Route path="/user_profile/:id" element={<UserProfile />}/>
+          <Route path="/my_profile" element={<MyProfile />}/>
+          <Route path="/profile_edit" element={<ProfileEdit />}/>
+          <Route path="/product_upload" element={<ProductUpload />}/>
+          <Route path="/post/:id" element={<Post />}/>
+          <Route path="/post_upload" element={<PostUpload />}/>
+          <Route path="/chat" element={<Chat />}/>
+          <Route path="/chat/:id" element={<ChatRoom />}/>
+          <Route path="/not_found" element={<NotFound />}/>
+        </Routes>
+      </BrowserRouter>
+    </React.StrictMode>
   );
 }
 export default App;
