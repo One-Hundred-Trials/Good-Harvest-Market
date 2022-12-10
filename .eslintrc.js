@@ -31,12 +31,6 @@ module.exports = {
         jsx: 'never',
       },
     ],
-    'import/no-unresolved': [
-      {
-        commonjs: true,
-        amd: true,
-      },
-    ],
     'react/destructuring-assignment': [0, 'always'],
     'react/prop-types': 'off',
     'react/jsx-no-useless-fragment': [
