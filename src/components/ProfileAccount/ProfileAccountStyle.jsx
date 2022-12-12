@@ -1,14 +1,17 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const ProfileAccountStyle = styled.div`
+const ProfileAccountStyle = styled.div`
   display: flex;
-  margin: 16px;
+  margin: ${(props) => (props.margin ? '0px' : '16px')};
+  /* margin: 16px; */
   flex-direction: column;
-  align-items: center;
+  align-items: ${(props) => props.align};
   div:first-child {
     font-weight: 700;
-    font-size: 1.6rem;
-    margin-bottom: 6px;
+    font-size: ${(props) => (props.size === '1.4rem' ? '1.4rem' : '1.6rem')};
+    margin-bottom: ${(props) => (props.marginbottom ? '2px' : '6px')};
+    margin-top: ${(props) => props.margintop};
+    /* margin-bottom: 6px; */
   }
   div:last-child {
     font-weight: 400;
@@ -17,3 +20,5 @@ export const ProfileAccountStyle = styled.div`
     color: var(--main-grey-76);
   }
 `;
+
+export default ProfileAccountStyle;

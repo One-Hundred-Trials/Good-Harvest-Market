@@ -1,9 +1,23 @@
 import React from 'react';
-import { ProfileAccountStyle } from './ProfileAccountStyle';
+import ProfileAccountStyle from './ProfileAccountStyle';
 
-export default function ProfileAcount() {
+export default function ProfileAcount({
+  align,
+  margin,
+  size,
+  marginbottom,
+  margintop,
+}) {
+  console.log(margin);
+  console.log(size);
   return (
-    <ProfileAccountStyle>
+    <ProfileAccountStyle
+      align={align}
+      margin={margin}
+      size={size}
+      marginbottom={marginbottom}
+      margintop={margintop}
+    >
       <div>풍이의 주말농장</div>
       <div>@ sunday_Farm</div>
     </ProfileAccountStyle>
