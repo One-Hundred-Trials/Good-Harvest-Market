@@ -15,16 +15,16 @@ const MyProfileImg = styled.img`
   height: 36px;
   margin: 13px 18px 12px 16px;
 `;
-const Input = styled.input`
+const CommentTxtInput = styled.input`
   width: 100%;
-  font-size: 14px;
+  font-size: 1.4rem;
   font-weight: 400;
   border-style: none;
   outline: none;
   &::placeholder {
-    font-size: 14px;
+    font-size: 1.4rem;
     font-weight: 400;
-    color: #c4c4c4;
+    color: var(--sub-grey-C4);
   }
 `;
 const UploadBtn = styled.button`
@@ -32,9 +32,9 @@ const UploadBtn = styled.button`
   padding: 16px;
   background: inherit;
   border: none;
-  font-size: 14px;
+  font-size: 1.4rem;
   font-weight: 500;
-  color: #c4c4c4;
+  color: var(--sub-grey-C4);
   /* cursor: pointer; */
 `;
 
@@ -43,7 +43,11 @@ export default function Comment() {
     <CommentContainer>
       <CommentForm>
         <MyProfileImg src={ProfileImg} alt="프로필 사진" />
-        <Input type="text" id="commentInput" placeholder="댓글 입력하기..." />
+        <CommentTxtInput
+          type="text"
+          id="commentInput"
+          placeholder="댓글 입력하기..."
+        />
         <UploadBtn type="submit" disabled>
           게시
         </UploadBtn>
