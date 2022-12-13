@@ -59,7 +59,7 @@ const BtnStyle = styled.button`
   outline: var(--outline, none);
 `;
 
-export default function Button({ size, variant, children }) {
+function Button({ size, variant, children }) {
   const sizeStyle = SIZES[size];
   const variantStyle = VARIANTS[variant];
   return (
@@ -68,3 +68,5 @@ export default function Button({ size, variant, children }) {
     </BtnStyle>
   );
 }
+
+export { BtnStyle, Button };
