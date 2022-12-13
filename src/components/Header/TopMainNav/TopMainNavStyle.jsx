@@ -4,7 +4,7 @@ export const TopMainNavbar = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: fixed;
+  position: sticky;
   z-index: 999;
   top: 0;
   background-color: var(--white);
