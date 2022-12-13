@@ -5,8 +5,8 @@ import Nav from './Nav/Nav';
 export default function Root() {
   return (
     <div>
-      <Nav />
       <Outlet />
+      <Nav />
     </div>
   );
 }

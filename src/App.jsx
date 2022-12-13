@@ -2,11 +2,11 @@ import React from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { GlobalStyle } from './styles/GlobalStyles';
 import Home from './pages/Main/Home/Home';
-import Login from './pages/Login/Login';
-import MyProfile from './pages/Main/Profile/MyProfile/MyProfile';
 import Post from './pages/Main/Post/Post';
 import NotFound from './pages/NotFound/NotFound';
 import Root from './components/Root';
+import Chat from './pages/Main/Chat/Chat';
+import MyProfile from './pages/Main/Profile/MyProfile/MyProfile';
 
 const router = createBrowserRouter([
   {
@@ -15,8 +15,8 @@ const router = createBrowserRouter([
     errorElement: <NotFound />,
     children: [
       { index: true, element: <Home /> },
-      { path: '/login', element: <Login /> },
-      { path: '/post/:id', element: <Post /> },
+      { path: '/chat', element: <Chat /> },
+      { path: '/product_upload', element: <Post /> },
       { path: '/my_profile', element: <MyProfile /> },
     ],
   },
