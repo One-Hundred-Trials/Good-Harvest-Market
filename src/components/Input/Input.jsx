@@ -1,5 +1,5 @@
 import React from 'react';
-import InputStyle from './InputStyle';
+import { ContDivStyle, InputStyle } from './InputStyle';
 
 export default function Input({ label, type }) {
   return (
