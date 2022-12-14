@@ -69,4 +69,4 @@ function Button({ size, variant, children }) {
   );
 }
 
-export { BtnStyle, Button };
+export default Button;
