@@ -9,6 +9,8 @@ import CommentIcon from '../CommentsIcon/CommentIcon';
 
 const WrapContainer = styled.div`
   ${Wrap}
+  background-color: var(--white);
+  padding: 16px 21px;
 `;
 
 const PostProfileImg = styled.img`
