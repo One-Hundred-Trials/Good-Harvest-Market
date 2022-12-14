@@ -1,11 +1,11 @@
 import React from 'react';
-import InputStyle from './InputStyle';
+import { InputStyle, ContDivStyle } from './InputStyle';
 
 export default function Input({ label, type }) {
   return (
-    <div>
+    <ContDivStyle>
       <label htmlFor={type}>{label}</label>
       <InputStyle type={type || 'text'} id={type} />
-    </div>
+    </ContDivStyle>
   );
 }
