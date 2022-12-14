@@ -1,5 +1,5 @@
 import React from 'react';
-import { InputStyle, ContDivStyle } from './InputStyle';
+import { ContDivStyle, InputStyle } from './InputStyle';
 
 export default function Input({ label, type }) {
   return (
@@ -9,4 +9,3 @@ export default function Input({ label, type }) {
     </ContDivStyle>
   );
 }
-

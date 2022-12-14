@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+const ContDivStyle = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 const InputStyle = styled.input`
   width: 322px;
   height: 33px;
@@ -10,11 +15,6 @@ const InputStyle = styled.input`
   &:focus {
     border-bottom: 2px solid var(--point-green);
   }
-`;
-
-const ContDivStyle = styled.div`
-  display: flex;
-  flex-direction: column;
 `;
 
 export { InputStyle, ContDivStyle };
