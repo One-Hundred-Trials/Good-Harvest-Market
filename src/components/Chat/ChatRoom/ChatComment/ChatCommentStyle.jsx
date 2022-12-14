@@ -12,7 +12,7 @@ export const MessageFormStyle = styled.form`
 `;
 
 export const MessageInputStyle = styled.input`
-  width: 100vh;
+  width: 100%;
   font-size: 1.4rem;
   font-weight: 400;
   border-style: none;
