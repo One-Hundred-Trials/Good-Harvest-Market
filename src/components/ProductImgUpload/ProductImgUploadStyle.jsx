@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const ProductUploadTextStyle = styled.p`
   margin-bottom: 18px;
-  font-size: 12px;
+  font-size: 1.2rem;
   color: var(--main-grey-76);
 `;
 export const ProductUploadImgContainerStyle = styled.div`
