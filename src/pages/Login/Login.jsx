@@ -1,10 +1,9 @@
 import React from 'react';
 import {
   ContSectionStyle,
-  ContTopDivStyle,
   LogoiImgStyle,
   DuckImgStyle,
-  BtnFlexDivStyle,
+  Div,
   SNSFlexDivStyle,
   SNSImgStyle,
 } from './LoginStyle';
@@ -20,29 +19,27 @@ export default function Login() {
 
   return (
     <ContSectionStyle>
-      <ContTopDivStyle>
-        <LogoiImgStyle src={fullLogo} alt="" />
-        <DuckImgStyle src={duckFarm} alt="" />
-      </ContTopDivStyle>
-      <BtnFlexDivStyle>
+      <LogoiImgStyle src={fullLogo} alt="" />
+      <DuckImgStyle src={duckFarm} alt="" />
+      <Div>
         <Button size="lg">{children[0]}</Button>
         <Button size="lg">{children[1]}</Button>
-      </BtnFlexDivStyle>
-      <p>SNS계정으로 로그인하기</p>
-      <SNSFlexDivStyle>
-        <a>
-          <SNSImgStyle src={kakao} alt="" />
-          <p>카카오톡</p>
-        </a>
-        <a>
-          <SNSImgStyle src={google} alt="" />
-          <p>구글</p>
-        </a>
-        <a>
-          <SNSImgStyle src={facebook} alt="" />
-          <p>페이스북</p>
-        </a>
-      </SNSFlexDivStyle>
+        <p>SNS계정으로 로그인하기</p>
+        <SNSFlexDivStyle>
+          <a>
+            <SNSImgStyle src={kakao} alt="" />
+            <p>카카오톡</p>
+          </a>
+          <a>
+            <SNSImgStyle src={google} alt="" />
+            <p>구글</p>
+          </a>
+          <a>
+            <SNSImgStyle src={facebook} alt="" />
+            <p>페이스북</p>
+          </a>
+        </SNSFlexDivStyle>
+      </Div>
     </ContSectionStyle>
   );
 }

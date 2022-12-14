@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { GlobalStyle, Wrap } from '../../styles/GlobalStyles';
+import { Wrap } from '../../styles/GlobalStyles';
 
 const ContSectionStyle = styled.section`
   ${Wrap}
@@ -9,12 +9,8 @@ const ContSectionStyle = styled.section`
   font-size: 1.2rem;
   line-height: 15px;
   color: var(--main-grey-76);
-`;
-
-const ContTopDivStyle = styled.div`
-  position: relative;
-  height: 66%;
   background-color: var(--splash-bg-color);
+  position: relative;
 `;
 
 const LogoiImgStyle = styled.img`
@@ -28,31 +24,35 @@ const LogoiImgStyle = styled.img`
 
 const DuckImgStyle = styled.img`
   position: absolute;
-  bottom: 0;
+  bottom: 297px;
   right: 30px;
   width: 122px;
   height: 109px;
 `;
 
-const BtnFlexDivStyle = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin: 44px 34px;
+const Div = styled.div`
+  position: absolute;
+  bottom: 0;
+  background-color: var(--white);
+  border-radius: 20px 20px 0px 0px;
+  Button:nth-child(1) {
+    margin: 44px auto 8px;
+  }
+  Button:nth-child(2) {
+    margin-bottom: 33px;
+  }
 `;
 
 const SNSImgStyle = styled.img`
   width: 18px;
   height: 18px;
-  /* background-image: ${(props) =>
-    `url(${`../../assets/img/${props.src}.png`})`}; */
 `;
 
 const SNSFlexDivStyle = styled.div`
   display: flex;
   align-items: center;
   width: fit-content;
-  margin: 6px auto;
+  margin: 13px auto 84px;
   a {
     display: flex;
     flex-direction: row;
@@ -71,10 +71,9 @@ const SNSFlexDivStyle = styled.div`
 
 export {
   ContSectionStyle,
-  ContTopDivStyle,
   LogoiImgStyle,
   DuckImgStyle,
-  BtnFlexDivStyle,
+  Div,
   SNSFlexDivStyle,
   SNSImgStyle,
 };
