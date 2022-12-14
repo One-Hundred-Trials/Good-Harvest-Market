@@ -7,8 +7,9 @@ import Nav from '../../../components/Nav/Nav';
 export default function Home() {
   return (
     <div>
-      <TopMainNav />
-      {/* 조건부 렌더링 HomeRenderBlank 또는 HomeRenderFeed */}
+      <TopMainNav>주말의 즐거운 풍년마켓</TopMainNav>
+      {/* 조건부 렌더링 HomeRenderBlank 또는 HomeRenderHomeFeed */}
+      <HomeRenderBlank />
       <Nav />
     </div>
   );
