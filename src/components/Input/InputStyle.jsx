@@ -12,4 +12,9 @@ const InputStyle = styled.input`
   }
 `;
 
-export default InputStyle;
+const ContDivStyle = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export { InputStyle, ContDivStyle };
