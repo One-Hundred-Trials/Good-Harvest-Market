@@ -8,7 +8,7 @@ export const MessageFormStyle = styled.form`
   border-top: 1px solid var(--sub-grey-C4);
   bottom: 0;
   position: fixed;
-  background: #fff;
+  background: var(--white);
 `;
 
 export const MessageInputStyle = styled.input`
