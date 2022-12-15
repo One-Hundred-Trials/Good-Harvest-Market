@@ -8,6 +8,21 @@ export const ChatListContanierStyle = styled.div`
   margin: 22px auto;
 `;
 
+export const ImgContainer = styled.div`
+  position: relative;
+  &::after {
+    display: block;
+    position: absolute;
+    content: '';
+    width: 12px;
+    height: 12px;
+    background-color: var(--point-green);
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+  }
+`;
+
 export const UserProfileImg = styled.img`
   width: 42px;
   height: 42px;
