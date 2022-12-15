@@ -1,7 +1,7 @@
-import React from 'react';
 import styled from 'styled-components';
 
 export const ProductSectionStyle = styled.section`
+  background-color: var(--white);
   padding: 20px 0 20px 16px;
   overflow-x: scroll;
   -ms-overflow-style: none;

@@ -1,7 +1,7 @@
 import React from 'react';
 import ProfileAccountStyle from './ProfileAccountStyle';
 
-export default function ProfileAcount({
+export default function ProfileAccount({
   align,
   margin,
   size,

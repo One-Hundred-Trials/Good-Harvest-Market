@@ -1,22 +1,35 @@
 import React from 'react';
-import { FollowStyle, ProfileIntroStyle } from './ProfileStyle';
-import ProfileAcount from '../ProfileAccount/ProfileAccount';
+import {
+  FollowStyle,
+  ProfileIntroStyle,
+  ContDivStyle,
+  DivFlexStyle,
+} from './ProfileStyle';
+import ProfileAccount from '../ProfileAccount/ProfileAccount';
 import FollowersCount from '../FollowersCount/FollowersCount';
-import FollowingsCount from '../FollowingsCount/FollowingsCount';
 import ProfileImg from '../ProfileImg/ProfileImg';
+import ChatIcon from '../../components/ChatIcon/ChatIcon';
+import Button from '../../components/Button/Button';
+import ShareIcon from '../../components/ShareIcon/ShareIcon';
 
-export default function Profile() {
+export default function Profile({ align }) {
+  const children = '팔로우';
   return (
-    <div>
+    <ContDivStyle>
       <FollowStyle>
-        <FollowersCount />
+        <FollowersCount count="3000" follow="follower" />
         <ProfileImg />
-        <FollowingsCount />
+        <FollowersCount count="1200" follow="followings" />
       </FollowStyle>
-      <ProfileAcount />
+      <ProfileAccount align={align} />
       <ProfileIntroStyle>
         애월읍 주말 감귤 농장입니다. 전국 배송 가능
       </ProfileIntroStyle>
-    </div>
+      <DivFlexStyle>
+        <ChatIcon />
+        <Button size="m">{children}</Button>
+        <ShareIcon />
+      </DivFlexStyle>
+    </ContDivStyle>
   );
 }
