@@ -21,6 +21,7 @@ export const GlobalStyle = createGlobalStyle`
       --light-grey-F2: #f2f2f2;
       --black: #000;
       --white: #fff;
+      --bg-color: #E5E5E5;
     }
     body {
       min-height: 100vh;

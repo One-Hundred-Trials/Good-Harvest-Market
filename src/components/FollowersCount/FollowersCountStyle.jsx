@@ -9,6 +9,9 @@ const FollwersCountStyle = styled.div`
     font-weight: 700;
     font-size: 1.8rem;
     line-height: 23px;
+    margin-bottom: 6px;
+    color: ${({ follow }) =>
+      follow === 'followings' ? 'var(--main-grey-76)' : 'var(--black)'};
   }
   div:last-child {
     color: var(--main-grey-76);
