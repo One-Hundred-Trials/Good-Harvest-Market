@@ -6,6 +6,7 @@ const UlStyle = styled.ul`
   height: 404px;
   display: grid;
   grid-template-columns: repeat(3, 114px);
+  grid-template-rows: repeat(3, 114px);
   gap: 8px;
   overflow-y: scroll;
   -ms-overflow-style: none;

@@ -7,7 +7,6 @@ import ProductList from '../../../../components/ProductList/ProductList';
 import Nav from '../../../../components/Nav/Nav';
 import PostCard from '../../../../components/PostCard/PostCard';
 import ListOrAlbum from '../../../../components/ListOrAlbum/ListOrAlbum';
-import ListIcon from '../../../../components/ListIcon/ListIcon';
 import PostAlbum from '../../../../components/PostAlbum/PostAlbum';
 
 const ContSectionStyle = styled.section`
