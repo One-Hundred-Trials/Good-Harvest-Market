@@ -1,11 +1,12 @@
 import React from 'react';
 import FollwersCountStyle from './FollowersCountStyle';
 
-export default function FollowersCount() {
+export default function FollowersCount({ count, follow }) {
+  console.log(follow);
   return (
-    <FollwersCountStyle>
-      <div>2950</div>
-      <div>followes</div>
+    <FollwersCountStyle follow={follow}>
+      <div>{count}</div>
+      <div>{follow}</div>
     </FollwersCountStyle>
   );
 }

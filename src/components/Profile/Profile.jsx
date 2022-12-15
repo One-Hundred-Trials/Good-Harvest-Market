@@ -7,7 +7,6 @@ import {
 } from './ProfileStyle';
 import ProfileAccount from '../ProfileAccount/ProfileAccount';
 import FollowersCount from '../FollowersCount/FollowersCount';
-import FollowingsCount from '../FollowingsCount/FollowingsCount';
 import ProfileImg from '../ProfileImg/ProfileImg';
 import ChatIcon from '../../components/ChatIcon/ChatIcon';
 import Button from '../../components/Button/Button';
@@ -18,9 +17,9 @@ export default function Profile({ align }) {
   return (
     <ContDivStyle>
       <FollowStyle>
-        <FollowersCount />
+        <FollowersCount count="3000" follow="follower" />
         <ProfileImg />
-        <FollowingsCount />
+        <FollowersCount count="1200" follow="followings" />
       </FollowStyle>
       <ProfileAccount align={align} />
       <ProfileIntroStyle>
