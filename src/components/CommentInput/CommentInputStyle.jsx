@@ -1,9 +1,12 @@
-import React from 'react';
 import styled from 'styled-components';
 
-export const CommentContainerDiv = styled.div`
-  width: 390px;
+export const CommentInputContainerStyle = styled.div`
+  width: 100%;
   height: 61px;
+  position: fixed;
+  bottom: 0;
+  border-top: 1px solid var(--sub-grey-C4);
+  background-color: var(--white);
 `;
 
 export const CommentForm = styled.form`
@@ -38,5 +41,4 @@ export const UploadBtn = styled.button`
   font-size: 1.4rem;
   font-weight: 500;
   color: var(--sub-grey-C4);
-  /* cursor: pointer; */
 `;
