@@ -13,9 +13,6 @@ export default function PostCard() {
   return (
     <ContUlStyle>
       <PostCardList />
-      <PostCardList />
-      <PostCardList />
-      <PostCardList />
     </ContUlStyle>
   );
 }
