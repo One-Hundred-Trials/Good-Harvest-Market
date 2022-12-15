@@ -19,8 +19,8 @@ export const GlobalStyle = createGlobalStyle`
       --main-grey-76: #767676;
       --sub-grey-C4: #c4c4c4;
       --light-grey-F2: #f2f2f2;
-      --black: #151515;
-      --white: #fdfffb;
+      --black: #000;
+      --white: #fff;
     }
     body {
       min-height: 100vh;
@@ -61,22 +61,22 @@ export const GlobalStyle = createGlobalStyle`
 `;
 
 export const IR = css`
-    position: absolute;
-    clip-path: inset(50%);
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
+  position: absolute;
+  clip-path: inset(50%);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
 `;
 
 export const Ellipsis = css`
-    display: block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const Wrap = css`
-    width: 390px;
-    margin: 0 auto;
+  width: 390px;
+  margin: 0 auto;
 `;
