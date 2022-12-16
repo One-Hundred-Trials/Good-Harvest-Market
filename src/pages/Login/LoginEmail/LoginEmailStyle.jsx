@@ -1,11 +1,9 @@
 import styled from 'styled-components';
 import { Wrap } from '../../../styles/GlobalStyles';
-import { BtnStyle } from '../../../components/Button/Button';
 
 const ContSecStyle = styled.section`
   ${Wrap}
   text-align: center;
-  /* background-color: var(--sub-grey-C4); */
   color: var(--main-grey-76);
 `;
 
@@ -23,7 +21,8 @@ const InputFormStyle = styled.form`
   width: 322px;
   margin: 0 auto;
   text-align: left;
-  label {
+  button {
+    margin-top: 30px;
   }
   input {
     width: 322px;
@@ -37,9 +36,5 @@ const InputFormStyle = styled.form`
     }
   }
 `;
-const BtnComStyle = styled(BtnStyle)`
-  ${BtnStyle};
-  margin-top: 20px;
-`;
 
-export { ContSecStyle, HeaderStyle, InputFormStyle, BtnComStyle };
+export { ContSecStyle, HeaderStyle, InputFormStyle };
