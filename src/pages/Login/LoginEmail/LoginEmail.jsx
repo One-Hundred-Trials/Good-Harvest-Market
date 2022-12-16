@@ -1,21 +1,24 @@
 import React from 'react';
-import {
-  ContSecStyle,
-  HeaderStyle,
-  InputFormStyle,
-  BtnComStyle,
-} from './LoginEmailStyle';
+import Button from '../../../components/Button/Button';
+import Input from '../../../components/Input/Input';
+// import {
+//   ContSecStyle,
+//   HeaderStyle,
+//   InputFormStyle,
+//   BtnComStyle,
+// } from './LoginEmailStyle';
+import { ContSecStyle, HeaderStyle, InputFormStyle } from './LoginEmailStyle';
 
-export default function LoginEmail() {
+export default function LoginEmail(props) {
+  console.log(props);
   return (
     <ContSecStyle>
       <HeaderStyle>로그인</HeaderStyle>
       <InputFormStyle>
-        <label htmlFor="email">이메일</label>
-        <input type="email" id="email" />
-        <label htmlFor="pw">비밀번호</label>
-        <input type="password" id="pw" />
-        <BtnComStyle>{'로그인'}</BtnComStyle>
+        <Input label="이메일" type="email" />
+        <Input className="pw" label="비밀번호" type="password" />
+        <Button className="loginBtn"> {'로그인'}</Button>
+        <Button>{'회원가입'}</Button>
       </InputFormStyle>
       <a style={{ display: 'block', marginTop: '20px' }}>이메일로 회원가입</a>
     </ContSecStyle>

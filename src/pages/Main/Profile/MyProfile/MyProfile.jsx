@@ -13,7 +13,6 @@ export default function MyProfile() {
   return (
     <WrapContainer>
       <Profile />
-      <Follow />
     </WrapContainer>
   );
 }

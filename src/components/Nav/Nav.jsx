@@ -36,7 +36,7 @@ export default function Nav() {
           <NavItem link="/chat" icon={IconMessage} name="채팅" />
         </li>
         <li>
-          <NavItem link="/post/1" icon={IconEdit} name="게시물 작성" />
+          <NavItem link="/post_upload" icon={IconEdit} name="게시물 작성" />
         </li>
         <li>
           <NavItem link="/user_profile/1" icon={IconUser} name="프로필" />
