@@ -1,16 +1,16 @@
 import React from 'react';
-import ProfileImg from '../../../assets/img/basic-profile-36.png';
+import ProfileImg from '../../assets/img/basic-profile-36.png';
 import {
-  CommentContainerDiv,
+  CommentInputContainerStyle,
   CommentForm,
   MyProfileImg,
   CommentTxtInput,
   UploadBtn,
 } from './CommentInputStyle';
 
-export default function Comment() {
+export default function CommentInput() {
   return (
-    <CommentContainerDiv>
+    <CommentInputContainerStyle>
       <CommentForm>
         <MyProfileImg src={ProfileImg} alt="프로필 사진" />
         <CommentTxtInput
@@ -22,6 +22,6 @@ export default function Comment() {
           게시
         </UploadBtn>
       </CommentForm>
-    </CommentContainerDiv>
+    </CommentInputContainerStyle>
   );
 }
