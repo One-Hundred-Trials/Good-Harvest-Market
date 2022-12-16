@@ -24,7 +24,6 @@ export default function Search() {
           <ProfileImgAccount width="50px"></ProfileImgAccount>
         </SearchResultStyle>
       </ContSecStyle>
-      <Nav />
     </>
   );
 }

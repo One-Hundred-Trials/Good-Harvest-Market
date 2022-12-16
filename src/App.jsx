@@ -9,18 +9,20 @@ import {
 import { GlobalStyle } from './styles/GlobalStyles';
 import Home from './pages/Main/Home/Home';
 import Login from './pages/Login/Login';
+import LoginEmail from './pages/Login/LoginEmail/LoginEmail';
+import Signup from './pages/Signup/Signup';
+import MyProfile from './pages/Main/Profile/MyProfile/MyProfile';
 import UserProfile from './pages/Main/Profile/UserProfile/UserProfile';
 import PostUpload from './pages/Main/Post/PostUpload/PostUpload';
 import Chat from './pages/Main/Chat/Chat';
 import NotFound from './pages/NotFound/NotFound';
 import Root from './pages/Root';
-// import Signup from './pages/Signup/Signup';
-// import Search from './pages/Main/Home/Search/Search';
-// import MyProfile from './pages/Main/Profile/MyProfile/MyProfile';
-// import ProfileEdit from './pages/Main/Profile/MyProfile/ProfileEdit/ProfileEdit';
-// import ProductUpload from './pages/Main/Profile/MyProfile/Product/ProductUpload/ProductUpload';
-// import Post from './pages/Main/Post/Post';
-// import ChatRoom from './pages/Main/Chat/ChatRoom/ChatRoom';
+import Search from './pages/Main/Home/Search/Search';
+import ProfileEdit from './pages/Main/Profile/MyProfile/ProfileEdit/ProfileEdit';
+import ProductUpload from './pages/Main/Profile/MyProfile/Product/ProductUpload/ProductUpload';
+import ProductEdit from './pages/Main/Profile/MyProfile/Product/ProductEdit/ProductEdit';
+import Post from './pages/Main/Post/Post';
+import ChatRoom from './pages/Main/Chat/ChatRoom/ChatRoom';
 
 const router = createBrowserRouter([
   {
@@ -29,11 +31,50 @@ const router = createBrowserRouter([
     errorElement: <NotFound />,
     children: [
       { index: true, element: <Home /> },
-      { path: 'login', element: <Login /> },
       { path: 'chat', element: <Chat /> },
-      { path: 'post_upload', element: <PostUpload /> },
+      { path: 'my_profile', element: <MyProfile /> },
       { path: 'user_profile/:id', element: <UserProfile /> },
     ],
+  },
+  {
+    path: '/login',
+    element: <Login />,
+  },
+  {
+    path: '/login/login_email',
+    element: <LoginEmail />,
+  },
+  {
+    path: '/login/sign_up',
+    element: <Signup />,
+  },
+  {
+    path: '/search',
+    element: <Search />,
+  },
+  {
+    path: '/profile_edit',
+    element: <ProfileEdit />,
+  },
+  {
+    path: '/post_upload',
+    element: <PostUpload />,
+  },
+  {
+    path: '/product_upload',
+    element: <ProductUpload />,
+  },
+  {
+    path: '/product/:id/edit',
+    element: <ProductEdit />,
+  },
+  {
+    path: '/post/:id',
+    element: <Post />,
+  },
+  {
+    path: '/chat/:id',
+    element: <ChatRoom />,
   },
 ]);
 
