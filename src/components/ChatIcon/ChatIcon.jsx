@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import iconMessageCircle from '../../assets/img/icon-message-circle.png';
-import { GlobalStyle } from '../../styles/GlobalStyles';
 
 const Div = styled.div`
   display: flex;

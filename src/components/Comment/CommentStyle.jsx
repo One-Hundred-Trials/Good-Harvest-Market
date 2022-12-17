@@ -4,7 +4,7 @@ import { Ellipsis } from '../../styles/GlobalStyles';
 export const CommentContainerStyle = styled.div`
   display: flex;
   flex-direction: column;
-  height: fit-content;
+  margin-bottom: 16px;
 `;
 
 export const InfoStyle = styled.div`
@@ -19,7 +19,6 @@ export const InfoStyle = styled.div`
     line-height: 18px;
   }
   span {
-    font-weight: 400;
     color: var(--sub-grey-C4);
   }
 `;
@@ -45,7 +44,6 @@ export const MoreBtn = styled.button`
 `;
 
 export const TxtStyle = styled.p`
-  height: fit-content;
   font-size: 1.4rem;
   font-weight: 400;
   line-height: 18px;

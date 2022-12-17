@@ -3,7 +3,7 @@ import { UploadFileLabel } from './UploadFileBtnStyle.jsx';
 
 export default function UploadFileBtn(props) {
   return (
-    <UploadFileLabel htmlFor="file" style={{ margin: props.margin }}>
+    <UploadFileLabel htmlFor="file">
       <input type="file" id="file" accept="image/*" />
     </UploadFileLabel>
   );

@@ -3,18 +3,18 @@ import styled from 'styled-components';
 export const MessageFormStyle = styled.form`
   display: flex;
   justify-content: space-between;
-  height: 61px;
   width: 100%;
+  padding: 13px 16px;
   border-top: 1px solid var(--sub-grey-C4);
+  position: sticky;
   bottom: 0;
-  position: fixed;
   background: var(--white);
 `;
 
 export const MessageInputStyle = styled.input`
   width: 100%;
+  margin-left: 18px;
   font-size: 1.4rem;
-  font-weight: 400;
   border-style: none;
   outline: none;
   padding: 0;

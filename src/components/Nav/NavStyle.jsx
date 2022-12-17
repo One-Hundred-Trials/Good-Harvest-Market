@@ -5,7 +5,7 @@ export const ContainerNav = styled.nav`
   width: 100%;
   background-color: var(--white);
   border-top: 1px solid var(--sub-grey-C4);
-  position: fixed;
+  position: sticky;
   bottom: 0;
 `;
 

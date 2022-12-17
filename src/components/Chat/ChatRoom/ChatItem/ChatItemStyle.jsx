@@ -11,8 +11,8 @@ export const ChatContainerStyle = styled.div`
 `;
 
 export const MessageContainerStyle = styled.div`
-  width: fit-content;
-  height: fit-content;
+  /* width: fit-content;
+  height: fit-content; */
   background-color: #fff;
   border-radius: 0 10px 10px 10px;
   border: 1px solid var(--sub-grey-C4);

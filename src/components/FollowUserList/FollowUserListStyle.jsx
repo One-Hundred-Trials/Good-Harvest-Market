@@ -1,15 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Wrap } from '../../styles/GlobalStyles';
+import { ConWrap } from '../../styles/GlobalStyles';
 
 export const FollowContainerUlStyle = styled.ul`
-  ${Wrap}
+  ${ConWrap}
   padding: 24px 16px;
+  & li + li {
+    margin-top: 16px;
+  }
 `;
 export const FollowListStyle = styled.li`
   display: flex;
   width: 100%;
-  margin-bottom: 16px;
   justify-content: space-between;
   align-items: center;
 `;

@@ -12,7 +12,13 @@ import ChatIcon from '../../components/ChatIcon/ChatIcon';
 import Button from '../../components/Button/Button';
 import ShareIcon from '../../components/ShareIcon/ShareIcon';
 
-export default function Profile({ align }) {
+export default function Profile({
+  username,
+  usertext,
+  align,
+  margin,
+  namemarginbottom,
+}) {
   const children = '팔로우';
   return (
     <ContDivStyle>
@@ -21,7 +27,13 @@ export default function Profile({ align }) {
         <ProfileImg />
         <FollowersCount count="1200" follow="followings" />
       </FollowStyle>
-      <ProfileAccount align={align} />
+      <ProfileAccount
+        username={username}
+        usertext={usertext}
+        align={align}
+        margin={margin}
+        namemarginbottom={namemarginbottom}
+      />
       <ProfileIntroStyle>
         애월읍 주말 감귤 농장입니다. 전국 배송 가능
       </ProfileIntroStyle>
