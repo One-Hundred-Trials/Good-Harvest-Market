@@ -1,6 +1,7 @@
 import React from 'react';
 import {
-  PostUploadContainerStyle,
+  PageWrapStyle,
+  ConWrapStyle,
   MyProfileImg,
   PostTextStyle,
   BtnContainer,
@@ -11,17 +12,17 @@ import UploadFileBtn from '../../../../components/Button/UploadFileBtn/UploadFil
 
 export default function PostUpload() {
   return (
-    <div>
+    <PageWrapStyle>
       <TopUploadNav size="ms" variant="disabled">
         업로드
       </TopUploadNav>
-      <PostUploadContainerStyle>
+      <ConWrapStyle>
         <MyProfileImg src={profileImg} alt="" />
         <PostTextStyle placeholder="게시글 입력하기" />
         <BtnContainer>
-          <UploadFileBtn margin="16px" />
+          <UploadFileBtn />
         </BtnContainer>
-      </PostUploadContainerStyle>
-    </div>
+      </ConWrapStyle>
+    </PageWrapStyle>
   );
 }
