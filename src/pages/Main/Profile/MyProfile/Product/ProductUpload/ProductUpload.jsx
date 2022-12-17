@@ -10,7 +10,7 @@ import {
 export default function ProductUpload() {
   return (
     <ProductUploadContStyle>
-      <TopUploadNav size="s" variant="disabled">
+      <TopUploadNav size="ms" variant="disabled">
         업로드
       </TopUploadNav>
       <ProductUploadSectionStyle>
