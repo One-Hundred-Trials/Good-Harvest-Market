@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import BtnStyle from '../../components/Button/Button';
 import { Wrap } from '../../styles/GlobalStyles';
-import uploadFile from '../../assets/img/upload-file.png';
 
 export const ContSecStyle = styled.section`
   ${Wrap}
@@ -50,22 +49,4 @@ export const InputFormStyle = styled.form`
 export const BtnComStyle = styled(BtnStyle)`
   ${BtnStyle};
   margin: 20px;
-`;
-export const InputFileFormStyle = styled.div`
-  height: 110px;
-  margin: 30px auto;
-  position: relative;
-  width: 110px;
-`;
-export const UploadProfileLabelStyle = styled.label`
-  right: 0px;
-  bottom: 0px;
-  position: absolute;
-  background: url(${uploadFile}) no-repeat 50%/36px;
-  height: 36px;
-  width: 36px;
-  cursor: pointer;
-`;
-export const UploadProfileInputStyle = styled.input`
-  display: none;
 `;

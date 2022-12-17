@@ -6,12 +6,9 @@ import {
   DescriptStyle,
   InputFormStyle,
   BtnComStyle,
-  InputFileFormStyle,
-  UploadProfileLabelStyle,
-  UploadProfileInputStyle,
 } from './SignupUserProfileStyle';
-import basicProfile from '../../assets/img/basic-profile.png';
 import Input from '../../components/Input/Input';
+import ProfileImg from '../../components/ProfileImg/ProfileImg';
 
 const BtnContainerStyle = styled.div`
   margin-top: 14px;
@@ -23,16 +20,7 @@ export default function SignupUserProfile() {
       <HeaderStyle>프로필 설정</HeaderStyle>
       <DescriptStyle>나중에 언제든지 변경할 수 있습니다.</DescriptStyle>
       <InputFormStyle>
-        <InputFileFormStyle>
-          <img
-            src={basicProfile}
-            alt="프로필 이미지"
-            width="110"
-            height="110"
-          />
-          <UploadProfileLabelStyle htmlFor="uploadProfile"></UploadProfileLabelStyle>
-          <UploadProfileInputStyle type="file" id="uploadProfile" />
-        </InputFileFormStyle>
+        <ProfileImg />
         <Input
           label="사용자 이름"
           type="text"

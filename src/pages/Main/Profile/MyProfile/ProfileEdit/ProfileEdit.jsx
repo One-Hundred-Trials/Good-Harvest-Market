@@ -16,16 +16,7 @@ export default function ProfileEdit() {
         저장
       </Header>
       <InputFormStyle>
-        <InputFileFormStyle>
-          <img
-            src={basicProfile}
-            alt="프로필 이미지"
-            width="110"
-            height="110"
-          />
-          <UploadProfileLabelStyle htmlFor="uploadProfile"></UploadProfileLabelStyle>
-          <UploadProfileInputStyle type="file" id="uploadProfile" />
-        </InputFileFormStyle>
+        <ProfileImg />
         <Input
           label="사용자 이름"
           type="text"
