@@ -1,29 +1,28 @@
 import React from 'react';
 import styled from 'styled-components';
 import TopSearchNav from '../../../../components/Header/TopSearchNav/TopSearchNav';
-import Nav from '../../../../components/Nav/Nav';
 import ProfileImgAccount from '../../../../components/ProfileImgAccount/ProfileImgAccount';
-import { Wrap } from '../../../../styles/GlobalStyles';
+import { PageWrap, ConWrap } from '../../../../styles/GlobalStyles';
 
-const ContSecStyle = styled.section`
-  ${Wrap}
+const PageWrapStyle = styled.div`
+  ${PageWrap}
 `;
-const SearchResultStyle = styled.div`
-  padding: 0 16px;
+const ConWrapStyle = styled.main`
+  ${ConWrap}
+  padding: 20px 16px;
+  & li + li {
+    margin-top: 16px;
+  }
 `;
 
 export default function Search() {
   return (
-    <>
+    <PageWrapStyle>
       <TopSearchNav />
-      <ContSecStyle>
-        <SearchResultStyle>
-          <ProfileImgAccount width="50px"></ProfileImgAccount>
-        </SearchResultStyle>
-        <SearchResultStyle>
-          <ProfileImgAccount width="50px"></ProfileImgAccount>
-        </SearchResultStyle>
-      </ContSecStyle>
-    </>
+      <ConWrapStyle>
+        <ProfileImgAccount width="50px"></ProfileImgAccount>
+        <ProfileImgAccount width="50px"></ProfileImgAccount>
+      </ConWrapStyle>
+    </PageWrapStyle>
   );
 }
