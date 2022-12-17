@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Wrap } from '../../../styles/GlobalStyles';
-import TopBasicNav from '../../../components/Header/TopBasicNav/TopBasicNav';
 import PostCard from '../../../components/PostCard/PostCard';
 import Comment from '../../../components/Comment/Comment.jsx';
 import CommentInput from '../../../components/CommentInput/CommentInput';
+import Header from '../../../components/Header/Header';
 
 const PostContainerStyle = styled.section`
   ${Wrap};
@@ -19,7 +19,7 @@ const CommentContainerStyle = styled.div`
 export default function Post() {
   return (
     <div>
-      <TopBasicNav />
+      <Header />
       <PostContainerStyle>
         <PostCard />
         <CommentContainerStyle>

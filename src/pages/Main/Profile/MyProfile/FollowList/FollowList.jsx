@@ -1,12 +1,12 @@
 import React from 'react';
 import FollowUserList from '../../../../../components/FollowUserList/FollowUserList';
-import TopChatNav from '../../../../../components/Header/TopChatNav/TopChatNav';
+import Header from '../../../../../components/Header/Header';
 import Nav from '../../../../../components/Nav/Nav';
 
 export default function FollowList() {
   return (
     <React.Fragment>
-      <TopChatNav>내 이웃들</TopChatNav>
+      <Header>내 이웃들</Header>
       <FollowUserList />
       <Nav />
     </React.Fragment>

@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Wrap, GlobalStyle } from '../../../../styles/GlobalStyles';
-import TopBasicNav from '../../../../components/Header/TopBasicNav/TopBasicNav';
 import Profile from '../../../../components/Profile/Profile';
 import ProductList from '../../../../components/ProductList/ProductList';
 import Nav from '../../../../components/Nav/Nav';
 import PostCard from '../../../../components/PostCard/PostCard';
 import ListOrAlbum from '../../../../components/ListOrAlbum/ListOrAlbum';
 import PostAlbum from '../../../../components/PostAlbum/PostAlbum';
+import Header from '../../../../components/Header/Header';
 
 const ContSectionStyle = styled.section`
   ${Wrap};
@@ -32,7 +32,7 @@ export default function UserProfile() {
 
   return (
     <React.Fragment>
-      <TopBasicNav />
+      <Header />
       <ContSectionStyle>
         <ContDivStyle>
           <Profile align="center" />

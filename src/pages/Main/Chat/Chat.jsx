@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Wrap } from '../../../styles/GlobalStyles';
 import Nav from '../../../components/Nav/Nav';
 import ChatList from '../../../components/Chat/ChatList/ChatList';
-import TopBasicNav from '../../../components/Header/TopBasicNav/TopBasicNav';
+import Header from '../../../components/Header/Header';
 
 const ChatListContainerSection = styled.section`
   ${Wrap}
@@ -12,7 +12,7 @@ const ChatListContainerSection = styled.section`
 export default function Chat() {
   return (
     <>
-      <TopBasicNav />
+      <Header />
       <ChatListContainerSection>
         <ChatList />
         <ChatList />
