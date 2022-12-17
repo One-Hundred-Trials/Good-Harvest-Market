@@ -1,13 +1,8 @@
 import React from 'react';
 import TopUploadNav from '../../../../../components/Header/TopUploadNav/TopUploadNav';
-import {
-  InputFormStyle,
-  InputFileFormStyle,
-  UploadProfileLabelStyle,
-  UploadProfileInputStyle,
-} from './ProfileEditStyle';
-import basicProfile from '../../../../../assets/img/basic-profile.png';
+import InputFormStyle from './ProfileEditStyle';
 import Input from '../../../../../components/Input/Input';
+import ProfileImg from '../../../../../components/ProfileImg/ProfileImg';
 
 export default function ProfileEdit() {
   return (
@@ -16,16 +11,7 @@ export default function ProfileEdit() {
         저장
       </TopUploadNav>
       <InputFormStyle>
-        <InputFileFormStyle>
-          <img
-            src={basicProfile}
-            alt="프로필 이미지"
-            width="110"
-            height="110"
-          />
-          <UploadProfileLabelStyle htmlFor="uploadProfile"></UploadProfileLabelStyle>
-          <UploadProfileInputStyle type="file" id="uploadProfile" />
-        </InputFileFormStyle>
+        <ProfileImg />
         <Input
           label="사용자 이름"
           type="text"
