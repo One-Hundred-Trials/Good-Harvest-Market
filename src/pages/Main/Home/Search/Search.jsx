@@ -10,7 +10,7 @@ const PageWrapStyle = styled.div`
 const ConWrapStyle = styled.main`
   ${ConWrap}
   padding: 20px 16px;
-  & li + li {
+  & > div + div {
     margin-top: 16px;
   }
 `;
@@ -20,8 +20,20 @@ export default function Search() {
     <PageWrapStyle>
       <TopSearchNav />
       <ConWrapStyle>
-        <ProfileImgAccount width="50px"></ProfileImgAccount>
-        <ProfileImgAccount width="50px"></ProfileImgAccount>
+        <ProfileImgAccount
+          width="50px"
+          margin="0 0 0 12px"
+          namemarginbottom="6px"
+          username="풍이네 주말농장"
+          usertext="@sunday_farm"
+        ></ProfileImgAccount>
+        <ProfileImgAccount
+          width="50px"
+          margin="0 0 0 12px"
+          namemarginbottom="6px"
+          username="풍이네 주말농장"
+          usertext="@sunday_farm"
+        ></ProfileImgAccount>
       </ConWrapStyle>
     </PageWrapStyle>
   );
