@@ -5,7 +5,6 @@ export default function ProfileAccount({
   align,
   size,
   namemarginbottom,
-  // margintop,
   margin,
   username,
   usertext,
@@ -13,10 +12,8 @@ export default function ProfileAccount({
   return (
     <ProfileAccountStyle
       align={align}
-      // margin={margin}
       size={size}
       namemarginbottom={namemarginbottom}
-      // margintop={margintop}
       margin={margin}
     >
       <p>{username}</p>
