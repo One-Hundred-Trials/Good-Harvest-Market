@@ -22,10 +22,10 @@ export default function Root() {
     // </React.Fragment>
     <div>
       {auth ? (
-        <React.Fragment>
+        <PageWrapStyle>
           <Nav />
           <Outlet />
-        </React.Fragment>
+        </PageWrapStyle>
       ) : (
         <Login />
       )}
