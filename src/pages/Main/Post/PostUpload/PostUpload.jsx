@@ -13,8 +13,9 @@ import Header from '../../../../components/Header/Header';
 export default function PostUpload() {
   return (
     <PageWrapStyle>
-      <Header size="ms" variant="disabled" />
+      <Header size="ms" variant="disabled">
       업로드
+      </Header>
       <ConWrapStyle>
         <MyProfileImg src={profileImg} alt="" />
         <PostTextStyle placeholder="게시글 입력하기" />
