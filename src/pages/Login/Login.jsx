@@ -23,10 +23,12 @@ export default function Login() {
       <LogoiImgStyle src={fullLogo} alt="" />
       <DuckImgStyle src={duckFarm} alt="" />
       <Div>
-        <Link to="/login/login_email" size="lg">
+        <Button size="lg" go="/login/login_email">
           {children[0]}
-        </Link>
-        <Button size="lg">{children[1]}</Button>
+        </Button>
+        <Button go="/login/login_email" size="lg">
+          {children[1]}
+        </Button>
         <p>SNS계정으로 로그인하기</p>
         <SNSFlexDivStyle>
           <a>

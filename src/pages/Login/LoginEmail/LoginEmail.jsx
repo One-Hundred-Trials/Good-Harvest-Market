@@ -33,7 +33,7 @@ export default function LoginEmail() {
     const { token } = json.user;
     localStorage.setItem('user', JSON.stringify(token));
     setAuth(token);
-    console.log(auth);
+    // console.log(auth);
   }
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -65,7 +65,6 @@ export default function LoginEmail() {
           type="password"
         />
         <Button className="loginBtn"> {'로그인'}</Button>
-        <Button>{'회원가입'}</Button>
       </InputFormStyle>
       <a style={{ display: 'block', marginTop: '20px' }}>이메일로 회원가입</a>
     </ContSecStyle>
