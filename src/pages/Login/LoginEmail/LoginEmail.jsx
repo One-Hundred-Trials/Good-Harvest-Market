@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import Button from '../../../components/Button/Button';
 import Input from '../../../components/Input/Input';
@@ -6,6 +7,7 @@ import authAtom from '../../../_state/auth';
 import { ContSecStyle, HeaderStyle, InputFormStyle } from './LoginEmailStyle';
 
 export default function LoginEmail() {
+  const navigate = useNavigate();
   const [form, setForm] = useState({ email: '', pw: '' });
   const [auth, setAuth] = useRecoilState(authAtom);
 
@@ -43,6 +45,9 @@ export default function LoginEmail() {
   const handelSubmit = (e) => {
     e.preventDefault();
     login();
+    if (auth) {
+      navigate('/');
+    }
   };
 
   return (
