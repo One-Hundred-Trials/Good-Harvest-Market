@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { PageWrap, ConWrap } from '../../../../styles/GlobalStyles';
+import iconX from '../../../../assets/img/icon-x.png';
 
 export const PageWrapStyle = styled.div`
   ${PageWrap}
@@ -27,6 +28,23 @@ export const PostTextStyle = styled.textarea`
     font-size: 1.4rem;
     color: var(--sub-grey-C4);
   }
+`;
+
+export const ImgWrapStyle = styled.div`
+  position: relative;
+`;
+
+export const ImgPreview = styled.img`
+  border-radius: 10px;
+`;
+
+export const ImgDeleteBtn = styled.button`
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  top: 11px;
+  right: 11px;
+  background: url(${iconX}) no-repeat;
 `;
 
 export const BtnContainer = styled.div`

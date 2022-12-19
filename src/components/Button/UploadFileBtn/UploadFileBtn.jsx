@@ -4,7 +4,7 @@ import { UploadFileLabel } from './UploadFileBtnStyle.jsx';
 export default function UploadFileBtn(props) {
   return (
     <UploadFileLabel htmlFor="file">
-      <input type="file" id="file" accept="image/*" />
+      <input type="file" id="file" accept="image/*" onChange={props.onChange} />
     </UploadFileLabel>
   );
 }
