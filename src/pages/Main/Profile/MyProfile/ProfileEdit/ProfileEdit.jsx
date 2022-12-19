@@ -1,5 +1,4 @@
 import React from 'react';
-import TopUploadNav from '../../../../../components/Header/TopUploadNav/TopUploadNav';
 import {
   InputFormStyle,
   InputFileFormStyle,
@@ -8,13 +7,14 @@ import {
 } from './ProfileEditStyle';
 import basicProfile from '../../../../../assets/img/basic-profile.png';
 import Input from '../../../../../components/Input/Input';
+import Header from '../../../../../components/Header/Header';
 
 export default function ProfileEdit() {
   return (
     <>
-      <TopUploadNav size="m" variant="able">
+      <Header size="m" variant="able">
         저장
-      </TopUploadNav>
+      </Header>
       <InputFormStyle>
         <InputFileFormStyle>
           <img

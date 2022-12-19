@@ -1,7 +1,6 @@
 import React from 'react';
 import ChatComment from '../../../../components/Chat/ChatRoom/ChatComment/ChatComment';
 import ChatItem from '../../../../components/Chat/ChatRoom/ChatItem/ChatItem';
-import TopChatNav from '../../../../components/Header/TopChatNav/TopChatNav';
 import chatSendImg from '../../../../assets/img/chat-send.png';
 import {
   ChatContainerStyle,
@@ -12,11 +11,12 @@ import {
   ChatImgRight,
   SendImg,
 } from './ChatRoomStyle';
+import Header from '../../../../components/Header/Header';
 
 export default function ChatRoom(props) {
   return (
     <>
-      <TopChatNav>풍이의 주말농장</TopChatNav>
+      <Header>풍이의 주말농장</Header>
       <ChatContainerStyle>
         <ChatDivStyle>
           <ChatItem txt="안녕하세요 풍이님!" time="12:39" />

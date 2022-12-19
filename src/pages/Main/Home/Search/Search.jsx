@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import TopSearchNav from '../../../../components/Header/TopSearchNav/TopSearchNav';
+import Header from '../../../../components/Header/Header';
 import Nav from '../../../../components/Nav/Nav';
 import ProfileImgAccount from '../../../../components/ProfileImgAccount/ProfileImgAccount';
 import { Wrap } from '../../../../styles/GlobalStyles';
@@ -15,7 +15,7 @@ const SearchResultStyle = styled.div`
 export default function Search() {
   return (
     <>
-      <TopSearchNav />
+      <Header />
       <ContSecStyle>
         <SearchResultStyle>
           <ProfileImgAccount width="50px"></ProfileImgAccount>

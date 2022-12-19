@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const TopSearchNavbar = styled.header`
+export const HeaderStyle = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -13,10 +13,29 @@ export const TopSearchNavbar = styled.header`
   box-sizing: border-box;
   border-bottom: 1px solid #dbdbdb;
   padding: 8px 16px;
-  gap: 20px;
 `;
 
-export const TopSearchInput = styled.input`
+export const TopChatTitleStyle = styled.div`
+  margin-right: auto;
+  margin-left: 10px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.4rem;
+  line-height: 18px;
+  color: var(--black);
+`;
+
+export const TopMainTitleStyle = styled.h3`
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.8rem;
+  line-height: 22px;
+  display: flex;
+  align-items: flex-end;
+  color: var(--black);
+`;
+
+export const TopSearchInputStyle = styled.input`
   width: calc(100% - 32px);
   height: 32px;
   color: var(--black);
