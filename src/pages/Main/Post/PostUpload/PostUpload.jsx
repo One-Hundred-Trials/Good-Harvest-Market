@@ -15,7 +15,7 @@ export default function PostUpload() {
     <PageWrapStyle>
       <Header size="ms" variant="disabled">
         업로드
-      </TopUploadNav>
+      </Header>
       <ConWrapStyle>
         <MyProfileImg src={profileImg} alt="" />
         <PostTextStyle placeholder="게시글 입력하기" />

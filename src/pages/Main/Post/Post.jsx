@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { PageWrap, ConWrap } from '../../../styles/GlobalStyles';
-import TopBasicNav from '../../../components/Header/TopBasicNav/TopBasicNav';
 import PostCard from '../../../components/PostCard/PostCard';
 import Comment from '../../../components/Comment/Comment';
 import CommentInput from '../../../components/CommentInput/CommentInput';
