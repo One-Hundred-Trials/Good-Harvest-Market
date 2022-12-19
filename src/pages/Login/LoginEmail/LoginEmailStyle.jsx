@@ -21,8 +21,10 @@ const InputFormStyle = styled.form`
   width: 322px;
   margin: 0 auto;
   text-align: left;
+
   button {
     margin-top: 30px;
+
   }
   input {
     width: 322px;

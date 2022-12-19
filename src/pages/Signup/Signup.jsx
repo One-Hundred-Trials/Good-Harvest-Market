@@ -7,6 +7,7 @@ import {
   InputFormStyle,
   BtnComStyle,
 } from './SignupStyle';
+
 const BtnContainerStyle = styled.div`
   margin-top: 14px;
 `;

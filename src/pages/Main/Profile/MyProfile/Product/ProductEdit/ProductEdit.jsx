@@ -5,7 +5,7 @@ import ProductImgUpload from '../../../../../../components/ProductImgUpload/Prod
 import {
   ProductUploadContStyle,
   ProductUploadSectionStyle,
-} from './ProductUploadStyle';
+} from './ProductEditStyle';
 
 export default function ProductUpload() {
   return (

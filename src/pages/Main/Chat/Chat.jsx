@@ -18,7 +18,7 @@ export default function Chat() {
         <ChatList />
         <ChatList />
       </ChatListContainerSection>
-      <Nav />
+      {/* <Nav /> */}
     </>
   );
 }
