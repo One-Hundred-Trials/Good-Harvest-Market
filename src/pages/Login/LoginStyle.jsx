@@ -35,10 +35,10 @@ const Div = styled.div`
   bottom: 0;
   background-color: var(--white);
   border-radius: 20px 20px 0px 0px;
-  Button:nth-child(1) {
+  button:nth-child(1) {
     margin: 44px auto 8px;
   }
-  Button:nth-child(2) {
+  button:nth-child(2) {
     margin-bottom: 33px;
   }
 `;
