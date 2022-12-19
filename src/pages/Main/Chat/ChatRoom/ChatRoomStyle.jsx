@@ -1,15 +1,20 @@
 import styled from 'styled-components';
-import { Wrap } from '../../../../styles/GlobalStyles';
+import { PageWrap, ConWrap } from '../../../../styles/GlobalStyles';
 
-export const ChatContainerStyle = styled.section`
-  ${Wrap}
-  margin: 0 auto;
+export const PageWrapStyle = styled.div`
+  ${PageWrap}
 `;
 
-export const ChatDivStyle = styled.div`
-  height: calc(100vh - 107px);
-  padding-top: 255px;
+export const ConWrapStyle = styled.section`
+  ${ConWrap}
+  position: relative;
   background-color: var(--light-grey-F2);
+`;
+
+export const ChatItemConStyle = styled.div`
+  position: absolute;
+  bottom: 0;
+  padding-bottom: 20px;
 `;
 
 export const ChatRightContainerStyle = styled.div`
@@ -33,9 +38,8 @@ export const ChatItemRight = styled.div`
 `;
 
 export const TimeStyle = styled.span`
-  align-self: flex-end;
-  flex-shrink: 0;
-  padding-right: 6px;
+  align-self: end;
+  margin-right: 6px;
   color: --var(--main-grey-76);
 `;
 

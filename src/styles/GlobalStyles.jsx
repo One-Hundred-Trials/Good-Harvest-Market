@@ -1,4 +1,3 @@
-import React from 'react';
 import { createGlobalStyle, css } from 'styled-components';
 import reset from 'styled-reset';
 
@@ -22,11 +21,10 @@ export const GlobalStyle = createGlobalStyle`
       --black: #000;
       --white: #fff;
       --bg-color: #E5E5E5;
-
     }
     body {
-      min-height: 100vh;
       font-family: "Spoqa Han Sans Neo", "sans-serif";
+
     }
     a {
       text-decoration: none;
@@ -59,7 +57,26 @@ export const GlobalStyle = createGlobalStyle`
       -moz-box-shadow: none;
       box-shadow: none;
       resize: none;
+      font: inherit;
     }
+`;
+
+export const PageWrap = css`
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const ConWrap = css`
+  width: 390px;
+  flex-grow: 1;
+`;
+
+export const Wrap = css`
+  width: 390px;
+  min-height: 100vh;
+  margin: 0 auto;
 `;
 
 export const IR = css`
@@ -76,9 +93,4 @@ export const Ellipsis = css`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-`;
-
-export const Wrap = css`
-  width: 390px;
-  margin: 0 auto;
 `;

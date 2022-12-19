@@ -1,11 +1,10 @@
 import styled from 'styled-components';
-import { Wrap } from '../../../../../../styles/GlobalStyles';
+import { PageWrap, ConWrap } from '../../../../../../styles/GlobalStyles';
 
-const ProductUploadContStyle = styled.div`
-  ${Wrap}
+export const ProductUploadContStyle = styled.div`
+  ${PageWrap}
 `;
-const ProductUploadSectionStyle = styled.section`
+export const ProductUploadSectionStyle = styled.main`
+  ${ConWrap}
   padding: 30px 34px;
 `;
-
-export { ProductUploadContStyle, ProductUploadSectionStyle };

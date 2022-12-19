@@ -17,7 +17,7 @@ export default function HomeRenderBlank() {
     <BlankWrap>
       <Blank
         src={DuckBlank}
-        width="200px"
+        width="180px"
         text="유저를 검색해 팔로우 해보세요!"
       >
         검색하기

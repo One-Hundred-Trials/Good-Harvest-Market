@@ -42,6 +42,7 @@ module.exports = {
     'import/no-cycle': 'off',
     'no-console': 'off',
     'no-unused-vars': 'off',
+    'no-else-return': 'off',
     'no-useless-concat': 'off',
     'react/no-unknown-property': 'off',
     'react/jsx-props-no-spreading': 'off',
