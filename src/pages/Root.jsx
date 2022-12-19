@@ -10,21 +10,21 @@ const PageWrapStyle = styled.div`
 `;
 
 export default function Root() {
-  // const login = true;
+  const login = false;
   return (
-    <PageWrapStyle>
-      <Outlet />
-      <Nav />
-    </PageWrapStyle>
-    // <div>
-    //   {login ? (
-    //     <React.Fragment>
-    //       <Nav />
-    //       <Outlet />
-    //     </React.Fragment>
-    //   ) : (
-    //     <Login />
-    //   )}
-    // </div>
+    // <React.Fragment>
+    //   <Nav />
+    //   <Outlet />
+    // </React.Fragment>
+    <div>
+      {login ? (
+        <React.Fragment>
+          <Nav />
+          <Outlet />
+        </React.Fragment>
+      ) : (
+        <Login />
+      )}
+    </div>
   );
 }
