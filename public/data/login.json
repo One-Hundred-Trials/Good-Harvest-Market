@@ -1,0 +1,11 @@
+{
+  "user": {
+    "_id": "639f18d623b7e292a596bf59",
+    "username": "hyeppy980804",
+    "email": "khv0804@daum.net",
+    "accountname": "kimhyebin98",
+    "image": "http://146.56.183.55:5050/Ellipse.png",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWYxOGQ2MjNiN2UyOTJhNTk2YmY1OSIsImV4cCI6MTY3NjU1OTY5NiwiaWF0IjoxNjcxMzc1Njk2fQ.b4Eg4XuTb6sDVwzXs6BEIUaPwnsLspHFuRPy-pWwAf8",
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzEzNzU2OTYsImV4cCI6MTY3MjU4NTI5Nn0.Lw40yQxAgldgo_AgG6tHlCAZNkHsGeMCl8VKjUqfqJg"
+  }
+}

@@ -24,7 +24,6 @@ const InputFormStyle = styled.form`
 
   button {
     margin-top: 30px;
-
   }
   input {
     width: 322px;

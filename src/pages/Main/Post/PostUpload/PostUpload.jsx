@@ -14,7 +14,7 @@ export default function PostUpload() {
   return (
     <PageWrapStyle>
       <Header size="ms" variant="disabled">
-        업로드
+      업로드
       </Header>
       <ConWrapStyle>
         <MyProfileImg src={profileImg} alt="" />
