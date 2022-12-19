@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Follow from '../../../../components/Follow/Follow';
-import TopBasicNav from '../../../../components/Header/TopBasicNav/TopBasicNav';
+import Header from '../../../../components/Header/Header';
 import Profile from '../../../../components/Profile/Profile';
 import { ConWrap } from '../../../../styles/GlobalStyles';
 
@@ -12,7 +12,7 @@ const ConWrapStyle = styled.main`
 export default function MyProfile() {
   return (
     <>
-      <TopBasicNav />
+      <Header />
       <ConWrapStyle>
         <Profile
           username="풍이네 주말농장"
