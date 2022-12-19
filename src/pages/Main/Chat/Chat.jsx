@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { ConWrap } from '../../../styles/GlobalStyles';
 import ChatListItem from '../../../components/Chat/ChatListItem/ChatListItem';
-import TopBasicNav from '../../../components/Header/TopBasicNav/TopBasicNav';
+import Header from '../../../components/Header/Header';
 
 const ConWrapStyle = styled.ul`
   ${ConWrap}
@@ -15,7 +15,7 @@ const ConWrapStyle = styled.ul`
 export default function Chat() {
   return (
     <>
-      <TopBasicNav />
+      <Header />
       <ConWrapStyle>
         <ChatListItem
           username="풍이네 주말농장"
