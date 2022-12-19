@@ -10,7 +10,7 @@ import {
 export default function ProductUpload() {
   return (
     <ProductUploadContStyle>
-      <Header size="s" variant="disabled">
+     <Header size="s" variant="disabled">
         업로드
       </Header>
       <ProductUploadSectionStyle>

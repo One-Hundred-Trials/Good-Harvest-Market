@@ -82,7 +82,7 @@ function App() {
   return (
     <React.StrictMode>
       <GlobalStyle />
-      <RouterProvider router={router} />;
+      <RouterProvider router={router} />
     </React.StrictMode>
   );
 }

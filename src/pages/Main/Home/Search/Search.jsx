@@ -1,29 +1,40 @@
 import React from 'react';
 import styled from 'styled-components';
 import Header from '../../../../components/Header/Header';
-import Nav from '../../../../components/Nav/Nav';
 import ProfileImgAccount from '../../../../components/ProfileImgAccount/ProfileImgAccount';
-import { Wrap } from '../../../../styles/GlobalStyles';
+import { PageWrap, ConWrap } from '../../../../styles/GlobalStyles';
 
-const ContSecStyle = styled.section`
-  ${Wrap}
+const PageWrapStyle = styled.div`
+  ${PageWrap}
 `;
-const SearchResultStyle = styled.div`
-  padding: 0 16px;
+const ConWrapStyle = styled.main`
+  ${ConWrap}
+  padding: 20px 16px;
+  & > div + div {
+    margin-top: 16px;
+  }
 `;
 
 export default function Search() {
   return (
-    <>
+    <PageWrapStyle>
       <Header />
-      <ContSecStyle>
-        <SearchResultStyle>
-          <ProfileImgAccount width="50px"></ProfileImgAccount>
-        </SearchResultStyle>
-        <SearchResultStyle>
-          <ProfileImgAccount width="50px"></ProfileImgAccount>
-        </SearchResultStyle>
-      </ContSecStyle>
-    </>
+      <ConWrapStyle>
+        <ProfileImgAccount
+          width="50px"
+          margin="0 0 0 12px"
+          namemarginbottom="6px"
+          username="풍이네 주말농장"
+          usertext="@sunday_farm"
+        ></ProfileImgAccount>
+        <ProfileImgAccount
+          width="50px"
+          margin="0 0 0 12px"
+          namemarginbottom="6px"
+          username="풍이네 주말농장"
+          usertext="@sunday_farm"
+        ></ProfileImgAccount>
+      </ConWrapStyle>
+    </PageWrapStyle>
   );
 }
