@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  InputFormStyle,
-  InputFileFormStyle,
-  UploadProfileLabelStyle,
-  UploadProfileInputStyle,
-} from './ProfileEditStyle';
-import basicProfile from '../../../../../assets/img/basic-profile.png';
+import ProfileImg from '../../../../../components/ProfileImg/ProfileImg';
 import Input from '../../../../../components/Input/Input';
 import Header from '../../../../../components/Header/Header';
 
