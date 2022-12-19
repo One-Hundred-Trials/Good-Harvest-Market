@@ -31,8 +31,8 @@ export default function LoginEmail() {
 
     const json = await res.json();
     console.log(json, '제이손입니다');
-    const token =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWYxOGQ2MjNiN2UyOTJhNTk2YmY1OSIsImV4cCI6MTY3NjU1OTY5NiwiaWF0IjoxNjcxMzc1Njk2fQ.b4Eg4XuTb6sDVwzXs6BEIUaPwnsLspHFuRPy-pWwAf8';
+    const { token } = json.user;
+    // console.log(token, '토큰');
     localStorage.setItem('token', token);
   }
   const handelSubmit = (e) => {
