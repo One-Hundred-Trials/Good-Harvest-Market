@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { ConWrap } from '../../../../styles/GlobalStyles';
-import TopBasicNav from '../../../../components/Header/TopBasicNav/TopBasicNav';
 import Profile from '../../../../components/Profile/Profile';
 import ProductList from '../../../../components/ProductList/ProductList';
 import PostCard from '../../../../components/PostCardList/PostCardList';
 import ListOrAlbum from '../../../../components/ListOrAlbum/ListOrAlbum';
 import PostAlbum from '../../../../components/PostAlbum/PostAlbum';
+import Header from '../../../../components/Header/Header';
 
 const ConWrapStyle = styled.main`
   ${ConWrap}
@@ -33,7 +33,7 @@ export default function UserProfile() {
 
   return (
     <>
-      <TopBasicNav />
+      <Header />
       <ConWrapStyle>
         <ContDivStyle>
           <Profile

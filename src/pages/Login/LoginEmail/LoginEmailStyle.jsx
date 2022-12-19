@@ -4,7 +4,6 @@ import { Wrap } from '../../../styles/GlobalStyles';
 const ContSecStyle = styled.section`
   ${Wrap}
   text-align: center;
-  /* background-color: var(--sub-grey-C4); */
   color: var(--main-grey-76);
 `;
 
@@ -22,9 +21,10 @@ const InputFormStyle = styled.form`
   width: 322px;
   margin: 0 auto;
   text-align: left;
-  button + button {
-    margin-top: 8px;
-    color: red;
+
+  button {
+    margin-top: 30px;
+
   }
   input {
     width: 322px;

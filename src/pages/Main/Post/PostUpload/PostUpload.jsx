@@ -7,13 +7,13 @@ import {
   BtnContainer,
 } from './PostUploadStyle';
 import profileImg from '../../../../assets/img/basic-profile-50.png';
-import TopUploadNav from '../../../../components/Header/TopUploadNav/TopUploadNav';
 import UploadFileBtn from '../../../../components/Button/UploadFileBtn/UploadFileBtn';
+import Header from '../../../../components/Header/Header';
 
 export default function PostUpload() {
   return (
     <PageWrapStyle>
-      <TopUploadNav size="ms" variant="disabled">
+      <Header size="ms" variant="disabled">
         업로드
       </TopUploadNav>
       <ConWrapStyle>

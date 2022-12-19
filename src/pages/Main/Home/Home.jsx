@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import TopMainNav from '../../../components/Header/TopMainNav/TopMainNav';
+import Header from '../../../components/Header/Header';
 import HomeRenderBlank from '../../../components/HomeRender/HomeRenderBlank';
 import HomeRenderHomeFeed from '../../../components/HomeRender/HomeRenderHomeFeed';
 import { ConWrap } from '../../../styles/GlobalStyles';
@@ -13,7 +13,7 @@ const ConWrapStyle = styled.main`
 export default function Home() {
   return (
     <>
-      <TopMainNav>주말의 즐거운 풍년마켓</TopMainNav>
+      <Header>주말의 즐거운 풍년마켓</Header>
       <ConWrapStyle>
         {/* 조건부 렌더링 HomeRenderBlank 또는 HomeRenderHomeFeed */}
         <HomeRenderBlank />

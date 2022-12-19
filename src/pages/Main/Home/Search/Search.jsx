@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import TopSearchNav from '../../../../components/Header/TopSearchNav/TopSearchNav';
+import Header from '../../../../components/Header/Header';
 import ProfileImgAccount from '../../../../components/ProfileImgAccount/ProfileImgAccount';
 import { PageWrap, ConWrap } from '../../../../styles/GlobalStyles';
 
@@ -18,7 +18,7 @@ const ConWrapStyle = styled.main`
 export default function Search() {
   return (
     <PageWrapStyle>
-      <TopSearchNav />
+      <Header />
       <ConWrapStyle>
         <ProfileImgAccount
           width="50px"

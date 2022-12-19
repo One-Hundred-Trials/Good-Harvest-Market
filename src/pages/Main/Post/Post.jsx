@@ -5,6 +5,7 @@ import TopBasicNav from '../../../components/Header/TopBasicNav/TopBasicNav';
 import PostCard from '../../../components/PostCard/PostCard';
 import Comment from '../../../components/Comment/Comment';
 import CommentInput from '../../../components/CommentInput/CommentInput';
+import Header from '../../../components/Header/Header';
 
 const PageWrapStyle = styled.div`
   ${PageWrap}
@@ -26,7 +27,7 @@ const CommentContainerStyle = styled.div`
 export default function Post() {
   return (
     <PageWrapStyle>
-      <TopBasicNav />
+      <Header />
       <ConWrapStyle>
         <PostCardUlCont>
           <PostCard />

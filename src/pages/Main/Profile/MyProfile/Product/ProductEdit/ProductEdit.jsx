@@ -1,5 +1,5 @@
 import React from 'react';
-import TopUploadNav from '../../../../../../components/Header/TopUploadNav/TopUploadNav';
+import Header from '../../../../../../components/Header/Header';
 import Input from '../../../../../../components/Input/Input';
 import ProductImgUpload from '../../../../../../components/ProductImgUpload/ProductImgUpload';
 import {
@@ -10,9 +10,9 @@ import {
 export default function ProductUpload() {
   return (
     <ProductUploadContStyle>
-      <TopUploadNav size="s" variant="disabled">
+      <Header size="s" variant="disabled">
         업로드
-      </TopUploadNav>
+      </Header>
       <ProductUploadSectionStyle>
         <ProductImgUpload />
         <Input label="상품명" placeholder="2~15자 이내여야 합니다." />
