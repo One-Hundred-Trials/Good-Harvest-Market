@@ -6,11 +6,24 @@ import {
   ProfileComponentImgStyle,
 } from './ProfileImgAccountStyle';
 
-export default function ProfileImgAccount({ width, marginbottom }) {
+export default function ProfileImgAccount({
+  width,
+  margin,
+  namemarginbottom,
+  username,
+  usertext,
+  className,
+}) {
   return (
-    <ProfileImgContainerStyle>
+    <ProfileImgContainerStyle className={className}>
       <ProfileComponentImgStyle src={ProfileComponentImg} width={width} />
-      <ProfileAccount size="1.4rem" marginbottom={marginbottom} />
+      <ProfileAccount
+        size="1.4rem"
+        margin={margin}
+        namemarginbottom={namemarginbottom}
+        username={username}
+        usertext={usertext}
+      />
     </ProfileImgContainerStyle>
   );
 }

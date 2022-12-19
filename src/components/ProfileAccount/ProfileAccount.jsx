@@ -3,23 +3,21 @@ import ProfileAccountStyle from './ProfileAccountStyle';
 
 export default function ProfileAccount({
   align,
-  margin,
   size,
-  marginbottom,
-  margintop,
+  namemarginbottom,
+  margin,
+  username,
+  usertext,
 }) {
-  console.log(margin);
-  console.log(size);
   return (
     <ProfileAccountStyle
       align={align}
-      margin={margin}
       size={size}
-      marginbottom={marginbottom}
-      margintop={margintop}
+      namemarginbottom={namemarginbottom}
+      margin={margin}
     >
-      <div>풍이의 주말농장</div>
-      <div>@ sunday_Farm</div>
+      <p>{username}</p>
+      <p>{usertext}</p>
     </ProfileAccountStyle>
   );
 }

@@ -12,7 +12,7 @@ import {
 
 export default function Comment(props) {
   return (
-    <CommentContainerStyle style={{ margin: props.margin }}>
+    <CommentContainerStyle>
       <InfoStyle>
         <InfoDiv>
           <ProfileImg src={profileImg} alt="" />

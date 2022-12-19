@@ -1,6 +1,10 @@
 import React from 'react';
-import PostCard from '../PostCard/PostCard';
+import PostCard from '../PostCardList/PostCardList';
 
 export default function HomeRenderHomeFeed() {
-  return <PostCard />;
+  return (
+    <>
+      <PostCard />
+    </>
+  );
 }
