@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import Button from '../../../components/Button/Button';
 import Input from '../../../components/Input/Input';
+import authAtom from '../../../_state/auth';
 import { ContSecStyle, HeaderStyle, InputFormStyle } from './LoginEmailStyle';
 
 export default function LoginEmail() {
   const [form, setForm] = useState({ email: '', pw: '' });
-  const handleChange = (e) => {
-    // console.log(e.target.name);
-    // console.log(e.target.value);
-    const { name, value } = e.target;
-    setForm({ ...form, [name]: value });
-  };
+  const [auth, setAuth] = useRecoilState(authAtom);
+
   async function login() {
     const url = 'https://mandarin.api.weniv.co.kr';
     const reqPath = '/user/login';
@@ -30,14 +28,20 @@ export default function LoginEmail() {
     });
 
     const json = await res.json();
-    console.log(json, '제이손입니다');
+    // console.log(json, '제이손입니다');
+    console.log(json);
     const { token } = json.user;
-    // console.log(token, '토큰');
-    localStorage.setItem('token', token);
+    localStorage.setItem('user', JSON.stringify(token));
+    setAuth(token);
+    console.log(auth);
   }
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value });
+  };
+
   const handelSubmit = (e) => {
     e.preventDefault();
-    console.log(form);
     login();
   };
 
