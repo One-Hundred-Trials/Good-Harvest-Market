@@ -23,8 +23,8 @@ export default function Root() {
     <div>
       {auth ? (
         <PageWrapStyle>
-          <Nav />
           <Outlet />
+          <Nav />
         </PageWrapStyle>
       ) : (
         <Login />
