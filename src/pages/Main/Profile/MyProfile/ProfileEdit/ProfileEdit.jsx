@@ -1,5 +1,5 @@
 import React from 'react';
-import ProfileImg from '../../../../../components/ProfileImg/ProfileImg';
+import UploadProfileImg from '../../../../../components/UploadProfileImg/UploadProfileImg';
 import Input from '../../../../../components/Input/Input';
 import Header from '../../../../../components/Header/Header';
 import InputFormStyle from '../ProfileEdit/ProfileEditStyle';
@@ -11,7 +11,7 @@ export default function ProfileEdit() {
         저장
       </Header>
       <InputFormStyle>
-        <ProfileImg />
+        <UploadProfileImg />
         <Input
           label="사용자 이름"
           type="text"
