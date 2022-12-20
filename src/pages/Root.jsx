@@ -13,13 +13,9 @@ const PageWrapStyle = styled.div`
 
 export default function Root() {
   const auth = useRecoilValue(authAtom);
-  // const auth = JSON.parse(localStorage.getItem('user'));
-  console.log(auth);
+  // console.log(auth);
+
   return (
-    // <React.Fragment>
-    //   <Nav />
-    //   <Outlet />
-    // </React.Fragment>
     <div>
       {auth ? (
         <PageWrapStyle>
