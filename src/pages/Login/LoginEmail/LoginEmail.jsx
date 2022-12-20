@@ -3,14 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import Button from '../../../components/Button/Button';
 import Input from '../../../components/Input/Input';
-import userAtom from '../../../_state/auth';
+import authAtom from '../../../_state/auth';
 import { ContSecStyle, HeaderStyle, InputFormStyle } from './LoginEmailStyle';
 import { login, checktoken } from '../../../api/api';
 
 export default function LoginEmail() {
   const navigate = useNavigate();
   const [form, setForm] = useState({ email: '', pw: '' });
-  const [user, setUser] = useRecoilState(userAtom);
+  const [auth, setAuth] = useRecoilState(authAtom);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,10 +19,10 @@ export default function LoginEmail() {
 
   const handelSubmit = (e) => {
     e.preventDefault();
-    login(form, user, setUser);
+    login(form, auth, setAuth);
     //  token 검증
     //  checktoken().then((data) => console.log(data.isValid));
-    if (user.token) {
+    if (auth) {
       navigate('/');
     }
   };

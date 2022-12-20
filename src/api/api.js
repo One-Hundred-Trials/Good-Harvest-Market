@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-async function login(form, user, setUser) {
+async function login(form, auth, setAuth) {
   const url = 'https://mandarin.api.weniv.co.kr';
   const reqPath = '/user/login';
   const loginData = {
@@ -19,8 +19,10 @@ async function login(form, user, setUser) {
   });
 
   const json = await res.json();
-  localStorage.setItem('userInfo', JSON.stringify(json));
-  setUser(json);
+  const { token } = json.user;
+  console.log(token);
+  localStorage.setItem('userInfo', JSON.stringify(token));
+  setAuth(token);
 }
 
 async function checktoken() {
