@@ -44,8 +44,8 @@ export const ImgPreview = styled.img`
 
 export const ImgDeleteBtn = styled.button`
   position: absolute;
-  width: 11px;
-  height: 11px;
+  width: 22px;
+  height: 22px;
   top: 11px;
   right: 11px;
   background: url(${iconX}) no-repeat;

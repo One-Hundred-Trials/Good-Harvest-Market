@@ -69,6 +69,8 @@ function PostUpload() {
     }
   };
 
+  // 이미지 업로드
+
   return (
     <PageWrapStyle>
       <Header
@@ -88,8 +90,8 @@ function PostUpload() {
             value={text}
           />
           <ImgWrapStyle>
-            <ImgDeleteBtn onClick={DeleteFileImg} />
             <ImgPreview src={FileImg} alt="" />
+            {FileImg ? <ImgDeleteBtn onClick={DeleteFileImg} /> : null}
           </ImgWrapStyle>
         </Form>
         <BtnContainer>
