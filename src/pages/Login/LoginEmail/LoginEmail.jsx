@@ -5,38 +5,13 @@ import Button from '../../../components/Button/Button';
 import Input from '../../../components/Input/Input';
 import authAtom from '../../../_state/auth';
 import { ContSecStyle, HeaderStyle, InputFormStyle } from './LoginEmailStyle';
+import { login, checktoken } from '../../../api/api';
 
 export default function LoginEmail() {
   const navigate = useNavigate();
   const [form, setForm] = useState({ email: '', pw: '' });
   const [auth, setAuth] = useRecoilState(authAtom);
 
-  async function login() {
-    const url = 'https://mandarin.api.weniv.co.kr';
-    const reqPath = '/user/login';
-    const loginData = {
-      user: {
-        email: form.email,
-        password: form.pw,
-      },
-    };
-    const reqUrl = url + reqPath;
-    const res = await fetch(reqUrl, {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(loginData),
-    });
-
-    const json = await res.json();
-    // console.log(json, '제이손입니다');
-    console.log(json);
-    const { token } = json.user;
-    localStorage.setItem('user', JSON.stringify(token));
-    setAuth(token);
-    // console.log(auth);
-  }
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
@@ -44,7 +19,9 @@ export default function LoginEmail() {
 
   const handelSubmit = (e) => {
     e.preventDefault();
-    login();
+    login(form, auth, setAuth);
+    //  token 검증
+    //  checktoken().then((data) => console.log(data.isValid));
     if (auth) {
       navigate('/');
     }
