@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import { React, useState } from 'react';
+import axios from 'axios';
 import {
   PageWrapStyle,
   ConWrapStyle,
   MyProfileImg,
   PostTextStyle,
   BtnContainer,
+  Form,
   ImgWrapStyle,
   ImgPreview,
   ImgDeleteBtn,
@@ -18,12 +20,12 @@ function PostUpload() {
   const [isActive, setIsActive] = useState(false);
   const [FileImg, setFileImg] = useState('');
 
-  // 텍스트 입력
+  // input에 입력한 값 알아내서 state 저장
   const OnChangeHandler = (e) => {
     setText(e.target.value);
   };
 
-  // 키 누르면 활성화
+  // 키 누르면 버튼 활성화
   const ActivateHandler = () => {
     if (text.length > 0) {
       setIsActive(true);
@@ -33,24 +35,52 @@ function PostUpload() {
   };
 
   // 미리보기 이미지 파일
-  const saveFileImg = (e) => {
+  const SaveFileImg = (e) => {
     setFileImg(URL.createObjectURL(e.target.files[0]));
   };
 
   // 미리보기 이미지 파일 삭제
-  const deleteFileImg = (e) => {
+  const DeleteFileImg = (e) => {
     URL.revokeObjectURL(FileImg);
     setFileImg('');
   };
 
+  // 게시글 POST req
+  const OnSubmitHandler = async () => {
+    const url = 'https://mandarin.api.weniv.co.kr/post';
+    try {
+      const postData = {
+        post: {
+          content: text,
+          image: FileImg,
+        },
+      };
+      const res = await axios.post(url, JSON.stringify(postData), {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWZjYTkwMTdhZTY2NjU4MWM3NGU4NSIsImV4cCI6MTY3NjYwMDc2NCwiaWF0IjoxNjcxNDE2NzY0fQ.i8lcM05IPiggiyTNUpf0lCGvrSsbWXVNek4SmQm2iMg`,
+          'Content-type': 'application/json',
+        },
+        data: postData,
+      });
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <PageWrapStyle>
-      <Header size="ms" variant={!isActive ? 'disabled' : ''}>
+      <Header
+        size="ms"
+        variant={!isActive ? 'disabled' : ''}
+        onClick={OnSubmitHandler}
+      >
         업로드
       </Header>
       <ConWrapStyle>
         <MyProfileImg src={profileImg} alt="" />
-        <div>
+        <Form>
           <PostTextStyle
             placeholder="게시글 입력하기"
             onChange={OnChangeHandler}
@@ -58,12 +88,12 @@ function PostUpload() {
             value={text}
           />
           <ImgWrapStyle>
+            <ImgDeleteBtn onClick={DeleteFileImg} />
             <ImgPreview src={FileImg} alt="" />
-            <ImgDeleteBtn onClick={deleteFileImg} />
           </ImgWrapStyle>
-        </div>
+        </Form>
         <BtnContainer>
-          <UploadFileBtn onChange={saveFileImg} />
+          <UploadFileBtn onChange={SaveFileImg} />
         </BtnContainer>
       </ConWrapStyle>
     </PageWrapStyle>

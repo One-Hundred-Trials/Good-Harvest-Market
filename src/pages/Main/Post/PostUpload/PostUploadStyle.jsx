@@ -18,6 +18,10 @@ export const MyProfileImg = styled.img`
   height: 42px;
 `;
 
+export const Form = styled.form`
+  width: 100%;
+`;
+
 export const PostTextStyle = styled.textarea`
   width: 100%;
   height: 55px;
@@ -45,6 +49,7 @@ export const ImgDeleteBtn = styled.button`
   top: 11px;
   right: 11px;
   background: url(${iconX}) no-repeat;
+  background-size: cover;
 `;
 
 export const BtnContainer = styled.div`

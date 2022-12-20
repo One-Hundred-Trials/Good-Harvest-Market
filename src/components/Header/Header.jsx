@@ -10,7 +10,8 @@ import {
   TopSearchInputStyle,
 } from './HeaderStyle';
 
-export default function Header({ size, variant, children }) {
+export default function Header({ size, variant, children, onClick }) {
+  // console.log(onClick);
   const path = window.location.pathname;
   if (
     path === '/my_profile' ||
@@ -72,7 +73,7 @@ export default function Header({ size, variant, children }) {
         <button>
           <img src={iconArrowLeft} alt="뒤로가기" height="22" />
         </button>
-        <Button size={size} variant={variant}>
+        <Button type="submit" size={size} variant={variant} onClick={onClick}>
           {children}
         </Button>
       </HeaderStyle>

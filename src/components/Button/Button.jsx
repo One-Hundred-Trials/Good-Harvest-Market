@@ -59,11 +59,20 @@ const BtnStyle = styled.button`
   outline: var(--outline, none);
 `;
 
-function Button({ size, variant, children }) {
+function Button({ size, variant, children, onClick }) {
+  console.log(onClick);
   const sizeStyle = SIZES[size];
   const variantStyle = VARIANTS[variant];
+  const handleOnClick = () => {
+    onClick();
+    console.log('click');
+  };
   return (
-    <BtnStyle sizeStyle={sizeStyle} variantStyle={variantStyle}>
+    <BtnStyle
+      sizeStyle={sizeStyle}
+      variantStyle={variantStyle}
+      onClick={handleOnClick}
+    >
       {children}
     </BtnStyle>
   );
