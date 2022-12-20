@@ -14,11 +14,11 @@ const CommentImgStyle = styled.img`
   height: 14.55px;
 `;
 
-export default function CommentIcon() {
+export default function CommentIcon({ commentCount }) {
   return (
     <CommentStyle>
       <CommentImgStyle src={CommentImg} alt="" />
-      <span>58</span>
+      <span>{commentCount}</span>
     </CommentStyle>
   );
 }

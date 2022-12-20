@@ -8,6 +8,7 @@ import {
 
 export default function ProfileImgAccount({
   width,
+  src,
   margin,
   namemarginbottom,
   username,
@@ -16,7 +17,7 @@ export default function ProfileImgAccount({
 }) {
   return (
     <ProfileImgContainerStyle className={className}>
-      <ProfileComponentImgStyle src={ProfileComponentImg} width={width} />
+      <ProfileComponentImgStyle src={src} width={width} />
       <ProfileAccount
         size="1.4rem"
         margin={margin}

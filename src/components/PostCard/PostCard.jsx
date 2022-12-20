@@ -14,7 +14,15 @@ import {
   PostDateStyle,
 } from './PostCardStyle';
 
-export default function PostCard() {
+export default function PostCard({ post }) {
+  const postDate =
+    post.createdAt !== post.updatedAt
+      ? post.updatedAt.slice(0, 10).replaceAll('-', '')
+      : post.createdAt.slice(0, 10).replaceAll('-', '');
+  const year = postDate.slice(0, 4);
+  const month = postDate.slice(4, 6);
+  const date = postDate.slice(6, 8);
+
   return (
     <PostAccountLiStyle>
       <PostProfileDivStyle>
@@ -22,23 +30,20 @@ export default function PostCard() {
           width="42px"
           margin="0 0 0 12px"
           namemarginbottom="2px"
-          username="풍이네 주말농장"
-          usertext="@sunday_farm"
+          username={post.author.username}
+          usertext={`@ ${post.author.accountname}`}
+          src={post.author.image}
         />
         <PostIconMoreStyle />
       </PostProfileDivStyle>
       <PostDivStyle>
-        <PostContentsStyle>
-          요즘 바빠서 오랜만에 농장에 왔습니다! 정리해야 할 것 들이
-          한가득이네요. 오늘도 힘내서 채소들 가꾸고 가보겠습니다. 이웃분들도
-          즐거운 주말 보내세요. 다들 일교차 감기 조심하세요!
-        </PostContentsStyle>
-        <PostImgStyle src={PostImg} alt="" />
+        <PostContentsStyle>{post.content}</PostContentsStyle>
+        <PostImgStyle src={post.image} alt="" />
         <PostCountDivStyle>
-          <HeartIcon />
-          <CommentIcon />
+          <HeartIcon heartCount={post.heartCount} />
+          <CommentIcon commentCount={post.commentCount} />
         </PostCountDivStyle>
-        <PostDateStyle>2022년 12월 21일</PostDateStyle>
+        <PostDateStyle>{`${year}년 ${month}월 ${date}일`}</PostDateStyle>
       </PostDivStyle>
     </PostAccountLiStyle>
   );
