@@ -1,17 +1,14 @@
 import React from 'react';
-import basicProfile from '../../assets/img/basic-profile-50.png';
-import {
-  InputFileFormStyle,
-  UploadProfileLabelStyle,
-  UploadProfileInputStyle,
-} from './ProfileImgStyle';
+import DefaultProfileImg from '../../assets/img/basic-profile.png';
+import ProfileImgStyle from './ProfileImgStyle';
 
-export default function ProfileImg() {
+export default function ProfileImg({ src, width, height }) {
   return (
-    <InputFileFormStyle>
-      <img src={basicProfile} alt="프로필 이미지" width="110" height="110" />
-      <UploadProfileLabelStyle htmlFor="uploadProfile"></UploadProfileLabelStyle>
-      <UploadProfileInputStyle type="file" id="uploadProfile" />
-    </InputFileFormStyle>
+    <ProfileImgStyle
+      src={src}
+      alt="프로필 이미지"
+      width={width}
+      height={height}
+    />
   );
 }
