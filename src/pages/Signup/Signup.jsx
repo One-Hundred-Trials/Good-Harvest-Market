@@ -22,6 +22,15 @@ const Signup = ({ setIsSignupValid, setSignupForm, signupForm }) => {
   const [passwordCheckIsValid, setPasswordCheckIsValid] = useState(false);
 
   const EmailHandler = async () => {
+    const regex = /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+
+    if (!signupForm.email) {
+      setEmailError('*이메일은 필수 입력사항입니다.');
+      setEmailIsValid(false);
+    } else if (!regex.test(signupForm.email)) {
+      setEmailError(`잘못된 이메일 형식입니다.`);
+      setEmailIsValid(false);
+    }
     const url = 'https://mandarin.api.weniv.co.kr';
     const reqPath = '/user/emailvalid';
     const signupData = {
