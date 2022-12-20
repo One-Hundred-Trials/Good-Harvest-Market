@@ -1,9 +1,5 @@
 import axios from 'axios';
 
-const API = axios.create({
-  BASE_URL: 'https://mandarin.api.weniv.co.kr',
-});
-
 async function login(form, user, setUser) {
   const url = 'https://mandarin.api.weniv.co.kr';
   const reqPath = '/user/login';
@@ -23,15 +19,8 @@ async function login(form, user, setUser) {
   });
 
   const json = await res.json();
-  // console.log(json, '제이손입니다');
-  //   console.log(json);
-  //   const { token } = json.user;
-  //   localStorage.setItem('user', JSON.stringify(token));
   localStorage.setItem('userInfo', JSON.stringify(json));
-
-  //   console.log(json);
   setUser(json);
-  //   setAuth(token);
 }
 
 async function checktoken() {
@@ -47,7 +36,6 @@ async function checktoken() {
         },
       }
     );
-    // console.log(response.data);
     return response.data;
   } catch (error) {
     console.error(error);

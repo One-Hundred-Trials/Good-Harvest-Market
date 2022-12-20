@@ -10,7 +10,6 @@ import { login, checktoken } from '../../../api/api';
 export default function LoginEmail() {
   const navigate = useNavigate();
   const [form, setForm] = useState({ email: '', pw: '' });
-  // const [auth, setAuth] = useRecoilState(authAtom);
   const [user, setUser] = useRecoilState(userAtom);
 
   const handleChange = (e) => {
