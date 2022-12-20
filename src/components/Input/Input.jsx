@@ -1,7 +1,18 @@
-import React, { useState } from 'react';
-import { ContDivStyle, InputStyle } from './InputStyle';
+import React from 'react';
+import { ContDivStyle, InputStyle, MessageSpanStyle } from './InputStyle';
 
-export default function Input({ label, type, placeholder, onChange, name }) {
+export default function Input({
+  label,
+  type,
+  placeholder,
+  onChange,
+  message,
+  required,
+  min,
+  max,
+  onBlur,
+  name,
+}) {
   const handleChange = (e) => {
     onChange(e);
   };
@@ -9,12 +20,17 @@ export default function Input({ label, type, placeholder, onChange, name }) {
     <ContDivStyle>
       <label htmlFor={type}>{label}</label>
       <InputStyle
-        onChange={handleChange}
         name={name}
         type={type || 'text'}
         id={type}
         placeholder={placeholder}
+        onChange={handleChange}
+        onBlur={onBlur}
+        required={required}
+        min={min}
+        max={max}
       />
+      <MessageSpanStyle>{message}</MessageSpanStyle>
     </ContDivStyle>
   );
 }
