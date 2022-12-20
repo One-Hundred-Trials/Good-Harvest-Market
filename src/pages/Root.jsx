@@ -13,6 +13,8 @@ const PageWrapStyle = styled.div`
 
 export default function Root() {
   const auth = useRecoilValue(authAtom);
+  // console.log(auth);
+
   return (
     <div>
       {auth ? (

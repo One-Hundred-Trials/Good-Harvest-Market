@@ -21,7 +21,7 @@ async function login(form, auth, setAuth) {
   const json = await res.json();
   const { token } = json.user;
   console.log(token);
-  localStorage.setItem('userInfo', JSON.stringify(token));
+  localStorage.setItem('auth', JSON.stringify(token));
   setAuth(token);
 }
 
