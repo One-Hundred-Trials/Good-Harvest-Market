@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 
 const SIZES = {
@@ -59,19 +60,20 @@ const BtnStyle = styled.button`
   outline: var(--outline, none);
 `;
 
-function Button({ size, variant, children, onClick }) {
-  console.log(onClick);
+function Button({ size, variant, children, onClick, go }) {
+  const navigate = useNavigate();
+  console.log(go);
   const sizeStyle = SIZES[size];
   const variantStyle = VARIANTS[variant];
-  const handleOnClick = () => {
+  const OnClickHandler = () => {
     onClick();
-    console.log('click');
+    navigate(go);
   };
   return (
     <BtnStyle
       sizeStyle={sizeStyle}
       variantStyle={variantStyle}
-      onClick={handleOnClick}
+      onClick={OnClickHandler}
     >
       {children}
     </BtnStyle>

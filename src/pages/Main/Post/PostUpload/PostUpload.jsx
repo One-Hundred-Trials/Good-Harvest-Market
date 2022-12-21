@@ -77,6 +77,7 @@ function PostUpload() {
         size="ms"
         variant={!isActive ? 'disabled' : ''}
         onClick={OnSubmitHandler}
+        go="/user_profile/1"
       >
         업로드
       </Header>
