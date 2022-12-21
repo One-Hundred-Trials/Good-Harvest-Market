@@ -11,6 +11,7 @@ import ProfileImg from '../ProfileImg/ProfileImg';
 import ChatIcon from '../../components/ChatIcon/ChatIcon';
 import Button from '../../components/Button/Button';
 import ShareIcon from '../../components/ShareIcon/ShareIcon';
+import DefaultProfileImg from '../../assets/img/basic-profile.png';
 
 export default function Profile({
   username,
@@ -24,7 +25,7 @@ export default function Profile({
     <ContDivStyle>
       <FollowStyle>
         <FollowersCount count="3000" follow="follower" />
-        <ProfileImg />
+        <ProfileImg width="110px" height="110px" src={DefaultProfileImg} />
         <FollowersCount count="1200" follow="followings" />
       </FollowStyle>
       <ProfileAccount

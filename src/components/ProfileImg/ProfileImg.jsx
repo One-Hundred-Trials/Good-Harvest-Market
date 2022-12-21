@@ -1,7 +1,14 @@
 import React from 'react';
-import ProfileUserImg from '../../assets/img/basic-profile-50.png';
+import DefaultProfileImg from '../../assets/img/basic-profile.png';
 import ProfileImgStyle from './ProfileImgStyle';
 
-export default function ProfileImg() {
-  return <ProfileImgStyle src={ProfileUserImg} alt="" />;
+export default function ProfileImg({ src, width, height }) {
+  return (
+    <ProfileImgStyle
+      src={src}
+      alt="프로필 이미지"
+      width={width}
+      height={height}
+    />
+  );
 }

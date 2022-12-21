@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Wrap } from '../../styles/GlobalStyles';
 
@@ -35,6 +36,7 @@ const Div = styled.div`
   bottom: 0;
   background-color: var(--white);
   border-radius: 20px 20px 0px 0px;
+  width: 100%;
   button:nth-child(1) {
     margin: 44px auto 8px;
   }
@@ -42,6 +44,16 @@ const Div = styled.div`
     margin-bottom: 33px;
   }
 `;
+
+// const LinkStyle = styled(Link)`
+//   display: block;
+//   margin: 44px auto 8px;
+//   width: 322px;
+//   padding: 13px;
+//   font-size: 1.4rem;
+//   border-radius: 44px;
+//   background-color: var(--main-green);
+// `;
 
 const SNSImgStyle = styled.img`
   width: 18px;

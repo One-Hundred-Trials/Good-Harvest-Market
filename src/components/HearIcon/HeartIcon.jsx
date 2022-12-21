@@ -14,11 +14,11 @@ const HeartImgStyle = styled.img`
   height: 14.55px;
 `;
 
-export default function HeartIcon() {
+export default function HeartIcon({ heartCount }) {
   return (
     <HeartStyle>
       <HeartImgStyle src={Heart} alt="" />
-      <span>58</span>
+      <span>{heartCount}</span>
     </HeartStyle>
   );
 }

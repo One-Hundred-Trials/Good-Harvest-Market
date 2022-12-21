@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useRecoilValue } from 'recoil';
 import { Outlet } from 'react-router-dom';
+import { authAtom } from '../_state/auth';
 import Nav from '../components/Nav/Nav';
 import Login from './Login/Login';
 import { PageWrap } from '../styles/GlobalStyles';
@@ -10,21 +12,18 @@ const PageWrapStyle = styled.div`
 `;
 
 export default function Root() {
-  // const login = true;
+  const auth = useRecoilValue(authAtom);
+
   return (
-    <PageWrapStyle>
-      <Outlet />
-      <Nav />
-    </PageWrapStyle>
-    // <div>
-    //   {login ? (
-    //     <React.Fragment>
-    //       <Nav />
-    //       <Outlet />
-    //     </React.Fragment>
-    //   ) : (
-    //     <Login />
-    //   )}
-    // </div>
+    <div>
+      {auth ? (
+        <PageWrapStyle>
+          <Outlet />
+          <Nav />
+        </PageWrapStyle>
+      ) : (
+        <Login />
+      )}
+    </div>
   );
 }

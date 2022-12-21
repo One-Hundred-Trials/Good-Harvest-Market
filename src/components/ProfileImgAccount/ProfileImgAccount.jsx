@@ -1,13 +1,13 @@
 import React from 'react';
 import ProfileAccount from '../ProfileAccount/ProfileAccount';
-import ProfileComponentImg from '../../assets/img/basic-profile.png';
-import {
-  ProfileImgContainerStyle,
-  ProfileComponentImgStyle,
-} from './ProfileImgAccountStyle';
+import DefaultProfileImg from '../../assets/img/basic-profile.png';
+import { ProfileImgContainerStyle } from './ProfileImgAccountStyle';
+import ProfileImg from '../ProfileImg/ProfileImg';
 
 export default function ProfileImgAccount({
   width,
+  height,
+  src,
   margin,
   namemarginbottom,
   username,
@@ -16,7 +16,7 @@ export default function ProfileImgAccount({
 }) {
   return (
     <ProfileImgContainerStyle className={className}>
-      <ProfileComponentImgStyle src={ProfileComponentImg} width={width} />
+      <ProfileImg src={src} width={width} height={height} />
       <ProfileAccount
         size="1.4rem"
         margin={margin}

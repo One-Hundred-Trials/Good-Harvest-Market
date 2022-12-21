@@ -1,13 +1,8 @@
 import React from 'react';
-import {
-  InputFormStyle,
-  InputFileFormStyle,
-  UploadProfileLabelStyle,
-  UploadProfileInputStyle,
-} from './ProfileEditStyle';
-import basicProfile from '../../../../../assets/img/basic-profile.png';
+import UploadProfileImg from '../../../../../components/UploadProfileImg/UploadProfileImg';
 import Input from '../../../../../components/Input/Input';
 import Header from '../../../../../components/Header/Header';
+import InputFormStyle from '../ProfileEdit/ProfileEditStyle';
 
 export default function ProfileEdit() {
   return (
@@ -16,16 +11,7 @@ export default function ProfileEdit() {
         저장
       </Header>
       <InputFormStyle>
-        <InputFileFormStyle>
-          <img
-            src={basicProfile}
-            alt="프로필 이미지"
-            width="110"
-            height="110"
-          />
-          <UploadProfileLabelStyle htmlFor="uploadProfile"></UploadProfileLabelStyle>
-          <UploadProfileInputStyle type="file" id="uploadProfile" />
-        </InputFileFormStyle>
+        <UploadProfileImg />
         <Input
           label="사용자 이름"
           type="text"

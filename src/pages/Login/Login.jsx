@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   ContSectionStyle,
   LogoiImgStyle,
@@ -22,8 +23,12 @@ export default function Login() {
       <LogoiImgStyle src={fullLogo} alt="" />
       <DuckImgStyle src={duckFarm} alt="" />
       <Div>
-        <Button size="lg">{children[0]}</Button>
-        <Button size="lg">{children[1]}</Button>
+        <Button size="lg" go="/login/login_email">
+          {children[0]}
+        </Button>
+        <Button go="/login/login_email" size="lg">
+          {children[1]}
+        </Button>
         <p>SNS계정으로 로그인하기</p>
         <SNSFlexDivStyle>
           <a>
