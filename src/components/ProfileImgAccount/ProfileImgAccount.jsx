@@ -7,6 +7,7 @@ import ProfileImg from '../ProfileImg/ProfileImg';
 export default function ProfileImgAccount({
   width,
   height,
+  src,
   margin,
   namemarginbottom,
   username,
@@ -15,7 +16,7 @@ export default function ProfileImgAccount({
 }) {
   return (
     <ProfileImgContainerStyle className={className}>
-      <ProfileImg src={DefaultProfileImg} width={width} height={height} />
+      <ProfileImg src={src} width={width} height={height} />
       <ProfileAccount
         size="1.4rem"
         margin={margin}
