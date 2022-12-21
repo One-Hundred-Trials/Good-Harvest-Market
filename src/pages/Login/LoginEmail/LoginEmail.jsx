@@ -12,10 +12,12 @@ export default function LoginEmail() {
   const [form, setForm] = useState({ email: '', pw: '' });
   const [auth, setAuth] = useRecoilState(authAtom);
   const [message, setMessage] = useState('');
+  const [valid, setValid] = useState('disabled');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
+    setValid(() => 'abled');
   };
   const loginData = {
     user: {
@@ -70,6 +72,7 @@ export default function LoginEmail() {
           value={form}
           label="이메일"
           type="email"
+          // required="true"
         />
         <Input
           onChange={handleChange}
@@ -79,8 +82,11 @@ export default function LoginEmail() {
           label="비밀번호"
           type="password"
           message={message}
+          // required="true"
         />
-        <Button className="loginBtn"> {'로그인'}</Button>
+        <Button variant={valid} className="loginBtn">
+          {'로그인'}
+        </Button>
       </InputFormStyle>
       <a style={{ display: 'block', marginTop: '20px' }}>이메일로 회원가입</a>
     </ContSecStyle>
