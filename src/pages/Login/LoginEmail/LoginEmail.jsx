@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { useForm } from 'react-hook-form';
 import Button from '../../../components/Button/Button';
 import Input from '../../../components/Input/Input';
-import authAtom from '../../../_state/auth';
+import { authAtom } from '../../../_state/auth';
 import { ContSecStyle, HeaderStyle, InputFormStyle } from './LoginEmailStyle';
-import { login, checktoken } from '../../../api/api';
 
 export default function LoginEmail() {
   const navigate = useNavigate();
@@ -17,20 +17,46 @@ export default function LoginEmail() {
     setForm({ ...form, [name]: value });
   };
 
-  const handelSubmit = (e) => {
-    e.preventDefault();
-    login(form, auth, setAuth);
-    //  token 검증
-    //  checktoken().then((data) => console.log(data.isValid));
-    if (auth) {
+  async function login() {
+    const url = 'https://mandarin.api.weniv.co.kr';
+    const reqPath = '/user/login';
+    const loginData = {
+      user: {
+        email: form.email,
+        password: form.pw,
+      },
+    };
+    const reqUrl = url + reqPath;
+    const res = await fetch(reqUrl, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(loginData),
+    });
+
+    const json = await res.json();
+    const { token } = json.user;
+    const { accountname } = json.user;
+    console.log(token);
+    console.log(accountname);
+    localStorage.setItem('auth', JSON.stringify(token));
+    localStorage.setItem('account', JSON.stringify(accountname));
+    setAuth(token);
+    if (token) {
       navigate('/');
     }
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    login();
   };
 
   return (
     <ContSecStyle>
       <HeaderStyle>로그인</HeaderStyle>
-      <InputFormStyle onSubmit={handelSubmit}>
+      <InputFormStyle onSubmit={handleSubmit}>
         <Input
           onChange={handleChange}
           name="email"

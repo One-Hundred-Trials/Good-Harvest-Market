@@ -5,4 +5,9 @@ const authAtom = atom({
   default: JSON.parse(localStorage.getItem('auth')),
 });
 
-export default authAtom;
+const accountAtom = atom({
+  key: 'account',
+  default: JSON.parse(localStorage.getItem('account')),
+});
+
+export { authAtom, accountAtom };
