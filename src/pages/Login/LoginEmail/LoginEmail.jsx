@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { useForm } from 'react-hook-form';
 import Button from '../../../components/Button/Button';
 import Input from '../../../components/Input/Input';
 import authAtom from '../../../_state/auth';
@@ -11,15 +12,17 @@ export default function LoginEmail() {
   const navigate = useNavigate();
   const [form, setForm] = useState({ email: '', pw: '' });
   const [auth, setAuth] = useRecoilState(authAtom);
+  // const auth = useRecoilValue(authAtom);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
   };
 
-  const handelSubmit = (e) => {
+  const handleSubmit = (e, data) => {
     e.preventDefault();
-    login(form, auth, setAuth);
+    console.log(data);
+    login(form, setAuth);
     //  token 검증
     //  checktoken().then((data) => console.log(data.isValid));
     if (auth) {
@@ -30,7 +33,7 @@ export default function LoginEmail() {
   return (
     <ContSecStyle>
       <HeaderStyle>로그인</HeaderStyle>
-      <InputFormStyle onSubmit={handelSubmit}>
+      <InputFormStyle onSubmit={handleSubmit}>
         <Input
           onChange={handleChange}
           name="email"

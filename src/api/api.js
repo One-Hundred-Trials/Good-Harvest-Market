@@ -20,8 +20,11 @@ async function login(form, auth, setAuth) {
 
   const json = await res.json();
   const { token } = json.user;
+  const { accountname } = json.user;
   console.log(token);
+  console.log(accountname);
   localStorage.setItem('auth', JSON.stringify(token));
+  localStorage.setItem('account', JSON.stringify(accountname));
   setAuth(token);
 }
 
