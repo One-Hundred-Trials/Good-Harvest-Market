@@ -1,33 +1,56 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { useForm } from 'react-hook-form';
 import Button from '../../../components/Button/Button';
 import Input from '../../../components/Input/Input';
-import authAtom from '../../../_state/auth';
+import { authAtom } from '../../../_state/auth';
 import { ContSecStyle, HeaderStyle, InputFormStyle } from './LoginEmailStyle';
-import { login, checktoken } from '../../../api/api';
 
 export default function LoginEmail() {
   const navigate = useNavigate();
   const [form, setForm] = useState({ email: '', pw: '' });
   const [auth, setAuth] = useRecoilState(authAtom);
-  // const auth = useRecoilValue(authAtom);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
   };
 
-  const handleSubmit = (e, data) => {
-    e.preventDefault();
-    console.log(data);
-    login(form, setAuth);
-    //  token 검증
-    //  checktoken().then((data) => console.log(data.isValid));
-    if (auth) {
+  async function login() {
+    const url = 'https://mandarin.api.weniv.co.kr';
+    const reqPath = '/user/login';
+    const loginData = {
+      user: {
+        email: form.email,
+        password: form.pw,
+      },
+    };
+    const reqUrl = url + reqPath;
+    const res = await fetch(reqUrl, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(loginData),
+    });
+
+    const json = await res.json();
+    const { token } = json.user;
+    const { accountname } = json.user;
+    console.log(token);
+    console.log(accountname);
+    localStorage.setItem('auth', JSON.stringify(token));
+    localStorage.setItem('account', JSON.stringify(accountname));
+    setAuth(token);
+    if (token) {
       navigate('/');
     }
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    login();
   };
 
   return (
