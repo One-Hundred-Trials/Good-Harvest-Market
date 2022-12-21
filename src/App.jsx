@@ -10,7 +10,7 @@ import { GlobalStyle } from './styles/GlobalStyles';
 import Home from './pages/Main/Home/Home';
 import Login from './pages/Login/Login';
 import LoginEmail from './pages/Login/LoginEmail/LoginEmail';
-import Signup from './pages/Signup/Signup';
+import Signup from './pages/Signup/Register';
 import MyProfile from './pages/Main/Profile/MyProfile/MyProfile';
 import UserProfile from './pages/Main/Profile/UserProfile/UserProfile';
 import PostUpload from './pages/Main/Post/PostUpload/PostUpload';

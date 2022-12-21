@@ -13,15 +13,27 @@ const InputStyle = styled.input`
   height: 33px;
   border: transparent;
   border-bottom: 1px solid #dbdbdb;
-  margin-bottom: 16px;
+  margin-bottom: 6px;
   outline: none;
   font-size: 1.4rem;
   &:focus {
     border-bottom: 2px solid var(--point-green);
+  }
+  &:invalid {
+    border-bottom: 2px solid #eb5757;
   }
   &::placeholder {
     color: var(--sub-grey-C4);
   }
 `;
 
-export { InputStyle, ContDivStyle };
+const MessageSpanStyle = styled.span`
+  color: #eb5757;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  margin-bottom: 16px;
+`;
+
+export { InputStyle, ContDivStyle, MessageSpanStyle };

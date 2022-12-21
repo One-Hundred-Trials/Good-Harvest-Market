@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import Input from '../../components/Input/Input';
 import {
@@ -12,20 +13,142 @@ const BtnContainerStyle = styled.div`
   margin-top: 14px;
 `;
 
-export default function Signup() {
+const Signup = ({ setIsSignupValid, setSignupForm, signupForm }) => {
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [passwordCheckError, setPasswordCheckError] = useState('');
+  const [emailIsValid, setEmailIsValid] = useState(false);
+  const [passwordIsValid, setPasswordIsValid] = useState(false);
+  const [passwordCheckIsValid, setPasswordCheckIsValid] = useState(false);
+
+  const EmailHandler = async () => {
+    const regex = /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+
+    if (!signupForm.email) {
+      setEmailError('*이메일은 필수 입력사항입니다.');
+      setEmailIsValid(false);
+    } else if (!regex.test(signupForm.email)) {
+      setEmailError(`잘못된 이메일 형식입니다.`);
+      setEmailIsValid(false);
+    }
+    const url = 'https://mandarin.api.weniv.co.kr';
+    const reqPath = '/user/emailvalid';
+    const signupData = {
+      user: {
+        email: signupForm.email,
+      },
+    };
+    const reqUrl = url + reqPath;
+    const res = await axios.post(reqUrl, JSON.stringify(signupData), {
+      headers: {
+        'Content-type': 'application/json',
+      },
+      data: signupData,
+    });
+    const json = res.data;
+    console.log(json.message);
+    if (json.message === '이미 가입된 이메일 주소입니다.') {
+      setEmailError(`*${json.message}`);
+      setEmailIsValid(false);
+    } else if (json.message === '사용 가능한 이메일 입니다.') {
+      setEmailIsValid(true);
+    } else {
+      setEmailError(`잘못된 이메일 형식입니다.`);
+      setEmailIsValid(false);
+    }
+  };
+
+  const PasswordHandler = () => {
+    if (!signupForm.password) {
+      setPasswordError('* 비밀번호는 필수 입력사항입니다.');
+      setPasswordIsValid(false);
+    } else if (signupForm.password.length < 6) {
+      setPasswordError('* 비밀번호는 6자 이상이어야 합니다.');
+    } else {
+      setPasswordIsValid(true);
+    }
+  };
+
+  const PasswordCheckHandler = () => {
+    if (!signupForm.passwordCheck) {
+      setPasswordCheckError('* 비밀번호 확인은 필수 입력사항입니다.');
+      setPasswordCheckIsValid(false);
+    } else if (signupForm.passwordCheck !== signupForm.password) {
+      setPasswordCheckError('* 입력한 비밀번호와 일치하지 않습니다.');
+      setPasswordCheckIsValid(false);
+    } else {
+      setPasswordCheckIsValid(true);
+    }
+  };
+
+  const inputChangeHandler = (e) => {
+    const { value, name } = e.target;
+    setSignupForm({
+      ...signupForm,
+      [name]: value,
+    });
+  };
+
+  useEffect(() => {
+    setEmailError();
+  }, [signupForm.email]);
+
+  useEffect(() => {
+    setPasswordError();
+  }, [signupForm.password]);
+
+  useEffect(() => {
+    setPasswordError();
+  }, [signupForm.passwordCheck]);
+
+  const SubmitHandler = (e) => {
+    e.preventDefault();
+    console.log('emailIsValid', emailIsValid);
+    console.log('passwordIsValid', passwordIsValid);
+    console.log('passwordCheckIsValid', passwordCheckIsValid);
+    // console.log(signupForm);
+    if (emailIsValid && passwordIsValid && passwordCheckIsValid) {
+      setIsSignupValid(true);
+    }
+  };
+
   return (
     <ContSecStyle>
       <HeaderStyle>이메일로 회원가입</HeaderStyle>
-      <InputFormStyle>
+      <InputFormStyle onSubmit={SubmitHandler}>
         <Input
           label="이메일"
           type="email"
+          name="email"
           placeholder="이메일 주소를 입력해주세요"
+          required="required"
+          value={signupForm}
+          onBlur={EmailHandler}
+          onChange={inputChangeHandler}
+          message={emailError}
         ></Input>
         <Input
           label="비밀번호"
           type="password"
-          placeholder="비밀번호를 설정해주세요"
+          name="password"
+          placeholder="6자리 이상의 비밀번호를 설정해주세요"
+          required="required"
+          value={signupForm}
+          onBlur={PasswordHandler}
+          onChange={inputChangeHandler}
+          min="6"
+          message={passwordError}
+        ></Input>
+        <Input
+          label="비밀번호 확인"
+          type="password"
+          name="passwordCheck"
+          placeholder="위에서 설정한 비밀번호를 그대로 입력해주세요"
+          required="required"
+          value={signupForm}
+          onBlur={PasswordCheckHandler}
+          onChange={inputChangeHandler}
+          message={passwordCheckError}
         ></Input>
         <BtnContainerStyle>
           <BtnComStyle>{'다음'}</BtnComStyle>
@@ -33,4 +156,6 @@ export default function Signup() {
       </InputFormStyle>
     </ContSecStyle>
   );
-}
+};
+
+export default Signup;
