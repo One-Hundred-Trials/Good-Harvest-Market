@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { Children, useEffect, useState } from 'react';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import { useForm } from 'react-hook-form';
+import { useRecoilState } from 'recoil';
 import Button from '../../../components/Button/Button';
 import Input from '../../../components/Input/Input';
 import { authAtom } from '../../../_state/auth';
@@ -11,42 +11,49 @@ export default function LoginEmail() {
   const navigate = useNavigate();
   const [form, setForm] = useState({ email: '', pw: '' });
   const [auth, setAuth] = useRecoilState(authAtom);
+  const [message, setMessage] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
   };
+  const loginData = {
+    user: {
+      email: form.email,
+      password: form.pw,
+    },
+  };
 
-  async function login() {
-    const url = 'https://mandarin.api.weniv.co.kr';
-    const reqPath = '/user/login';
-    const loginData = {
-      user: {
-        email: form.email,
-        password: form.pw,
-      },
-    };
-    const reqUrl = url + reqPath;
-    const res = await fetch(reqUrl, {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(loginData),
-    });
-
-    const json = await res.json();
-    const { token } = json.user;
-    const { accountname } = json.user;
-    console.log(token);
-    console.log(accountname);
-    localStorage.setItem('auth', JSON.stringify(token));
-    localStorage.setItem('account', JSON.stringify(accountname));
-    setAuth(token);
-    if (token) {
-      navigate('/');
+  const login = async () => {
+    try {
+      const response = await axios.post(
+        'https://mandarin.api.weniv.co.kr/user/login',
+        JSON.stringify(loginData),
+        {
+          headers: {
+            'Content-type': 'application/json',
+          },
+          data: loginData,
+        }
+      );
+      const { data } = response;
+      // console.log(data);
+      const { token } = data.user;
+      const { accountname } = data.user;
+      localStorage.setItem('auth', JSON.stringify(token));
+      localStorage.setItem('account', JSON.stringify(accountname));
+      setAuth(token);
+      if (token) {
+        navigate('/');
+      }
+      return response;
+    } catch (error) {
+      setMessage('*이메일 또는 비밀번호가 일치하지 않습니다.');
+      // console.log(`Error: ${error.message}`);
+      console.error(error);
     }
-  }
+    return null;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -71,6 +78,7 @@ export default function LoginEmail() {
           className="pw"
           label="비밀번호"
           type="password"
+          message={message}
         />
         <Button className="loginBtn"> {'로그인'}</Button>
       </InputFormStyle>
