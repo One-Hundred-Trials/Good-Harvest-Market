@@ -62,7 +62,6 @@ const BtnStyle = styled.button`
 
 function Button({ size, variant, children, onClick, go }) {
   const navigate = useNavigate();
-  console.log(go);
   const sizeStyle = SIZES[size];
   const variantStyle = VARIANTS[variant];
   const OnClickHandler = () => {

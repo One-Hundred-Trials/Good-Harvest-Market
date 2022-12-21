@@ -1,5 +1,6 @@
 import { React, useState } from 'react';
 import axios from 'axios';
+import API from '../../../../API';
 import {
   PageWrapStyle,
   ConWrapStyle,
@@ -47,7 +48,6 @@ function PostUpload() {
 
   // 게시글 POST req
   const OnSubmitHandler = async () => {
-    const url = 'https://mandarin.api.weniv.co.kr/post';
     try {
       const postData = {
         post: {
@@ -55,7 +55,7 @@ function PostUpload() {
           image: FileImg,
         },
       };
-      const res = await axios.post(url, JSON.stringify(postData), {
+      const res = await API.post(JSON.stringify(postData), {
         method: 'POST',
         headers: {
           Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWZjYTkwMTdhZTY2NjU4MWM3NGU4NSIsImV4cCI6MTY3NjYwMDc2NCwiaWF0IjoxNjcxNDE2NzY0fQ.i8lcM05IPiggiyTNUpf0lCGvrSsbWXVNek4SmQm2iMg`,
