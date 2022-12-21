@@ -52,7 +52,7 @@ export const ImgDeleteBtn = styled.button`
   background-size: cover;
 `;
 
-export const BtnContainer = styled.div`
+export const BtnWrapStyle = styled.div`
   > label {
     position: absolute;
     width: 50px;

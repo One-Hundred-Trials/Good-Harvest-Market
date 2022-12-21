@@ -1,13 +1,12 @@
 import { React, useState } from 'react';
-import axios from 'axios';
 import API from '../../../../API';
 import {
   PageWrapStyle,
   ConWrapStyle,
   MyProfileImg,
   PostTextStyle,
-  BtnContainer,
   Form,
+  BtnWrapStyle,
   ImgWrapStyle,
   ImgPreview,
   ImgDeleteBtn,
@@ -19,15 +18,24 @@ import UploadFileBtn from '../../../../components/Button/UploadFileBtn/UploadFil
 function PostUpload() {
   const [text, setText] = useState('');
   const [isActive, setIsActive] = useState(false);
-  const [FileImg, setFileImg] = useState('');
+  const [selectedFile, setSelectedFile] = useState([]);
+  const postData = {
+    post: {
+      content: text,
+      image: selectedFile.join(','),
+    },
+  };
+  const formData = new FormData();
 
   // input에 입력한 값 알아내서 state 저장
   const OnChangeHandler = (e) => {
+    e.preventDefault();
     setText(e.target.value);
   };
 
   // 키 누르면 버튼 활성화
-  const ActivateHandler = () => {
+  const ActivateHandler = (e) => {
+    e.preventDefault();
     if (text.length > 0) {
       setIsActive(true);
     } else {
@@ -35,28 +43,10 @@ function PostUpload() {
     }
   };
 
-  // 미리보기 이미지 파일
-  const SaveFileImg = (e) => {
-    setFileImg(URL.createObjectURL(e.target.files[0]));
-  };
-
-  // 미리보기 이미지 파일 삭제
-  const DeleteFileImg = (e) => {
-    URL.revokeObjectURL(FileImg);
-    setFileImg('');
-  };
-
   // 게시글 POST req
   const OnSubmitHandler = async () => {
     try {
-      const postData = {
-        post: {
-          content: text,
-          image: FileImg,
-        },
-      };
-      const res = await API.post(JSON.stringify(postData), {
-        method: 'POST',
+      const res = await API.post('/post', JSON.stringify(postData), {
         headers: {
           Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWZjYTkwMTdhZTY2NjU4MWM3NGU4NSIsImV4cCI6MTY3NjYwMDc2NCwiaWF0IjoxNjcxNDE2NzY0fQ.i8lcM05IPiggiyTNUpf0lCGvrSsbWXVNek4SmQm2iMg`,
           'Content-type': 'application/json',
@@ -69,15 +59,34 @@ function PostUpload() {
     }
   };
 
-  // 이미지 업로드
+  const UploadImgHandler = async (e) => {
+    // e.preventDefault();
+    // console.log(e.target.files[0]);
+    const imgInput = e.target.files[0].name;
+    setSelectedFile((prev) => [...prev, imgInput.name]);
+    // console.log(selectedFile);
+    formData.append('image', e.target.files[0]);
+    // console.log(formData);
+    try {
+      const res = await API.post('/image/uploadfile', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+    // 미리보기
+  };
 
   return (
     <PageWrapStyle>
       <Header
         size="ms"
-        variant={!isActive ? 'disabled' : ''}
+        variant={isActive ? '' : 'disabled'}
+        go={isActive ? '/user_profile/1' : ''}
         onClick={OnSubmitHandler}
-        go="/user_profile/1"
       >
         업로드
       </Header>
@@ -91,13 +100,12 @@ function PostUpload() {
             value={text}
           />
           <ImgWrapStyle>
-            <ImgPreview src={FileImg} alt="" />
-            {FileImg ? <ImgDeleteBtn onClick={DeleteFileImg} /> : null}
+            <ImgPreview src={selectedFile} alt="" />
           </ImgWrapStyle>
+          <BtnWrapStyle>
+            <UploadFileBtn onChange={UploadImgHandler} />
+          </BtnWrapStyle>
         </Form>
-        <BtnContainer>
-          <UploadFileBtn onChange={SaveFileImg} />
-        </BtnContainer>
       </ConWrapStyle>
     </PageWrapStyle>
   );
