@@ -4,7 +4,8 @@ import { PageWrap, ConWrap } from '../../../../../../styles/GlobalStyles';
 export const ProductUploadContStyle = styled.div`
   ${PageWrap}
 `;
-export const ProductUploadSectionStyle = styled.main`
+
+export const ProductUploadMainStyle = styled.form`
   ${ConWrap}
   padding: 30px 34px;
 `;
