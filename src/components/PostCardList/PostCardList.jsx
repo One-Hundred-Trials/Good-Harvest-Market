@@ -1,10 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { useRecoilValue } from 'recoil';
-import { useLocation } from 'react-router-dom';
+import React from 'react';
 import styled from 'styled-components';
 import PostCard from '../PostCard/PostCard';
-import { authAtom } from '../../_state/auth';
-import API from '../../API';
 
 const ContUlStyle = styled.ul`
   background-color: var(--white);
@@ -14,8 +10,6 @@ const ContUlStyle = styled.ul`
 `;
 
 export default function PostCardList({ posts }) {
-  // console.log(posts);
-
   return (
     <ContUlStyle>
       {posts ? (
