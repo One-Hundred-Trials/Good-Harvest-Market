@@ -33,16 +33,15 @@ export default function PostCard({ post, author }) {
             width="42px"
             margin="0 0 0 12px"
             namemarginbottom="2px"
-            username={post.author.username}
-            usertext={`@ ${post.author.accountname}`}
-            src={post.author.image}
+            post={post}
+            author={author}
           />
           <PostIconMoreStyle />
         </PostProfileDivStyle>
       </Link>
       <PostDivStyle>
         <PostContentsStyle>{post.content}</PostContentsStyle>
-        <PostImgStyle src={[post.img]} alt="" />
+        <PostImgStyle src={post.image} alt="" />
         <PostCountDivStyle>
           <HeartIcon heartCount={post.heartCount} />
           <CommentIcon commentCount={post.commentCount} />

@@ -2,16 +2,14 @@ import React from 'react';
 import ProfileAccountStyle from './ProfileAccountStyle';
 
 export default function ProfileAccount({
-  myProfile,
   align,
   size,
   namemarginbottom,
   margin,
   username,
   intro,
-  // usertext,
+  accountname,
 }) {
-  // console.log(myProfile);
   return (
     <ProfileAccountStyle
       align={align}
@@ -20,6 +18,7 @@ export default function ProfileAccount({
       margin={margin}
     >
       <p>{username}</p>
+      <p>@ {accountname}</p>
       <p>{intro}</p>
     </ProfileAccountStyle>
   );

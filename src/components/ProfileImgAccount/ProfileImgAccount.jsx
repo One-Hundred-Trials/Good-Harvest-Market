@@ -7,22 +7,21 @@ import ProfileImg from '../ProfileImg/ProfileImg';
 export default function ProfileImgAccount({
   width,
   height,
-  src,
   margin,
   namemarginbottom,
-  username,
-  usertext,
   className,
+  author,
 }) {
+  const { username, accountname } = author;
   return (
     <ProfileImgContainerStyle className={className}>
-      <ProfileImg src={src} width={width} height={height} />
+      <ProfileImg image={author.image} width={width} height={height} />
       <ProfileAccount
         size="1.4rem"
         margin={margin}
         namemarginbottom={namemarginbottom}
         username={username}
-        usertext={usertext}
+        accountname={accountname}
       />
     </ProfileImgContainerStyle>
   );

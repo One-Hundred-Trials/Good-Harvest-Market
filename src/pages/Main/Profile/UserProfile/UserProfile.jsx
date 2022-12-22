@@ -94,8 +94,6 @@ export default function UserProfile() {
         <ContDivStyle>
           <Profile
             myProfile={userProfile}
-            username="풍이네 주말농장"
-            usertext="@sunday_Farm"
             align="center"
             margin="16px 0 17px 0"
             namemarginbottom="6px"

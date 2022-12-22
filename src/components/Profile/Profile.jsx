@@ -15,14 +15,11 @@ import DefaultProfileImg from '../../assets/img/basic-profile.png';
 
 export default function Profile({
   myProfile,
-  // usertext,
   align,
   margin,
   namemarginbottom,
   children,
 }) {
-  // const children = '팔로우';
-  // const { username, accountname } = myProfile;
   const {
     id,
     accountname,
@@ -42,9 +39,9 @@ export default function Profile({
         <FollowersCount count={followingCount} follow="followings" />
       </FollowStyle>
       <ProfileAccount
-        // myProfile={myProfile}
+        accountname={accountname}
         username={username}
-        // usertext={intro}
+        usertext={intro}
         align={align}
         margin={margin}
         namemarginbottom={namemarginbottom}
@@ -53,7 +50,6 @@ export default function Profile({
       <DivFlexStyle>
         {/* <ChatIcon /> */}
         {children}
-        {/* <Button size="m">{children}</Button> */}
         {/* <ShareIcon /> */}
       </DivFlexStyle>
     </ContDivStyle>
