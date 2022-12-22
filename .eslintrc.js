@@ -44,6 +44,7 @@ module.exports = {
     'no-unused-vars': 'off',
     'no-else-return': 'off',
     'no-useless-concat': 'off',
+    'no-useless-escape': 'off',
     'react/no-unknown-property': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/jsx-filename-extension': [
