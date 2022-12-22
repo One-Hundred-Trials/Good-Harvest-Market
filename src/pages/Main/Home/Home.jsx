@@ -6,7 +6,7 @@ import HomeRenderBlank from '../../../components/HomeRender/HomeRenderBlank';
 import PostCardList from '../../../components/PostCardList/PostCardList';
 import { ConWrap } from '../../../styles/GlobalStyles';
 import API from '../../../API';
-import authAtom from '../../../_state/auth';
+import { authAtom } from '../../../_state/auth';
 
 const ConWrapStyle = styled.main`
   ${ConWrap}

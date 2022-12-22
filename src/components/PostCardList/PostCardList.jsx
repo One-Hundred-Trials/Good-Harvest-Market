@@ -3,7 +3,7 @@ import { useRecoilValue } from 'recoil';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import PostCard from '../PostCard/PostCard';
-import authAtom from '../../_state/auth';
+import { authAtom } from '../../_state/auth';
 import API from '../../API';
 
 const ContUlStyle = styled.ul`
