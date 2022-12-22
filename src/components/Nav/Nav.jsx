@@ -13,7 +13,6 @@ import { ContainerNav, NavUl } from './NavStyle';
 
 export default function Nav() {
   const accountname = useRecoilValue(accountAtom);
-  console.log(accountname);
 
   const IconHome = {
     default: iconHome,
