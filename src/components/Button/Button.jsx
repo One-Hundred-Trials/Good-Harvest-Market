@@ -60,15 +60,19 @@ const BtnStyle = styled.button`
   outline: var(--outline, none);
 `;
 
-function Button({ size, variant, children, go }) {
+function Button({ size, variant, children, onClick, go }) {
   const navigate = useNavigate();
   const sizeStyle = SIZES[size];
   const variantStyle = VARIANTS[variant];
+  const OnClickHandler = () => {
+    onClick();
+    navigate(go);
+  };
   return (
     <BtnStyle
-      onClick={() => navigate(go)}
       sizeStyle={sizeStyle}
       variantStyle={variantStyle}
+      onClick={OnClickHandler}
     >
       {children}
     </BtnStyle>

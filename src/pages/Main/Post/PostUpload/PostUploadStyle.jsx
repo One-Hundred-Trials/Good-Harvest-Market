@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { PageWrap, ConWrap } from '../../../../styles/GlobalStyles';
+import iconX from '../../../../assets/img/icon-x.png';
 
 export const PageWrapStyle = styled.div`
   ${PageWrap}
@@ -17,6 +18,10 @@ export const MyProfileImg = styled.img`
   height: 42px;
 `;
 
+export const Form = styled.form`
+  width: 100%;
+`;
+
 export const PostTextStyle = styled.textarea`
   width: 100%;
   height: 55px;
@@ -29,7 +34,25 @@ export const PostTextStyle = styled.textarea`
   }
 `;
 
-export const BtnContainer = styled.div`
+export const ImgWrapStyle = styled.div`
+  position: relative;
+`;
+
+export const ImgPreview = styled.img`
+  border-radius: 10px;
+`;
+
+export const ImgDeleteBtn = styled.button`
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  top: 11px;
+  right: 11px;
+  background: url(${iconX}) no-repeat;
+  background-size: cover;
+`;
+
+export const BtnWrapStyle = styled.div`
   > label {
     position: absolute;
     width: 50px;
