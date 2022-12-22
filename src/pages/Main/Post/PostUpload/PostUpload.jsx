@@ -62,7 +62,7 @@ function PostUpload() {
   const UploadImgHandler = async (e) => {
     // e.preventDefault();
     // console.log(e.target.files[0]);
-    const imgInput = e.target.files[0].name;
+    const imgInput = e.target.files[0];
     setSelectedFile((prev) => [...prev, imgInput.name]);
     // console.log(selectedFile);
     formData.append('image', e.target.files[0]);
