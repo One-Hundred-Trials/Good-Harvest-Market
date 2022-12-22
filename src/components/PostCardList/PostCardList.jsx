@@ -14,7 +14,7 @@ const ContUlStyle = styled.ul`
 `;
 
 export default function PostCardList({ posts }) {
-  console.log(posts);
+  // console.log(posts);
 
   return (
     <ContUlStyle>
