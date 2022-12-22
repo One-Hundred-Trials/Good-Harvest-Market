@@ -3,10 +3,10 @@ import { useRecoilValue } from 'recoil';
 import Header from '../../../../../../components/Header/Header';
 import Input from '../../../../../../components/Input/Input';
 import {
-  ProductUploadContStyle,
-  ProductUploadMainStyle,
-  ProductUploadTextStyle,
-  ProductUploadImgContainerStyle,
+  PageWrapStyle,
+  ConWrapStyle,
+  ProductUploadTitleStyle,
+  ProductImgUploaderStyle,
 } from './ProductUploadStyle';
 import API from '../../../../../../API';
 import { authAtom } from '../../../../../../_state/auth';
@@ -93,17 +93,17 @@ export default function ProductUpload() {
   };
 
   return (
-    <ProductUploadContStyle>
+    <PageWrapStyle>
       <Header size="ms" variant="disabled" onClick={submitProductHandler}>
         업로드
       </Header>
-      <ProductUploadMainStyle>
+      <ConWrapStyle>
         <div>
-          <ProductUploadTextStyle>이미지 등록</ProductUploadTextStyle>
-          <ProductUploadImgContainerStyle>
+          <ProductUploadTitleStyle>이미지 등록</ProductUploadTitleStyle>
+          <ProductImgUploaderStyle>
             {imageSrc && <img src={imageSrc} alt="미리보기" />}
-          </ProductUploadImgContainerStyle>
-          <UploadFileBtn onChange={uploadImgHandler} />
+            <UploadFileBtn onChange={uploadImgHandler} />
+          </ProductImgUploaderStyle>
         </div>
         <Input
           label="상품명"
@@ -130,7 +130,7 @@ export default function ProductUpload() {
           required="required"
           onChange={linkHandler}
         />
-      </ProductUploadMainStyle>
-    </ProductUploadContStyle>
+      </ConWrapStyle>
+    </PageWrapStyle>
   );
 }
