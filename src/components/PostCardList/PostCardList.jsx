@@ -17,7 +17,7 @@ export default function PostCardList({ posts }) {
           <PostCard key={post.id} author={post.author} post={post} />
         ))
       ) : (
-        <h1>불러오는 중이에요...</h1>
+        <h1>아직 작성한 게시물이 없습니다.</h1>
       )}
     </ContUlStyle>
   );
