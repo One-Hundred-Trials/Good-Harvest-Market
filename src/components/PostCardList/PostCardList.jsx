@@ -13,7 +13,9 @@ export default function PostCardList({ posts }) {
   return (
     <ContUlStyle>
       {posts ? (
-        posts.map((post) => <PostCard key={post.id} post={post} />)
+        posts.map((post) => (
+          <PostCard key={post.id} author={post.author} post={post} />
+        ))
       ) : (
         <h1>불러오는 중이에요...</h1>
       )}
