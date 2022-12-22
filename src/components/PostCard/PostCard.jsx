@@ -22,7 +22,12 @@ export default function PostCard({ post }) {
   const year = postDate.slice(0, 4);
   const month = postDate.slice(4, 6);
   const date = postDate.slice(6, 8);
-
+  // console.log(post.image);
+  // const file = new File(
+  //   [Blob],
+  //   'blob:http://localhost:3000/4485d958-11e4-420a-b6c9-623e9d92d18f'
+  // );
+  // console.log(file);
   return (
     <PostAccountLiStyle>
       <PostProfileDivStyle>
@@ -38,7 +43,7 @@ export default function PostCard({ post }) {
       </PostProfileDivStyle>
       <PostDivStyle>
         <PostContentsStyle>{post.content}</PostContentsStyle>
-        <PostImgStyle src={post.image} alt="" />
+        <PostImgStyle src={[post.img]} alt="" />
         <PostCountDivStyle>
           <HeartIcon heartCount={post.heartCount} />
           <CommentIcon commentCount={post.commentCount} />
