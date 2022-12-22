@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PostImg from '../../assets/img/unsplash_FWtiv70Z_ZY.png';
 import HeartIcon from '../HearIcon/HeartIcon';
 import CommentIcon from '../CommentsIcon/CommentIcon';
@@ -14,7 +15,8 @@ import {
   PostDateStyle,
 } from './PostCardStyle';
 
-export default function PostCard({ post }) {
+export default function PostCard({ post, author }) {
+  const accountName = author.accountname;
   const postDate =
     post.createdAt !== post.updatedAt
       ? post.updatedAt.slice(0, 10).replaceAll('-', '')
@@ -25,17 +27,18 @@ export default function PostCard({ post }) {
 
   return (
     <PostAccountLiStyle>
-      <PostProfileDivStyle>
-        <ProfileImgAccount
-          width="42px"
-          margin="0 0 0 12px"
-          namemarginbottom="2px"
-          username={post.author.username}
-          usertext={`@ ${post.author.accountname}`}
-          src={post.author.image}
-        />
-        <PostIconMoreStyle />
-      </PostProfileDivStyle>
+      <Link to={`/user_profile/${accountName}`}>
+        <PostProfileDivStyle>
+          <ProfileImgAccount
+            width="42px"
+            margin="0 0 0 12px"
+            namemarginbottom="2px"
+            post={post}
+            author={author}
+          />
+          <PostIconMoreStyle />
+        </PostProfileDivStyle>
+      </Link>
       <PostDivStyle>
         <PostContentsStyle>{post.content}</PostContentsStyle>
         <PostImgStyle src={post.image} alt="" />

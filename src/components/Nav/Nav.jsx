@@ -1,4 +1,6 @@
 import React from 'react';
+import { useRecoilValue } from 'recoil';
+import { accountAtom } from '../../_state/auth';
 import NavItem from './NavItem';
 import iconHome from '../../assets/img/icon-home.png';
 import iconHomeFill from '../../assets/img/icon-home-fill.png';
@@ -10,6 +12,8 @@ import iconUserFill from '../../assets/img/icon-user-fill.png';
 import { ContainerNav, NavUl } from './NavStyle';
 
 export default function Nav() {
+  const accountname = useRecoilValue(accountAtom);
+
   const IconHome = {
     default: iconHome,
     fill: iconHomeFill,
@@ -39,7 +43,11 @@ export default function Nav() {
           <NavItem link="/post_upload" icon={IconEdit} name="게시물 작성" />
         </li>
         <li>
-          <NavItem link="/user_profile/1" icon={IconUser} name="프로필" />
+          <NavItem
+            link={`/my_profile/${accountname}`}
+            icon={IconUser}
+            name="프로필"
+          />
         </li>
       </NavUl>
     </ContainerNav>

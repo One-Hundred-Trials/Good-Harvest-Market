@@ -32,7 +32,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       { path: 'chat', element: <Chat /> },
-      { path: 'my_profile', element: <MyProfile /> },
+      { path: 'my_profile/:accountname', element: <MyProfile /> },
       { path: 'user_profile/:id', element: <UserProfile /> },
     ],
   },
