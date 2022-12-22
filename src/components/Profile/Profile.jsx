@@ -19,8 +19,9 @@ export default function Profile({
   align,
   margin,
   namemarginbottom,
+  children,
 }) {
-  const children = '팔로우';
+  // const children = '팔로우';
   // const { username, accountname } = myProfile;
   const {
     id,
@@ -33,12 +34,11 @@ export default function Profile({
     username,
     intro,
   } = { ...myProfile };
-  console.log(intro);
   return (
     <ContDivStyle>
       <FollowStyle>
         <FollowersCount count={followerCount} follow="follower" />
-        <ProfileImg width="110px" height="110px" src={DefaultProfileImg} />
+        <ProfileImg width="110px" height="110px" image={image} />
         <FollowersCount count={followingCount} follow="followings" />
       </FollowStyle>
       <ProfileAccount
@@ -51,9 +51,10 @@ export default function Profile({
       />
       <ProfileIntroStyle>{intro}</ProfileIntroStyle>
       <DivFlexStyle>
-        <ChatIcon />
-        <Button size="m">{children}</Button>
-        <ShareIcon />
+        {/* <ChatIcon /> */}
+        {children}
+        {/* <Button size="m">{children}</Button> */}
+        {/* <ShareIcon /> */}
       </DivFlexStyle>
     </ContDivStyle>
   );

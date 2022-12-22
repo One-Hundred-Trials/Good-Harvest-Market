@@ -11,6 +11,7 @@ import ProductList from '../../../../components/ProductList/ProductList';
 import Profile from '../../../../components/Profile/Profile';
 import { ConWrap } from '../../../../styles/GlobalStyles';
 import { accountAtom, authAtom } from '../../../../_state/auth';
+import Button from '../../../../components/Button/Button';
 
 const ConWrapStyle = styled.main`
   ${ConWrap}
@@ -32,9 +33,6 @@ export default function MyProfile() {
   const [toggle, setToggle] = useState(true);
   const [posts, setPosts] = useState(null);
   const [myProfile, setMyProfile] = useState(null);
-
-  // 로그인시 저장된 accountname과 url
-  const atomaccountname = useRecoilValue(accountAtom);
   const auth = useRecoilValue(authAtom);
   const { accountname } = useParams();
 
@@ -73,7 +71,6 @@ export default function MyProfile() {
       });
       // console.log(res);
       const { user } = res.data;
-      console.log(user);
       setMyProfile(user);
     } catch (err) {
       if (err.response) {
@@ -104,7 +101,14 @@ export default function MyProfile() {
             align="center"
             margin="16px 0 17px 0"
             namemarginbottom="6px"
-          />
+          >
+            <Button variant="active" size="m">
+              {'프로필 수정'}
+            </Button>
+            <Button variant="active" size="m">
+              {'상품 등록'}
+            </Button>
+          </Profile>
           <ProductList />
           <ListOrAlbum toggle={toggle} onclick={onClick} />
         </ContDivStyle>
