@@ -61,11 +61,14 @@ const BtnStyle = styled.button`
 `;
 
 function Button({ size, variant, children, onClick, go }) {
+  console.log(onClick);
   const navigate = useNavigate();
   const sizeStyle = SIZES[size];
   const variantStyle = VARIANTS[variant];
   const OnClickHandler = () => {
-    onClick();
+    if (onClick) {
+      onClick();
+    }
     navigate(go);
   };
   return (
