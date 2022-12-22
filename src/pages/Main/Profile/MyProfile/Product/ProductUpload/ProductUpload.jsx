@@ -94,7 +94,12 @@ export default function ProductUpload() {
 
   return (
     <PageWrapStyle>
-      <Header size="ms" variant="disabled" onClick={submitProductHandler}>
+      <Header
+        size="ms"
+        variant="disabled"
+        disabled
+        onClick={submitProductHandler}
+      >
         업로드
       </Header>
       <ConWrapStyle>
