@@ -22,7 +22,7 @@ export const Form = styled.form`
   width: 100%;
 `;
 
-export const PostTextStyle = styled.textarea`
+export const PostTextAreaStyle = styled.textarea`
   width: 100%;
   height: 55px;
   font-size: 1.4rem;
