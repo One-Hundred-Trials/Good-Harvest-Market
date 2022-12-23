@@ -62,7 +62,32 @@ function PostUpload() {
           'Content-Type': 'multipart/form-data',
         },
       });
-
+      // 이미지 미리보기
+      const previewImg = () => {
+        if (file === undefined) {
+          return;
+        }
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(file);
+        // 클릭할 때 마다 file input의 value를 초기화 하지 않으면 버그가 발생할 수 있다 (사진을 올리고 지우고 다시 같은 사진을 올리면 그 값이 남아있다?)
+        e.target.value = '';
+        fileReader.onload = () => {
+          setImgUrl((ImgUrl) => [...ImgUrl, fileReader.result]);
+        };
+      };
+      // 포스트된 이미지 보기
+      if (res.data.message === '이미지 파일만 업로드가 가능합니다.') {
+        alert(
+          '이미지 파일만 업로드가 가능합니다. 올바른 형식의 파일을 넣어주세요. (*.jpg, *.gif, *.png, *.jpeg, *.bmp, *.tif, *.heic)'
+        );
+      } else {
+        // console.log(res.data.filename);
+        setSelectedImg([
+          ...selectedImg,
+          `https://mandarin.api.weniv.co.kr/${res.data.filename}`,
+        ]);
+        previewImg(file);
+      }
       console.log(res);
     } catch (err) {
       console.log(err);
