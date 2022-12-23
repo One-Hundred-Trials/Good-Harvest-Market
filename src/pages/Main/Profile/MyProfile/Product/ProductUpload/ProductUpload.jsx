@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import Header from '../../../../../../components/Header/Header';
 import Input from '../../../../../../components/Input/Input';
@@ -24,11 +24,17 @@ export default function ProductUpload() {
   /* 상품 이미지 미리보기 데이터 */
   const [imageSrc, setImageSrc] = useState(null);
 
+  /* 버튼활성화 */
+  const [btnAble, setBtnAble] = useState(false);
+
   const itemNameHandler = (e) => {
     setItemName(e.target.value);
   };
   const priceHandler = (e) => {
-    setPrice(Number(e.target.value));
+    const numValue = new Intl.NumberFormat().format(
+      parseInt(e.target.value.replaceAll(',', ''), 10)
+    );
+    setPrice(numValue);
   };
   const linkHandler = (e) => {
     setLink(e.target.value);
@@ -62,16 +68,19 @@ export default function ProductUpload() {
   };
 
   /* 업로드 시 보낼 데이터 */
+  const priceNum = parseInt(price.replaceAll(',', ''), 10);
   const productData = {
     product: {
       itemName,
-      price,
+      price: priceNum,
       link,
       itemImage,
     },
   };
 
+  /* 데이터 post */
   const submitProductHandler = async () => {
+    // btnAbleHandler();
     try {
       const res = await API.post('/product', JSON.stringify(productData), {
         headers: {
@@ -94,19 +103,16 @@ export default function ProductUpload() {
 
   return (
     <PageWrapStyle>
-      <Header
-        size="ms"
-        variant="disabled"
-        disabled
-        onClick={submitProductHandler}
-      >
+      <Header size="ms" variant="disabled" onClick={submitProductHandler}>
         업로드
       </Header>
       <ConWrapStyle>
         <div>
           <ProductUploadTitleStyle>이미지 등록</ProductUploadTitleStyle>
           <ProductImgUploaderStyle>
-            {imageSrc && <img src={imageSrc} alt="미리보기" />}
+            {imageSrc && (
+              <img src={imageSrc} alt="미리보기" onKeyUp={btnAbleHandler} />
+            )}
             <UploadFileBtn onChange={uploadImgHandler} />
           </ProductImgUploaderStyle>
         </div>
@@ -127,6 +133,7 @@ export default function ProductUpload() {
           min="2"
           max="15"
           onChange={priceHandler}
+          value={price}
         />
         <Input
           label="판매 링크"
