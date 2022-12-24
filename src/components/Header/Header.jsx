@@ -107,7 +107,7 @@ export default function Header({
           variant={variant}
           onClick={onClick}
           go={go}
-          disabled
+          disabled={disabled}
         >
           {children}
         </Button>

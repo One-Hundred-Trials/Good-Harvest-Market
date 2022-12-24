@@ -9,11 +9,12 @@ import {
   ProductImgUploaderStyle,
 } from './ProductUploadStyle';
 import API from '../../../../../../API';
-import { authAtom } from '../../../../../../_state/auth';
+import { authAtom, accountAtom } from '../../../../../../_state/auth';
 import UploadFileBtn from '../../../../../../components/Button/UploadFileBtn/UploadFileBtn';
 
-export default function ProductUpload() {
+export default function ProductUpload({ value }) {
   const auth = useRecoilValue(authAtom);
+  const accountname = useRecoilValue(accountAtom);
 
   /* 상품정보 데이터 */
   const [itemName, setItemName] = useState('');
@@ -27,6 +28,21 @@ export default function ProductUpload() {
   /* 버튼활성화 */
   const [btnAble, setBtnAble] = useState(false);
 
+  const btnAbleHandler = () => {
+    if (
+      itemName.length > 1 &&
+      itemName.length < 16 &&
+      price.length > 0 &&
+      link.length > 0 &&
+      itemImage.length > 0
+    ) {
+      setBtnAble(true);
+    } else {
+      setBtnAble(false);
+    }
+  };
+
+  console.log(itemName.length);
   const itemNameHandler = (e) => {
     setItemName(e.target.value);
   };
@@ -103,11 +119,17 @@ export default function ProductUpload() {
 
   return (
     <PageWrapStyle>
-      <Header size="ms" variant="disabled" onClick={submitProductHandler}>
+      <Header
+        size="ms"
+        variant={btnAble ? '' : 'disabled'}
+        disabled={btnAble ? '' : 'disabled'}
+        go={btnAble ? `/user_profile/${accountname}` : ''}
+        onClick={submitProductHandler}
+      >
         업로드
       </Header>
       <ConWrapStyle>
-        <div>
+        <div onKeyUp={btnAbleHandler}>
           <ProductUploadTitleStyle>이미지 등록</ProductUploadTitleStyle>
           <ProductImgUploaderStyle>
             {imageSrc && (
@@ -124,6 +146,7 @@ export default function ProductUpload() {
           min="2"
           max="15"
           onChange={itemNameHandler}
+          onKeyUp={btnAbleHandler}
         />
         <Input
           label="가격"
@@ -133,7 +156,8 @@ export default function ProductUpload() {
           min="2"
           max="15"
           onChange={priceHandler}
-          value={price}
+          onKeyUp={btnAbleHandler}
+          getValue={price}
         />
         <Input
           label="판매 링크"
@@ -141,6 +165,7 @@ export default function ProductUpload() {
           placeholder="URL을 입력해 주세요."
           required="required"
           onChange={linkHandler}
+          onKeyUp={btnAbleHandler}
         />
       </ConWrapStyle>
     </PageWrapStyle>

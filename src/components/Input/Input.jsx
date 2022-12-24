@@ -12,7 +12,8 @@ export default function Input({
   max,
   onBlur,
   name,
-  value,
+  getValue,
+  onKeyUp,
 }) {
   const handleChange = (e) => {
     onChange(e);
@@ -27,10 +28,11 @@ export default function Input({
         placeholder={placeholder}
         onChange={handleChange}
         onBlur={onBlur}
+        onKeyUp={onKeyUp}
         required={required}
         min={min}
         max={max}
-        value={value}
+        value={getValue}
       />
       <MessageSpanStyle>{message}</MessageSpanStyle>
     </ContDivStyle>
