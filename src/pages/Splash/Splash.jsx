@@ -1,6 +1,7 @@
 import React from 'react';
 import LogoImg from '../../assets/img/full-logo.png';
 import { SplashSectionStyle, WrapStyle } from './SplashStyle';
+import { motion } from 'framer-motion';
 
 export default function Splash() {
   return (
