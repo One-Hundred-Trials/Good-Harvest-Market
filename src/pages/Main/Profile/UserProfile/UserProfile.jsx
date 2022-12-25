@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { useRecoilValue } from 'recoil';
+import { authAtom, accountAtom } from '../../../../_state/auth';
+import API from '../../../../API';
 import { ConWrap } from '../../../../styles/GlobalStyles';
 import Profile from '../../../../components/Profile/Profile';
 import ProductList from '../../../../components/ProductList/ProductList';
@@ -25,11 +28,33 @@ const ContDivStyle = styled.div`
 `;
 
 export default function UserProfile() {
+  const auth = useRecoilValue(authAtom);
+  const account = useRecoilValue(accountAtom);
   const [toggle, setToggle] = useState(true);
+  const [productList, setProductList] = useState([]);
 
   const onClick = () => {
     setToggle((prev) => !prev);
   };
+
+  // 등록된 상품 목록
+  useEffect(() => {
+    const getProductList = async () => {
+      try {
+        const res = await API.get(`/product/${account}`, {
+          headers: {
+            Authorization: `Bearer ${auth}`,
+            'Content-type': 'application/json',
+          },
+        });
+        console.log(res);
+        setProductList(res.data.product);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getProductList();
+  }, [account, auth]);
 
   return (
     <>
@@ -43,7 +68,7 @@ export default function UserProfile() {
             margin="16px 0 17px 0"
             namemarginbottom="6px"
           />
-          <ProductList />
+          <ProductList productList={productList} />
           <ListOrAlbum toggle={toggle} onclick={onClick} />
         </ContDivStyle>
         {toggle ? <PostCard /> : <PostAlbum />}
