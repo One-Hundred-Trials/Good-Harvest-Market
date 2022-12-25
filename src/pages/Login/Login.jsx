@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import {
   ContSectionStyle,
@@ -14,11 +14,20 @@ import duckFarm from '../../assets/img/duck-farm.png';
 import kakao from '../../assets/img/kakako.png';
 import google from '../../assets/img/google.png';
 import facebook from '../../assets/img/facebook.png';
+import Splash from '../Splash/Splash';
 
 export default function Login() {
   const children = ['이메일로 로그인', '풍년마켓'];
+  const [visibleSplash, setVisibleSplash] = useState(true);
 
-  return (
+  useEffect(() => {
+    const splashClear = setTimeout(() => setVisibleSplash(false), 2000);
+    return () => clearTimeout(splashClear);
+  }, []);
+
+  return visibleSplash === true ? (
+    <Splash />
+  ) : (
     <ContSectionStyle>
       <LogoiImgStyle src={fullLogo} alt="" />
       <DuckImgStyle src={duckFarm} alt="" />
