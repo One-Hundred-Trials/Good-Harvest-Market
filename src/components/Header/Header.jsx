@@ -56,7 +56,7 @@ export default function Header({ size, variant, children, onClick, go }) {
     return (
       <HeaderStyle>
         <TopMainTitleStyle>{children}</TopMainTitleStyle>
-        <button>
+        <button onClick={() => navigate('/search')}>
           <img src={iconSearch} alt="검색하기" height="22" />
         </button>
       </HeaderStyle>

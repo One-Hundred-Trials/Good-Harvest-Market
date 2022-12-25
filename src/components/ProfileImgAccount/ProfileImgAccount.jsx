@@ -11,11 +11,16 @@ export default function ProfileImgAccount({
   namemarginbottom,
   className,
   author,
+  username,
+  image,
+  accountname,
+  search,
 }) {
-  const { username, accountname } = author;
+  // const { username, accountname } = author;
+  console.log(search);
   return (
     <ProfileImgContainerStyle className={className}>
-      <ProfileImg image={author.image} width={width} height={height} />
+      <ProfileImg image={image} width={width} height={height} />
       <ProfileAccount
         size="1.4rem"
         margin={margin}
