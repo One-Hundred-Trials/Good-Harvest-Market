@@ -10,6 +10,7 @@ import {
   Form,
   BtnWrapStyle,
   ImgWrapStyle,
+  ImgItemWrapStyle,
   ImgPreview,
 } from './PostUploadStyle';
 
@@ -132,7 +133,12 @@ function PostUpload() {
             onChange={OnChangeHandler}
           />
           <ImgWrapStyle>
-            {selectedImg && <ImgPreview src={selectedImg} alt="" />}
+            {imgUrl &&
+              imgUrl.map((image, index) => (
+                <ImgItemWrapStyle key={index} id={index}>
+                  <ImgPreview src={image} alt="이미지 미리보기" />
+                </ImgItemWrapStyle>
+              ))}
           </ImgWrapStyle>
           <BtnWrapStyle>
             <UploadFileBtn onChange={ChangeFileHandler} />
