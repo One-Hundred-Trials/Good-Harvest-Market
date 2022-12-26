@@ -1,7 +1,5 @@
 import styled from 'styled-components';
-import BtnStyle from '../../components/Button/Button';
 import { Wrap } from '../../styles/GlobalStyles';
-import uploadFile from '../../assets/img/upload-file.png';
 
 export const ContSecStyle = styled.section`
   ${Wrap}
@@ -37,8 +35,4 @@ export const InputFormStyle = styled.form`
       border-bottom: 2px solid var(--point-green);
     }
   }
-`;
-export const BtnComStyle = styled(BtnStyle)`
-  ${BtnStyle};
-  margin: 20px;
 `;
