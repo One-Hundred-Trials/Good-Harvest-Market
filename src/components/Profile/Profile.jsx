@@ -14,34 +14,43 @@ import ShareIcon from '../../components/ShareIcon/ShareIcon';
 import DefaultProfileImg from '../../assets/img/basic-profile.png';
 
 export default function Profile({
-  username,
-  usertext,
+  myProfile,
   align,
   margin,
   namemarginbottom,
+  children,
 }) {
-  const children = '팔로우';
+  const {
+    id,
+    accountname,
+    follower,
+    followerCount,
+    following,
+    followingCount,
+    image,
+    username,
+    intro,
+  } = { ...myProfile };
   return (
     <ContDivStyle>
       <FollowStyle>
-        <FollowersCount count="3000" follow="follower" />
-        <ProfileImg width="110px" height="110px" src={DefaultProfileImg} />
-        <FollowersCount count="1200" follow="followings" />
+        <FollowersCount count={followerCount} follow="follower" />
+        <ProfileImg width="110px" height="110px" image={image} />
+        <FollowersCount count={followingCount} follow="followings" />
       </FollowStyle>
       <ProfileAccount
+        accountname={accountname}
         username={username}
-        usertext={usertext}
+        usertext={intro}
         align={align}
         margin={margin}
         namemarginbottom={namemarginbottom}
       />
-      <ProfileIntroStyle>
-        애월읍 주말 감귤 농장입니다. 전국 배송 가능
-      </ProfileIntroStyle>
+      <ProfileIntroStyle>{intro}</ProfileIntroStyle>
       <DivFlexStyle>
-        <ChatIcon />
-        <Button size="m">{children}</Button>
-        <ShareIcon />
+        {/* <ChatIcon /> */}
+        {children}
+        {/* <ShareIcon /> */}
       </DivFlexStyle>
     </ContDivStyle>
   );

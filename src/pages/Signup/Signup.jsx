@@ -2,12 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import Input from '../../components/Input/Input';
-import {
-  ContSecStyle,
-  HeaderStyle,
-  InputFormStyle,
-  BtnComStyle,
-} from './SignupStyle';
+import { ContSecStyle, HeaderStyle, InputFormStyle } from './SignupStyle';
+import Button from '../../components/Button/Button';
 
 const BtnContainerStyle = styled.div`
   margin-top: 14px;
@@ -31,29 +27,31 @@ const Signup = ({ setIsSignupValid, setSignupForm, signupForm }) => {
       setEmailError(`잘못된 이메일 형식입니다.`);
       setEmailIsValid(false);
     }
-    const url = 'https://mandarin.api.weniv.co.kr';
-    const reqPath = '/user/emailvalid';
-    const signupData = {
-      user: {
-        email: signupForm.email,
-      },
-    };
-    const reqUrl = url + reqPath;
-    const res = await axios.post(reqUrl, JSON.stringify(signupData), {
-      headers: {
-        'Content-type': 'application/json',
-      },
-      data: signupData,
-    });
-    const json = res.data;
-    console.log(json.message);
-    if (json.message === '이미 가입된 이메일 주소입니다.') {
-      setEmailError(`*${json.message}`);
-      setEmailIsValid(false);
-    } else if (json.message === '사용 가능한 이메일 입니다.') {
-      setEmailIsValid(true);
-    } else {
-      setEmailError(`잘못된 이메일 형식입니다.`);
+    try {
+      const url = 'https://mandarin.api.weniv.co.kr';
+      const reqPath = '/user/emailvalid';
+      const emailCheckData = {
+        user: {
+          email: signupForm.email,
+        },
+      };
+      const reqUrl = url + reqPath;
+      const res = await axios.post(reqUrl, JSON.stringify(emailCheckData), {
+        headers: {
+          'Content-type': 'application/json',
+        },
+        data: emailCheckData,
+      });
+      const json = res.data;
+      if (json.message === '이미 가입된 이메일 주소 입니다.') {
+        setEmailError(`*${json.message}`);
+        setEmailIsValid(false);
+      } else if (json.message === '사용 가능한 이메일 입니다.') {
+        setEmailError('');
+        setEmailIsValid(true);
+      }
+    } catch (err) {
+      console.error(err);
       setEmailIsValid(false);
     }
   };
@@ -64,7 +62,9 @@ const Signup = ({ setIsSignupValid, setSignupForm, signupForm }) => {
       setPasswordIsValid(false);
     } else if (signupForm.password.length < 6) {
       setPasswordError('* 비밀번호는 6자 이상이어야 합니다.');
+      setPasswordIsValid(false);
     } else {
+      setPasswordError('');
       setPasswordIsValid(true);
     }
   };
@@ -77,6 +77,7 @@ const Signup = ({ setIsSignupValid, setSignupForm, signupForm }) => {
       setPasswordCheckError('* 입력한 비밀번호와 일치하지 않습니다.');
       setPasswordCheckIsValid(false);
     } else {
+      setPasswordCheckError('');
       setPasswordCheckIsValid(true);
     }
   };
@@ -103,10 +104,6 @@ const Signup = ({ setIsSignupValid, setSignupForm, signupForm }) => {
 
   const SubmitHandler = (e) => {
     e.preventDefault();
-    console.log('emailIsValid', emailIsValid);
-    console.log('passwordIsValid', passwordIsValid);
-    console.log('passwordCheckIsValid', passwordCheckIsValid);
-    // console.log(signupForm);
     if (emailIsValid && passwordIsValid && passwordCheckIsValid) {
       setIsSignupValid(true);
     }
@@ -151,7 +148,17 @@ const Signup = ({ setIsSignupValid, setSignupForm, signupForm }) => {
           message={passwordCheckError}
         ></Input>
         <BtnContainerStyle>
-          <BtnComStyle>{'다음'}</BtnComStyle>
+          <Button
+            variant={
+              signupForm.email &&
+              signupForm.password &&
+              signupForm.passwordCheck
+                ? 'abled'
+                : 'disabled'
+            }
+          >
+            {'다음'}
+          </Button>
         </BtnContainerStyle>
       </InputFormStyle>
     </ContSecStyle>

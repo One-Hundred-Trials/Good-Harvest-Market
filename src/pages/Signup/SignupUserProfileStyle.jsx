@@ -46,7 +46,3 @@ export const InputFormStyle = styled.form`
     }
   }
 `;
-export const BtnComStyle = styled(BtnStyle)`
-  ${BtnStyle};
-  margin: 20px;
-`;
