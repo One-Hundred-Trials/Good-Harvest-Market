@@ -33,6 +33,7 @@ export default function UserProfile() {
   const account = useRecoilValue(accountAtom);
   const [toggle, setToggle] = useState(true);
   const [productList, setProductList] = useState([]);
+  const [postsAlbum, setPostsAlbum] = useState([]);
   const [posts, setPosts] = useState(null);
   const [userProfile, setUserProfile] = useState(null);
   const { id } = useParams();
@@ -50,8 +51,10 @@ export default function UserProfile() {
         },
       });
       const { post } = res.data;
+      const haveImage = post.filter((v) => v.image);
+      setPostsAlbum(haveImage);
       setPosts(post);
-      // console.log(post);
+      console.log(haveImage);
     } catch (err) {
       if (err.response) {
         // 응답코드 2xx가 아닌 경우
@@ -85,21 +88,21 @@ export default function UserProfile() {
   };
 
   // 등록된 상품 목록 가져오기
-    const GetProductList = async () => {
-      try {
-        const res = await API.get(`/product/${account}`, {
-          headers: {
-            Authorization: `Bearer ${auth}`,
-            'Content-type': 'application/json',
-          },
-        });
-        console.log(res);
-        setProductList(res.data.product);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    
+  const GetProductList = async () => {
+    try {
+      const res = await API.get(`/product/${account}`, {
+        headers: {
+          Authorization: `Bearer ${auth}`,
+          'Content-type': 'application/json',
+        },
+      });
+      console.log(res);
+      setProductList(res.data.product);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     GetUserPostData();
     GetUserProfileData();
@@ -120,7 +123,7 @@ export default function UserProfile() {
           <ProductList productList={productList} />
           <ListOrAlbum toggle={toggle} onclick={onClick} />
         </ContDivStyle>
-        {toggle ? <PostCard posts={posts} /> : <PostAlbum />}
+        {toggle ? <PostCard posts={posts} /> : <PostAlbum posts={postsAlbum} />}
       </ConWrapStyle>
     </>
   );
