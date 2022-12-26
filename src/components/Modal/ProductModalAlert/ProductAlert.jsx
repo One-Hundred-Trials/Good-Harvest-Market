@@ -8,13 +8,17 @@ import {
   AlertButtonRight,
 } from './ProductAlertStyle';
 
-export default function ModalAlert() {
+export default function ModalAlert({ setAlert }) {
+  const alertClose = () => {
+    setAlert(false);
+  };
+
   return (
     <ModalAlertDiv>
       <AlertBox>
         <AlertHeader>상품을 삭제할까요?</AlertHeader>
         <AlertBody>
-          <AlertButtonLeft>취소</AlertButtonLeft>
+          <AlertButtonLeft onClick={alertClose}>취소</AlertButtonLeft>
           <AlertButtonRight>삭제</AlertButtonRight>
         </AlertBody>
       </AlertBox>

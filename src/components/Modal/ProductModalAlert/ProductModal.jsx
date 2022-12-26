@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ModalContainerDiv, ModalUl, ModalBtn } from './ProductModalStyle';
+import {
+  ModalBgtDiv,
+  ModalContainerDiv,
+  ModalUl,
+  ModalBtn,
+} from './ProductModalStyle';
 import ProductAlert from './ProductAlert';
 
-export default function ModalSlide({ productId }) {
+export default function ModalSlide({ productId, setModal }) {
   const [alert, setAlert] = useState(false);
   const alertShow = () => {
     setAlert(true);
@@ -13,9 +18,25 @@ export default function ModalSlide({ productId }) {
   const goEditHandler = () => {
     navigate(`/product/${productId}/edit`);
   };
+
+  const modalRef = useRef();
+  useEffect(() => {
+    const modalTouchCloseHandler = (e) => {
+      if (modalRef.current && !modalRef.current.contains(e.target)) {
+        setModal(false);
+      }
+    };
+    document.addEventListener('mousedown', modalTouchCloseHandler);
+    document.addEventListener('touchstart', modalTouchCloseHandler);
+    return () => {
+      document.removeEventListener('mousedown', modalTouchCloseHandler);
+      document.removeEventListener('touchstart', modalTouchCloseHandler);
+    };
+  });
+
   return (
-    <>
-      <ModalContainerDiv>
+    <ModalBgtDiv>
+      <ModalContainerDiv ref={modalRef}>
         <ModalUl>
           <li>
             <ModalBtn onClick={alertShow}>삭제</ModalBtn>
@@ -27,8 +48,8 @@ export default function ModalSlide({ productId }) {
             <ModalBtn>웹사이트에서 상품 보기</ModalBtn>
           </li>
         </ModalUl>
+        {alert && <ProductAlert setAlert={setAlert} />}
       </ModalContainerDiv>
-      {alert && <ProductAlert />}
-    </>
+    </ModalBgtDiv>
   );
 }
