@@ -85,21 +85,28 @@ export default function UserProfile() {
   };
 
   // 등록된 상품 목록 가져오기
-    const GetProductList = async () => {
-      try {
-        const res = await API.get(`/product/${account}`, {
-          headers: {
-            Authorization: `Bearer ${auth}`,
-            'Content-type': 'application/json',
-          },
-        });
-        console.log(res);
-        setProductList(res.data.product);
-      } catch (error) {
-        console.log(error);
+  const GetProductList = async () => {
+    try {
+      const res = await API.get(`/product/${account}`, {
+        headers: {
+          Authorization: `Bearer ${auth}`,
+          'Content-type': 'application/json',
+        },
+      });
+      console.log(res);
+      setProductList(res.data.product);
+    } catch (err) {
+      if (err.response) {
+        // 응답코드 2xx가 아닌 경우
+        console.log(err.response.data);
+        console.log(err.response.status);
+        console.log(err.response.headers);
+      } else {
+        console.log(`Error: ${err.message}`);
       }
-    };
-    
+    }
+  };
+
   useEffect(() => {
     GetUserPostData();
     GetUserProfileData();
