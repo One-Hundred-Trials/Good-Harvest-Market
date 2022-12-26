@@ -22,6 +22,7 @@ import ProfileEdit from './pages/Main/Profile/MyProfile/ProfileEdit/ProfileEdit'
 import ProductUpload from './pages/Main/Profile/MyProfile/Product/ProductUpload/ProductUpload';
 import ProductEdit from './pages/Main/Profile/MyProfile/Product/ProductEdit/ProductEdit';
 import Post from './pages/Main/Post/Post';
+import PostEdit from './pages/Main/Post/PostEdit/PostEdit';
 import ChatRoom from './pages/Main/Chat/ChatRoom/ChatRoom';
 
 const router = createBrowserRouter([
@@ -71,6 +72,10 @@ const router = createBrowserRouter([
   {
     path: '/post/:id',
     element: <Post />,
+  },
+  {
+    path: '/post/:id/edit',
+    element: <PostEdit />,
   },
   {
     path: '/chat/:id',
