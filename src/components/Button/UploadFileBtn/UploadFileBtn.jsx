@@ -7,7 +7,7 @@ export default function UploadFileBtn(props) {
       <input
         type="file"
         id="file"
-        accept="image/*"
+        accept="*.jpg, *.gif, *.png, *.jpeg, *.bmp, *.tif, *.heic"
         onChange={props.onChange}
         onKeyUp={props.onKeyUp}
       />
