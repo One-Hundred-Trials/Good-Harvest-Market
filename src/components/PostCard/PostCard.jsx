@@ -41,7 +41,13 @@ export default function PostCard({ post, author }) {
       </Link>
       <PostDivStyle>
         <PostContentsStyle>{post.content}</PostContentsStyle>
-        <PostImgStyle src={post.image} alt="" />
+        {post.image
+          ? post.image.split(',').map((ImgUrl, index) => (
+              <div key={index}>
+                <PostImgStyle src={ImgUrl} alt="" />
+              </div>
+            ))
+          : null}
         <PostCountDivStyle>
           <HeartIcon heartCount={post.heartCount} />
           <CommentIcon commentCount={post.commentCount} />
