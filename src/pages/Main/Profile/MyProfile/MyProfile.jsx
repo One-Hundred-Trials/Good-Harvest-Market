@@ -105,7 +105,7 @@ export default function MyProfile() {
             <Button variant="active" size="m">
               {'프로필 수정'}
             </Button>
-            <Button variant="active" size="m">
+            <Button variant="active" size="m" go={'/product_upload'}>
               {'상품 등록'}
             </Button>
           </Profile>
