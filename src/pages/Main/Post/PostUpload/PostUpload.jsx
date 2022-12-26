@@ -128,7 +128,7 @@ function PostUpload() {
       <Header
         size="ms"
         variant={isActive ? '' : 'disabled'}
-        go={isActive ? `/user_profile/${account}` : ''}
+        go={isActive ? `/my_profile/${account}` : ''}
         onClick={PostUploadHandler}
       >
         업로드
