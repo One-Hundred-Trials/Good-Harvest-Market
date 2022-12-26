@@ -19,6 +19,7 @@ export default function Header({
   go,
   search,
   setKeyWord,
+  disabled,
 }) {
   const navigate = useNavigate();
   const path = window.location.pathname;
@@ -117,6 +118,7 @@ export default function Header({
           variant={variant}
           onClick={onClick}
           go={go}
+          disabled={disabled}
         >
           {children}
         </Button>

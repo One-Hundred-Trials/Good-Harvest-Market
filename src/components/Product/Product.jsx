@@ -7,14 +7,17 @@ import {
   ProductPrice,
 } from './ProductStyle';
 
-export default function Product({ apiUrl, productName, price }) {
+export default function Product({ product }) {
+  const priceFormat = product.price
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   return (
     <ProductWrap>
       <ProductImgWrap>
-        <ProductImg src={apiUrl} alt={productName} />
+        <ProductImg src={product.itemImage} alt={product.itemName} />
       </ProductImgWrap>
-      <ProductName>{productName}</ProductName>
-      <ProductPrice>{price}</ProductPrice>
+      <ProductName>{product.itemName}</ProductName>
+      <ProductPrice>{priceFormat}원</ProductPrice>
     </ProductWrap>
   );
 }
