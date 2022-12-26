@@ -78,7 +78,7 @@ function Button({ size, variant, disabled, children, onClick, go }) {
       sizeStyle={sizeStyle}
       variantStyle={variantStyle}
       onClick={OnClickHandler}
-      disabled={'' || disabled}
+      disabled={disabled}
     >
       {children}
     </BtnStyle>
