@@ -17,7 +17,6 @@ export default function ProfileImgAccount({
   search,
 }) {
   // const { username, accountname } = author;
-  console.log(search);
   return (
     <ProfileImgContainerStyle className={className}>
       <ProfileImg image={image} width={width} height={height} />

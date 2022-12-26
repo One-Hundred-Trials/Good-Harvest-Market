@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/Button/Button';
 import iconArrowLeft from '../../assets/img/icon-arrow-left.png';
@@ -11,9 +11,24 @@ import {
   TopSearchInputStyle,
 } from './HeaderStyle';
 
-export default function Header({ size, variant, children, onClick, go }) {
+export default function Header({
+  size,
+  variant,
+  children,
+  onClick,
+  go,
+  search,
+  setKeyWord,
+}) {
   const navigate = useNavigate();
   const path = window.location.pathname;
+
+  const [value, setValue] = useState('');
+  const handleOnChange = (e) => {
+    console.log(e.target.value);
+    setValue(e.target.value);
+    setKeyWord(e.target.value);
+  };
   if (
     path === '/my_profile' ||
     path.includes('/user_profile/') ||
@@ -75,6 +90,8 @@ export default function Header({ size, variant, children, onClick, go }) {
         <TopSearchInputStyle
           type="text"
           placeholder="계정 검색"
+          value={value}
+          onChange={handleOnChange}
         ></TopSearchInputStyle>
       </HeaderStyle>
     );
