@@ -12,6 +12,7 @@ import {
   ImgWrapStyle,
   ImgItemWrapStyle,
   ImgPreview,
+  ImgDeleteBtn,
 } from './PostUploadStyle';
 
 import profileImg from '../../../../assets/img/basic-profile-50.png';
@@ -114,6 +115,14 @@ function PostUpload() {
     }
   };
 
+  // 미리보기 이미지 삭제
+  const ImgDeleteHandler = (targetIndex) => {
+    // img.index가 파라미터로 일치하지 않는 원소만 추출해서 새로운 배열을 만든다
+    // targetIndex는 삭제할 대상의 index이고 img.index가 targetIndex와 같은 것을 삭제한다
+    const imgArr = selectedImg.filter((img) => img.index !== targetIndex);
+    setSelectedImg([...imgArr]);
+  };
+
   return (
     <PageWrapStyle>
       <Header
@@ -134,9 +143,10 @@ function PostUpload() {
           />
           <ImgWrapStyle>
             {imgUrl &&
-              imgUrl.map((image, index) => (
+              imgUrl.map((img, index) => (
                 <ImgItemWrapStyle key={index} id={index}>
-                  <ImgPreview src={image} alt="이미지 미리보기" />
+                  <ImgPreview src={img} alt="이미지 미리보기" />
+                  <ImgDeleteBtn onClick={() => ImgDeleteHandler(index)} />
                 </ImgItemWrapStyle>
               ))}
           </ImgWrapStyle>
