@@ -58,9 +58,12 @@ const BtnStyle = styled.button`
   background-color: var(--background-color, var(--main-green));
   color: var(--color, var(--white));
   outline: var(--outline, none);
+  &:disabled {
+    cursor: default;
+  }
 `;
 
-function Button({ size, variant, children, onClick, go }) {
+function Button({ size, variant, disabled, children, onClick, go }) {
   const navigate = useNavigate();
   const sizeStyle = SIZES[size];
   const variantStyle = VARIANTS[variant];
@@ -75,6 +78,7 @@ function Button({ size, variant, children, onClick, go }) {
       sizeStyle={sizeStyle}
       variantStyle={variantStyle}
       onClick={OnClickHandler}
+      disabled={disabled}
     >
       {children}
     </BtnStyle>

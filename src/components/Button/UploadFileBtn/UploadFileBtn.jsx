@@ -9,6 +9,7 @@ export default function UploadFileBtn(props) {
         id="file"
         accept="*.jpg, *.gif, *.png, *.jpeg, *.bmp, *.tif, *.heic"
         onChange={props.onChange}
+        onKeyUp={props.onKeyUp}
       />
     </UploadFileLabel>
   );

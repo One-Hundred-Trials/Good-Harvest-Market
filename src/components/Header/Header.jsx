@@ -11,7 +11,14 @@ import {
   TopSearchInputStyle,
 } from './HeaderStyle';
 
-export default function Header({ size, variant, children, onClick, go }) {
+export default function Header({
+  size,
+  variant,
+  disabled,
+  children,
+  onClick,
+  go,
+}) {
   const navigate = useNavigate();
   const path = window.location.pathname;
   if (
@@ -100,6 +107,7 @@ export default function Header({ size, variant, children, onClick, go }) {
           variant={variant}
           onClick={onClick}
           go={go}
+          disabled={disabled}
         >
           {children}
         </Button>

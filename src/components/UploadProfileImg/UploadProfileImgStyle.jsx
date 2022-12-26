@@ -19,3 +19,17 @@ export const UploadProfileLabelStyle = styled.label`
 export const UploadProfileInputStyle = styled.input`
   display: none;
 `;
+
+export const ProfileImageContainerStyle = styled.div`
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  display: block;
+  overflow: hidden;
+`;
+
+export const ProfileImageStyle = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;

@@ -7,7 +7,8 @@ export default function ProfileAccount({
   namemarginbottom,
   margin,
   username,
-  usertext,
+  intro,
+  accountname,
 }) {
   return (
     <ProfileAccountStyle
@@ -17,7 +18,8 @@ export default function ProfileAccount({
       margin={margin}
     >
       <p>{username}</p>
-      <p>{usertext}</p>
+      <p>@ {accountname}</p>
+      <p>{intro}</p>
     </ProfileAccountStyle>
   );
 }

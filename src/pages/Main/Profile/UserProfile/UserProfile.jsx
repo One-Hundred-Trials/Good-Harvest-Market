@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import { useRecoilValue } from 'recoil';
+import { authAtom, accountAtom } from '../../../../_state/auth';
 import { ConWrap } from '../../../../styles/GlobalStyles';
 import Profile from '../../../../components/Profile/Profile';
 import ProductList from '../../../../components/ProductList/ProductList';
@@ -7,6 +10,7 @@ import PostCard from '../../../../components/PostCardList/PostCardList';
 import ListOrAlbum from '../../../../components/ListOrAlbum/ListOrAlbum';
 import PostAlbum from '../../../../components/PostAlbum/PostAlbum';
 import Header from '../../../../components/Header/Header';
+import API from '../../../../API';
 
 const ConWrapStyle = styled.main`
   ${ConWrap}
@@ -25,11 +29,82 @@ const ContDivStyle = styled.div`
 `;
 
 export default function UserProfile() {
+  const auth = useRecoilValue(authAtom);
+  const account = useRecoilValue(accountAtom);
   const [toggle, setToggle] = useState(true);
+  const [productList, setProductList] = useState([]);
+  const [posts, setPosts] = useState(null);
+  const [userProfile, setUserProfile] = useState(null);
+  const { id } = useParams();
 
   const onClick = () => {
     setToggle((prev) => !prev);
   };
+
+  const GetUserPostData = async () => {
+    try {
+      const res = await API.get(`/post/${id}/userpost`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${auth}`,
+        },
+      });
+      const { post } = res.data;
+      setPosts(post);
+      // console.log(post);
+    } catch (err) {
+      if (err.response) {
+        // 응답코드 2xx가 아닌 경우
+        console.log(err.response.data);
+        console.log(err.response.status);
+        console.log(err.response.headers);
+      } else {
+        console.log(`Error: ${err.message}`);
+      }
+    }
+  };
+  const GetUserProfileData = async () => {
+    try {
+      const res = await API.get(`/profile/${id}`, {
+        headers: {
+          Authorization: `Bearer ${auth}`,
+        },
+      });
+      const { profile } = res.data;
+      setUserProfile(profile);
+    } catch (err) {
+      if (err.response) {
+        // 응답코드 2xx가 아닌 경우
+        console.log(err.response.data);
+        console.log(err.response.status);
+        console.log(err.response.headers);
+      } else {
+        console.log(`Error: ${err.message}`);
+      }
+    }
+  };
+
+  // 등록된 상품 목록 가져오기
+    const GetProductList = async () => {
+      try {
+        const res = await API.get(`/product/${account}`, {
+          headers: {
+            Authorization: `Bearer ${auth}`,
+            'Content-type': 'application/json',
+          },
+        });
+        console.log(res);
+        setProductList(res.data.product);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    
+  useEffect(() => {
+    GetUserPostData();
+    GetUserProfileData();
+    GetProductList();
+  }, []);
 
   return (
     <>
@@ -37,16 +112,15 @@ export default function UserProfile() {
       <ConWrapStyle>
         <ContDivStyle>
           <Profile
-            username="풍이네 주말농장"
-            usertext="@sunday_Farm"
+            myProfile={userProfile}
             align="center"
             margin="16px 0 17px 0"
             namemarginbottom="6px"
           />
-          <ProductList />
+          <ProductList productList={productList} />
           <ListOrAlbum toggle={toggle} onclick={onClick} />
         </ContDivStyle>
-        {toggle ? <PostCard /> : <PostAlbum />}
+        {toggle ? <PostCard posts={posts} /> : <PostAlbum />}
       </ConWrapStyle>
     </>
   );

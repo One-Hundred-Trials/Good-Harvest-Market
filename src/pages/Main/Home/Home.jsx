@@ -14,6 +14,7 @@ const ConWrapStyle = styled.main`
 `;
 
 export default function Home() {
+  const [post, setPost] = useState(null);
   const auth = useRecoilValue(authAtom);
 
   const [hasFollowing, setHasFollowing] = useState(null);
@@ -27,7 +28,9 @@ export default function Home() {
             Authorization: `Bearer ${auth}`,
           },
         });
-        console.log(res);
+        const { posts } = res.data;
+        setPost(posts);
+        // console.log(posts);
         if (res.data.posts !== null) {
           setHasFollowing(true);
         }
@@ -43,13 +46,13 @@ export default function Home() {
       }
     };
     userFollowingData();
-  }, []);
+  }, [auth]);
 
   return (
     <>
       <Header>주말의 즐거운 풍년마켓</Header>
       <ConWrapStyle>
-        {hasFollowing ? <PostCardList /> : <HomeRenderBlank />}
+        {hasFollowing ? <PostCardList posts={post} /> : <HomeRenderBlank />}
       </ConWrapStyle>
     </>
   );
