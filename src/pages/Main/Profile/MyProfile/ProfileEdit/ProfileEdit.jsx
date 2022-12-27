@@ -24,7 +24,7 @@ export default function ProfileEdit() {
   const navigateToMyProfile = () => {
     navigate(`/my_profile/${accountName}`);
   };
-  
+
   const userNameChangeHandler = (e) => {
     setUserName(e.target.value);
   };
@@ -151,6 +151,7 @@ export default function ProfileEdit() {
         setIsAccountNameValid(true);
         setIntro(data.intro);
         setPrevProfileImg(data.image);
+        setProfileImg(data.image);
       } catch (err) {
         console.error(err);
       }
@@ -210,7 +211,7 @@ export default function ProfileEdit() {
           type="text"
           placeholder="2~10자 이내여야 합니다."
           name="username"
-          value={userName}
+          getValue={userName}
           onChange={userNameChangeHandler}
           onBlur={UserNameHandler}
           message={userNameError}
@@ -220,7 +221,7 @@ export default function ProfileEdit() {
           type="text"
           placeholder="영문, 숫자, 특수문자(.),(_)만 사용 가능합니다."
           name="accountname"
-          value={accountName}
+          getValue={accountName}
           onChange={accountNameChangeHandler}
           onBlur={AccountNameHandler}
           message={accountNameError}
@@ -230,7 +231,7 @@ export default function ProfileEdit() {
           type="text"
           placeholder="자신과 판매할 상품에 대해 소개해 주세요!"
           name="intro"
-          value={intro}
+          getValue={intro}
           onChange={introChangeHandler}
         ></Input>
       </InputFormStyle>
