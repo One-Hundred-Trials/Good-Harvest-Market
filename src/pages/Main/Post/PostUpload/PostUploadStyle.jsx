@@ -22,7 +22,7 @@ export const Form = styled.form`
   width: 100%;
 `;
 
-export const PostTextStyle = styled.textarea`
+export const PostTextAreaStyle = styled.textarea`
   width: 100%;
   height: 55px;
   font-size: 1.4rem;
@@ -33,13 +33,27 @@ export const PostTextStyle = styled.textarea`
     color: var(--sub-grey-C4);
   }
 `;
+export const ImgWrapStyle = styled.ul`
+  display: flex;
+  overflow-x: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  & > li + li {
+    margin-left: 8px;
+  }
+`;
 
-export const ImgWrapStyle = styled.div`
+export const ImgItemWrapStyle = styled.li`
   position: relative;
 `;
 
 export const ImgPreview = styled.img`
   border-radius: 10px;
+  width: 200px;
+  height: auto;
 `;
 
 export const ImgDeleteBtn = styled.button`
@@ -53,7 +67,7 @@ export const ImgDeleteBtn = styled.button`
 `;
 
 export const BtnWrapStyle = styled.div`
-  > label {
+  & > label {
     position: absolute;
     width: 50px;
     height: 50px;
