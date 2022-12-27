@@ -16,7 +16,7 @@ export default function PostAlbum({ posts }) {
     <section>
       <UlStyle>
         {posts.map((post) => (
-          <PostAlbumList key={post.id} image={post.image} />
+          <PostAlbumList key={post.id} image={post.image.split(',')[0]} />
         ))}
       </UlStyle>
     </section>
