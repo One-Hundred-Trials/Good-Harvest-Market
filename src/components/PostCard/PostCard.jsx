@@ -15,7 +15,7 @@ import {
 } from './PostCardStyle';
 
 export default function PostCard({ post, author }) {
-  console.log(post);
+  // console.log(post);
   const accountName = author.accountname;
   const postDate =
     post.createdAt !== post.updatedAt
@@ -50,7 +50,9 @@ export default function PostCard({ post, author }) {
           : null}
         <PostCountDivStyle>
           <HeartIcon heartCount={post.heartCount} />
-          <CommentIcon commentCount={post.commentCount} />
+          <Link to={`/post/${post.id}`}>
+            <CommentIcon commentCount={post.commentCount} />
+          </Link>
         </PostCountDivStyle>
         <PostDateStyle>{`${year}년 ${month}월 ${date}일`}</PostDateStyle>
       </PostDivStyle>
