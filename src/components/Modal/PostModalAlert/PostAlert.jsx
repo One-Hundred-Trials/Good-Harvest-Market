@@ -1,82 +1,58 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import API from '../../../API';
+import { authAtom, accountAtom } from '../../../_state/auth';
+import {
+  ModalAlertDiv,
+  AlertBox,
+  AlertHeader,
+  AlertBody,
+  AlertButtonLeft,
+  AlertButtonRight,
+} from './PostAlertStyle';
 
-const ModalAlertDiv = styled.div`
-  display: block;
-  position: fixed;
-  z-index: 1;
-  padding-top: 40vh;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgb(0, 0, 0);
-  background-color: rgba(0, 0, 0, 0.4);
-`;
-const AlertBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  background-color: #fefefe;
-  margin: auto;
-  height: 110px;
-  width: 252px;
-  -webkit-animation-name: animatetop;
-  -webkit-animation-duration: 0.4s;
-  animation-name: animatetop;
-  animation-duration: 0.4s;
-  border-radius: 10px;
-`;
-const AlertHeader = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px 10px 0 0;
-  height: 64px;
-  background-color: #ffffff;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 20px;
-  letter-spacing: 0em;
-  box-sizing: border-box;
-  border-bottom: 1px solid #dbdbdb;
-`;
-const AlertBody = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-const AlertButtonLeft = styled.button`
-  width: 100%;
-  height: 46px;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 18px;
-  letter-spacing: 0em;
-  text-align: center;
-  border-radius: 0 0 0 10px;
-  border-right: 1px solid #dbdbdb;
-`;
-const AlertButtonRight = styled.button`
-  width: 100%;
-  height: 46px;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 18px;
-  letter-spacing: 0em;
-  text-align: center;
-  border-radius: 0 0 10px 0;
-  color: #0a6d32;
-`;
+export default function ModalAlert({ setAlert, postId }) {
+  const auth = useRecoilValue(authAtom);
+  const account = useRecoilValue(accountAtom);
+  const alertClose = () => {
+    setAlert(false);
+  };
 
-export default function ModalAlert() {
+  const moveProfileHandler = () => {
+    window.location.replace(`/my_profile/${account}`);
+  };
+
+  const postDeleteHandler = async () => {
+    try {
+      const res = await API.delete(`/post/${postId}`, {
+        headers: {
+          'Content-type': 'application/json',
+          Authorization: `Bearer ${auth}`,
+        },
+      });
+      console.log(res);
+      setAlert(false);
+      moveProfileHandler();
+    } catch (err) {
+      if (err.response) {
+        // 응답코드 2xx가 아닌 경우
+        console.log(err.response.data);
+        console.log(err.response.status);
+        console.log(err.response.headers);
+      } else {
+        console.log(`Error: ${err.message}`);
+      }
+    }
+  };
+
   return (
     <ModalAlertDiv>
       <AlertBox>
-        <AlertHeader>로그아웃하시겠어요?</AlertHeader>
+        <AlertHeader>삭제하시겠어요?</AlertHeader>
         <AlertBody>
-          <AlertButtonLeft>취소</AlertButtonLeft>
-          <AlertButtonRight>로그아웃</AlertButtonRight>
+          <AlertButtonLeft onClick={alertClose}>취소</AlertButtonLeft>
+          <AlertButtonRight onClick={postDeleteHandler}>삭제</AlertButtonRight>
         </AlertBody>
       </AlertBox>
     </ModalAlertDiv>

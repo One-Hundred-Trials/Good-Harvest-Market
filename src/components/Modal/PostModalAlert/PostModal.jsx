@@ -1,17 +1,52 @@
-import React from 'react';
-import { ModalContainerDiv, ModalUl, ModalBtn } from './PostModalStyle';
+import React, { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import {
+  ModalContainerDiv,
+  ModalUl,
+  ModalBtn,
+  ModalBgtDiv,
+} from './PostModalStyle';
+import PostAlert from './PostAlert';
 
-export default function ModalSlide() {
+export default function ModalSlide({ postId, setModal }) {
+  const [alert, setAlert] = useState(false);
+  const alertShow = () => {
+    setAlert(true);
+  };
+
+  const navigate = useNavigate();
+  const goEditHandler = () => {
+    navigate(`/post/${postId}/edit`);
+  };
+
+  const modalRef = useRef();
+  useEffect(() => {
+    const modalTouchCloseHandler = (e) => {
+      if (modalRef.current && !modalRef.current.contains(e.target)) {
+        setModal(false);
+      }
+    };
+    document.addEventListener('mousedown', modalTouchCloseHandler);
+    document.addEventListener('touchstart', modalTouchCloseHandler);
+    return () => {
+      document.removeEventListener('mousedown', modalTouchCloseHandler);
+      document.removeEventListener('touchstart', modalTouchCloseHandler);
+    };
+  });
+
   return (
-    <ModalContainerDiv>
-      <ModalUl>
-        <li>
-          <ModalBtn>삭제</ModalBtn>
-        </li>
-        <li>
-          <ModalBtn>수정</ModalBtn>
-        </li>
-      </ModalUl>
-    </ModalContainerDiv>
+    <ModalBgtDiv>
+      <ModalContainerDiv ref={modalRef}>
+        <ModalUl>
+          <li>
+            <ModalBtn onClick={alertShow}>삭제</ModalBtn>
+          </li>
+          <li>
+            <ModalBtn onClick={goEditHandler}>수정</ModalBtn>
+          </li>
+        </ModalUl>
+        {alert && <PostAlert postId={postId} setAlert={setAlert} />}
+      </ModalContainerDiv>
+    </ModalBgtDiv>
   );
 }
