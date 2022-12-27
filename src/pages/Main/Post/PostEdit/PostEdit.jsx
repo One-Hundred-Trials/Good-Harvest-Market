@@ -204,6 +204,7 @@ function PostUpload() {
         size="ms"
         variant={isActive ? '' : 'disabled'}
         go={isActive ? `/my_profile/${account}` : ''}
+        id={id}
         onClick={EditUploadHandler}
       >
         업로드

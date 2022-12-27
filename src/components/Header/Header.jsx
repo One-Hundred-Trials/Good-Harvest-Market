@@ -18,24 +18,21 @@ export default function Header({
   children,
   onClick,
   go,
+  id,
 }) {
+  console.log(id);
   const navigate = useNavigate();
   const path = window.location.pathname;
   if (
-    path === '/my_profile' ||
+    path.includes('/my_profile') ||
     path.includes('/user_profile/') ||
-    path.includes('post/') ||
+    path === `/post/${id}` ||
     path === '/chat'
   )
     return (
       <HeaderStyle>
-        <button>
-          <img
-            src={iconArrowLeft}
-            alt="뒤로가기"
-            height="22"
-            onClick={() => navigate(-1)}
-          />
+        <button onClick={() => navigate(-1)}>
+          <img src={iconArrowLeft} alt="뒤로가기" height="22" />
         </button>
         <button>
           <img src={iconMore} alt="더보기" height="22" />
@@ -45,13 +42,8 @@ export default function Header({
   else if (path !== '/chat' && path !== '/chat/' && path.includes('/chat/'))
     return (
       <HeaderStyle>
-        <button>
-          <img
-            src={iconArrowLeft}
-            alt="뒤로가기"
-            height="22"
-            onClick={() => navigate(-1)}
-          />
+        <button onClick={() => navigate(-1)}>
+          <img src={iconArrowLeft} alt="뒤로가기" height="22" />
         </button>
         <TopChatTitleStyle>{children}</TopChatTitleStyle>
         <button>
@@ -71,13 +63,8 @@ export default function Header({
   else if (path === '/search')
     return (
       <HeaderStyle>
-        <button>
-          <img
-            src={iconArrowLeft}
-            alt="뒤로가기"
-            height="22"
-            onClick={() => navigate(-1)}
-          />
+        <button onClick={() => navigate(-1)}>
+          <img src={iconArrowLeft} alt="뒤로가기" height="22" />
         </button>
         <TopSearchInputStyle
           type="text"
@@ -88,18 +75,14 @@ export default function Header({
   else if (
     path === '/profile_edit' ||
     path === '/post_upload' ||
+    path === `/post/${id}/edit` ||
     path === '/product_upload' ||
     path.includes('/product/')
   )
     return (
       <HeaderStyle>
-        <button>
-          <img
-            src={iconArrowLeft}
-            alt="뒤로가기"
-            height="22"
-            onClick={() => navigate(-1)}
-          />
+        <button onClick={() => navigate(-1)}>
+          <img src={iconArrowLeft} alt="뒤로가기" height="22" />
         </button>
         <Button
           type="submit"
