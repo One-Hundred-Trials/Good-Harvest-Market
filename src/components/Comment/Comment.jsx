@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { useRecoilValue } from 'recoil';
-import API from '../../API';
 import iconMoreImg from '../../assets/img/icon-more-18.png';
-import { authAtom } from '../../_state/auth';
+import { accountAtom } from '../../_state/auth';
+import CommentModal from '../Modal/CommentModel/CommentModal';
 import {
   CommentContainerStyle,
   InfoStyle,
@@ -12,28 +12,45 @@ import {
   TxtStyle,
 } from './CommentStyle';
 
-export default function Comment({ commentsList }) {
+export default function Comment({ comment }) {
+  const userAccount = useRecoilValue(accountAtom);
+  const [modal, setModal] = useState(false);
+  const modalUp = () => {
+    setModal(true);
+  };
+
   return (
-    <CommentContainerStyle>
-      {commentsList ? (
-        commentsList.map((comments) => (
-          <>
-            <InfoStyle>
-              <InfoDiv>
-                <ProfileImg src={comments.author.image} alt="" />
-                <strong>{comments.author.username}</strong>
-                <span>{}</span>
-              </InfoDiv>
-              <MoreBtn>
-                <img src={iconMoreImg} alt="" />
-              </MoreBtn>
-            </InfoStyle>
-            <TxtStyle>{comments.content}</TxtStyle>
-          </>
-        ))
-      ) : (
-        <p>첫번째 댓글을 달아보세요!</p>
+    <>
+      <CommentContainerStyle>
+        <InfoStyle>
+          <InfoDiv>
+            <ProfileImg src={comment.author.image} alt="" />
+            <strong>{comment.author.username}</strong>
+            <span>{comment.author.accountname}</span>
+          </InfoDiv>
+          <MoreBtn onClick={modalUp}>
+            <img src={iconMoreImg} alt="" />
+          </MoreBtn>
+        </InfoStyle>
+        <TxtStyle>{comment.content}</TxtStyle>
+      </CommentContainerStyle>
+      {modal && (
+        <>
+          {userAccount === comment.author.accountname ? (
+            <CommentModal
+              commentId={comment.id}
+              setModal={setModal}
+              text="삭제"
+            />
+          ) : (
+            <CommentModal
+              commentId={comment.id}
+              setModal={setModal}
+              text="신고"
+            />
+          )}
+        </>
       )}
-    </CommentContainerStyle>
+    </>
   );
 }

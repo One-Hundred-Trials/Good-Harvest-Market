@@ -8,16 +8,11 @@ import {
 } from './CommentModalStyle';
 import ProductAlert from './CommentAlert';
 
-export default function ModalSlide({ productId, setModal }) {
-  const [alert, setAlert] = useState(false);
-  const alertShow = () => {
-    setAlert(true);
-  };
-
-  const navigate = useNavigate();
-  const goEditHandler = () => {
-    navigate(`/product/${productId}/edit`);
-  };
+export default function ModalSlide({ setModal, text }) {
+  // const [alert, setAlert] = useState(false);
+  // const alertShow = () => {
+  //   setAlert(true);
+  // };
 
   const modalRef = useRef();
   useEffect(() => {
@@ -39,16 +34,10 @@ export default function ModalSlide({ productId, setModal }) {
       <ModalContainerDiv ref={modalRef}>
         <ModalUl>
           <li>
-            <ModalBtn onClick={alertShow}>삭제</ModalBtn>
-          </li>
-          <li>
-            <ModalBtn onClick={goEditHandler}>수정</ModalBtn>
-          </li>
-          <li>
-            <ModalBtn>웹사이트에서 상품 보기</ModalBtn>
+            <ModalBtn>{text}</ModalBtn>
           </li>
         </ModalUl>
-        {alert && <ProductAlert productId={productId} setAlert={setAlert} />}
+        {/* {alert && <Alert commentId={commentId} setAlert={setAlert} />} */}
       </ModalContainerDiv>
     </ModalBgtDiv>
   );

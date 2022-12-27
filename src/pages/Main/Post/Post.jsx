@@ -95,7 +95,13 @@ export default function Post() {
           <PostCard post={postData} author={postAuthor} />
         </PostCardUlCont>
         <CommentContainerStyle>
-          <Comment commentsList={commentsList} />
+          {commentsList ? (
+            commentsList.map((comment) => (
+              <Comment key={comment.id} comment={comment} />
+            ))
+          ) : (
+            <p>첫번째 댓글을 달아보세요!</p>
+          )}
         </CommentContainerStyle>
       </ConWrapStyle>
       <CommentInput />
