@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import PostImg from '../../assets/img/unsplash_FWtiv70Z_ZY.png';
 import HeartIcon from '../HearIcon/HeartIcon';
 import CommentIcon from '../CommentsIcon/CommentIcon';
 import ProfileImgAccount from '../ProfileImgAccount/ProfileImgAccount';
@@ -16,14 +15,15 @@ import {
 } from './PostCardStyle';
 
 export default function PostCard({ post, author }) {
+  console.log(post);
   const accountName = author.accountname;
   const postDate =
     post.createdAt !== post.updatedAt
-      ? post.updatedAt.slice(0, 10).replaceAll('-', '')
-      : post.createdAt.slice(0, 10).replaceAll('-', '');
-  const year = postDate.slice(0, 4);
-  const month = postDate.slice(4, 6);
-  const date = postDate.slice(6, 8);
+      ? post.updatedAt?.slice(0, 10).replaceAll('-', '')
+      : post.createdAt?.slice(0, 10).replaceAll('-', '');
+  const year = postDate?.slice(0, 4);
+  const month = postDate?.slice(4, 6);
+  const date = postDate?.slice(6, 8);
 
   return (
     <PostAccountLiStyle>
