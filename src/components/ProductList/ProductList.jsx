@@ -6,12 +6,18 @@ import {
   ProductListUlStyle,
 } from './ProductListStyle';
 
-export default function ProductList() {
+export default function ProductList({ productList }) {
   return (
     <ProductSectionStyle>
       <ProductListTitleStyle>판매 중인 상품</ProductListTitleStyle>
       <ProductListUlStyle>
-        <Product price="1000원" productName="레드향" />
+        {productList ? (
+          productList.map((product) => (
+            <Product key={product.id} product={product} />
+          ))
+        ) : (
+          <h1>등록된 상품이 없습니다.</h1>
+        )}
       </ProductListUlStyle>
     </ProductSectionStyle>
   );

@@ -10,7 +10,7 @@ import PostCardList from '../../../../components/PostCardList/PostCardList';
 import ProductList from '../../../../components/ProductList/ProductList';
 import Profile from '../../../../components/Profile/Profile';
 import { ConWrap } from '../../../../styles/GlobalStyles';
-import { accountAtom, authAtom } from '../../../../_state/auth';
+import { authAtom } from '../../../../_state/auth';
 import Button from '../../../../components/Button/Button';
 
 const ConWrapStyle = styled.main`
@@ -32,7 +32,9 @@ const ContDivStyle = styled.div`
 export default function MyProfile() {
   const [toggle, setToggle] = useState(true);
   const [posts, setPosts] = useState(null);
+  const [postsAlbum, setPostsAlbum] = useState([]);
   const [myProfile, setMyProfile] = useState(null);
+  const [productList, setProductList] = useState([]);
   const auth = useRecoilValue(authAtom);
   const { accountname } = useParams();
 
@@ -49,6 +51,10 @@ export default function MyProfile() {
         },
       });
       const { post } = res.data;
+      console.log(post);
+      const haveImage = post.filter((v) => v.image);
+      setPostsAlbum(haveImage);
+      // console.log(haveImage);
       setPosts(post);
     } catch (err) {
       if (err.response) {
@@ -84,9 +90,33 @@ export default function MyProfile() {
     }
   };
 
+  // 등록된 상품 목록 가져오기
+  const GetProductList = async () => {
+    try {
+      const res = await API.get(`/product/${accountname}`, {
+        headers: {
+          Authorization: `Bearer ${auth}`,
+          'Content-type': 'application/json',
+        },
+      });
+      console.log(res);
+      setProductList(res.data.product);
+    } catch (err) {
+      if (err.response) {
+        // 응답코드 2xx가 아닌 경우
+        console.log(err.response.data);
+        console.log(err.response.status);
+        console.log(err.response.headers);
+      } else {
+        console.log(`Error: ${err.message}`);
+      }
+    }
+  };
+
   useEffect(() => {
     GetMyMyPostData();
     GetMyProfileData();
+    GetProductList();
   }, []);
 
   return (
@@ -105,14 +135,18 @@ export default function MyProfile() {
             <Button variant="active" size="m">
               {'프로필 수정'}
             </Button>
-            <Button variant="active" size="m">
+            <Button variant="active" size="m" go={'/product_upload'}>
               {'상품 등록'}
             </Button>
           </Profile>
-          <ProductList />
+          <ProductList productList={productList} />
           <ListOrAlbum toggle={toggle} onclick={onClick} />
         </ContDivStyle>
-        {toggle ? <PostCardList posts={posts} /> : <PostAlbum />}
+        {toggle ? (
+          <PostCardList posts={posts} />
+        ) : (
+          <PostAlbum posts={postsAlbum} />
+        )}
       </ConWrapStyle>
     </>
   );

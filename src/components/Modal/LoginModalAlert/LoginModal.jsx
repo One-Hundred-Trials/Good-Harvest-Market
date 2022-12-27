@@ -1,5 +1,5 @@
 import React from 'react';
-import { ModalContainerDiv, ModalUl, ModalBtn } from './ModalSlideStyle';
+import { ModalContainerDiv, ModalUl, ModalBtn } from './PostModalStyle';
 
 export default function ModalSlide() {
   return (

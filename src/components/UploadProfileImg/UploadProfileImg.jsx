@@ -15,7 +15,7 @@ export default function UploadProfileImg({ name, onChange, src }) {
   return (
     <InputFileFormStyle>
       <ProfileImageContainerStyle>
-        <ProfileImageStyle src={src || basicProfile} alt="프로필 이미지" />
+        <ProfileImageStyle src={src} alt="프로필 이미지" />
       </ProfileImageContainerStyle>
       <UploadProfileLabelStyle htmlFor="uploadProfile"></UploadProfileLabelStyle>
       <UploadProfileInputStyle

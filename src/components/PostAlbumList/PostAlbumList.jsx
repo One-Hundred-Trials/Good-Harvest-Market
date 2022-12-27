@@ -21,10 +21,10 @@ const ListStyle = styled.li`
   }
 `;
 
-export default function PostAlbumList() {
+export default function PostAlbumList({ image }) {
   return (
     <ListStyle>
-      <img src={unsplashImg} alt="" />
+      <img src={image} alt="" />
     </ListStyle>
   );
 }

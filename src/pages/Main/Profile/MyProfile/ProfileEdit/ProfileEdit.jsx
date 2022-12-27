@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { authAtom } from '../../../../../_state/auth';
 import UploadProfileImg from '../../../../../components/UploadProfileImg/UploadProfileImg';
@@ -9,6 +10,7 @@ import InputFormStyle from '../ProfileEdit/ProfileEditStyle';
 
 export default function ProfileEdit() {
   const auth = useRecoilValue(authAtom);
+  const navigate = useNavigate();
   const [userName, setUserName] = useState('');
   const [accountName, setAccountName] = useState('');
   const [intro, setIntro] = useState('');
@@ -19,6 +21,10 @@ export default function ProfileEdit() {
   const [isUserNameValid, setIsUserNameValid] = useState(false);
   const [isAccountNameValid, setIsAccountNameValid] = useState(false);
 
+  const navigateToMyProfile = () => {
+    navigate(`/my_profile/${accountName}`);
+  };
+  
   const userNameChangeHandler = (e) => {
     setUserName(e.target.value);
   };
@@ -138,6 +144,7 @@ export default function ProfileEdit() {
 
         const data = res.data.user;
         console.log(data);
+
         setUserName(data.username);
         setIsUserNameValid(true);
         setAccountName(data.accountname);
@@ -174,6 +181,8 @@ export default function ProfileEdit() {
         );
         console.log('update res', res);
         alert('사용자 정보가 정상적으로 수정되었습니다.');
+        localStorage.setItem('account', JSON.stringify(accountName));
+        navigateToMyProfile();
       } catch (err) {
         console.error(err);
       }
