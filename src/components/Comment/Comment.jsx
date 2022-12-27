@@ -12,7 +12,7 @@ import {
   TxtStyle,
 } from './CommentStyle';
 
-export default function Comment({ comment }) {
+export default function Comment({ comment, postId }) {
   const userAccount = useRecoilValue(accountAtom);
   const [modal, setModal] = useState(false);
   const modalUp = () => {
@@ -40,12 +40,14 @@ export default function Comment({ comment }) {
             <CommentModal
               commentId={comment.id}
               setModal={setModal}
+              postId={postId}
               text="삭제"
             />
           ) : (
             <CommentModal
               commentId={comment.id}
               setModal={setModal}
+              postId={postId}
               text="신고"
             />
           )}

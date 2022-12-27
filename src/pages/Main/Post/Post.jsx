@@ -97,7 +97,7 @@ export default function Post() {
         <CommentContainerStyle>
           {commentsList ? (
             commentsList.map((comment) => (
-              <Comment key={comment.id} comment={comment} />
+              <Comment key={comment.id} comment={comment} postId={id} />
             ))
           ) : (
             <p>첫번째 댓글을 달아보세요!</p>

@@ -6,13 +6,13 @@ import {
   ModalUl,
   ModalBtn,
 } from './CommentModalStyle';
-import ProductAlert from './CommentAlert';
+import CommentAlert from './CommentAlert';
 
-export default function ModalSlide({ setModal, text }) {
-  // const [alert, setAlert] = useState(false);
-  // const alertShow = () => {
-  //   setAlert(true);
-  // };
+export default function ModalSlide({ setModal, commentId, postId, text }) {
+  const [alert, setAlert] = useState(false);
+  const alertShow = () => {
+    setAlert(true);
+  };
 
   const modalRef = useRef();
   useEffect(() => {
@@ -34,10 +34,16 @@ export default function ModalSlide({ setModal, text }) {
       <ModalContainerDiv ref={modalRef}>
         <ModalUl>
           <li>
-            <ModalBtn>{text}</ModalBtn>
+            <ModalBtn onClick={alertShow}>{text}</ModalBtn>
           </li>
         </ModalUl>
-        {/* {alert && <Alert commentId={commentId} setAlert={setAlert} />} */}
+        {alert && (
+          <CommentAlert
+            commentId={commentId}
+            setAlert={setAlert}
+            postId={postId}
+          />
+        )}
       </ModalContainerDiv>
     </ModalBgtDiv>
   );

@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import API from '../../../API';
-import { accountAtom, authAtom } from '../../../_state/auth';
+import { authAtom } from '../../../_state/auth';
 import {
   ModalAlertDiv,
   AlertBox,
@@ -12,20 +12,19 @@ import {
   AlertButtonRight,
 } from './CommentAlertStyle';
 
-export default function ModalAlert({ setAlert, productId }) {
+export default function CommentAlert({ setAlert, postId, commentId }) {
   const auth = useRecoilValue(authAtom);
-  const account = useRecoilValue(accountAtom);
   const alertClose = () => {
     setAlert(false);
   };
 
   const moveProfileHandler = () => {
-    window.location.replace(`/my_profile/${account}`);
+    window.location.replace(`/post/${postId}`);
   };
 
   const productDelHandler = async () => {
     try {
-      const res = await API.delete(`/product/${productId}`, {
+      const res = await API.delete(`/post/${postId}/comments/${commentId}`, {
         headers: {
           'Content-type': 'application/json',
           Authorization: `Bearer ${auth}`,
@@ -47,7 +46,7 @@ export default function ModalAlert({ setAlert, productId }) {
   return (
     <ModalAlertDiv>
       <AlertBox>
-        <AlertHeader>상품을 삭제할까요?</AlertHeader>
+        <AlertHeader>댓글을 삭제할까요?</AlertHeader>
         <AlertBody>
           <AlertButtonLeft onClick={alertClose}>취소</AlertButtonLeft>
           <AlertButtonRight onClick={productDelHandler}>삭제</AlertButtonRight>
