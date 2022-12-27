@@ -14,8 +14,6 @@ import {
   ImgPreview,
   ImgDeleteBtn,
 } from './PostUploadStyle';
-
-import profileImg from '../../../../assets/img/basic-profile-50.png';
 import Header from '../../../../components/Header/Header';
 import UploadFileBtn from '../../../../components/Button/UploadFileBtn/UploadFileBtn';
 
@@ -25,6 +23,7 @@ function PostUpload() {
   const [text, setText] = useState('');
   const [isActive, setIsActive] = useState(false);
   const [selectedImg, setSelectedImg] = useState([]);
+  const [profileImg, setProfileImg] = useState('');
   const [imgUrl, setImgUrl] = useState('');
   const postData = {
     post: {
@@ -34,13 +33,39 @@ function PostUpload() {
   };
   const formData = new FormData();
 
+  // 내 프로필 이미지 불러오기
+  useEffect(() => {
+    const GetMyProfile = async () => {
+      try {
+        const res = await API.get('/user/myinfo', {
+          headers: {
+            Authorization: `Bearer ${auth}`,
+          },
+        });
+        console.log(res);
+        setProfileImg(res.data.user.image);
+      } catch (err) {
+        if (err.response) {
+          // 응답코드 2xx가 아닌 경우
+          console.log(err.response.data);
+          console.log(err.response.status);
+          console.log(err.response.headers);
+        } else {
+          console.log(`Error: ${err.message}`);
+        }
+      }
+    };
+    GetMyProfile();
+  }, []);
+
   // 텍스트를 입력하거나 이미지 파일이 있으면 버튼 활성화
   useEffect(() => {
     if (text || imgUrl) {
       setIsActive(true);
     } else {
       setIsActive(false);
-    }
+    } // 삼항 연산자 사용
+    // text || imgUrl ? setIsActive(true) : setIsActive(false);
   }, [text, imgUrl]);
 
   // input에 입력한 값 알아내서 저장
@@ -54,8 +79,8 @@ function PostUpload() {
     // console.log(file);
     setSelectedImg((prevState) => [...prevState, file.name]);
     formData.append('image', file);
-    if (selectedImg.length > 2) {
-      alert('3개 이하의 파일을 업로드 하세요.');
+    if (selectedImg.length > 0) {
+      alert('1개의 파일을 업로드 하세요.');
       return;
     }
     try {
@@ -82,13 +107,14 @@ function PostUpload() {
         alert(
           '이미지 파일만 업로드가 가능합니다. 올바른 형식의 파일을 넣어주세요. (*.jpg, *.gif, *.png, *.jpeg, *.bmp, *.tif, *.heic)'
         );
+        setSelectedImg([...selectedImg]);
       } else {
         // console.log(res.data.filename);
         setSelectedImg([
           ...selectedImg,
           `https://mandarin.api.weniv.co.kr/${res.data.filename}`,
         ]);
-        previewImg(file);
+        previewImg();
       }
       console.log(res);
     } catch (err) {
@@ -102,6 +128,7 @@ function PostUpload() {
       if (!text && selectedImg.length === 0) {
         alert('내용 또는 이미지를 입력해주세요.');
       }
+
       const res = await API.post('/post', JSON.stringify(postData), {
         headers: {
           Authorization: `Bearer ${auth}`,
@@ -119,8 +146,8 @@ function PostUpload() {
   const ImgDeleteHandler = (targetIndex) => {
     // img.index가 파라미터로 일치하지 않는 원소만 추출해서 새로운 배열을 만든다
     // targetIndex는 삭제할 대상의 index이고 img.index가 targetIndex와 같은 것을 삭제한다
-    const imgArr = selectedImg.filter((img) => img.index !== targetIndex);
-    setSelectedImg([...imgArr]);
+    const ImgArr = selectedImg.filter((img) => img.index !== targetIndex);
+    setSelectedImg([...ImgArr]);
   };
 
   return (

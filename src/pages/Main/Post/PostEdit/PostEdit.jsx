@@ -18,7 +18,7 @@ import {
 import Header from '../../../../components/Header/Header';
 import UploadFileBtn from '../../../../components/Button/UploadFileBtn/UploadFileBtn';
 
-function PostUpload() {
+function PostEdit() {
   const auth = useRecoilValue(authAtom);
   const account = useRecoilValue(accountAtom);
   const { id } = useParams();
@@ -30,12 +30,12 @@ function PostUpload() {
   const postData = {
     post: {
       content: text,
-      image: selectedImg.join(','),
+      image: selectedImg,
     },
   };
   const formData = new FormData();
 
-  // 프로필 이미지 불러오기
+  // 내 프로필 이미지 불러오기
   useEffect(() => {
     const GetMyProfile = async () => {
       try {
@@ -72,10 +72,12 @@ function PostUpload() {
         });
         console.log(res);
         console.log(res.data.post);
-        const postDetail = res.data.post;
-        setText(postDetail.content);
-        if (postDetail.image) {
-          setImgUrl(postDetail.image.split(','));
+        const { post } = res.data;
+        if (post.content) {
+          setText(post.content);
+        }
+        if (post.image) {
+          setSelectedImg(post.image);
         }
       } catch (err) {
         if (err.response) {
@@ -89,7 +91,7 @@ function PostUpload() {
       }
     };
     GetPostData();
-  }, [auth, id]);
+  }, []);
 
   // 텍스트를 입력하거나 이미지 파일이 있으면 버튼 활성화
   useEffect(() => {
@@ -141,8 +143,8 @@ function PostUpload() {
     // console.log(file);
     setSelectedImg((prevState) => [...prevState, file.name]);
     formData.append('image', file);
-    if (imgUrl >= 3) {
-      alert('3개 이하의 파일을 업로드 하세요.');
+    if (selectedImg.length > 0) {
+      alert('1개 이하의 파일을 업로드 하세요.');
       return;
     }
     try {
@@ -169,6 +171,7 @@ function PostUpload() {
         alert(
           '이미지 파일만 업로드가 가능합니다. 올바른 형식의 파일을 넣어주세요. (*.jpg, *.gif, *.png, *.jpeg, *.bmp, *.tif, *.heic)'
         );
+        setSelectedImg([...selectedImg]);
       } else {
         // console.log(res.data.filename);
         setSelectedImg([
@@ -190,7 +193,7 @@ function PostUpload() {
     }
   };
 
-  // 미리보기 이미지 삭제
+  // 이미지 삭제
   const ImgDeleteHandler = (targetIndex) => {
     // img.index가 파라미터로 일치하지 않는 원소만 추출해서 새로운 배열을 만든다
     // targetIndex는 삭제할 대상의 index이고 img.index가 targetIndex와 같은 것을 삭제한다
@@ -223,7 +226,7 @@ function PostUpload() {
               imgUrl.map((img, index) => (
                 <ImgItemWrapStyle key={index} id={index}>
                   <ImgPreview src={img} alt="이미지 미리보기" />
-                  <ImgDeleteBtn onClick={() => ImgDeleteHandler(index)} />
+                  <ImgDeleteBtn onClick={ImgDeleteHandler(index)} />
                 </ImgItemWrapStyle>
               ))}
           </ImgWrapStyle>
@@ -236,4 +239,4 @@ function PostUpload() {
   );
 }
 
-export default PostUpload;
+export default PostEdit;
