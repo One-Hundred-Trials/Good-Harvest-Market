@@ -33,6 +33,7 @@ export default function UserProfile() {
   const account = useRecoilValue(accountAtom);
   const [toggle, setToggle] = useState(true);
   const [productList, setProductList] = useState([]);
+  const [postsAlbum, setPostsAlbum] = useState([]);
   const [posts, setPosts] = useState(null);
   const [userProfile, setUserProfile] = useState(null);
   const { id } = useParams();
@@ -50,8 +51,10 @@ export default function UserProfile() {
         },
       });
       const { post } = res.data;
+      const haveImage = post.filter((v) => v.image);
+      setPostsAlbum(haveImage);
       setPosts(post);
-      // console.log(post);
+      console.log(haveImage);
     } catch (err) {
       if (err.response) {
         // 응답코드 2xx가 아닌 경우
@@ -127,7 +130,7 @@ export default function UserProfile() {
           <ProductList productList={productList} />
           <ListOrAlbum toggle={toggle} onclick={onClick} />
         </ContDivStyle>
-        {toggle ? <PostCard posts={posts} /> : <PostAlbum />}
+        {toggle ? <PostCard posts={posts} /> : <PostAlbum posts={postsAlbum} />}
       </ConWrapStyle>
     </>
   );

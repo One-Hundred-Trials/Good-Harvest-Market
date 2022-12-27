@@ -32,6 +32,7 @@ const ContDivStyle = styled.div`
 export default function MyProfile() {
   const [toggle, setToggle] = useState(true);
   const [posts, setPosts] = useState(null);
+  const [postsAlbum, setPostsAlbum] = useState([]);
   const [myProfile, setMyProfile] = useState(null);
   const [productList, setProductList] = useState([]);
   const auth = useRecoilValue(authAtom);
@@ -50,6 +51,10 @@ export default function MyProfile() {
         },
       });
       const { post } = res.data;
+      console.log(post);
+      const haveImage = post.filter((v) => v.image);
+      setPostsAlbum(haveImage);
+      // console.log(haveImage);
       setPosts(post);
     } catch (err) {
       if (err.response) {
@@ -137,7 +142,11 @@ export default function MyProfile() {
           <ProductList productList={productList} />
           <ListOrAlbum toggle={toggle} onclick={onClick} />
         </ContDivStyle>
-        {toggle ? <PostCardList posts={posts} /> : <PostAlbum />}
+        {toggle ? (
+          <PostCardList posts={posts} />
+        ) : (
+          <PostAlbum posts={postsAlbum} />
+        )}
       </ConWrapStyle>
     </>
   );
