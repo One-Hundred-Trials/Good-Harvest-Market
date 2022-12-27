@@ -48,7 +48,7 @@ export default function ModalSlide({ productId, setModal }) {
             <ModalBtn>웹사이트에서 상품 보기</ModalBtn>
           </li>
         </ModalUl>
-        {alert && <ProductAlert setAlert={setAlert} />}
+        {alert && <ProductAlert productId={productId} setAlert={setAlert} />}
       </ModalContainerDiv>
     </ModalBgtDiv>
   );
