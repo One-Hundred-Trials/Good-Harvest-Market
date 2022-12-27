@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const CommentInputContainerStyle = styled.div`
   width: 100%;
   height: 61px;
-  position: fixed;
+  position: sticky;
   bottom: 0;
   border-top: 1px solid var(--sub-grey-C4);
   background-color: var(--white);
