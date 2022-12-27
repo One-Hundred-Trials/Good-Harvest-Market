@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { useParams } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import { authAtom } from '../../../_state/auth';
+import API from '../../../API';
 import { PageWrap, ConWrap } from '../../../styles/GlobalStyles';
 import PostCard from '../../../components/PostCard/PostCard';
 import Comment from '../../../components/Comment/Comment';
@@ -24,12 +28,48 @@ const CommentContainerStyle = styled.div`
 `;
 
 export default function Post() {
+  const auth = useRecoilValue(authAtom);
+  const { id } = useParams();
+  const [postData, setPostData] = useState('');
+  const [postAuthor, setPostAuthor] = useState('');
+
+  useEffect(() => {
+    const GetPost = async () => {
+      try {
+        const res = await API.get(`/post/${id}`, {
+          headers: {
+            Authorization: `Bearer ${auth}`,
+            'Content-type': 'application/json',
+          },
+        });
+        console.log(res);
+        console.log(res.data.post);
+        const { post } = res.data;
+        console.log(post);
+        setPostData(post);
+        const { author } = res.data.post;
+        setPostAuthor(author);
+      } catch (err) {
+        if (err.response) {
+          // 응답코드 2xx가 아닌 경우
+          console.log(err.response.data);
+          console.log(err.response.status);
+          console.log(err.response.headers);
+        } else {
+          console.log(`Error: ${err.message}`);
+        }
+      }
+    };
+    GetPost();
+  }, []);
+
+  console.log(postData);
   return (
     <PageWrapStyle>
-      <Header />
+      <Header id={id} />
       <ConWrapStyle>
         <PostCardUlCont>
-          <PostCard />
+          <PostCard post={postData} author={postAuthor} />
         </PostCardUlCont>
         <CommentContainerStyle>
           <Comment
