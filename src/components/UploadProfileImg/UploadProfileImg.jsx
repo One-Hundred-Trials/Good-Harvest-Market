@@ -6,6 +6,7 @@ import {
   ProfileImageContainerStyle,
   ProfileImageStyle,
 } from './UploadProfileImgStyle';
+import basicProfile from '../../assets/img/basic-profile-50.png';
 
 export default function UploadProfileImg({ name, onChange, src }) {
   const onChangehandler = (e) => {

@@ -14,6 +14,7 @@ export default function Input({
   name,
   getValue,
   onKeyUp,
+
 }) {
   const handleChange = (e) => {
     onChange(e);
