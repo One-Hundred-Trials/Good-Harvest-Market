@@ -6,6 +6,7 @@ import HeartIcon from '../HearIcon/HeartIcon';
 import CommentIcon from '../CommentsIcon/CommentIcon';
 import ProfileImgAccount from '../ProfileImgAccount/ProfileImgAccount';
 import PostModal from '../../components/Modal/PostModalAlert/PostModal';
+import PostReportModal from '../../components/Modal/PostModalAlert/PostReportModal';
 import {
   PostAccountLiStyle,
   PostProfileDivStyle,
@@ -19,6 +20,7 @@ import {
 
 export default function PostCard({ post, author }) {
   // console.log(post);
+
   const userAccount = useRecoilValue(accountAtom);
   const [modal, setModal] = useState(false);
   const modalUp = () => {
@@ -65,7 +67,7 @@ export default function PostCard({ post, author }) {
           {userAccount === accountName ? (
             <PostModal postId={post.id} setModal={setModal} />
           ) : (
-            ''
+            <PostReportModal postId={post.id} setModal={setModal} />
           )}
         </>
       )}
