@@ -67,7 +67,7 @@ export default function CommentInput() {
   };
 
   const handleSubmit = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     commentUpload();
   };
 

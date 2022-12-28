@@ -85,7 +85,7 @@ export default function Post() {
       }
     };
     postCommentList();
-  }, [auth, id]);
+  }, [commentsList]);
 
   return (
     <PageWrapStyle>

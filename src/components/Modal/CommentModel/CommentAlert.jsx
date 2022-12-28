@@ -18,10 +18,6 @@ export default function CommentAlert({ setAlert, postId, commentId }) {
     setAlert(false);
   };
 
-  const moveProfileHandler = () => {
-    window.location.replace(`/post/${postId}`);
-  };
-
   const productDelHandler = async () => {
     try {
       const res = await API.delete(`/post/${postId}/comments/${commentId}`, {
@@ -30,7 +26,6 @@ export default function CommentAlert({ setAlert, postId, commentId }) {
           Authorization: `Bearer ${auth}`,
         },
       });
-      moveProfileHandler();
     } catch (err) {
       if (err.response) {
         // 응답코드 2xx가 아닌 경우
