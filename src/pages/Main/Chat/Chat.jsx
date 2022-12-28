@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ConWrap } from '../../../styles/GlobalStyles';
 import ChatListItem from '../../../components/ChatListItem/ChatListItem';
 import Header from '../../../components/Header/Header';
+import { ConWrap } from '../../../styles/GlobalStyles';
 
-const ConWrapStyle = styled.ul`
+const ChatWrapStyle = styled.ul`
   ${ConWrap}
   padding: 24px 16px;
-  & li + li {
-    margin-top: 20px;
+  & > li + li {
+    margin-top: 23px;
   }
 `;
 
@@ -16,20 +16,24 @@ export default function Chat() {
   return (
     <>
       <Header />
-      <ConWrapStyle>
+      <ChatWrapStyle>
         <ChatListItem
-          username="풍이네 주말농장"
-          usertext="안녕하세요? 혹시 문의 가능한지 채팅을 드리고 싶은 드리고 싶어요"
+          user="옆동네 퐁이"
+          content="채소가 참 싱싱하네요~ 직거래도 가능하신가요?"
+          date="2023.01.06"
+        />
+
+        <ChatListItem
+          user="애월읍 감귤 농장"
+          content="올해 귤이 참 맛있게 나왔어요 ㅎㅎ"
+          date="2022.10.21"
         />
         <ChatListItem
-          username="나의 작은 감귤농장"
-          usertext="감귤 안 필요하세요?"
+          user="주말엔 내가 감자 농부"
+          content="다음에 감자 나눔해드릴게요 좋은 하루 되세요 ^^"
+          date="2022.08.29"
         />
-        <ChatListItem
-          username="주말엔 내가 감자 농부"
-          usertext="상품 아주 좋아요~~"
-        />
-      </ConWrapStyle>
+      </ChatWrapStyle>
     </>
   );
 }
