@@ -34,6 +34,7 @@ export default function Post() {
   const [postAuthor, setPostAuthor] = useState('');
   const [commentsList, setCommentsList] = useState('');
 
+  /* post 데이터 */
   useEffect(() => {
     const GetPost = async () => {
       try {
@@ -62,30 +63,32 @@ export default function Post() {
   }, [auth, id]);
 
   /* 댓글 리스트 */
-  useEffect(() => {
-    const postCommentList = async () => {
-      try {
-        const res = await API.get(`/post/${id}/comments`, {
-          headers: {
-            Authorization: `Bearer ${auth}`,
-            'Content-type': 'application/json',
-          },
-        });
-        const commentData = res.data.comments;
-        setCommentsList(commentData);
-      } catch (err) {
-        if (err.response) {
-          // 응답코드 2xx가 아닌 경우
-          console.log(err.response.data);
-          console.log(err.response.status);
-          console.log(err.response.headers);
-        } else {
-          console.log(`Error: ${err.message}`);
-        }
+  const postCommentList = async () => {
+    try {
+      const res = await API.get(`/post/${id}/comments`, {
+        headers: {
+          Authorization: `Bearer ${auth}`,
+          'Content-type': 'application/json',
+        },
+      });
+      const commentData = res.data.comments;
+      setCommentsList(commentData);
+      // const [commentsList, setCommentsList] = useState('');
+      // commentsList로 map => 댓글 리스트 뿌려줌
+    } catch (err) {
+      if (err.response) {
+        // 응답코드 2xx가 아닌 경우
+        console.log(err.response.data);
+        console.log(err.response.status);
+        console.log(err.response.headers);
+      } else {
+        console.log(`Error: ${err.message}`);
       }
-    };
+    }
+  };
+  useEffect(() => {
     postCommentList();
-  }, [commentsList]);
+  }, []);
 
   return (
     <PageWrapStyle>
@@ -98,7 +101,12 @@ export default function Post() {
           {commentsList ? (
             commentsList
               .map((comment) => (
-                <Comment key={comment.id} comment={comment} postId={id} />
+                <Comment
+                  key={comment.id}
+                  comment={comment}
+                  postId={id}
+                  deleteComment={postCommentList}
+                />
               ))
               .reverse()
           ) : (
@@ -106,7 +114,7 @@ export default function Post() {
           )}
         </CommentContainerStyle>
       </ConWrapStyle>
-      <CommentInput />
+      <CommentInput upDateComment={postCommentList} />
     </PageWrapStyle>
   );
 }

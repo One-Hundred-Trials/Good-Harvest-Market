@@ -12,7 +12,7 @@ import {
   UploadBtn,
 } from './CommentInputStyle';
 
-export default function CommentInput() {
+export default function CommentInput({ upDateComment }) {
   const auth = useRecoilValue(authAtom);
   const { id } = useParams();
   const [content, setContent] = useState('');
@@ -54,6 +54,7 @@ export default function CommentInput() {
       );
       console.log(res);
       inputClear();
+      upDateComment();
     } catch (err) {
       if (err.response) {
         // 응답코드 2xx가 아닌 경우

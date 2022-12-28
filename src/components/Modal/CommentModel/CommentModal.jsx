@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import {
   ModalBgtDiv,
   ModalContainerDiv,
@@ -8,7 +7,15 @@ import {
 } from './CommentModalStyle';
 import CommentAlert from './CommentAlert';
 
-export default function ModalSlide({ setModal, commentId, postId, text }) {
+export default function ModalSlide({
+  setModal,
+  commentId,
+  postId,
+  text,
+  alertAsk,
+  request,
+  onClickHandler,
+}) {
   const [alert, setAlert] = useState(false);
   const alertShow = () => {
     setAlert(true);
@@ -27,7 +34,7 @@ export default function ModalSlide({ setModal, commentId, postId, text }) {
       document.removeEventListener('mousedown', modalTouchCloseHandler);
       document.removeEventListener('touchstart', modalTouchCloseHandler);
     };
-  });
+  }, [setModal]);
 
   return (
     <ModalBgtDiv>
@@ -42,6 +49,9 @@ export default function ModalSlide({ setModal, commentId, postId, text }) {
             commentId={commentId}
             setAlert={setAlert}
             postId={postId}
+            alertAsk={alertAsk}
+            request={request}
+            onClickHandler={onClickHandler}
           />
         )}
       </ModalContainerDiv>
