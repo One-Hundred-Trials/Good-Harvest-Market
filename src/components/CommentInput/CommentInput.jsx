@@ -16,7 +16,17 @@ export default function CommentInput() {
   const auth = useRecoilValue(authAtom);
   const { id } = useParams();
   const [content, setContent] = useState('');
+  const [btnAble, setBtnAble] = useState(false);
 
+  const btnAbleHandler = () => {
+    if (content.length > 0) {
+      setBtnAble(true);
+    } else {
+      setBtnAble(false);
+    }
+  };
+  console.log(content.length);
+  console.log(btnAble);
   const commentInputHandler = (e) => {
     setContent(e.target.value);
   };
@@ -70,9 +80,15 @@ export default function CommentInput() {
           id="commentInput"
           placeholder="댓글 입력하기..."
           onChange={commentInputHandler}
+          onKeyUp={btnAbleHandler}
           value={content}
         />
-        <UploadBtn type="submit" onClick={handleSubmit}>
+        <UploadBtn
+          type="submit"
+          onClick={handleSubmit}
+          color={btnAble ? 'var(--point-green)' : 'var(--sub-grey-C4)'}
+          disabled={btnAble ? '' : 'disabled'}
+        >
           게시
         </UploadBtn>
       </CommentForm>
