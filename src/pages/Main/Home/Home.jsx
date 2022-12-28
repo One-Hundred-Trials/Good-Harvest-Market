@@ -53,7 +53,6 @@ export default function Home() {
   }, [pageNumber]);
 
   useEffect(() => {
-    const num = 1;
     if (loading) {
       const observer = new IntersectionObserver(
         (entries) => {
