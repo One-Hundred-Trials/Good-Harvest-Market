@@ -18,11 +18,11 @@ export const MyProfileImg = styled.img`
   height: 42px;
 `;
 
-export const Form = styled.form`
+export const PostFormStyle = styled.form`
   width: 100%;
 `;
 
-export const PostTextAreaStyle = styled.textarea`
+export const TextAreaStyle = styled.textarea`
   width: 100%;
   height: 55px;
   font-size: 1.4rem;
