@@ -74,11 +74,11 @@ function PostUpload() {
   const formData = new FormData();
   const changeFileHandler = async (e) => {
     const file = e.target.files[0];
-    if (file === undefined) {
-      return;
-    }
+    // if (file === undefined) {
+    //   return;
+    // }
     if (imgFile.length > 0) {
-      alert('1개의 파일을 업로드 하세요.');
+      alert('1개의 이미지 파일을 업로드 하세요.');
       return;
     }
     setImgFile((prev) => [...prev, file.name]);
@@ -91,11 +91,15 @@ function PostUpload() {
       });
       console.log(res);
       if (res.data.message === '이미지 파일만 업로드가 가능합니다.') {
-        alert('이미지 파일만 업로드가 가능합니다.');
+        alert(
+          '이미지 파일만 업로드가 가능합니다. (*.jpg, *.gif, *.png, *.jpeg, *.bmp, *.tif, *.heic)'
+        );
+        setImgFile([...imgFile]);
+      } else {
+        const feedImgUrl = `https://mandarin.api.weniv.co.kr/${res.data.filename}`;
+        setImgFile(feedImgUrl);
+        setImgUrl(feedImgUrl);
       }
-      const feedImgUrl = `https://mandarin.api.weniv.co.kr/${res.data.filename}`;
-      setImgFile(feedImgUrl);
-      setImgUrl(feedImgUrl);
     } catch (err) {
       if (err.response) {
         // 응답코드 2xx가 아닌 경우
