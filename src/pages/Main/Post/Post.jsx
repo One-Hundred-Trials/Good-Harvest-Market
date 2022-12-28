@@ -96,9 +96,11 @@ export default function Post() {
         </PostCardUlCont>
         <CommentContainerStyle>
           {commentsList ? (
-            commentsList.map((comment) => (
-              <Comment key={comment.id} comment={comment} postId={id} />
-            ))
+            commentsList
+              .map((comment) => (
+                <Comment key={comment.id} comment={comment} postId={id} />
+              ))
+              .reverse()
           ) : (
             <p>첫번째 댓글을 달아보세요!</p>
           )}
