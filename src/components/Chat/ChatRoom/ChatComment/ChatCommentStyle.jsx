@@ -27,7 +27,7 @@ export const MessageInputStyle = styled.input`
 
 export const SendBtn = styled.button`
   flex-shrink: 0;
-  padding: 16px;
+  padding-right: 4px;
   border: none;
   font-size: 1.4rem;
   font-weight: 500;
