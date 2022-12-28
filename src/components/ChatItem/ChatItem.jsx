@@ -1,5 +1,5 @@
 import React from 'react';
-import profileImg from '../../../../assets/img/basic-profile-50.png';
+import profileImg from '../../assets/img/basic-profile-50.png';
 import {
   ChatContainerStyle,
   MessageContainerStyle,

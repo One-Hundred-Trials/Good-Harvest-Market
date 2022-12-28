@@ -1,6 +1,6 @@
 import React from 'react';
-import ChatComment from '../../../../components/Chat/ChatRoom/ChatComment/ChatComment';
-import ChatItem from '../../../../components/Chat/ChatRoom/ChatItem/ChatItem';
+import ChatComment from '../../../../components/ChatComment/ChatComment';
+import ChatItem from '../../../../components/ChatItem/ChatItem';
 import chatSendImg from '../../../../assets/img/chat-send.png';
 import {
   PageWrapStyle,

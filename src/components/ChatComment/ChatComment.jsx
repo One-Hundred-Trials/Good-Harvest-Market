@@ -1,12 +1,12 @@
 import React from 'react';
-import UploadFileBtn from '../../../Button/UploadFileBtn/UploadFileBtn';
+import UploadFileBtn from '../../components/Button/UploadFileBtn/UploadFileBtn';
 import {
   MessageFormStyle,
   MessageInputStyle,
   SendBtn,
 } from './ChatCommentStyle';
 
-export default function ChatComment(props) {
+export default function ChatComment() {
   return (
     <MessageFormStyle>
       <UploadFileBtn margin="12px 18px 13px 16px" />

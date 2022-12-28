@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { Ellipsis } from '../../../styles/GlobalStyles';
-import ProfileImgAccount from '../../ProfileImgAccount/ProfileImgAccount';
+import { Ellipsis } from '../../styles/GlobalStyles';
+import ProfileImgAccount from '../ProfileImgAccount/ProfileImgAccount';
 
 export const ChatListContanierStyle = styled.li`
   display: flex;

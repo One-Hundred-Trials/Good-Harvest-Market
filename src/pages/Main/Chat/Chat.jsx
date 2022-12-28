@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { ConWrap } from '../../../styles/GlobalStyles';
-import ChatListItem from '../../../components/Chat/ChatListItem/ChatListItem';
+import ChatListItem from '../../../components/ChatListItem/ChatListItem';
 import Header from '../../../components/Header/Header';
 
 const ConWrapStyle = styled.ul`
