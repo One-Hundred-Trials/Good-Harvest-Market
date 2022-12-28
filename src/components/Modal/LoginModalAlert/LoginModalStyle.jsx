@@ -1,13 +1,26 @@
 import React from 'react';
 import styled from 'styled-components';
 
+export const ModalBgtDiv = styled.div`
+  position: fixed;
+  z-index: 1;
+  padding-top: 40vh;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+`;
+
 export const ModalContainerDiv = styled.div`
   position: fixed;
   width: 100%;
   margin: 0 auto;
   bottom: 0px;
-  box-shadow: 0 1px 20px 0 rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--sub-grey-C4);
   border-radius: 10px 10px 0 0;
+  background-color: var(--white);
 `;
 
 export const ModalUl = styled.ul`

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/Button/Button';
+import LoginModal from '../Modal/LoginModalAlert/LoginModal';
 import iconArrowLeft from '../../assets/img/icon-arrow-left.png';
 import iconMore from '../../assets/img/icon-more-18.png';
 import iconSearch from '../../assets/img/icon-search.png';
@@ -20,6 +21,10 @@ export default function Header({
   go,
   id,
 }) {
+  const [modal, setModal] = useState(false);
+  const modalUp = () => {
+    setModal(true);
+  };
   console.log(id);
   const navigate = useNavigate();
   const path = window.location.pathname;
@@ -30,14 +35,17 @@ export default function Header({
     path === '/chat'
   )
     return (
-      <HeaderStyle>
-        <button onClick={() => navigate(-1)}>
-          <img src={iconArrowLeft} alt="뒤로가기" height="22" />
-        </button>
-        <button>
-          <img src={iconMore} alt="더보기" height="22" />
-        </button>
-      </HeaderStyle>
+      <>
+        <HeaderStyle>
+          <button onClick={() => navigate(-1)}>
+            <img src={iconArrowLeft} alt="뒤로가기" height="22" />
+          </button>
+          <button onClick={modalUp}>
+            <img src={iconMore} alt="더보기" height="22" />
+          </button>
+        </HeaderStyle>
+        {modal && <LoginModal setModal={setModal} />}
+      </>
     );
   else if (path !== '/chat' && path !== '/chat/' && path.includes('/chat/'))
     return (
