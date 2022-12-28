@@ -6,9 +6,9 @@ import {
   ModalBtn,
   ModalBgtDiv,
 } from './PostModalStyle';
-import PostAlert from './PostAlert';
+import PostDeleteAlert from './PostDeleteAlert';
 
-export default function ModalSlide({ postId, setModal }) {
+export default function PostModal({ postId, setModal }) {
   const [alert, setAlert] = useState(false);
   const alertShow = () => {
     setAlert(true);
@@ -45,7 +45,7 @@ export default function ModalSlide({ postId, setModal }) {
             <ModalBtn onClick={goEditHandler}>수정</ModalBtn>
           </li>
         </ModalUl>
-        {alert && <PostAlert postId={postId} setAlert={setAlert} />}
+        {alert && <PostDeleteAlert postId={postId} setAlert={setAlert} />}
       </ModalContainerDiv>
     </ModalBgtDiv>
   );
