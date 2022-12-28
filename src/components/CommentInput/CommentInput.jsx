@@ -25,13 +25,13 @@ export default function CommentInput() {
       setBtnAble(false);
     }
   };
-  console.log(content.length);
-  console.log(btnAble);
+
   const commentInputHandler = (e) => {
     setContent(e.target.value);
   };
   const inputClear = () => {
     setContent('');
+    setBtnAble(false);
   };
 
   const commentData = {
@@ -67,7 +67,7 @@ export default function CommentInput() {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     commentUpload();
   };
 

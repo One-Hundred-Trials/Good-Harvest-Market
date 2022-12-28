@@ -59,7 +59,7 @@ export default function Post() {
       }
     };
     GetPost();
-  }, []);
+  }, [auth, id]);
 
   /* 댓글 리스트 */
   useEffect(() => {
@@ -85,7 +85,7 @@ export default function Post() {
       }
     };
     postCommentList();
-  }, []);
+  }, [auth, id]);
 
   return (
     <PageWrapStyle>
