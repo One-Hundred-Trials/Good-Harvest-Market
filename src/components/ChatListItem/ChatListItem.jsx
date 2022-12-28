@@ -1,22 +1,21 @@
 import React from 'react';
+import profileImg from '../../assets/img/basic-profile-50.png';
 import {
-  ChatListContanierStyle,
-  ProfileImgAccountStyle,
-  DateSpan,
+  ChatLiStyle,
+  ChatUserProfileImg,
+  ChatContent,
+  ChatDate,
 } from './ChatListItemStyle';
 
-export default function ChatListItem({ username, usertext, src }) {
+export default function ChatListItem(props) {
   return (
-    <ChatListContanierStyle>
-      {/* <ProfileImgAccountStyle
-        width="42px"
-        namemarginbottom="4px"
-        margin="0 0 0 16px"
-        src={src}
-        username={username}
-        usertext={usertext}
-      /> */}
-      <DateSpan>2022.10.25</DateSpan>
-    </ChatListContanierStyle>
+    <ChatLiStyle>
+      <ChatUserProfileImg src={profileImg} alt="" />
+      <ChatContent>
+        <strong>{props.user}</strong>
+        <p>{props.content}</p>
+      </ChatContent>
+      <ChatDate>{props.date}</ChatDate>
+    </ChatLiStyle>
   );
 }

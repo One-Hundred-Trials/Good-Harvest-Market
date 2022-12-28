@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 import { Ellipsis } from '../../styles/GlobalStyles';
-import ProfileImgAccount from '../ProfileImgAccount/ProfileImgAccount';
 
-export const ChatListContanierStyle = styled.li`
+export const ChatLiStyle = styled.li`
   display: flex;
-  justify-content: space-between;
 `;
 
-export const ProfileImgAccountStyle = styled(ProfileImgAccount)`
+export const ChatUserProfileImg = styled.img`
+  width: 42px;
+  height: 42px;
+  margin-right: 12px;
   position: relative;
   &::after {
     content: '';
@@ -19,14 +20,18 @@ export const ProfileImgAccountStyle = styled(ProfileImgAccount)`
     top: 0;
     left: 0;
   }
-  p:first-child {
+`;
+
+export const ChatContent = styled.div`
+  strong {
     ${Ellipsis}
     display: inline-block;
+    margin: 2px 0 4px 0;
     font-size: 1.4rem;
     font-weight: 500;
     line-height: 18px;
   }
-  p:last-child {
+  p {
     ${Ellipsis}
     width: 238px;
     font-size: 1.4rem;
@@ -35,7 +40,8 @@ export const ProfileImgAccountStyle = styled(ProfileImgAccount)`
   }
 `;
 
-export const DateSpan = styled.span`
+export const ChatDate = styled.span`
   align-self: end;
+  margin: 0 0 3px 13px;
   color: var(--sub-grey-C4);
 `;
