@@ -45,8 +45,8 @@ export default function PostCard({ post, author }) {
               post={post}
               author={author}
             />
+            <PostIconMoreStyle onClick={modalUp} />
           </PostProfileDivStyle>
-          <PostIconMoreStyle onClick={modalUp} />
         </Link>
         <PostDivStyle>
           <PostContentsStyle>{post.content}</PostContentsStyle>
