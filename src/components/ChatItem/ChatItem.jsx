@@ -1,19 +1,19 @@
 import React from 'react';
 import profileImg from '../../assets/img/basic-profile-50.png';
 import {
-  ChatContainerStyle,
-  MessageContainerStyle,
+  ChatItemWrapStyle,
+  MessageWrapStyle,
   TimeStyle,
 } from './ChatItemStyle';
 
 export default function ChatItem(props) {
   return (
-    <ChatContainerStyle>
+    <ChatItemWrapStyle>
       <img src={profileImg} alt="" />
-      <MessageContainerStyle>
-        <p>{props.txt}</p>
-      </MessageContainerStyle>
+      <MessageWrapStyle>
+        <p>{props.content}</p>
+      </MessageWrapStyle>
       <TimeStyle>{props.time}</TimeStyle>
-    </ChatContainerStyle>
+    </ChatItemWrapStyle>
   );
 }
