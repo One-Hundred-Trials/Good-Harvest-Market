@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { useRecoilValue } from 'recoil';
@@ -33,6 +33,11 @@ export default function MyProfile() {
   const [toggle, setToggle] = useState(true);
   const [posts, setPosts] = useState(null);
   const [postsAlbum, setPostsAlbum] = useState([]);
+
+  const [pageNumber, setPageNumber] = useState(5);
+  const [loading, setLoading] = useState(false);
+  const target = useRef();
+
   const [myProfile, setMyProfile] = useState(null);
   const [productList, setProductList] = useState([]);
   const auth = useRecoilValue(authAtom);
@@ -42,19 +47,24 @@ export default function MyProfile() {
     setToggle((prev) => !prev);
   };
 
+  const loadMore = () => setPageNumber((prev) => prev + 3);
+
   const GetMyMyPostData = async () => {
     try {
-      const res = await API.get(`/post/${accountname}/userpost`, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${auth}`,
-        },
-      });
+      const res = await API.get(
+        `/post/${accountname}/userpost?limit=${pageNumber}`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${auth}`,
+          },
+        }
+      );
       const { post } = res.data;
       const haveImage = post.filter((v) => v.image);
       setPostsAlbum(haveImage);
-      // console.log(haveImage);
       setPosts(post);
+      setLoading(true);
     } catch (err) {
       if (err.response) {
         // 응답코드 2xx가 아닌 경우
@@ -111,11 +121,27 @@ export default function MyProfile() {
   };
 
   useEffect(() => {
-    GetMyMyPostData();
     GetMyProfileData();
     GetProductList();
   }, []);
 
+  useEffect(() => {
+    GetMyMyPostData();
+  }, [pageNumber]);
+
+  useEffect(() => {
+    if (loading) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting) {
+            loadMore();
+          }
+        },
+        { threshold: 1 }
+      );
+      observer.observe(target.current);
+    }
+  }, [loading]);
   return (
     <>
       <Header />
@@ -142,6 +168,7 @@ export default function MyProfile() {
         ) : (
           <PostAlbum posts={postsAlbum} />
         )}
+        <div ref={target} style={{ width: '100%', height: '20px' }}></div>
       </ConWrapStyle>
     </>
   );
