@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { accountAtom } from '../../_state/auth';
 import NavItem from './NavItem';
@@ -12,7 +13,8 @@ import iconUserFill from '../../assets/img/icon-user-fill.png';
 import { ContainerNav, NavUl } from './NavStyle';
 
 export default function Nav() {
-  const accountname = useRecoilValue(accountAtom);
+  // const accountname = useRecoilValue(accountAtom);
+  const account = JSON.parse(localStorage.getItem('account'));
 
   const IconHome = {
     default: iconHome,
@@ -44,7 +46,7 @@ export default function Nav() {
         </li>
         <li>
           <NavItem
-            link={`/my_profile/${accountname}`}
+            link={`/my_profile/${account}`}
             icon={IconUser}
             name="프로필"
           />
