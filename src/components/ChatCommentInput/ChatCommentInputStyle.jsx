@@ -31,6 +31,10 @@ export const SendBtn = styled.button`
   border: none;
   font-size: 1.4rem;
   font-weight: 500;
-  color: var(--sub-grey-C4);
+  color: var(--point-green);
   background: inherit;
+  &:disabled {
+    color: var(--sub-grey-C4);
+    cursor: default;
+  }
 `;
