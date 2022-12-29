@@ -31,6 +31,8 @@ export default function Profile({
     username,
     intro,
   } = { ...myProfile };
+
+  console.log(myProfile);
   return (
     <ContDivStyle>
       <FollowStyle>
