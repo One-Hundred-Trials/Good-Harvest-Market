@@ -17,7 +17,7 @@ import facebook from '../../assets/img/facebook.png';
 import Splash from '../Splash/Splash';
 
 export default function Login() {
-  const children = ['이메일로 로그인', '풍년마켓'];
+  const children = ['이메일로 로그인', '풍년마켓 회원가입'];
   const [visibleSplash, setVisibleSplash] = useState(true);
 
   useEffect(() => {
@@ -35,7 +35,7 @@ export default function Login() {
         <Button size="lg" go="/login/login_email">
           {children[0]}
         </Button>
-        <Button go="/login/login_email" size="lg">
+        <Button go="/login/sign_up" size="lg">
           {children[1]}
         </Button>
         <p>SNS계정으로 로그인하기</p>
