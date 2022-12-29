@@ -1,18 +1,21 @@
 import styled from 'styled-components';
 import { Ellipsis } from '../../styles/GlobalStyles';
 
-export const ChatLiStyle = styled.li`
+export const ChatListWrapStyle = styled.div`
   display: flex;
 `;
 
-export const ChatUserProfileImg = styled.img`
-  width: 42px;
-  height: 42px;
-  margin-right: 12px;
+export const ProfileImgWrapStyle = styled.div`
   position: relative;
+  & > img {
+    width: 42px;
+    height: 42px;
+    margin-right: 12px;
+  }
   &::after {
     content: '';
     position: absolute;
+    display: block;
     width: 12px;
     height: 12px;
     background-color: var(--point-green);
