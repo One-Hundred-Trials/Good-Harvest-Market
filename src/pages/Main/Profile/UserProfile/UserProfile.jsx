@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { useRecoilValue } from 'recoil';
@@ -38,13 +38,20 @@ export default function UserProfile() {
   const [userProfile, setUserProfile] = useState(null);
   const { id } = useParams();
 
+  // 무한스크롤
+  const [pageNumber, setPageNumber] = useState(5);
+  const [loading, setLoading] = useState(false);
+  const target = useRef();
+
   const onClick = () => {
     setToggle((prev) => !prev);
   };
 
+  const loadMore = () => setPageNumber((prev) => prev + 3);
+
   const GetUserPostData = async () => {
     try {
-      const res = await API.get(`/post/${id}/userpost`, {
+      const res = await API.get(`/post/${id}/userpost?limit=${pageNumber}`, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${auth}`,
@@ -54,10 +61,9 @@ export default function UserProfile() {
       const haveImage = post.filter((v) => v.image);
       setPostsAlbum(haveImage);
       setPosts(post);
-      console.log(haveImage);
+      setLoading(true);
     } catch (err) {
       if (err.response) {
-        // 응답코드 2xx가 아닌 경우
         console.log(err.response.data);
         console.log(err.response.status);
         console.log(err.response.headers);
@@ -96,7 +102,6 @@ export default function UserProfile() {
           'Content-type': 'application/json',
         },
       });
-      console.log(res);
       setProductList(res.data.product);
     } catch (err) {
       if (err.response) {
@@ -111,10 +116,27 @@ export default function UserProfile() {
   };
 
   useEffect(() => {
-    GetUserPostData();
     GetUserProfileData();
     GetProductList();
   }, []);
+
+  useEffect(() => {
+    GetUserPostData();
+  }, [pageNumber]);
+
+  useEffect(() => {
+    if (loading) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting) {
+            loadMore();
+          }
+        },
+        { threshold: 1 }
+      );
+      observer.observe(target.current);
+    }
+  }, [loading]);
 
   return (
     <>
@@ -131,6 +153,7 @@ export default function UserProfile() {
           <ListOrAlbum toggle={toggle} onclick={onClick} />
         </ContDivStyle>
         {toggle ? <PostCard posts={posts} /> : <PostAlbum posts={postsAlbum} />}
+        <div ref={target} style={{ width: '100%', height: '20px' }}></div>
       </ConWrapStyle>
     </>
   );
