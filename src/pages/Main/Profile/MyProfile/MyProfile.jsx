@@ -51,7 +51,6 @@ export default function MyProfile() {
         },
       });
       const { post } = res.data;
-      console.log(post);
       const haveImage = post.filter((v) => v.image);
       setPostsAlbum(haveImage);
       // console.log(haveImage);
@@ -99,11 +98,9 @@ export default function MyProfile() {
           'Content-type': 'application/json',
         },
       });
-      console.log(res);
       setProductList(res.data.product);
     } catch (err) {
       if (err.response) {
-        // 응답코드 2xx가 아닌 경우
         console.log(err.response.data);
         console.log(err.response.status);
         console.log(err.response.headers);
@@ -126,13 +123,11 @@ export default function MyProfile() {
         <ContDivStyle>
           <Profile
             myProfile={myProfile}
-            // username="풍이네 주말농장"
-            // usertext="@sunday_Farm"
             align="center"
             margin="16px 0 17px 0"
             namemarginbottom="6px"
           >
-            <Button variant="active" size="m">
+            <Button variant="active" size="m" go={'/profile_edit'}>
               {'프로필 수정'}
             </Button>
             <Button variant="active" size="m" go={'/product_upload'}>
