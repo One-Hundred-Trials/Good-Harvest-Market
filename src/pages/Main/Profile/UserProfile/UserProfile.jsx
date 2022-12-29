@@ -11,6 +11,9 @@ import ListOrAlbum from '../../../../components/ListOrAlbum/ListOrAlbum';
 import PostAlbum from '../../../../components/PostAlbum/PostAlbum';
 import Header from '../../../../components/Header/Header';
 import API from '../../../../API';
+import Button from '../../../../components/Button/Button';
+import ChatIcon from '../../../../components/ChatIcon/ChatIcon';
+import ShareIcon from '../../../../components/ShareIcon/ShareIcon';
 
 const ConWrapStyle = styled.main`
   ${ConWrap}
@@ -148,7 +151,13 @@ export default function UserProfile() {
             align="center"
             margin="16px 0 17px 0"
             namemarginbottom="6px"
-          />
+          >
+            <ChatIcon />
+            <Button variant="abled" size="m">
+              {'팔로우'}
+            </Button>
+            <ShareIcon />
+          </Profile>
           <ProductList productList={productList} />
           <ListOrAlbum toggle={toggle} onclick={onClick} />
         </ContDivStyle>
