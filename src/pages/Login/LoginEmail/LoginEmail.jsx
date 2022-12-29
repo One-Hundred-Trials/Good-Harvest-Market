@@ -1,6 +1,6 @@
 import React, { Children, useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import Button from '../../../components/Button/Button';
 import Input from '../../../components/Input/Input';
@@ -88,7 +88,12 @@ export default function LoginEmail() {
           {'로그인'}
         </Button>
       </InputFormStyle>
-      <a style={{ display: 'block', marginTop: '20px' }}>이메일로 회원가입</a>
+      <Link
+        to={'/login/sign_up'}
+        style={{ display: 'block', marginTop: '20px' }}
+      >
+        이메일로 회원가입
+      </Link>
     </ContSecStyle>
   );
 }
