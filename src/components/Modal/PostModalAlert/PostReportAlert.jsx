@@ -45,6 +45,9 @@ export default function PostReportAlert({ setAlert, postId }) {
       console.log(res);
       setAlert(false);
       moveProfileHandler();
+      if (res) {
+        alert('신고가 접수되었습니다.');
+      }
     } catch (err) {
       if (err.response) {
         // 응답코드 2xx가 아닌 경우
