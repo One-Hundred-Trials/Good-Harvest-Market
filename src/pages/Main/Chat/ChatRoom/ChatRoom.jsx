@@ -1,5 +1,5 @@
 import React from 'react';
-import ChatComment from '../../../../components/ChatComment/ChatComment';
+import ChatCommentInput from '../../../../components/ChatCommentInput/ChatCommentInput';
 import ChatItem from '../../../../components/ChatItem/ChatItem';
 import chatSendImg from '../../../../assets/img/chat-send.png';
 import {
@@ -37,7 +37,7 @@ export default function ChatRoom() {
           </MyChatImgWrap>
         </ChatWrapStyle>
       </ConWrapStyle>
-      <ChatComment />
+      <ChatCommentInput />
     </PageWrapStyle>
   );
 }
