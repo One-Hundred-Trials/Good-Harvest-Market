@@ -40,5 +40,8 @@ export const UploadBtn = styled.button`
   border: none;
   font-size: 1.4rem;
   font-weight: 500;
-  color: var(--sub-grey-C4);
+  color: ${(props) => props.color};
+  &:disabled {
+    cursor: default;
+  }
 `;
