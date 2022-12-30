@@ -56,6 +56,14 @@ export default function ProductUpload() {
     setLink(e.target.value);
   };
 
+  const saveImgFile = (file) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setImageSrc(reader.result);
+    };
+  };
+
   const formData = new FormData();
 
   const uploadImgHandler = async (e) => {
@@ -70,7 +78,7 @@ export default function ProductUpload() {
       console.log(res);
       const imgUrl = `https://mandarin.api.weniv.co.kr/${res.data.filename}`;
       setItemImage(imgUrl);
-      setImageSrc(imgUrl);
+      saveImgFile(productImage);
     } catch (err) {
       if (err.response) {
         // 응답코드 2xx가 아닌 경우
@@ -123,7 +131,7 @@ export default function ProductUpload() {
         size="ms"
         variant={btnAble ? '' : 'disabled'}
         disabled={btnAble ? '' : 'disabled'}
-        go={btnAble ? `/user_profile/${accountname}` : ''}
+        go={btnAble ? `/my_profile/${accountname}` : ''}
         onClick={submitProductHandler}
       >
         업로드
