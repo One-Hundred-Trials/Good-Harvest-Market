@@ -25,23 +25,43 @@ export default function ProfileImgAccount({
   // const { username, accountname } = author;
   return (
     <ProfileImgContainerStyle className={className}>
-      <Link to={href} style={{ display: 'flex' }}>
-        <ProfileImageContainerStyle>
-          <ProfileImageStyle
-            src={image}
-            width={width}
-            height={height}
-            alt="프로필 이미지"
+      {href ? (
+        <Link to={href} style={{ display: 'flex' }}>
+          <ProfileImageContainerStyle>
+            <ProfileImageStyle
+              src={image}
+              width={width}
+              height={height}
+              alt="프로필 이미지"
+            />
+          </ProfileImageContainerStyle>
+          <ProfileAccount
+            size="1.4rem"
+            margin={margin}
+            namemarginbottom={namemarginbottom}
+            username={username}
+            accountname={accountname}
           />
-        </ProfileImageContainerStyle>
-        <ProfileAccount
-          size="1.4rem"
-          margin={margin}
-          namemarginbottom={namemarginbottom}
-          username={username}
-          accountname={accountname}
-        />
-      </Link>
+        </Link>
+      ) : (
+        <div style={{ display: 'flex' }}>
+          <ProfileImageContainerStyle>
+            <ProfileImageStyle
+              src={image}
+              width={width}
+              height={height}
+              alt="프로필 이미지"
+            />
+          </ProfileImageContainerStyle>
+          <ProfileAccount
+            size="1.4rem"
+            margin={margin}
+            namemarginbottom={namemarginbottom}
+            username={username}
+            accountname={accountname}
+          />
+        </div>
+      )}
     </ProfileImgContainerStyle>
   );
 }
