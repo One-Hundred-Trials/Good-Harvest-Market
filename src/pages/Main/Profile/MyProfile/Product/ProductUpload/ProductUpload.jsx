@@ -12,7 +12,7 @@ import API from '../../../../../../API';
 import { authAtom, accountAtom } from '../../../../../../_state/auth';
 import UploadFileBtn from '../../../../../../components/Button/UploadFileBtn/UploadFileBtn';
 
-export default function ProductUpload({ value }) {
+export default function ProductUpload() {
   const auth = useRecoilValue(authAtom);
   const accountname = useRecoilValue(accountAtom);
 
@@ -47,9 +47,9 @@ export default function ProductUpload({ value }) {
     setItemName(e.target.value);
   };
   const priceHandler = (e) => {
-    const numValue = new Intl.NumberFormat().format(
-      parseInt(e.target.value.replaceAll(',', ''), 10)
-    );
+    const value = Number(e.target.value.replaceAll(',', ''));
+    if (Number.isNaN(value)) return;
+    const numValue = new Intl.NumberFormat().format(parseInt(value, 10));
     setPrice(numValue);
   };
   const linkHandler = (e) => {
