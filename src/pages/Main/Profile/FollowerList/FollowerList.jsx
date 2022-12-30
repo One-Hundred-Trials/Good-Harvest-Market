@@ -24,7 +24,6 @@ export default function FollowerList() {
   const auth = useRecoilValue(authAtom);
   const { accountname } = useParams();
   const [followers, setFollowers] = useState([]);
-  const [myFollowing, setMyFollowing] = useState([]);
 
   useEffect(() => {
     const getFollowerList = async () => {
