@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { authAtom, accountAtom } from '../../../../_state/auth';
 import API from '../../../../API';
@@ -18,29 +19,28 @@ import Header from '../../../../components/Header/Header';
 import UploadFileBtn from '../../../../components/Button/UploadFileBtn/UploadFileBtn';
 
 function PostUpload() {
-  // 상태 관리
   const auth = useRecoilValue(authAtom);
   const account = useRecoilValue(accountAtom);
+  const navigate = useNavigate();
   // 프로필 이미지
   const [profileImg, setProfileImg] = useState('');
   // 버튼 활성화
   const [isActive, setIsActive] = useState(false);
   // post 정보 데이터
   const [text, setText] = useState('');
-  const [imgFile, setImgFile] = useState([]);
+  const [imgFile, setImgFile] = useState('');
   // 업로드할 이미지 미리보기 데이터
   const [imgUrl, setImgUrl] = useState('');
 
   // 내 프로필 이미지 불러오기
   useEffect(() => {
-    const getMyProfile = async () => {
+    const getMyProfileImg = async () => {
       try {
         const res = await API.get('/user/myinfo', {
           headers: {
             Authorization: `Bearer ${auth}`,
           },
         });
-        console.log(res);
         setProfileImg(res.data.user.image);
       } catch (err) {
         if (err.response) {
@@ -53,7 +53,7 @@ function PostUpload() {
         }
       }
     };
-    getMyProfile();
+    getMyProfileImg();
   }, []);
 
   // 텍스트를 입력하거나 이미지가 있으면 버튼 활성화
@@ -66,13 +66,13 @@ function PostUpload() {
   }, [text, imgUrl]);
 
   // input에 입력한 값 알아내서 저장
-  const onChangeHandler = (e) => {
+  const textChangeHandler = (e) => {
     setText(e.target.value);
   };
 
   // 이미지 업로드
-  const formData = new FormData();
   const changeFileHandler = async (e) => {
+    const formData = new FormData();
     const file = e.target.files[0];
     // if (file === undefined) {
     //   return;
@@ -82,6 +82,7 @@ function PostUpload() {
       return;
     }
     setImgFile((prev) => [...prev, file.name]);
+    console.log(file.name);
     formData.append('image', file);
     try {
       const res = await API.post('/image/uploadfile', formData, {
@@ -113,13 +114,13 @@ function PostUpload() {
   };
 
   // 게시글 업로드
-  const postData = {
-    post: {
-      content: text,
-      image: imgFile,
-    },
-  };
   const submitPostHandler = async () => {
+    const postData = {
+      post: {
+        content: text,
+        image: imgFile,
+      },
+    };
     try {
       if (!text && imgFile.length === 0) {
         alert('내용 또는 이미지를 입력해주세요.');
@@ -130,7 +131,7 @@ function PostUpload() {
           'Content-type': 'application/json',
         },
       });
-      console.log(res);
+      res.then(navigate(`/my_profile/${account}`));
     } catch (err) {
       if (err.response) {
         // 응답코드 2xx가 아닌 경우
@@ -150,7 +151,6 @@ function PostUpload() {
       <Header
         size="ms"
         variant={isActive ? '' : 'disabled'}
-        go={isActive ? `/my_profile/${account}` : ''}
         onClick={submitPostHandler}
       >
         업로드
@@ -161,14 +161,13 @@ function PostUpload() {
           <TextAreaStyle
             type="text"
             placeholder="게시글 입력하기"
-            value={text}
-            onChange={onChangeHandler}
+            onChange={textChangeHandler}
           />
           {imgUrl && (
             <ImgWrapStyle>
               <ImgItemWrapStyle>
                 <ImgPreview src={imgUrl} alt="이미지 미리보기" />
-                <ImgDeleteBtn />
+                <ImgDeleteBtn type="button" />
               </ImgItemWrapStyle>
             </ImgWrapStyle>
           )}
