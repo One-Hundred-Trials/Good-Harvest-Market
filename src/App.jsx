@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  createBrowserRouter,
-  RouterProvider,
-  BrowserRouter,
-  Routes,
-  Route,
-} from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { GlobalStyle } from './styles/GlobalStyles';
 import Home from './pages/Main/Home/Home';
 import Login from './pages/Login/Login';
@@ -24,6 +18,7 @@ import ProductEdit from './pages/Main/Profile/MyProfile/Product/ProductEdit/Prod
 import Post from './pages/Main/Post/Post';
 import PostEdit from './pages/Main/Post/PostEdit/PostEdit';
 import ChatRoom from './pages/Main/Chat/ChatRoom/ChatRoom';
+import Splash from './pages/Splash/Splash';
 
 const router = createBrowserRouter([
   {
@@ -31,11 +26,16 @@ const router = createBrowserRouter([
     element: <Root />,
     errorElement: <NotFound />,
     children: [
-      { index: true, element: <Home /> },
+      { path: 'home', element: <Home /> },
       { path: 'chat', element: <Chat /> },
       { path: 'my_profile/:accountname', element: <MyProfile /> },
       { path: 'user_profile/:id', element: <UserProfile /> },
     ],
+  },
+  {
+    path: '/',
+    index: true,
+    element: <Splash />,
   },
   {
     path: '/login',

@@ -25,7 +25,6 @@ export default function Header({
   const modalUp = () => {
     setModal(true);
   };
-  console.log(id);
   const navigate = useNavigate();
   const path = window.location.pathname;
   if (
@@ -59,7 +58,7 @@ export default function Header({
         </button>
       </HeaderStyle>
     );
-  else if (path === '/' || path === '')
+  else if (path === '/home' || path === '')
     return (
       <HeaderStyle>
         <TopMainTitleStyle>{children}</TopMainTitleStyle>

@@ -36,7 +36,7 @@ export default function Nav() {
     <ContainerNav>
       <NavUl>
         <li>
-          <NavItem link="/" icon={IconHome} name="홈" />
+          <NavItem link="/home" icon={IconHome} name="홈" />
         </li>
         <li>
           <NavItem link="/chat" icon={IconMessage} name="채팅" />
