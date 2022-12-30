@@ -12,15 +12,11 @@ import {
   AlertButtonRight,
 } from './ProductAlertStyle';
 
-export default function ModalAlert({ setAlert, productId }) {
+export default function ModalAlert({ setAlert, productId, GetProductList }) {
   const auth = useRecoilValue(authAtom);
   const account = useRecoilValue(accountAtom);
   const alertClose = () => {
     setAlert(false);
-  };
-
-  const moveProfileHandler = () => {
-    window.location.replace(`/my_profile/${account}`);
   };
 
   const productDelHandler = async () => {
@@ -31,7 +27,6 @@ export default function ModalAlert({ setAlert, productId }) {
           Authorization: `Bearer ${auth}`,
         },
       });
-      moveProfileHandler();
     } catch (err) {
       if (err.response) {
         // 응답코드 2xx가 아닌 경우
@@ -50,7 +45,14 @@ export default function ModalAlert({ setAlert, productId }) {
         <AlertHeader>상품을 삭제할까요?</AlertHeader>
         <AlertBody>
           <AlertButtonLeft onClick={alertClose}>취소</AlertButtonLeft>
-          <AlertButtonRight onClick={productDelHandler}>삭제</AlertButtonRight>
+          <AlertButtonRight
+            onClick={() => {
+              productDelHandler();
+              GetProductList();
+            }}
+          >
+            삭제
+          </AlertButtonRight>
         </AlertBody>
       </AlertBox>
     </ModalAlertDiv>

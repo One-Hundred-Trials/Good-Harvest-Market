@@ -52,7 +52,7 @@ export default function MyProfile() {
 
   const loadMore = () => setPageNumber((prev) => prev + 3);
 
-  const GetMyMyPostData = async () => {
+  const GetMyPostData = async () => {
     try {
       const res = await API.get(
         `/post/${account}/userpost?limit=${pageNumber}`,
@@ -127,7 +127,7 @@ export default function MyProfile() {
   }, []);
 
   useEffect(() => {
-    GetMyMyPostData();
+    GetMyPostData();
   }, [pageNumber]);
 
   useEffect(() => {
@@ -143,6 +143,7 @@ export default function MyProfile() {
       observer.observe(target.current);
     }
   }, [loading]);
+
   return (
     <>
       {accountname === account ? (
@@ -163,7 +164,10 @@ export default function MyProfile() {
                   {'상품 등록'}
                 </Button>
               </Profile>
-              <ProductList productList={productList} />
+              <ProductList
+                productList={productList}
+                GetProductList={GetProductList}
+              />
               <ListOrAlbum toggle={toggle} onclick={onClick} />
             </ContDivStyle>
             {toggle ? (
