@@ -1,6 +1,24 @@
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { Wrap } from '../../styles/GlobalStyles';
+
+const loginFadeIn = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`;
+
+const loginUp = keyframes`
+  0% {
+    bottom: 0;
+  }
+  100% {
+    bottom: 297px;
+  }
+`;
 
 const ContSectionStyle = styled.section`
   ${Wrap}
@@ -12,23 +30,23 @@ const ContSectionStyle = styled.section`
   color: var(--main-grey-76);
   background-color: var(--splash-bg-color);
   position: relative;
+  animation: 1s ${loginFadeIn} ease-out;
 `;
 
 const LogoiImgStyle = styled.img`
   position: absolute;
-  top: 30%;
+  top: 25%;
   left: 50%;
   transform: translateX(-50%);
-  width: 200px;
-  height: 200px;
+  width: 187px;
 `;
 
 const DuckImgStyle = styled.img`
   position: absolute;
+  width: 115px;
   bottom: 297px;
   right: 30px;
-  width: 122px;
-  height: 109px;
+  animation: 1s ${loginUp} ease-out;
 `;
 
 const Div = styled.div`
