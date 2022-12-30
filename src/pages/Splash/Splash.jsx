@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import IntroLogoBg from '../../assets/img/intro-logo-bg.png';
 import IntroLogoLeaf from '../../assets/img/intro-logo-leaf.png';
@@ -39,6 +40,10 @@ export default function Splash() {
       </WrapStyle>
     );
   } else {
-    return auth ? <Home /> : <Login />;
+    return localStorage.auth ? (
+      <Navigate to="/home" replace />
+    ) : (
+      <Navigate to="/login" replace />
+    );
   }
 }

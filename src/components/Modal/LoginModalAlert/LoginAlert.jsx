@@ -80,7 +80,7 @@ export default function ModalAlert({ setAlert }) {
   const logout = () => {
     localStorage.removeItem('auth');
     localStorage.removeItem('account');
-    navigate('/login');
+    navigate('/');
   };
 
   return (
