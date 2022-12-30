@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
 import { Wrap } from '../../styles/GlobalStyles';
 
 export const WrapStyle = styled.div`
@@ -17,21 +16,21 @@ export const SplashArticleStyle = styled.article`
   justify-content: center;
 `;
 
-export const IntroLogoBgStyle = styled(motion.img)`
+export const IntroLogoBgStyle = styled.img`
   position: absolute;
   top: 0;
   left: 0;
   width: 187px;
 `;
 
-export const LeafContStyle = styled(motion.div)`
+export const LeafContStyle = styled.div`
   position: relative;
   width: 104px;
   height: 37px;
   margin: 27px auto;
 `;
 
-export const IntroLogoLeafStyle = styled(motion.img)`
+export const IntroLogoLeafStyle = styled.img`
   position: absolute;
   width: 34px;
   &:nth-child(2) {
@@ -42,7 +41,7 @@ export const IntroLogoLeafStyle = styled(motion.img)`
   }
 `;
 
-export const IntroLogoTextStyle = styled(motion.img)`
+export const IntroLogoTextStyle = styled.img`
   position: absolute;
   bottom: 0;
   left: 2px;
