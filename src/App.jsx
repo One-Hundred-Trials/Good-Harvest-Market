@@ -24,6 +24,7 @@ import ProductEdit from './pages/Main/Profile/MyProfile/Product/ProductEdit/Prod
 import Post from './pages/Main/Post/Post';
 import PostEdit from './pages/Main/Post/PostEdit/PostEdit';
 import ChatRoom from './pages/Main/Chat/ChatRoom/ChatRoom';
+import FollowingList from './pages/Main/Profile/MyProfile/FollowingList/FollowingList';
 
 const router = createBrowserRouter([
   {
@@ -80,6 +81,10 @@ const router = createBrowserRouter([
   {
     path: '/chat/:id',
     element: <ChatRoom />,
+  },
+  {
+    path: '/:accountname/following',
+    element: <FollowingList />,
   },
 ]);
 

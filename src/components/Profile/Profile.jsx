@@ -8,6 +8,10 @@ import {
 import ProfileAccount from '../ProfileAccount/ProfileAccount';
 import FollowersCount from '../FollowersCount/FollowersCount';
 import ProfileImg from '../ProfileImg/ProfileImg';
+import ChatIcon from '../../components/ChatIcon/ChatIcon';
+import Button from '../../components/Button/Button';
+import ShareIcon from '../../components/ShareIcon/ShareIcon';
+import DefaultProfileImg from '../../assets/img/basic-profile.png';
 
 export default function Profile({
   myProfile,
@@ -16,14 +20,31 @@ export default function Profile({
   namemarginbottom,
   children,
 }) {
-  const { accountname, followerCount, followingCount, image, username, intro } =
-    { ...myProfile };
+  const {
+    id,
+    accountname,
+    follower,
+    followerCount,
+    following,
+    followingCount,
+    image,
+    username,
+    intro,
+  } = { ...myProfile };
   return (
     <ContDivStyle>
       <FollowStyle>
-        <FollowersCount count={followerCount} follow="follower" />
+        <FollowersCount
+          count={followerCount}
+          follow="follower"
+          src={`/${accountname}/follower`}
+        />
         <ProfileImg width="110px" height="110px" image={image} />
-        <FollowersCount count={followingCount} follow="followings" />
+        <FollowersCount
+          count={followingCount}
+          follow="followings"
+          src={`/${accountname}/following`}
+        />
       </FollowStyle>
       <ProfileAccount
         accountname={accountname}
@@ -34,7 +55,11 @@ export default function Profile({
         namemarginbottom={namemarginbottom}
       />
       <ProfileIntroStyle>{intro}</ProfileIntroStyle>
-      <DivFlexStyle>{children}</DivFlexStyle>
+      <DivFlexStyle>
+        {/* <ChatIcon /> */}
+        {children}
+        {/* <ShareIcon /> */}
+      </DivFlexStyle>
     </ContDivStyle>
   );
 }
