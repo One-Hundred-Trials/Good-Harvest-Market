@@ -18,16 +18,8 @@ import Splash from '../Splash/Splash';
 
 export default function Login() {
   const children = ['이메일로 로그인', '풍년마켓 회원가입'];
-  const [visibleSplash, setVisibleSplash] = useState(true);
 
-  useEffect(() => {
-    const splashClear = setTimeout(() => setVisibleSplash(false), 2000);
-    return () => clearTimeout(splashClear);
-  }, []);
-
-  return visibleSplash === true ? (
-    <Splash />
-  ) : (
+  return (
     <ContSectionStyle>
       <LogoiImgStyle src={fullLogo} alt="" />
       <DuckImgStyle src={duckFarm} alt="" />
