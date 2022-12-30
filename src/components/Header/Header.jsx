@@ -104,5 +104,14 @@ export default function Header({
         </Button>
       </HeaderStyle>
     );
-  else return null;
+  else if (path.includes(`/follower`) || path.includes(`/following`)) {
+    return (
+      <HeaderStyle>
+        <button onClick={() => navigate(-1)}>
+          <img src={iconArrowLeft} alt="뒤로가기" height="22" />
+        </button>
+        <TopChatTitleStyle>{children}</TopChatTitleStyle>
+      </HeaderStyle>
+    );
+  } else return null;
 }

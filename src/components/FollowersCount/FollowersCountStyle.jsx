@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const FollwersCountStyle = styled.div`
+const FollwersCountStyle = styled.a`
   display: flex;
   flex-direction: column;
 

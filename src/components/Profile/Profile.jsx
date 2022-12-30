@@ -34,9 +34,17 @@ export default function Profile({
   return (
     <ContDivStyle>
       <FollowStyle>
-        <FollowersCount count={followerCount} follow="follower" />
+        <FollowersCount
+          count={followerCount}
+          follow="follower"
+          src={`/${accountname}/follower`}
+        />
         <ProfileImg width="110px" height="110px" image={image} />
-        <FollowersCount count={followingCount} follow="followings" />
+        <FollowersCount
+          count={followingCount}
+          follow="followings"
+          src={`/${accountname}/following`}
+        />
       </FollowStyle>
       <ProfileAccount
         accountname={accountname}
