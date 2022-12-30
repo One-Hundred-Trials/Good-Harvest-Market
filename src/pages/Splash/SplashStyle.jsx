@@ -55,6 +55,7 @@ export const LeafContStyle = styled.div`
   width: 104px;
   height: 37px;
   margin: 27px auto;
+  z-index: -1;
 `;
 
 export const IntroLogoLeafStyle = styled.img`
