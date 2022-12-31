@@ -46,17 +46,17 @@ export const ImgWrapStyle = styled.ul`
   }
 `;
 
-export const ImgItemWrapStyle = styled.li`
+export const PreviewImgWrapStyle = styled.li`
   position: relative;
 `;
 
-export const ImgPreview = styled.img`
+export const PreviewImg = styled.img`
   border-radius: 10px;
   width: 200px;
   height: auto;
 `;
 
-export const ImgDeleteBtn = styled.button`
+export const DeleteImgBtn = styled.button`
   position: absolute;
   width: 22px;
   height: 22px;

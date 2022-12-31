@@ -11,9 +11,9 @@ import {
   PostFormStyle,
   BtnWrapStyle,
   ImgWrapStyle,
-  ImgItemWrapStyle,
-  ImgPreview,
-  ImgDeleteBtn,
+  PreviewImgWrapStyle,
+  PreviewImg,
+  DeleteImgBtn,
 } from './PostUploadStyle';
 import Header from '../../../../components/Header/Header';
 import UploadFileBtn from '../../../../components/Button/UploadFileBtn/UploadFileBtn';
@@ -30,7 +30,7 @@ function PostUpload() {
   const [text, setText] = useState('');
   const [imgFile, setImgFile] = useState('');
   // 업로드할 이미지 미리보기 데이터
-  const [imgUrl, setImgUrl] = useState('');
+  const [previewImgUrl, setPreviewImgUrl] = useState('');
 
   // 내 프로필 이미지 불러오기
   useEffect(() => {
@@ -58,12 +58,12 @@ function PostUpload() {
 
   // 텍스트를 입력하거나 이미지가 있으면 버튼 활성화
   useEffect(() => {
-    if (text || imgUrl) {
+    if (text || previewImgUrl) {
       setIsActive(true);
     } else {
       setIsActive(false);
     }
-  }, [text, imgUrl]);
+  }, [text, previewImgUrl]);
 
   // input에 입력한 값 알아내서 저장
   const textChangeHandler = (e) => {
@@ -71,18 +71,9 @@ function PostUpload() {
   };
 
   // 이미지 업로드
-  const changeFileHandler = async (e) => {
+  const imgUploadHandler = async (file) => {
+    // const file = e.target.files[0];
     const formData = new FormData();
-    const file = e.target.files[0];
-    // if (file === undefined) {
-    //   return;
-    // }
-    if (imgFile.length > 0) {
-      alert('1개의 이미지 파일을 업로드 하세요.');
-      return;
-    }
-    setImgFile((prev) => [...prev, file.name]);
-    console.log(file.name);
     formData.append('image', file);
     try {
       const res = await API.post('/image/uploadfile', formData, {
@@ -90,7 +81,6 @@ function PostUpload() {
           'Content-Type': 'multipart/form-data',
         },
       });
-      console.log(res);
       if (res.data.message === '이미지 파일만 업로드가 가능합니다.') {
         alert(
           '이미지 파일만 업로드가 가능합니다. (*.jpg, *.gif, *.png, *.jpeg, *.bmp, *.tif, *.heic)'
@@ -99,7 +89,7 @@ function PostUpload() {
       } else {
         const feedImgUrl = `https://mandarin.api.weniv.co.kr/${res.data.filename}`;
         setImgFile(feedImgUrl);
-        setImgUrl(feedImgUrl);
+        // setImgUrl(feedImgUrl);
       }
     } catch (err) {
       if (err.response) {
@@ -113,18 +103,32 @@ function PostUpload() {
     }
   };
 
-  // 게시글 업로드
-  const submitPostHandler = async () => {
-    const postData = {
-      post: {
-        content: text,
-        image: imgFile,
-      },
+  // 이미지 미리보기
+  const PreviewImgHandler = (e) => {
+    e.preventDefault();
+    const file = e.target.files[0];
+    const fileReader = new FileReader();
+    if (previewImgUrl.length > 0) {
+      alert('1개의 이미지 파일을 업로드 하세요.');
+      return;
+    }
+    if (file) {
+      fileReader.readAsDataURL(file);
+    }
+    fileReader.onload = () => {
+      setPreviewImgUrl((imgUrl) => [...imgUrl, fileReader.result]);
     };
+  };
+
+  // 게시글 업로드
+  const postUploadHandler = async () => {
     try {
-      if (!text && imgFile.length === 0) {
-        alert('내용 또는 이미지를 입력해주세요.');
-      }
+      const postData = {
+        post: {
+          content: text,
+          image: imgFile,
+        },
+      };
       const res = await API.post('/post', JSON.stringify(postData), {
         headers: {
           Authorization: `Bearer ${auth}`,
@@ -144,14 +148,12 @@ function PostUpload() {
     }
   };
 
-  // 이미지 삭제
-
   return (
     <PageWrapStyle>
       <Header
         size="ms"
         variant={isActive ? '' : 'disabled'}
-        onClick={submitPostHandler}
+        onClick={postUploadHandler}
       >
         업로드
       </Header>
@@ -163,16 +165,16 @@ function PostUpload() {
             placeholder="게시글 입력하기"
             onChange={textChangeHandler}
           />
-          {imgUrl && (
+          {previewImgUrl && (
             <ImgWrapStyle>
-              <ImgItemWrapStyle>
-                <ImgPreview src={imgUrl} alt="이미지 미리보기" />
-                <ImgDeleteBtn type="button" />
-              </ImgItemWrapStyle>
+              <PreviewImgWrapStyle>
+                <PreviewImg src={previewImgUrl} alt="이미지 미리보기" />
+                <DeleteImgBtn type="button" />
+              </PreviewImgWrapStyle>
             </ImgWrapStyle>
           )}
           <BtnWrapStyle>
-            <UploadFileBtn onChange={changeFileHandler} />
+            <UploadFileBtn onChange={PreviewImgHandler} />
           </BtnWrapStyle>
         </PostFormStyle>
       </ConWrapStyle>
