@@ -40,10 +40,10 @@ export default function Splash() {
       </WrapStyle>
     );
   } else {
-    return localStorage.auth ? (
-      <Navigate to="/home" replace />
-    ) : (
+    return localStorage.length === 0 ? (
       <Navigate to="/login" replace />
+    ) : (
+      <Navigate to="/home" replace />
     );
   }
 }
