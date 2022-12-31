@@ -31,10 +31,10 @@ export default function ProductUpload() {
   const [linkMessage, setLinkMessage] = useState('');
   const [itemImageMessage, setItemImageMessage] = useState('');
 
-  const [isItemName, setIsItemName] = useState('false');
-  const [isPrice, setIsPrice] = useState('false');
-  const [isLink, setIsLink] = useState('false');
-  const [isItemImage, setIsItemImage] = useState('false');
+  const [isItemName, setIsItemName] = useState(false);
+  const [isPrice, setIsPrice] = useState(false);
+  const [isLink, setIsLink] = useState(false);
+  const [isItemImage, setIsItemImage] = useState(false);
 
   const btnAbleHandler = () => {
     if (isItemName === true && isPrice === true && isLink === true) {
@@ -115,7 +115,6 @@ export default function ProductUpload() {
           'Content-type': 'multipart/form-data',
         },
       });
-      console.log(res);
       const imgUrl = `https://mandarin.api.weniv.co.kr/${res.data.filename}`;
       setItemImage(imgUrl);
       saveImgFile(productImage);

@@ -1,8 +1,7 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import API from '../../../API';
-import { accountAtom, authAtom } from '../../../_state/auth';
+import { authAtom } from '../../../_state/auth';
 import {
   ModalAlertDiv,
   AlertBox,
@@ -14,7 +13,6 @@ import {
 
 export default function ModalAlert({ setAlert, productId, GetProductList }) {
   const auth = useRecoilValue(authAtom);
-  const account = useRecoilValue(accountAtom);
   const alertClose = () => {
     setAlert(false);
   };
@@ -27,9 +25,9 @@ export default function ModalAlert({ setAlert, productId, GetProductList }) {
           Authorization: `Bearer ${auth}`,
         },
       });
+      GetProductList();
     } catch (err) {
       if (err.response) {
-        // 응답코드 2xx가 아닌 경우
         console.log(err.response.data);
         console.log(err.response.status);
         console.log(err.response.headers);
@@ -45,14 +43,7 @@ export default function ModalAlert({ setAlert, productId, GetProductList }) {
         <AlertHeader>상품을 삭제할까요?</AlertHeader>
         <AlertBody>
           <AlertButtonLeft onClick={alertClose}>취소</AlertButtonLeft>
-          <AlertButtonRight
-            onClick={() => {
-              productDelHandler();
-              GetProductList();
-            }}
-          >
-            삭제
-          </AlertButtonRight>
+          <AlertButtonRight onClick={productDelHandler}>삭제</AlertButtonRight>
         </AlertBody>
       </AlertBox>
     </ModalAlertDiv>
