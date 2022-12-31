@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
 import IntroLogoBg from '../../assets/img/intro-logo-bg.png';
 import IntroLogoLeaf from '../../assets/img/intro-logo-leaf.png';
 import IntroLogoText from '../../assets/img/intro-logo-text.png';
-import { authAtom } from '../../_state/auth';
 import Login from '../Login/Login';
 import Home from '../Main/Home/Home';
 import {
@@ -17,7 +15,6 @@ import {
 } from './SplashStyle';
 
 export default function Splash() {
-  const auth = useRecoilValue(authAtom);
   const [visibleSplash, setVisibleSplash] = useState(true);
 
   useEffect(() => {
