@@ -20,6 +20,13 @@ const ConWrapStyle = styled.main`
   }
 `;
 
+const FollowContainerUlStyle = styled.ul`
+  padding: 8px 16px;
+  & li + li {
+    margin-top: 16px;
+  }
+`;
+
 export default function FollowingList() {
   const auth = useRecoilValue(authAtom);
   const { accountname } = useParams();
@@ -54,17 +61,19 @@ export default function FollowingList() {
     <PageWrapStyle>
       <Header>Followings</Header>
       <ConWrapStyle>
-        {followings.map((item, i) => (
-          <FollowUserList
-            key={i}
-            width="50px"
-            height="50px"
-            image={item.image}
-            username={item.username}
-            accountname={item.accountname}
-            isfollow={item.isfollow}
-          ></FollowUserList>
-        ))}
+        <FollowContainerUlStyle>
+          {followings.map((item, i) => (
+            <FollowUserList
+              key={i}
+              width="50px"
+              height="50px"
+              image={item.image}
+              username={item.username}
+              accountname={item.accountname}
+              isfollow={item.isfollow}
+            ></FollowUserList>
+          ))}
+        </FollowContainerUlStyle>
       </ConWrapStyle>
     </PageWrapStyle>
   );

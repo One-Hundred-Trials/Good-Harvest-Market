@@ -4,7 +4,7 @@ import { authAtom } from '../../_state/auth';
 import API from '../../API';
 import Button from '../Button/Button';
 import ProfileImgAccount from '../ProfileImgAccount/ProfileImgAccount';
-import { FollowContainerUlStyle, FollowListStyle } from './FollowUserListStyle';
+import FollowListStyle from './FollowUserListStyle';
 
 export default function FollowUserList({
   image,
@@ -59,27 +59,25 @@ export default function FollowUserList({
   };
 
   return (
-    <FollowContainerUlStyle>
-      <FollowListStyle>
-        <ProfileImgAccount
-          width={width}
-          height={height}
-          margin="0 0 0 12px"
-          namemarginbottom="6px"
-          image={image}
-          username={username}
-          accountname={accountname}
-        />
-        {follow === true ? (
-          <Button size="s" variant="active" onClick={handleFollowBtn}>
-            취소
-          </Button>
-        ) : (
-          <Button size="s" variant="able" onClick={handleFollowBtn}>
-            팔로우
-          </Button>
-        )}
-      </FollowListStyle>
-    </FollowContainerUlStyle>
+    <FollowListStyle>
+      <ProfileImgAccount
+        width={width}
+        height={height}
+        margin="0 0 0 12px"
+        namemarginbottom="6px"
+        image={image}
+        username={username}
+        accountname={accountname}
+      />
+      {follow === true ? (
+        <Button size="s" variant="active" onClick={handleFollowBtn}>
+          취소
+        </Button>
+      ) : (
+        <Button size="s" variant="able" onClick={handleFollowBtn}>
+          팔로우
+        </Button>
+      )}
+    </FollowListStyle>
   );
 }
