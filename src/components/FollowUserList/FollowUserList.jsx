@@ -12,6 +12,7 @@ export default function FollowUserList({
   height,
   width,
   isfollow,
+  image,
 }) {
   const [follow, setFollow] = useState(isfollow);
   const auth = useRecoilValue(authAtom);
@@ -68,7 +69,6 @@ export default function FollowUserList({
           image={image}
           username={username}
           accountname={accountname}
-          href={`/user_profile/${accountname}/`}
         />
         {follow === true ? (
           <Button size="s" variant="active" onClick={handleFollowBtn}>
