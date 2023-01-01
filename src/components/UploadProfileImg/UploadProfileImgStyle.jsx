@@ -21,6 +21,7 @@ export const UploadProfileInputStyle = styled.input`
 `;
 
 export const ProfileImageContainerStyle = styled.div`
+  position: relative;
   width: 110px;
   height: 110px;
   border-radius: 50%;
@@ -29,7 +30,10 @@ export const ProfileImageContainerStyle = styled.div`
 `;
 
 export const ProfileImageStyle = styled.img`
-  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   height: 100%;
   object-fit: cover;
 `;
