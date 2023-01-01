@@ -100,8 +100,10 @@ function PostUpload() {
   const PreviewImgHandler = (e) => {
     e.preventDefault();
     const file = e.target.files[0];
+    const correctForm = /(.*?)\.(jpg|gif|png|jpeg|bmp|tif|heic|)$/;
     const fileReader = new FileReader();
-    if (file.length > 1) {
+    console.log(file.type);
+    if (file.length > 0) {
       alert('1개의 이미지 파일을 업로드 하세요.');
       return;
     }
@@ -109,7 +111,11 @@ function PostUpload() {
       alert('10MB 이상의 이미지는 업로드 할 수 없습니다.');
       return;
     }
-    if (file) {
+    if (!e.target.files[0].name.match(correctForm)) {
+      alert(
+        '이미지 파일만 업로드가 가능합니다. (*.jpg, *.gif, *.png, *.jpeg, *.bmp, *.tif, *.heic)'
+      );
+    } else {
       fileReader.readAsDataURL(file);
       setImgFile(file);
     }
