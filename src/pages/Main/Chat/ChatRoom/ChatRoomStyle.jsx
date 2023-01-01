@@ -11,18 +11,18 @@ export const ConWrapStyle = styled.section`
   background-color: var(--light-grey-F2);
 `;
 
-export const ChatItemConStyle = styled.div`
+export const ChatWrapStyle = styled.div`
   position: absolute;
   bottom: 0;
   padding-bottom: 20px;
 `;
 
-export const ChatRightContainerStyle = styled.div`
+export const MyChatWrapStyle = styled.div`
   display: flex;
   flex-direction: row-reverse;
 `;
 
-export const ChatItemRight = styled.div`
+export const MyChatItem = styled.div`
   width: fit-content;
   height: fit-content;
   margin: 10px 16px 0 0;
@@ -43,7 +43,7 @@ export const TimeStyle = styled.span`
   color: --var(--main-grey-76);
 `;
 
-export const ChatImgRight = styled.div`
+export const MyChatImgWrap = styled.div`
   display: flex;
   flex-direction: row-reverse;
 `;

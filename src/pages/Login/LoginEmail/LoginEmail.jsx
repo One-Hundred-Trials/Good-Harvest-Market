@@ -46,7 +46,7 @@ export default function LoginEmail() {
       localStorage.setItem('account', JSON.stringify(accountname));
       setAuth(token);
       if (token) {
-        navigate('/');
+        navigate('/home');
       }
       return response;
     } catch (error) {

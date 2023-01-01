@@ -15,19 +15,26 @@ import {
 export default function Header({
   size,
   variant,
-  disabled,
   children,
   onClick,
   go,
+  search,
+  setKeyWord,
+  disabled,
   id,
 }) {
   const [modal, setModal] = useState(false);
   const modalUp = () => {
     setModal(true);
   };
-  console.log(id);
   const navigate = useNavigate();
   const path = window.location.pathname;
+
+  const [value, setValue] = useState('');
+  const handleOnChange = (e) => {
+    setValue(e.target.value);
+    setKeyWord(e.target.value);
+  };
   if (
     path.includes('/my_profile') ||
     path.includes('/user_profile/') ||
@@ -59,11 +66,11 @@ export default function Header({
         </button>
       </HeaderStyle>
     );
-  else if (path === '/' || path === '')
+  else if (path === '/home' || path === '')
     return (
       <HeaderStyle>
         <TopMainTitleStyle>{children}</TopMainTitleStyle>
-        <button>
+        <button onClick={() => navigate('/search')}>
           <img src={iconSearch} alt="검색하기" height="22" />
         </button>
       </HeaderStyle>
@@ -77,6 +84,8 @@ export default function Header({
         <TopSearchInputStyle
           type="text"
           placeholder="계정 검색"
+          value={value}
+          onChange={handleOnChange}
         ></TopSearchInputStyle>
       </HeaderStyle>
     );

@@ -18,11 +18,11 @@ export const MyProfileImg = styled.img`
   height: 42px;
 `;
 
-export const Form = styled.form`
+export const PostFormStyle = styled.form`
   width: 100%;
 `;
 
-export const PostTextAreaStyle = styled.textarea`
+export const TextAreaStyle = styled.textarea`
   width: 100%;
   height: 55px;
   font-size: 1.4rem;
@@ -46,17 +46,17 @@ export const ImgWrapStyle = styled.ul`
   }
 `;
 
-export const ImgItemWrapStyle = styled.li`
+export const PreviewImgWrapStyle = styled.li`
   position: relative;
 `;
 
-export const ImgPreview = styled.img`
+export const PreviewImg = styled.img`
   border-radius: 10px;
   width: 200px;
   height: auto;
 `;
 
-export const ImgDeleteBtn = styled.button`
+export const DeleteImgBtn = styled.button`
   position: absolute;
   width: 22px;
   height: 22px;

@@ -11,7 +11,7 @@ import {
 } from './ProductStyle';
 import ProductModal from '../../components/Modal/ProductModalAlert/ProductModal';
 
-export default function Product({ product }) {
+export default function Product({ product, GetProductList }) {
   const userAccount = useRecoilValue(accountAtom);
   const { accountname } = useParams();
   const [modal, setModal] = useState(false);
@@ -34,7 +34,11 @@ export default function Product({ product }) {
       {modal && (
         <>
           {userAccount === accountname ? (
-            <ProductModal productId={product.id} setModal={setModal} />
+            <ProductModal
+              productId={product.id}
+              setModal={setModal}
+              GetProductList={GetProductList}
+            />
           ) : (
             ''
           )}
