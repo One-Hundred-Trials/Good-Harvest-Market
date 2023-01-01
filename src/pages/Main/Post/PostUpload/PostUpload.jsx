@@ -111,6 +111,7 @@ function PostUpload() {
     }
     fileReader.onload = () => {
       setPreviewImgUrl((preview) => [...preview, fileReader.result]);
+      e.target.value = null;
     };
   };
 
