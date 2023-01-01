@@ -36,22 +36,29 @@ export default function PostCard({ post, author }) {
   return (
     <>
       <PostAccountLiStyle>
-        <Link to={`/user_profile/${accountName}`}>
-          <PostProfileDivStyle>
+        <PostProfileDivStyle>
+          <Link
+            to={
+              userAccount === accountName
+                ? `/my_profile/${accountName}`
+                : `/user_profile/${accountName}`
+            }
+          >
             <ProfileImgAccount
               width="42px"
               height="42px"
               margin="0 0 0 12px"
-              namemarginbottom="2px"
+              namemarginbottom="3px"
               post={post}
               author={author}
               username={author.username}
               accountname={author.accountname}
               image={author.image}
             />
-            <PostIconMoreStyle onClick={modalUp} />
-          </PostProfileDivStyle>
-        </Link>
+          </Link>
+          <PostIconMoreStyle onClick={modalUp} />
+        </PostProfileDivStyle>
+
         <PostDivStyle>
           <PostContentsStyle>{post.content}</PostContentsStyle>
           {post.image ? <PostImgStyle src={post.image} alt="" /> : null}
