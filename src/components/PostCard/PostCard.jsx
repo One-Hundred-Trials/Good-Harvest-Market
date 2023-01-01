@@ -19,8 +19,6 @@ import {
 } from './PostCardStyle';
 
 export default function PostCard({ post, author }) {
-  // console.log(post);
-
   const userAccount = useRecoilValue(accountAtom);
   const [modal, setModal] = useState(false);
   const modalUp = () => {
@@ -42,6 +40,7 @@ export default function PostCard({ post, author }) {
           <PostProfileDivStyle>
             <ProfileImgAccount
               width="42px"
+              height="42px"
               margin="0 0 0 12px"
               namemarginbottom="2px"
               post={post}

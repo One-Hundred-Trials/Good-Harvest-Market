@@ -31,12 +31,6 @@ export const InfoDiv = styled.div`
   }
 `;
 
-export const ProfileImg = styled.img`
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-`;
-
 export const MoreBtn = styled.button`
   img {
     width: 20px;
