@@ -29,7 +29,7 @@ function PostUpload() {
   // post 정보 데이터
   const [text, setText] = useState('');
   const [imgFile, setImgFile] = useState('');
-  // 업로드할 이미지 미리보기 데이터
+  // 이미지 미리보기 데이터
   const [previewImgUrl, setPreviewImgUrl] = useState('');
 
   // 내 프로필 이미지 불러오기
@@ -81,16 +81,8 @@ function PostUpload() {
           'Content-Type': 'multipart/form-data',
         },
       });
-      if (res.data.message === '이미지 파일만 업로드가 가능합니다.') {
-        alert(
-          '이미지 파일만 업로드가 가능합니다. (*.jpg, *.gif, *.png, *.jpeg, *.bmp, *.tif, *.heic)'
-        );
-        setImgFile([...imgFile]);
-      } else {
-        const feedImgUrl = `https://mandarin.api.weniv.co.kr/${res.data.filename}`;
-        setImgFile(feedImgUrl);
-        // setImgUrl(feedImgUrl);
-      }
+      const feedImgUrl = `https://mandarin.api.weniv.co.kr/${res.data.filename}`;
+      return feedImgUrl;
     } catch (err) {
       if (err.response) {
         // 응답코드 2xx가 아닌 경우
@@ -100,6 +92,7 @@ function PostUpload() {
       } else {
         console.log(`Error: ${err.message}`);
       }
+      return false;
     }
   };
 
@@ -114,21 +107,30 @@ function PostUpload() {
     }
     if (file) {
       fileReader.readAsDataURL(file);
+      setImgFile(file);
     }
     fileReader.onload = () => {
-      setPreviewImgUrl((imgUrl) => [...imgUrl, fileReader.result]);
+      setPreviewImgUrl((preview) => [...preview, fileReader.result]);
     };
+  };
+
+  // 이미지 미리보기 삭제
+  const DeletePreviewImgHandler = (e) => {
+    e.preventDefault();
+    setPreviewImgUrl('');
+    setImgFile('');
   };
 
   // 게시글 업로드
   const postUploadHandler = async () => {
+    const image = await imgUploadHandler(imgFile);
+    const postData = {
+      post: {
+        content: text,
+        image,
+      },
+    };
     try {
-      const postData = {
-        post: {
-          content: text,
-          image: imgFile,
-        },
-      };
       const res = await API.post('/post', JSON.stringify(postData), {
         headers: {
           Authorization: `Bearer ${auth}`,
@@ -169,7 +171,7 @@ function PostUpload() {
             <ImgWrapStyle>
               <PreviewImgWrapStyle>
                 <PreviewImg src={previewImgUrl} alt="이미지 미리보기" />
-                <DeleteImgBtn type="button" />
+                <DeleteImgBtn type="button" onClick={DeletePreviewImgHandler} />
               </PreviewImgWrapStyle>
             </ImgWrapStyle>
           )}
