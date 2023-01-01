@@ -52,7 +52,7 @@ export default function Nav() {
     <ContainerNav>
       <NavUl>
         <li>
-          <NavLinkStyle to="/">
+          <NavLinkStyle to="/home">
             {({ isActive }) => (
               <>
                 <StyledImg src={isActive ? IconHome.fill : IconHome.default} />
