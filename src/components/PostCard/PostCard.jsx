@@ -14,6 +14,7 @@ import {
   PostDivStyle,
   PostContentsStyle,
   PostCarouselStyle,
+  PostCarouselContStyle,
   PostCarouselBtnsContStyle,
   PostCarouselBtnStyle,
   PostImgStyle,
@@ -23,10 +24,13 @@ import {
 
 export default function PostCard({ post, author }) {
   const userAccount = useRecoilValue(accountAtom);
+  const [slidePx, setSlidePx] = useState(0);
   const [modal, setModal] = useState(false);
+
   const modalUp = () => {
     setModal(true);
   };
+
   const accountName = author.accountname;
   const postDate =
     post.createdAt !== post.updatedAt
@@ -36,6 +40,13 @@ export default function PostCard({ post, author }) {
   const month = postDate?.slice(4, 6);
   const date = postDate?.slice(6, 8);
 
+  const prevBtn = () => {
+    if (slidePx < 0) setSlidePx(slidePx + 304);
+  };
+  const nextBtn = () => {
+    if (slidePx > -608) setSlidePx(slidePx - 304);
+  };
+  console.log(slidePx);
   return (
     <>
       <PostAccountLiStyle>
@@ -64,12 +75,20 @@ export default function PostCard({ post, author }) {
         <PostDivStyle>
           <PostContentsStyle>{post.content}</PostContentsStyle>
           <PostCarouselStyle>
-            {post.image ? <PostImgStyle src={post.image} alt="" /> : null}
-            {post.image ? <PostImgStyle src={post.image} alt="" /> : null}
-            <PostCarouselBtnsContStyle>
-              <PostCarouselBtnStyle>&#xE000;</PostCarouselBtnStyle>
-              <PostCarouselBtnStyle>&#xE001;</PostCarouselBtnStyle>
-            </PostCarouselBtnsContStyle>
+            <PostCarouselContStyle transform={slidePx}>
+              {post.image ? <PostImgStyle src={post.image} alt="" /> : null}
+              {post.image ? <PostImgStyle src={post.image} alt="" /> : null}
+            </PostCarouselContStyle>
+            {post.image ? (
+              <PostCarouselBtnsContStyle>
+                <PostCarouselBtnStyle onClick={prevBtn}>
+                  &#xE000;
+                </PostCarouselBtnStyle>
+                <PostCarouselBtnStyle onClick={nextBtn}>
+                  &#xE001;
+                </PostCarouselBtnStyle>
+              </PostCarouselBtnsContStyle>
+            ) : null}
           </PostCarouselStyle>
           <PostCountDivStyle>
             <HeartIcon heartCount={post.heartCount} />
