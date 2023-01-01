@@ -16,8 +16,10 @@ const ListStyle = styled.li`
     background-size: contain;
   }
   img {
+    display: block;
     width: 100%;
-    background-size: cover;
+    height: 100%;
+    object-fit: cover;
   }
 `;
 

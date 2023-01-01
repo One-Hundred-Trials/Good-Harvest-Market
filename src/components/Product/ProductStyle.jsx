@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Ellipsis } from '../../styles/GlobalStyles';
 
 export const ProductWrap = styled.article`
   width: 140px;
@@ -11,6 +12,7 @@ export const ProductImgWrap = styled.div`
   overflow: hidden;
   border-radius: 8px;
   margin-bottom: 6px;
+  border: 1px solid var(--sub-grey-C4);
 `;
 
 export const ProductImg = styled.img`
@@ -21,6 +23,7 @@ export const ProductImg = styled.img`
 `;
 
 export const ProductName = styled.p`
+  ${Ellipsis}
   font-size: 1.4rem;
   margin-bottom: 4px;
 `;

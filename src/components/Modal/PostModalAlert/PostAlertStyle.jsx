@@ -1,8 +1,6 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-const ModalAlertDiv = styled.div`
+export const ModalAlertDiv = styled.div`
   display: block;
   position: fixed;
   z-index: 1;
@@ -15,7 +13,8 @@ const ModalAlertDiv = styled.div`
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4);
 `;
-const AlertBox = styled.div`
+
+export const AlertBox = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #fefefe;
@@ -28,7 +27,8 @@ const AlertBox = styled.div`
   animation-duration: 0.4s;
   border-radius: 10px;
 `;
-const AlertHeader = styled.div`
+
+export const AlertHeader = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -42,12 +42,14 @@ const AlertHeader = styled.div`
   box-sizing: border-box;
   border-bottom: 1px solid #dbdbdb;
 `;
-const AlertBody = styled.div`
+
+export const AlertBody = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
 `;
-const AlertButtonLeft = styled.button`
+
+export const AlertButtonLeft = styled.button`
   width: 100%;
   height: 46px;
   font-size: 14px;
@@ -58,7 +60,8 @@ const AlertButtonLeft = styled.button`
   border-radius: 0 0 0 10px;
   border-right: 1px solid #dbdbdb;
 `;
-const AlertButtonRight = styled.button`
+
+export const AlertButtonRight = styled.button`
   width: 100%;
   height: 46px;
   font-size: 14px;
@@ -69,29 +72,3 @@ const AlertButtonRight = styled.button`
   border-radius: 0 0 10px 0;
   color: #0a6d32;
 `;
-
-export default function ModalAlert({ setAlert }) {
-  const navigate = useNavigate();
-
-  const alertClose = () => {
-    setAlert(false);
-  };
-
-  const logout = () => {
-    localStorage.removeItem('auth');
-    localStorage.removeItem('account');
-    navigate('/');
-  };
-
-  return (
-    <ModalAlertDiv>
-      <AlertBox>
-        <AlertHeader>로그아웃하시겠어요?</AlertHeader>
-        <AlertBody>
-          <AlertButtonLeft onClick={alertClose}>취소</AlertButtonLeft>
-          <AlertButtonRight onClick={logout}>로그아웃</AlertButtonRight>
-        </AlertBody>
-      </AlertBox>
-    </ModalAlertDiv>
-  );
-}

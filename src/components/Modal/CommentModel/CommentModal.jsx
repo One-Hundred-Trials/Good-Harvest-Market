@@ -1,22 +1,24 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import {
+  ModalBgtDiv,
   ModalContainerDiv,
   ModalUl,
   ModalBtn,
-  ModalBgtDiv,
-} from './PostModalStyle';
-import PostDeleteAlert from './PostDeleteAlert';
+} from './CommentModalStyle';
+import CommentAlert from './CommentAlert';
 
-export default function PostModal({ postId, setModal }) {
+export default function ModalSlide({
+  setModal,
+  commentId,
+  postId,
+  text,
+  alertAsk,
+  request,
+  onClickHandler,
+}) {
   const [alert, setAlert] = useState(false);
   const alertShow = () => {
     setAlert(true);
-  };
-
-  const navigate = useNavigate();
-  const goEditHandler = () => {
-    navigate(`/post/${postId}/edit`);
   };
 
   const modalRef = useRef();
@@ -32,20 +34,26 @@ export default function PostModal({ postId, setModal }) {
       document.removeEventListener('mousedown', modalTouchCloseHandler);
       document.removeEventListener('touchstart', modalTouchCloseHandler);
     };
-  });
+  }, [setModal]);
 
   return (
     <ModalBgtDiv>
       <ModalContainerDiv ref={modalRef}>
         <ModalUl>
           <li>
-            <ModalBtn onClick={alertShow}>삭제</ModalBtn>
-          </li>
-          <li>
-            <ModalBtn onClick={goEditHandler}>수정</ModalBtn>
+            <ModalBtn onClick={alertShow}>{text}</ModalBtn>
           </li>
         </ModalUl>
-        {alert && <PostDeleteAlert postId={postId} setAlert={setAlert} />}
+        {alert && (
+          <CommentAlert
+            commentId={commentId}
+            setAlert={setAlert}
+            postId={postId}
+            alertAsk={alertAsk}
+            request={request}
+            onClickHandler={onClickHandler}
+          />
+        )}
       </ModalContainerDiv>
     </ModalBgtDiv>
   );

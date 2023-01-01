@@ -12,7 +12,7 @@ export const PostProfileDivStyle = styled.div`
 
 export const PostIconMoreStyle = styled.button`
   width: 18px;
-  height: 18px;
+  height: 40px;
   background: url(${IconMore}) no-repeat 50%/18px;
 `;
 

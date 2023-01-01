@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import iconShare from '../../assets/img/icon-share.png';
 
-const Div = styled.div`
+const ShareBtn = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,8 +18,8 @@ const Div = styled.div`
 
 export default function ShareIcon() {
   return (
-    <Div>
+    <ShareBtn>
       <img src={iconShare} alt="" />
-    </Div>
+    </ShareBtn>
   );
 }

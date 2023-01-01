@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { useRecoilValue } from 'recoil';
@@ -10,8 +10,9 @@ import PostCardList from '../../../../components/PostCardList/PostCardList';
 import ProductList from '../../../../components/ProductList/ProductList';
 import Profile from '../../../../components/Profile/Profile';
 import { ConWrap } from '../../../../styles/GlobalStyles';
-import { authAtom } from '../../../../_state/auth';
+import { accountAtom, authAtom } from '../../../../_state/auth';
 import Button from '../../../../components/Button/Button';
+import NotFound from '../../../NotFound/NotFound';
 
 const ConWrapStyle = styled.main`
   ${ConWrap}
@@ -33,32 +34,42 @@ export default function MyProfile() {
   const [toggle, setToggle] = useState(true);
   const [posts, setPosts] = useState(null);
   const [postsAlbum, setPostsAlbum] = useState([]);
+
+  const [pageNumber, setPageNumber] = useState(5);
+  const [loading, setLoading] = useState(false);
+  const target = useRef();
+
   const [myProfile, setMyProfile] = useState(null);
   const [productList, setProductList] = useState([]);
   const auth = useRecoilValue(authAtom);
+  // const account = useRecoilValue(accountAtom);
+  const account = JSON.parse(localStorage.getItem('account'));
   const { accountname } = useParams();
 
   const onClick = () => {
     setToggle((prev) => !prev);
   };
 
-  const GetMyMyPostData = async () => {
+  const loadMore = () => setPageNumber((prev) => prev + 3);
+
+  const GetMyPostData = async () => {
     try {
-      const res = await API.get(`/post/${accountname}/userpost`, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${auth}`,
-        },
-      });
+      const res = await API.get(
+        `/post/${account}/userpost?limit=${pageNumber}`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${auth}`,
+          },
+        }
+      );
       const { post } = res.data;
-      console.log(post);
       const haveImage = post.filter((v) => v.image);
       setPostsAlbum(haveImage);
-      // console.log(haveImage);
       setPosts(post);
+      setLoading(true);
     } catch (err) {
       if (err.response) {
-        // 응답코드 2xx가 아닌 경우
         console.log(err.response.data);
         console.log(err.response.status);
         console.log(err.response.headers);
@@ -75,7 +86,6 @@ export default function MyProfile() {
           Authorization: `Bearer ${auth}`,
         },
       });
-      // console.log(res);
       const { user } = res.data;
       setMyProfile(user);
     } catch (err) {
@@ -93,17 +103,15 @@ export default function MyProfile() {
   // 등록된 상품 목록 가져오기
   const GetProductList = async () => {
     try {
-      const res = await API.get(`/product/${accountname}`, {
+      const res = await API.get(`/product/${account}`, {
         headers: {
           Authorization: `Bearer ${auth}`,
           'Content-type': 'application/json',
         },
       });
-      console.log(res);
       setProductList(res.data.product);
     } catch (err) {
       if (err.response) {
-        // 응답코드 2xx가 아닌 경우
         console.log(err.response.data);
         console.log(err.response.status);
         console.log(err.response.headers);
@@ -114,40 +122,65 @@ export default function MyProfile() {
   };
 
   useEffect(() => {
-    GetMyMyPostData();
     GetMyProfileData();
     GetProductList();
   }, []);
 
+  useEffect(() => {
+    GetMyPostData();
+  }, [pageNumber]);
+
+  useEffect(() => {
+    if (loading) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting) {
+            loadMore();
+          }
+        },
+        { threshold: 1 }
+      );
+      observer.observe(target.current);
+    }
+  }, [loading]);
+
   return (
     <>
-      <Header />
-      <ConWrapStyle>
-        <ContDivStyle>
-          <Profile
-            myProfile={myProfile}
-            // username="풍이네 주말농장"
-            // usertext="@sunday_Farm"
-            align="center"
-            margin="16px 0 17px 0"
-            namemarginbottom="6px"
-          >
-            <Button variant="active" size="m">
-              {'프로필 수정'}
-            </Button>
-            <Button variant="active" size="m" go={'/product_upload'}>
-              {'상품 등록'}
-            </Button>
-          </Profile>
-          <ProductList productList={productList} />
-          <ListOrAlbum toggle={toggle} onclick={onClick} />
-        </ContDivStyle>
-        {toggle ? (
-          <PostCardList posts={posts} />
-        ) : (
-          <PostAlbum posts={postsAlbum} />
-        )}
-      </ConWrapStyle>
+      {accountname === account ? (
+        <>
+          <Header />
+          <ConWrapStyle>
+            <ContDivStyle>
+              <Profile
+                myProfile={myProfile}
+                align="center"
+                margin="16px 0 17px 0"
+                namemarginbottom="6px"
+              >
+                <Button variant="active" size="m" go={'/profile_edit'}>
+                  {'프로필 수정'}
+                </Button>
+                <Button variant="active" size="m" go={'/product_upload'}>
+                  {'상품 등록'}
+                </Button>
+              </Profile>
+              <ProductList
+                productList={productList}
+                GetProductList={GetProductList}
+              />
+              <ListOrAlbum toggle={toggle} onclick={onClick} />
+            </ContDivStyle>
+            {toggle ? (
+              <PostCardList posts={posts} />
+            ) : (
+              <PostAlbum posts={postsAlbum} />
+            )}
+            <div ref={target} style={{ width: '100%', height: '20px' }}></div>
+          </ConWrapStyle>
+        </>
+      ) : (
+        <NotFound />
+      )}
     </>
   );
 }

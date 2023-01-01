@@ -19,11 +19,11 @@ export default function ProfileImgAccount({
 }) {
   // const { username, accountname } = author;
   const navigate = useNavigate();
-  const userProfileLink = () => {
+  const handelClick = () => {
     navigate(`/user_profile/${accountname}`);
   };
   return (
-    <ProfileImgContainerStyle className={className} onClick={userProfileLink}>
+    <ProfileImgContainerStyle className={className} onClick={handelClick}>
       <ProfileImg image={image} width={width} height={height} />
       <ProfileAccount
         size="1.4rem"

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 import API from '../../../API';
-import { authAtom } from '../../../_state/auth';
+import { authAtom, accountAtom } from '../../../_state/auth';
 import {
   ModalAlertDiv,
   AlertBox,
@@ -9,25 +9,33 @@ import {
   AlertBody,
   AlertButtonLeft,
   AlertButtonRight,
-} from './ProductAlertStyle';
+} from './PostAlertStyle';
 
-export default function ModalAlert({ setAlert, productId, GetProductList }) {
+export default function PostModalAlert({ setAlert, postId }) {
   const auth = useRecoilValue(authAtom);
+  const account = useRecoilValue(accountAtom);
   const alertClose = () => {
     setAlert(false);
   };
 
-  const productDelHandler = async () => {
+  const moveProfileHandler = () => {
+    window.location.replace(`/my_profile/${account}`);
+  };
+
+  const postDeleteHandler = async () => {
     try {
-      const res = await API.delete(`/product/${productId}`, {
+      const res = await API.delete(`/post/${postId}`, {
         headers: {
           'Content-type': 'application/json',
           Authorization: `Bearer ${auth}`,
         },
       });
-      GetProductList();
+      console.log(res);
+      setAlert(false);
+      moveProfileHandler();
     } catch (err) {
       if (err.response) {
+        // 응답코드 2xx가 아닌 경우
         console.log(err.response.data);
         console.log(err.response.status);
         console.log(err.response.headers);
@@ -40,10 +48,10 @@ export default function ModalAlert({ setAlert, productId, GetProductList }) {
   return (
     <ModalAlertDiv>
       <AlertBox>
-        <AlertHeader>상품을 삭제할까요?</AlertHeader>
+        <AlertHeader>삭제하시겠어요?</AlertHeader>
         <AlertBody>
           <AlertButtonLeft onClick={alertClose}>취소</AlertButtonLeft>
-          <AlertButtonRight onClick={productDelHandler}>삭제</AlertButtonRight>
+          <AlertButtonRight onClick={postDeleteHandler}>삭제</AlertButtonRight>
         </AlertBody>
       </AlertBox>
     </ModalAlertDiv>
