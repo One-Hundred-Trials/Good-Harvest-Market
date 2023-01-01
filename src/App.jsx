@@ -84,13 +84,12 @@ const router = createBrowserRouter([
     element: <ChatRoom />,
   },
   {
-
     path: '/:accountname/following',
     element: <FollowingList />,
   },
+  {
     path: '/:accountname/follower',
     element: <FollowerList />,
-
   },
 ]);
 
