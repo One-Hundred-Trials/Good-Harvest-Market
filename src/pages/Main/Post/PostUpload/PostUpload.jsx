@@ -101,8 +101,12 @@ function PostUpload() {
     e.preventDefault();
     const file = e.target.files[0];
     const fileReader = new FileReader();
-    if (previewImgUrl.length > 0) {
+    if (file.length > 1) {
       alert('1개의 이미지 파일을 업로드 하세요.');
+      return;
+    }
+    if (file.size > 1024 * 1024 * 10) {
+      alert('10MB 이상의 이미지는 업로드 할 수 없습니다.');
       return;
     }
     if (file) {
@@ -132,6 +136,10 @@ function PostUpload() {
       },
     };
     try {
+      if (!text && imgFile.length === 0) {
+        alert('내용 또는 이미지를 입력해주세요.');
+        return;
+      }
       const res = await API.post('/post', JSON.stringify(postData), {
         headers: {
           Authorization: `Bearer ${auth}`,
