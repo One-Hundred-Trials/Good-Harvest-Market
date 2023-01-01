@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
-import uploadFileImg from '../../../assets/img/img-button.png';
+import iconUploadFile from '../../../assets/img/icon-upload-file.png';
+// import iconUploadFileFill from '../../../assets/img/icon-upload-file-fill.png';
 
 export const UploadFileStyle = css`
   content: '';
@@ -15,5 +16,5 @@ export const UploadFileStyle = css`
 
 export const UploadFileLabel = styled.label`
   ${UploadFileStyle}
-  background: url(${uploadFileImg}) no-repeat center/36px;
+  background: url(${iconUploadFile}) no-repeat center/36px;
 `;
