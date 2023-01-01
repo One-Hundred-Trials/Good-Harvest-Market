@@ -51,12 +51,13 @@ export default function Comment({ comment, postId, deleteComment }) {
 
   const commentDelHandler = async () => {
     try {
-      await API.delete(`/post/${postId}/comments/${comment.id}`, {
+      const res = await API.delete(`/post/${postId}/comments/${comment.id}`, {
         headers: {
           'Content-type': 'application/json',
           Authorization: `Bearer ${auth}`,
         },
       });
+      console.log(res);
       deleteComment();
     } catch (err) {
       if (err.response) {
@@ -71,7 +72,7 @@ export default function Comment({ comment, postId, deleteComment }) {
 
   const commentReportHandler = async () => {
     try {
-      await API.post(
+      const res = await API.post(
         `/post/${postId}/comments/${comment.id}/report`,
         JSON.stringify(commentReport),
         {
@@ -81,6 +82,7 @@ export default function Comment({ comment, postId, deleteComment }) {
           },
         }
       );
+      console.log(res);
       setReportComment(`신고가 접수되었습니다.`);
       setModal(false);
     } catch (err) {

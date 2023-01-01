@@ -42,12 +42,17 @@ export default function CommentInput({ upDateComment }) {
 
   const commentUpload = async (e) => {
     try {
-      await API.post(`/post/${id}/comments`, JSON.stringify(commentData), {
-        headers: {
-          Authorization: `Bearer ${auth}`,
-          'Content-type': 'application/json',
-        },
-      });
+      const res = await API.post(
+        `/post/${id}/comments`,
+        JSON.stringify(commentData),
+        {
+          headers: {
+            Authorization: `Bearer ${auth}`,
+            'Content-type': 'application/json',
+          },
+        }
+      );
+      console.log(res);
       inputClear();
       upDateComment();
     } catch (err) {
