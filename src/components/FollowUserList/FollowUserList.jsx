@@ -7,7 +7,6 @@ import ProfileImgAccount from '../ProfileImgAccount/ProfileImgAccount';
 import { FollowContainerUlStyle, FollowListStyle } from './FollowUserListStyle';
 
 export default function FollowUserList({
-  image,
   username,
   accountname,
   height,
@@ -30,10 +29,9 @@ export default function FollowUserList({
         }
       );
 
-      console.log('팔로우', res);
       setFollow(res.data.profile.isfollow);
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
@@ -45,15 +43,13 @@ export default function FollowUserList({
           'Content-type': 'application/json',
         },
       });
-      console.log('언팔로우', res);
       setFollow(res.data.profile.isfollow);
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
   const handleFollowBtn = () => {
-    console.log(follow);
     if (follow === true) {
       handleSubmitUnFollow();
     } else {
