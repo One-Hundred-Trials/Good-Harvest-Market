@@ -11,13 +11,10 @@ export default function ProfileImgAccount({
   margin,
   namemarginbottom,
   className,
-  author,
   username,
   image,
   accountname,
-  search,
 }) {
-  // const { username, accountname } = author;
   const navigate = useNavigate();
   const handelClick = () => {
     navigate(`/user_profile/${accountname}`);
