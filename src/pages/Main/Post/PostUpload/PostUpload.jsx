@@ -85,11 +85,11 @@ function PostUpload() {
     }
   };
 
-  const PreviewImgHandler = (e) => {
+  const previewImgHandler = (e) => {
     const correctForm = /(.*?)\.(jpg|gif|png|jpeg|bmp|tif|heic|)$/;
     const file = e.target.files[0];
     const fileReader = new FileReader();
-    if (file.length > 0) {
+    if (previewImgUrl.length > 0) {
       alert('1개의 이미지 파일을 업로드 하세요.');
       return;
     }
@@ -97,7 +97,7 @@ function PostUpload() {
       alert('10MB 이상의 이미지는 업로드 할 수 없습니다.');
       return;
     }
-    if (!e.target.files[0].name.match(correctForm)) {
+    if (!file.name.match(correctForm)) {
       alert(
         '이미지 파일만 업로드가 가능합니다. (*.jpg, *.gif, *.png, *.jpeg, *.bmp, *.tif, *.heic)'
       );
@@ -111,10 +111,11 @@ function PostUpload() {
     };
   };
 
-  const DeletePreviewImgHandler = (e) => {
+  const deleteImgHandler = (e) => {
     e.preventDefault();
     setPreviewImgUrl('');
     setImgFile('');
+    e.target.value = null;
   };
 
   const postUploadHandler = async () => {
@@ -170,12 +171,12 @@ function PostUpload() {
             <ImgWrapStyle>
               <PreviewImgWrapStyle>
                 <PreviewImg src={previewImgUrl} alt="이미지 미리보기" />
-                <DeleteImgBtn type="button" onClick={DeletePreviewImgHandler} />
+                <DeleteImgBtn type="button" onClick={deleteImgHandler} />
               </PreviewImgWrapStyle>
             </ImgWrapStyle>
           )}
           <BtnWrapStyle>
-            <UploadFileBtn onChange={PreviewImgHandler} />
+            <UploadFileBtn onChange={previewImgHandler} />
           </BtnWrapStyle>
         </PostFormStyle>
       </ConWrapStyle>
