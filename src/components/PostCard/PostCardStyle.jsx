@@ -26,8 +26,50 @@ export const PostContentsStyle = styled.p`
   font-size: 1.4rem;
 `;
 
-export const PostImgStyle = styled.img`
+export const PostCarouselStyle = styled.div`
+  position: relative;
+  width: 304px;
+  max-height: 450px;
   margin-bottom: 15px;
+  display: flex;
+  gap: 10px;
+  overflow: hidden;
+  border-radius: 10px;
+  background-color: yellow;
+  background-color: var(--light-grey-F2);
+`;
+
+export const PostImgStyle = styled.img`
+  // width: 100;
+  //  height: 100%;
+  //object-fit: cover;
+  /* position: absolute;
+  /* top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
+  flex-shrink: 0;
+  object-fit: contain;
+`;
+
+export const PostCarouselBtnsContStyle = styled.div`
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  width: 280px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
+
+export const PostCarouselBtnStyle = styled.button`
+  width: 22px;
+  height: 22px;
+  font-size: 1.1rem;
+  line-height: 19px;
+  border-radius: 50%;
+  border: 1.5px solid var(--main-grey-76);
+  color: var(--main-grey-76);
+  background-color: rgba(255, 255, 255);
 `;
 
 export const PostCountDivStyle = styled.div`

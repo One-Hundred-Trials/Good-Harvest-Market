@@ -13,6 +13,9 @@ import {
   PostIconMoreStyle,
   PostDivStyle,
   PostContentsStyle,
+  PostCarouselStyle,
+  PostCarouselBtnsContStyle,
+  PostCarouselBtnStyle,
   PostImgStyle,
   PostCountDivStyle,
   PostDateStyle,
@@ -58,10 +61,16 @@ export default function PostCard({ post, author }) {
           </Link>
           <PostIconMoreStyle onClick={modalUp} />
         </PostProfileDivStyle>
-
         <PostDivStyle>
           <PostContentsStyle>{post.content}</PostContentsStyle>
-          {post.image ? <PostImgStyle src={post.image} alt="" /> : null}
+          <PostCarouselStyle>
+            {post.image ? <PostImgStyle src={post.image} alt="" /> : null}
+            {post.image ? <PostImgStyle src={post.image} alt="" /> : null}
+            <PostCarouselBtnsContStyle>
+              <PostCarouselBtnStyle>&#xE000;</PostCarouselBtnStyle>
+              <PostCarouselBtnStyle>&#xE001;</PostCarouselBtnStyle>
+            </PostCarouselBtnsContStyle>
+          </PostCarouselStyle>
           <PostCountDivStyle>
             <HeartIcon heartCount={post.heartCount} />
             <Link to={`/post/${post.id}`}>
