@@ -30,10 +30,9 @@ export default function FollowUserList({
         }
       );
 
-      console.log('팔로우', res);
       setFollow(res.data.profile.isfollow);
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
@@ -45,15 +44,13 @@ export default function FollowUserList({
           'Content-type': 'application/json',
         },
       });
-      console.log('언팔로우', res);
       setFollow(res.data.profile.isfollow);
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
   const handleFollowBtn = () => {
-    console.log(follow);
     if (follow === true) {
       handleSubmitUnFollow();
     } else {
@@ -72,7 +69,6 @@ export default function FollowUserList({
           image={image}
           username={username}
           accountname={accountname}
-          href={`/user_profile/${accountname}/`}
         />
         {follow === true ? (
           <Button size="s" variant="active" onClick={handleFollowBtn}>
