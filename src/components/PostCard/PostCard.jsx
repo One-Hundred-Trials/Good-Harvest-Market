@@ -40,13 +40,18 @@ export default function PostCard({ post, author }) {
   const month = postDate?.slice(4, 6);
   const date = postDate?.slice(6, 8);
 
+  const imgNum = post.image.split(',');
   const prevBtn = () => {
     if (slidePx < 0) setSlidePx(slidePx + 304);
   };
   const nextBtn = () => {
-    if (slidePx > -608) setSlidePx(slidePx - 304);
+    if (imgNum.length === 2 && slidePx > -304) {
+      setSlidePx(slidePx - 304);
+    } else if (imgNum.length === 3 && slidePx > -608) {
+      setSlidePx(slidePx - 304);
+    }
   };
-  console.log(slidePx);
+
   return (
     <>
       <PostAccountLiStyle>
@@ -76,10 +81,16 @@ export default function PostCard({ post, author }) {
           <PostContentsStyle>{post.content}</PostContentsStyle>
           <PostCarouselStyle>
             <PostCarouselContStyle transform={slidePx}>
-              {post.image ? <PostImgStyle src={post.image} alt="" /> : null}
-              {post.image ? <PostImgStyle src={post.image} alt="" /> : null}
+              {post.image
+                ? imgNum.map((ImgUrl, index) => (
+                    <div key={index}>
+                      {' '}
+                      <PostImgStyle src={ImgUrl} alt="" />{' '}
+                    </div>
+                  ))
+                : null}
             </PostCarouselContStyle>
-            {post.image ? (
+            {imgNum.length > 1 ? (
               <PostCarouselBtnsContStyle>
                 <PostCarouselBtnStyle onClick={prevBtn}>
                   &#xE000;

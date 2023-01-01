@@ -38,6 +38,7 @@ export const PostCarouselStyle = styled.article`
 
 export const PostCarouselContStyle = styled.div`
   display: flex;
+  align-items: center;
   max-height: 400px;
   transition: 0.5s;
   transform: translateX(${(props) => props.transform}px);
