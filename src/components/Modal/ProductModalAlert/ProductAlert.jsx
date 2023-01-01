@@ -1,8 +1,7 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import API from '../../../API';
-import { accountAtom, authAtom } from '../../../_state/auth';
+import { authAtom } from '../../../_state/auth';
 import {
   ModalAlertDiv,
   AlertBox,
@@ -12,15 +11,10 @@ import {
   AlertButtonRight,
 } from './ProductAlertStyle';
 
-export default function ModalAlert({ setAlert, productId }) {
+export default function ModalAlert({ setAlert, productId, GetProductList }) {
   const auth = useRecoilValue(authAtom);
-  const account = useRecoilValue(accountAtom);
   const alertClose = () => {
     setAlert(false);
-  };
-
-  const moveProfileHandler = () => {
-    window.location.replace(`/my_profile/${account}`);
   };
 
   const productDelHandler = async () => {
@@ -31,10 +25,9 @@ export default function ModalAlert({ setAlert, productId }) {
           Authorization: `Bearer ${auth}`,
         },
       });
-      moveProfileHandler();
+      GetProductList();
     } catch (err) {
       if (err.response) {
-        // 응답코드 2xx가 아닌 경우
         console.log(err.response.data);
         console.log(err.response.status);
         console.log(err.response.headers);

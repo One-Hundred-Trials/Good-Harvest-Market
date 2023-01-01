@@ -37,3 +37,14 @@ export const ProductImgUploaderStyle = styled.div`
     transform: translate(-50%, -50%);
   }
 `;
+
+export const ImgVaildMessage = styled.span`
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #eb5757;
+  font-size: 1.2rem;
+`;

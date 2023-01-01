@@ -8,7 +8,7 @@ import {
 } from './ProductModalStyle';
 import ProductAlert from './ProductAlert';
 
-export default function ModalSlide({ productId, setModal }) {
+export default function ModalSlide({ productId, setModal, GetProductList }) {
   const [alert, setAlert] = useState(false);
   const alertShow = () => {
     setAlert(true);
@@ -48,7 +48,13 @@ export default function ModalSlide({ productId, setModal }) {
             <ModalBtn>웹사이트에서 상품 보기</ModalBtn>
           </li>
         </ModalUl>
-        {alert && <ProductAlert productId={productId} setAlert={setAlert} />}
+        {alert && (
+          <ProductAlert
+            productId={productId}
+            setAlert={setAlert}
+            GetProductList={GetProductList}
+          />
+        )}
       </ModalContainerDiv>
     </ModalBgtDiv>
   );
