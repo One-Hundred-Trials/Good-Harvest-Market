@@ -7,12 +7,12 @@ import ProfileImgAccount from '../ProfileImgAccount/ProfileImgAccount';
 import { FollowContainerUlStyle, FollowListStyle } from './FollowUserListStyle';
 
 export default function FollowUserList({
+  image,
   username,
   accountname,
   height,
   width,
   isfollow,
-  image,
 }) {
   const [follow, setFollow] = useState(isfollow);
   const auth = useRecoilValue(authAtom);
