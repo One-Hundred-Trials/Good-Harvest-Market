@@ -26,7 +26,6 @@ export default function Header({
 
   const [value, setValue] = useState('');
   const handleOnChange = (e) => {
-    console.log(e.target.value);
     setValue(e.target.value);
     setKeyWord(e.target.value);
   };
