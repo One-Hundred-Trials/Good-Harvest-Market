@@ -118,7 +118,6 @@ const Signup = ({ setIsSignupValid, setSignupForm, signupForm }) => {
           type="email"
           name="email"
           placeholder="이메일 주소를 입력해주세요"
-          required="required"
           value={signupForm}
           onBlur={EmailHandler}
           onChange={inputChangeHandler}
@@ -129,7 +128,6 @@ const Signup = ({ setIsSignupValid, setSignupForm, signupForm }) => {
           type="password"
           name="password"
           placeholder="6자리 이상의 비밀번호를 설정해주세요"
-          required="required"
           value={signupForm}
           onBlur={PasswordHandler}
           onChange={inputChangeHandler}
@@ -141,7 +139,6 @@ const Signup = ({ setIsSignupValid, setSignupForm, signupForm }) => {
           type="password"
           name="passwordCheck"
           placeholder="위에서 설정한 비밀번호를 그대로 입력해주세요"
-          required="required"
           value={signupForm}
           onBlur={PasswordCheckHandler}
           onChange={inputChangeHandler}
@@ -155,6 +152,11 @@ const Signup = ({ setIsSignupValid, setSignupForm, signupForm }) => {
               signupForm.passwordCheck
                 ? 'abled'
                 : 'disabled'
+            }
+            disabled={
+              !signupForm.email ||
+              !signupForm.password ||
+              !signupForm.passwordCheck
             }
           >
             {'다음'}

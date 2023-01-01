@@ -7,18 +7,18 @@ export default function Input({
   placeholder,
   onChange,
   message,
-  required,
   min,
   max,
   onBlur,
   name,
   getValue,
   onKeyUp,
-
+  style,
 }) {
   const handleChange = (e) => {
     onChange(e);
   };
+
   return (
     <ContDivStyle>
       <label htmlFor={type}>{label}</label>
@@ -34,6 +34,7 @@ export default function Input({
         min={min}
         max={max}
         value={getValue}
+        style={style}
       />
       <MessageSpanStyle>{message}</MessageSpanStyle>
     </ContDivStyle>
