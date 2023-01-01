@@ -46,9 +46,9 @@ export default function PostCard({ post, author }) {
               namemarginbottom="2px"
               post={post}
               author={author}
-              username={post.author.username}
-              usertext={`@ ${post.author.accountname}`}
-              image={post.author.image}
+              username={author.username}
+              accountname={author.accountname}
+              image={author.image}
             />
             <PostIconMoreStyle onClick={modalUp} />
           </PostProfileDivStyle>
