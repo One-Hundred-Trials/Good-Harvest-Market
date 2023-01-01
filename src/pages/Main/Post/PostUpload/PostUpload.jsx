@@ -165,6 +165,7 @@ function PostUpload() {
         size="ms"
         variant={isActive ? '' : 'disabled'}
         onClick={postUploadHandler}
+        disabled={!(text || previewImgUrl)}
       >
         업로드
       </Header>
