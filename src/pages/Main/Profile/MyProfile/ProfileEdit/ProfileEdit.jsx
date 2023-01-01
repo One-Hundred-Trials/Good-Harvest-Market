@@ -48,7 +48,7 @@ export default function ProfileEdit() {
 
   const AccountNameHandler = async (e) => {
     try {
-      const regex = /^[-._a-z0-9]+$/gi;
+      const regex = /^[._a-zA-Z0-9]+$/gi;
 
       if (!accountName) {
         setAccountNameError('* 계정 ID는 필수 입력사항입니다.');
@@ -119,8 +119,6 @@ export default function ProfileEdit() {
       console.log(profileImg);
     } catch (err) {
       if (err.response) {
-        // 응답코드 2xx가 아닌 경우
-
         console.log(err.response.data);
         console.log(err.response.status);
         console.log(err.response.headers);
