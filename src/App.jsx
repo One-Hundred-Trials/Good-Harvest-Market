@@ -18,7 +18,9 @@ import ProductEdit from './pages/Main/Profile/MyProfile/Product/ProductEdit/Prod
 import Post from './pages/Main/Post/Post';
 import PostEdit from './pages/Main/Post/PostEdit/PostEdit';
 import ChatRoom from './pages/Main/Chat/ChatRoom/ChatRoom';
+import FollowerList from './pages/Main/Profile/FollowerList/FollowerList';
 import Splash from './pages/Splash/Splash';
+
 
 const router = createBrowserRouter([
   {
@@ -80,6 +82,10 @@ const router = createBrowserRouter([
   {
     path: '/chat/:id',
     element: <ChatRoom />,
+  },
+  {
+    path: '/:accountname/follower',
+    element: <FollowerList />,
   },
 ]);
 
