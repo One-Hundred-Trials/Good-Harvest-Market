@@ -26,28 +26,23 @@ export const PostContentsStyle = styled.p`
   font-size: 1.4rem;
 `;
 
-export const PostCarouselStyle = styled.div`
+export const PostCarouselStyle = styled.article`
   position: relative;
   width: 304px;
-  max-height: 450px;
+  max-height: 400px;
   margin-bottom: 15px;
-  display: flex;
-  gap: 10px;
   overflow: hidden;
   border-radius: 10px;
-  background-color: yellow;
   background-color: var(--light-grey-F2);
 `;
 
+export const PostCarouselContStyle = styled.div`
+  display: flex;
+  max-height: 400px;
+`;
+
 export const PostImgStyle = styled.img`
-  // width: 100;
-  //  height: 100%;
-  //object-fit: cover;
-  /* position: absolute;
-  /* top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); */
-  flex-shrink: 0;
+  min-width: 304px;
   object-fit: contain;
 `;
 
