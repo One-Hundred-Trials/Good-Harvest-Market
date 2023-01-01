@@ -11,23 +11,13 @@ const UlStyle = styled.ul`
   background-color: var(--white);
 `;
 
-export default function PostAlbum() {
+export default function PostAlbum({ posts }) {
   return (
     <section>
       <UlStyle>
-        <PostAlbumList />
-        <PostAlbumList />
-        <PostAlbumList />
-        <PostAlbumList />
-        <PostAlbumList />
-        <PostAlbumList />
-        <PostAlbumList />
-        <PostAlbumList />
-        <PostAlbumList />
-        <PostAlbumList />
-        <PostAlbumList />
-        <PostAlbumList />
-        <PostAlbumList />
+        {posts.map((post) => (
+          <PostAlbumList key={post.id} image={post.image.split(',')[0]} />
+        ))}
       </UlStyle>
     </section>
   );

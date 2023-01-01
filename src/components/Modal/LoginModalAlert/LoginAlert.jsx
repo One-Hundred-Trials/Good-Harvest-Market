@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const ModalAlertDiv = styled.div`
@@ -69,14 +70,26 @@ const AlertButtonRight = styled.button`
   color: #0a6d32;
 `;
 
-export default function ModalAlert() {
+export default function ModalAlert({ setAlert }) {
+  const navigate = useNavigate();
+
+  const alertClose = () => {
+    setAlert(false);
+  };
+
+  const logout = () => {
+    localStorage.removeItem('auth');
+    localStorage.removeItem('account');
+    navigate('/login');
+  };
+
   return (
     <ModalAlertDiv>
       <AlertBox>
         <AlertHeader>로그아웃하시겠어요?</AlertHeader>
         <AlertBody>
-          <AlertButtonLeft>취소</AlertButtonLeft>
-          <AlertButtonRight>로그아웃</AlertButtonRight>
+          <AlertButtonLeft onClick={alertClose}>취소</AlertButtonLeft>
+          <AlertButtonRight onClick={logout}>로그아웃</AlertButtonRight>
         </AlertBody>
       </AlertBox>
     </ModalAlertDiv>

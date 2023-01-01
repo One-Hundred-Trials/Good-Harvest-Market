@@ -16,15 +16,17 @@ const ListStyle = styled.li`
     background-size: contain;
   }
   img {
+    display: block;
     width: 100%;
-    background-size: cover;
+    height: 100%;
+    object-fit: cover;
   }
 `;
 
-export default function PostAlbumList() {
+export default function PostAlbumList({ image }) {
   return (
     <ListStyle>
-      <img src={unsplashImg} alt="" />
+      <img src={image} alt="" />
     </ListStyle>
   );
 }

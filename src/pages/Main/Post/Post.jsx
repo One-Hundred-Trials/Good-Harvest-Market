@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { useParams } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import { authAtom } from '../../../_state/auth';
+import API from '../../../API';
 import { PageWrap, ConWrap } from '../../../styles/GlobalStyles';
 import PostCard from '../../../components/PostCard/PostCard';
 import Comment from '../../../components/Comment/Comment';
@@ -24,27 +28,93 @@ const CommentContainerStyle = styled.div`
 `;
 
 export default function Post() {
+  const auth = useRecoilValue(authAtom);
+  const { id } = useParams();
+  const [postData, setPostData] = useState('');
+  const [postAuthor, setPostAuthor] = useState('');
+  const [commentsList, setCommentsList] = useState('');
+
+  /* post 데이터 */
+  useEffect(() => {
+    const GetPost = async () => {
+      try {
+        const res = await API.get(`/post/${id}`, {
+          headers: {
+            Authorization: `Bearer ${auth}`,
+            'Content-type': 'application/json',
+          },
+        });
+        const { post } = res.data;
+        setPostData(post);
+        const { author } = res.data.post;
+        setPostAuthor(author);
+      } catch (err) {
+        if (err.response) {
+          // 응답코드 2xx가 아닌 경우
+          console.log(err.response.data);
+          console.log(err.response.status);
+          console.log(err.response.headers);
+        } else {
+          console.log(`Error: ${err.message}`);
+        }
+      }
+    };
+    GetPost();
+  }, [auth, id]);
+
+  /* 댓글 리스트 */
+  const postCommentList = async () => {
+    try {
+      const res = await API.get(`/post/${id}/comments`, {
+        headers: {
+          Authorization: `Bearer ${auth}`,
+          'Content-type': 'application/json',
+        },
+      });
+      const commentData = res.data.comments;
+      setCommentsList(commentData);
+      // const [commentsList, setCommentsList] = useState('');
+      // commentsList로 map => 댓글 리스트 뿌려줌
+    } catch (err) {
+      if (err.response) {
+        // 응답코드 2xx가 아닌 경우
+        console.log(err.response.data);
+        console.log(err.response.status);
+        console.log(err.response.headers);
+      } else {
+        console.log(`Error: ${err.message}`);
+      }
+    }
+  };
+  useEffect(() => {
+    postCommentList();
+  }, []);
+
   return (
     <PageWrapStyle>
-      <Header />
+      <Header id={id} />
       <ConWrapStyle>
         <PostCardUlCont>
-          <PostCard />
+          <PostCard post={postData} author={postAuthor} />
         </PostCardUlCont>
         <CommentContainerStyle>
-          <Comment
-            username="퐁이네 포도나무 열렸네"
-            txt="안녕하세요 풍이님~ 오늘도 좋은 하루 되세요 ^^안녕하세요 풍이님~ 오늘도 좋은 하루 되세요 ^^안녕하세요 풍이님~ 오늘도 좋은 하루 되세요 ^^안녕하세요 풍이님~ 오늘도 좋은 하루 되세요 ^^"
-            time="5분 전"
-          />
-          <Comment
-            username="애월읍 감귤농장"
-            txt="풍경이 참 좋네요 ㅎㅎ"
-            time="18분 전"
-          />
+          {commentsList ? (
+            commentsList
+              .map((comment) => (
+                <Comment
+                  key={comment.id}
+                  comment={comment}
+                  postId={id}
+                  deleteComment={postCommentList}
+                />
+              ))
+              .reverse()
+          ) : (
+            <p>첫번째 댓글을 달아보세요!</p>
+          )}
         </CommentContainerStyle>
       </ConWrapStyle>
-      <CommentInput />
+      <CommentInput upDateComment={postCommentList} />
     </PageWrapStyle>
   );
 }

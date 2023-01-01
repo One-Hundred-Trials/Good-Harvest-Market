@@ -1,7 +1,6 @@
 import React from 'react';
-import { useRecoilValue } from 'recoil';
-import { accountAtom } from '../../_state/auth';
-import NavItem from './NavItem';
+import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
 import iconHome from '../../assets/img/icon-home.png';
 import iconHomeFill from '../../assets/img/icon-home-fill.png';
 import iconMessage from '../../assets/img/icon-message-circle-1.png';
@@ -11,8 +10,26 @@ import iconUser from '../../assets/img/icon-user.png';
 import iconUserFill from '../../assets/img/icon-user-fill.png';
 import { ContainerNav, NavUl } from './NavStyle';
 
+export const NavLinkStyle = styled(NavLink)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.4rem;
+  list-style: none;
+  gap: 4px;
+  p {
+    color: var(--main-grey-76);
+  }
+`;
+
+export const StyledImg = styled.img`
+  width: 24px;
+  height: 24px;
+`;
+
 export default function Nav() {
-  const accountname = useRecoilValue(accountAtom);
+  // const accountname = useRecoilValue(accountAtom);
+  const account = JSON.parse(localStorage.getItem('account'));
 
   const IconHome = {
     default: iconHome,
@@ -24,6 +41,7 @@ export default function Nav() {
   };
   const IconEdit = {
     default: iconEdit,
+    fill: iconEdit,
   };
   const IconUser = {
     default: iconUser,
@@ -34,20 +52,46 @@ export default function Nav() {
     <ContainerNav>
       <NavUl>
         <li>
-          <NavItem link="/" icon={IconHome} name="홈" />
+          <NavLinkStyle to="/">
+            {({ isActive }) => (
+              <>
+                <StyledImg src={isActive ? IconHome.fill : IconHome.default} />
+                <p>홈</p>
+              </>
+            )}
+          </NavLinkStyle>
         </li>
         <li>
-          <NavItem link="/chat" icon={IconMessage} name="채팅" />
+          <NavLinkStyle to="/chat">
+            {({ isActive }) => (
+              <>
+                <StyledImg
+                  src={isActive ? IconMessage.fill : IconMessage.default}
+                />
+                <p>채팅</p>
+              </>
+            )}
+          </NavLinkStyle>
         </li>
         <li>
-          <NavItem link="/post_upload" icon={IconEdit} name="게시물 작성" />
+          <NavLinkStyle to="/post_upload">
+            {({ isActive }) => (
+              <>
+                <StyledImg src={isActive ? IconEdit.fill : IconEdit.default} />
+                <p>게시글 작성</p>
+              </>
+            )}
+          </NavLinkStyle>
         </li>
         <li>
-          <NavItem
-            link={`/my_profile/${accountname}`}
-            icon={IconUser}
-            name="프로필"
-          />
+          <NavLinkStyle to={`/my_profile/${account}`}>
+            {({ isActive }) => (
+              <>
+                <StyledImg src={isActive ? IconUser.fill : IconUser.default} />
+                <p>프로필</p>
+              </>
+            )}
+          </NavLinkStyle>
         </li>
       </NavUl>
     </ContainerNav>

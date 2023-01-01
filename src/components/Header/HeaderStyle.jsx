@@ -5,7 +5,7 @@ export const HeaderStyle = styled.header`
   justify-content: space-between;
   align-items: center;
   position: sticky;
-  z-index: 999;
+  z-index: 1;
   top: 0;
   background-color: var(--white);
   width: 100%;

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ChatContainerStyle = styled.div`
+export const ChatItemWrapStyle = styled.div`
   display: flex;
   padding: 9px 80px 0px 4px;
   img {
@@ -10,7 +10,7 @@ export const ChatContainerStyle = styled.div`
   }
 `;
 
-export const MessageContainerStyle = styled.div`
+export const MessageWrapStyle = styled.div`
   background-color: #fff;
   border-radius: 0 10px 10px 10px;
   border: 1px solid var(--sub-grey-C4);

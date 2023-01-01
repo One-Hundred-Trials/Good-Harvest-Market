@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import PostImg from '../../assets/img/unsplash_FWtiv70Z_ZY.png';
+import { useRecoilValue } from 'recoil';
+import { accountAtom } from '../../_state/auth';
 import HeartIcon from '../HearIcon/HeartIcon';
 import CommentIcon from '../CommentsIcon/CommentIcon';
 import ProfileImgAccount from '../ProfileImgAccount/ProfileImgAccount';
+import PostModal from '../../components/Modal/PostModalAlert/PostModal';
+import PostReportModal from '../../components/Modal/PostModalAlert/PostReportModal';
 import {
   PostAccountLiStyle,
   PostProfileDivStyle,
@@ -16,41 +19,58 @@ import {
 } from './PostCardStyle';
 
 export default function PostCard({ post, author }) {
+  // console.log(post);
+
+  const userAccount = useRecoilValue(accountAtom);
+  const [modal, setModal] = useState(false);
+  const modalUp = () => {
+    setModal(true);
+  };
   const accountName = author.accountname;
   const postDate =
     post.createdAt !== post.updatedAt
-      ? post.updatedAt.slice(0, 10).replaceAll('-', '')
-      : post.createdAt.slice(0, 10).replaceAll('-', '');
-  const year = postDate.slice(0, 4);
-  const month = postDate.slice(4, 6);
-  const date = postDate.slice(6, 8);
+      ? post.updatedAt?.slice(0, 10).replaceAll('-', '')
+      : post.createdAt?.slice(0, 10).replaceAll('-', '');
+  const year = postDate?.slice(0, 4);
+  const month = postDate?.slice(4, 6);
+  const date = postDate?.slice(6, 8);
 
   return (
-    <PostAccountLiStyle>
-      <Link to={`/user_profile/${accountName}`}>
-        <PostProfileDivStyle>
-          <ProfileImgAccount
-            width="42px"
-            margin="0 0 0 12px"
-            namemarginbottom="2px"
-            post={post}
-            author={author}
-            image={author.image}
-            username={author.username}
-            accountname={author.accountname}
-          />
-          <PostIconMoreStyle />
-        </PostProfileDivStyle>
-      </Link>
-      <PostDivStyle>
-        <PostContentsStyle>{post.content}</PostContentsStyle>
-        <PostImgStyle src={post.image} alt="" />
-        <PostCountDivStyle>
-          <HeartIcon heartCount={post.heartCount} />
-          <CommentIcon commentCount={post.commentCount} />
-        </PostCountDivStyle>
-        <PostDateStyle>{`${year}년 ${month}월 ${date}일`}</PostDateStyle>
-      </PostDivStyle>
-    </PostAccountLiStyle>
+    <>
+      <PostAccountLiStyle>
+        <Link to={`/user_profile/${accountName}`}>
+          <PostProfileDivStyle>
+            <ProfileImgAccount
+              width="42px"
+              margin="0 0 0 12px"
+              namemarginbottom="2px"
+              post={post}
+              author={author}
+            />
+            <PostIconMoreStyle onClick={modalUp} />
+          </PostProfileDivStyle>
+        </Link>
+        <PostDivStyle>
+          <PostContentsStyle>{post.content}</PostContentsStyle>
+          {post.image ? <PostImgStyle src={post.image} alt="" /> : null}
+          <PostCountDivStyle>
+            <HeartIcon heartCount={post.heartCount} />
+            <Link to={`/post/${post.id}`}>
+              <CommentIcon commentCount={post.commentCount} />
+            </Link>
+          </PostCountDivStyle>
+          <PostDateStyle>{`${year}년 ${month}월 ${date}일`}</PostDateStyle>
+        </PostDivStyle>
+      </PostAccountLiStyle>
+      {modal && (
+        <>
+          {userAccount === accountName ? (
+            <PostModal postId={post.id} setModal={setModal} />
+          ) : (
+            <PostReportModal postId={post.id} setModal={setModal} />
+          )}
+        </>
+      )}
+    </>
   );
 }
