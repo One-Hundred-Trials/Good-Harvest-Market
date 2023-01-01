@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import API from '../../../../API';
@@ -23,8 +23,8 @@ export default function Search() {
   const [search, setSearch] = useState([]);
   const [keyword, setKeyWord] = useState('');
 
-  useEffect(() => {
-    const SearchUserName = async () => {
+  const SearchUserName = async () => {
+    if (keyword.length > 0) {
       try {
         const res = await API.get(`/user/searchuser/?keyword=${keyword}`, {
           headers: {
@@ -43,26 +43,33 @@ export default function Search() {
           console.log(`Error: ${err.message}`);
         }
       }
-    };
+    }
+  };
+
+  useEffect(() => {
     SearchUserName();
-  }, [auth, keyword]);
+  }, [keyword]);
 
   return (
     <PageWrapStyle>
       <Header setKeyWord={setKeyWord} />
-      <ConWrapStyle>
-        {search.map((item, i) => (
-          <ProfileImgAccount
-            key={i}
-            width="50px"
-            margin="0 0 0 12px"
-            namemarginbottom="6px"
-            image={item.image}
-            username={item.username}
-            accountname={item.accountname}
-          ></ProfileImgAccount>
-        ))}
-      </ConWrapStyle>
+      {keyword === '' ? (
+        <div>검색어를 입력해주세요~</div>
+      ) : (
+        <ConWrapStyle>
+          {search.map((item, i) => (
+            <ProfileImgAccount
+              key={i}
+              width="50px"
+              margin="0 0 0 12px"
+              namemarginbottom="6px"
+              image={item.image}
+              username={item.username}
+              accountname={item.accountname}
+            ></ProfileImgAccount>
+          ))}
+        </ConWrapStyle>
+      )}
     </PageWrapStyle>
   );
 }
