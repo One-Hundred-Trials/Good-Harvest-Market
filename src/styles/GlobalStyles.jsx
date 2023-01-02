@@ -24,6 +24,11 @@ export const GlobalStyle = createGlobalStyle`
     }
     body {
       font-family: "Spoqa Han Sans Neo", "sans-serif";
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      &::-webkit-scrollbar {
+        display: none;
+      }
     }
     a {
       text-decoration: none;
@@ -71,7 +76,7 @@ export const ConWrap = css`
   width: 390px;
   flex-grow: 1;
   background-color: var(--white);
-  box-shadow: -1px 0 20px -1px #f2f2f2, 1px 0 20px -1px #f2f2f2; ;
+  box-shadow: -1px 0 20px -1px #f2f2f2, 1px 0 20px -1px #f2f2f2;
 `;
 
 export const Wrap = css`

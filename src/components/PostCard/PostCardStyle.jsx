@@ -22,7 +22,7 @@ export const PostDivStyle = styled.div`
 
 export const PostContentsStyle = styled.p`
   margin-bottom: 16px;
-  line-height: 1.8rem;
+  line-height: 1.9rem;
   font-size: 1.4rem;
 `;
 
@@ -76,6 +76,6 @@ export const PostCountDivStyle = styled.div`
 `;
 
 export const PostDateStyle = styled.p`
-  margin-top: 19px;
+  margin-top: 17px;
   color: var(--main-grey-76);
 `;
