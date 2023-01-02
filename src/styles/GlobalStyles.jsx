@@ -4,7 +4,33 @@ import reset from 'styled-reset';
 export const GlobalStyle = createGlobalStyle`
     ${reset};
 
-    @import url('//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css');
+    @font-face {
+      font-family: 'Spoqa Han Sans Neo';
+      font-weight: 700;
+      src: local('Spoqa Han Sans Neo Bold'),
+      url('../assets/fonts/SpoqaHanSans/SpoqaHanSansNeo-Bold.otf') format('opentype'),
+      url('../assets/fonts/SpoqaHanSans/SpoqaHanSansNeo-Bold.woff') format('woff'),
+      url('../assets/fonts/SpoqaHanSans/SpoqaHanSansNeo-Bold.woff2') format('woff2');
+    }
+
+    @font-face {
+      font-family: 'Spoqa Han Sans Neo';
+      font-weight: 500;
+      src: local('Spoqa Han Sans Neo Medium'),
+      url('../assets/fonts/SpoqaHanSans/SpoqaHanSansNeo-Medium.otf') format('opentype'),
+      url('../assets/fonts/SpoqaHanSans/SpoqaHanSansNeo-Medium.woff') format('woff'),
+      url('../assets/fonts/SpoqaHanSans/SpoqaHanSansNeo-Regular.woff2') format('woff2');
+    }
+
+    @font-face {
+      font-family: 'Spoqa Han Sans Neo';
+      font-weight: 400;
+      src: local('Spoqa Han Sans Neo Regular'),
+      url('../assets/fonts/SpoqaHanSans/SpoqaHanSansNeo-Regular.otf') format('opentype'),
+      url('../assets/fonts/SpoqaHanSans/SpoqaHanSansNeo-Regular.woff') format('woff'),
+      url('../assets/fonts/SpoqaHanSans/SpoqaHanSansNeo-Regular.woff2') format('woff2');
+    }
+
 
     * {
       box-sizing: border-box;
