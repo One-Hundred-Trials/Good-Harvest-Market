@@ -16,6 +16,9 @@ export const ConWrapStyle = styled.section`
 export const MyProfileImg = styled.img`
   width: 42px;
   height: 42px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  object-fit: cover;
 `;
 
 export const PostFormStyle = styled.form`

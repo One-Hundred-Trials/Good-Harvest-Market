@@ -18,7 +18,7 @@ import {
 import Header from '../../../../components/Header/Header';
 import UploadFileBtn from '../../../../components/Button/UploadFileBtn/UploadFileBtn';
 
-function PostUpload() {
+export default function PostEdit() {
   const navigate = useNavigate();
   const auth = useRecoilValue(authAtom);
   const account = useRecoilValue(accountAtom);
@@ -27,6 +27,7 @@ function PostUpload() {
   const [isActive, setIsActive] = useState(false);
   const [text, setText] = useState('');
   const [imgFile, setImgFile] = useState('');
+  const [prevImgFile, setPrevImgFile] = useState('');
   const [previewImgUrl, setPreviewImgUrl] = useState('');
 
   useEffect(() => {
@@ -51,7 +52,6 @@ function PostUpload() {
     getMyProfileImg();
   }, []);
 
-  // 기존 게시글 불러오기
   useEffect(() => {
     const getPostData = async () => {
       try {
@@ -66,13 +66,11 @@ function PostUpload() {
           setText(post.content);
         }
         if (post.image) {
-          setImgFile(post.image);
+          setPrevImgFile(post.image);
           setPreviewImgUrl(post.image);
-          console.log(post.image);
         }
       } catch (err) {
         if (err.response) {
-          // 응답코드 2xx가 아닌 경우
           console.log(err.response.data);
           console.log(err.response.status);
           console.log(err.response.headers);
@@ -97,6 +95,9 @@ function PostUpload() {
   };
 
   const imgUploadHandler = async (file) => {
+    if (!file) {
+      return prevImgFile;
+    }
     const formData = new FormData();
     formData.append('image', file);
     try {
@@ -106,7 +107,6 @@ function PostUpload() {
         },
       });
       const feedImgUrl = `https://mandarin.api.weniv.co.kr/${res.data.filename}`;
-      console.log(feedImgUrl);
       return feedImgUrl;
     } catch (err) {
       if (err.response) {
@@ -124,7 +124,7 @@ function PostUpload() {
     const correctForm = /(.*?)\.(jpg|gif|png|jpeg|bmp|tif|heic|)$/;
     const file = e.target.files[0];
     const fileReader = new FileReader();
-    if (file.length > 0) {
+    if (previewImgUrl.length > 0) {
       alert('1개의 이미지 파일을 업로드 하세요.');
       return;
     }
@@ -155,7 +155,6 @@ function PostUpload() {
 
   const editUploadHandler = async () => {
     const image = await imgUploadHandler(imgFile);
-    console.log(image);
     const postData = {
       post: {
         content: text,
@@ -221,5 +220,3 @@ function PostUpload() {
     </PageWrapStyle>
   );
 }
-
-export default PostUpload;
