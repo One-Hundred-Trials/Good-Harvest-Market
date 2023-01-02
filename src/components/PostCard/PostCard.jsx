@@ -40,7 +40,7 @@ export default function PostCard({ post, author }) {
   const month = postDate?.slice(4, 6);
   const date = postDate?.slice(6, 8);
 
-  const imgNum = post.image.split(',');
+  const imgNum = post.image?.split(',');
   const prevBtn = () => {
     if (slidePx < 0) setSlidePx(slidePx + 304);
   };
@@ -90,7 +90,7 @@ export default function PostCard({ post, author }) {
                   ))
                 : null}
             </PostCarouselContStyle>
-            {imgNum.length > 1 ? (
+            {imgNum?.length > 1 ? (
               <PostCarouselBtnsContStyle>
                 <PostCarouselBtnStyle onClick={prevBtn}>
                   &#xE000;
