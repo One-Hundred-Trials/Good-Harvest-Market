@@ -1,6 +1,4 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
-// import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import API from '../../../API';
 import { authAtom } from '../../../_state/auth';
@@ -13,22 +11,22 @@ import {
   AlertButtonRight,
 } from './PostAlertStyle';
 
-export default function PostReportAlert({ setAlert, postId }) {
+export default function PostReportAlert({ setAlert, postId, accountName }) {
   const auth = useRecoilValue(authAtom);
-  const { id } = useParams();
-  const alertClose = () => {
-    setAlert(false);
-  };
-
-  const moveProfileHandler = () => {
-    window.location.replace(`/user_profile/${id}`);
-  };
-
   const reportData = {
     report: {
       post: postId,
     },
   };
+
+  const alertClose = () => {
+    setAlert(false);
+  };
+
+  const moveProfileHandler = () => {
+    window.location.replace(`/user_profile/${accountName}`);
+  };
+
   const reportHandler = async () => {
     setAlert(true);
     try {
@@ -43,10 +41,11 @@ export default function PostReportAlert({ setAlert, postId }) {
         }
       );
       console.log(res);
-      setAlert(false);
-      moveProfileHandler();
       if (res) {
-        alert('신고가 접수되었습니다.');
+        // alert('신고가 접수되었습니다.');
+        console.log(accountName);
+        setAlert(false);
+        moveProfileHandler();
       }
     } catch (err) {
       if (err.response) {

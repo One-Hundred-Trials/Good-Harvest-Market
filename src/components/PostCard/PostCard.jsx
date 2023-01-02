@@ -115,7 +115,11 @@ export default function PostCard({ post, author }) {
           {userAccount === accountName ? (
             <PostModal postId={post.id} setModal={setModal} />
           ) : (
-            <PostReportModal postId={post.id} setModal={setModal} />
+            <PostReportModal
+              accountName={author.accountname}
+              postId={post.id}
+              setModal={setModal}
+            />
           )}
         </>
       )}
