@@ -19,6 +19,7 @@ export default function HomeRenderBlank() {
         src={DuckBlank}
         width="180px"
         text="유저를 검색해 팔로우 해보세요!"
+        go={'/search'}
       >
         검색하기
       </Blank>

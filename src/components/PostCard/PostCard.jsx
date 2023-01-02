@@ -13,19 +13,24 @@ import {
   PostIconMoreStyle,
   PostDivStyle,
   PostContentsStyle,
+  PostCarouselStyle,
+  PostCarouselContStyle,
+  PostCarouselBtnsContStyle,
+  PostCarouselBtnStyle,
   PostImgStyle,
   PostCountDivStyle,
   PostDateStyle,
 } from './PostCardStyle';
 
 export default function PostCard({ post, author }) {
-  // console.log(post);
-
   const userAccount = useRecoilValue(accountAtom);
+  const [slidePx, setSlidePx] = useState(0);
   const [modal, setModal] = useState(false);
+
   const modalUp = () => {
     setModal(true);
   };
+
   const accountName = author.accountname;
   const postDate =
     post.createdAt !== post.updatedAt
@@ -35,27 +40,67 @@ export default function PostCard({ post, author }) {
   const month = postDate?.slice(4, 6);
   const date = postDate?.slice(6, 8);
 
+  const imgNum = post.image?.split(',');
+  const prevBtn = () => {
+    if (slidePx < 0) setSlidePx(slidePx + 304);
+  };
+  const nextBtn = () => {
+    if (imgNum.length === 2 && slidePx > -304) {
+      setSlidePx(slidePx - 304);
+    } else if (imgNum.length === 3 && slidePx > -608) {
+      setSlidePx(slidePx - 304);
+    }
+  };
+
   return (
     <>
       <PostAccountLiStyle>
-        <Link to={`/user_profile/${accountName}`}>
-          <PostProfileDivStyle>
+        <PostProfileDivStyle>
+          <Link
+            to={
+              userAccount === accountName
+                ? `/my_profile/${accountName}`
+                : `/user_profile/${accountName}`
+            }
+          >
             <ProfileImgAccount
               width="42px"
+              height="42px"
               margin="0 0 0 12px"
-              namemarginbottom="2px"
+              namemarginbottom="3px"
               post={post}
               author={author}
               username={author.username}
               accountname={author.accountname}
               image={author.image}
             />
-            <PostIconMoreStyle onClick={modalUp} />
-          </PostProfileDivStyle>
-        </Link>
+          </Link>
+          <PostIconMoreStyle onClick={modalUp} />
+        </PostProfileDivStyle>
         <PostDivStyle>
           <PostContentsStyle>{post.content}</PostContentsStyle>
-          {post.image ? <PostImgStyle src={post.image} alt="" /> : null}
+          <PostCarouselStyle>
+            <PostCarouselContStyle transform={slidePx}>
+              {post.image
+                ? imgNum.map((ImgUrl, index) => (
+                    <div key={index}>
+                      {' '}
+                      <PostImgStyle src={ImgUrl} alt="" />{' '}
+                    </div>
+                  ))
+                : null}
+            </PostCarouselContStyle>
+            {imgNum?.length > 1 ? (
+              <PostCarouselBtnsContStyle>
+                <PostCarouselBtnStyle onClick={prevBtn}>
+                  &#xE000;
+                </PostCarouselBtnStyle>
+                <PostCarouselBtnStyle onClick={nextBtn}>
+                  &#xE001;
+                </PostCarouselBtnStyle>
+              </PostCarouselBtnsContStyle>
+            ) : null}
+          </PostCarouselStyle>
           <PostCountDivStyle>
             <HeartIcon heartCount={post.heartCount} />
             <Link to={`/post/${post.id}`}>

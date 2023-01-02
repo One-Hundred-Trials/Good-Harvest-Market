@@ -6,6 +6,7 @@ import Header from '../../../../components/Header/Header';
 import ProfileImgAccount from '../../../../components/ProfileImgAccount/ProfileImgAccount';
 import { PageWrap, ConWrap } from '../../../../styles/GlobalStyles';
 import { authAtom } from '../../../../_state/auth';
+import Loading from '../../../Loading/Loading';
 
 const PageWrapStyle = styled.div`
   ${PageWrap}
@@ -50,26 +51,30 @@ export default function Search() {
     SearchUserName();
   }, [keyword]);
 
-  return (
-    <PageWrapStyle>
-      <Header setKeyWord={setKeyWord} />
-      {keyword === '' ? (
-        <div>검색어를 입력해주세요~</div>
-      ) : (
-        <ConWrapStyle>
-          {search.map((item, i) => (
-            <ProfileImgAccount
-              key={i}
-              width="50px"
-              margin="0 0 0 12px"
-              namemarginbottom="6px"
-              image={item.image}
-              username={item.username}
-              accountname={item.accountname}
-            ></ProfileImgAccount>
-          ))}
-        </ConWrapStyle>
-      )}
-    </PageWrapStyle>
-  );
+  if (!search) return <Loading />;
+  else {
+    return (
+      <PageWrapStyle>
+        <Header setKeyWord={setKeyWord} />
+        {keyword === '' ? (
+          <div>검색어를 입력해주세요~</div>
+        ) : (
+          <ConWrapStyle>
+            {search.map((item, i) => (
+              <ProfileImgAccount
+                key={i}
+                width="50px"
+                height="50px"
+                margin="0 0 0 12px"
+                namemarginbottom="6px"
+                image={item.image}
+                username={item.username}
+                accountname={item.accountname}
+              ></ProfileImgAccount>
+            ))}
+          </ConWrapStyle>
+        )}
+      </PageWrapStyle>
+    );
+  }
 }

@@ -10,9 +10,10 @@ import PostCardList from '../../../../components/PostCardList/PostCardList';
 import ProductList from '../../../../components/ProductList/ProductList';
 import Profile from '../../../../components/Profile/Profile';
 import { ConWrap } from '../../../../styles/GlobalStyles';
-import { accountAtom, authAtom } from '../../../../_state/auth';
+import { authAtom } from '../../../../_state/auth';
 import Button from '../../../../components/Button/Button';
 import NotFound from '../../../NotFound/NotFound';
+import Loading from '../../../Loading/Loading';
 
 const ConWrapStyle = styled.main`
   ${ConWrap}
@@ -42,7 +43,6 @@ export default function MyProfile() {
   const [myProfile, setMyProfile] = useState(null);
   const [productList, setProductList] = useState([]);
   const auth = useRecoilValue(authAtom);
-  // const account = useRecoilValue(accountAtom);
   const account = JSON.parse(localStorage.getItem('account'));
   const { accountname } = useParams();
 
@@ -90,7 +90,6 @@ export default function MyProfile() {
       setMyProfile(user);
     } catch (err) {
       if (err.response) {
-        // 응답코드 2xx가 아닌 경우
         console.log(err.response.data);
         console.log(err.response.status);
         console.log(err.response.headers);
@@ -100,7 +99,6 @@ export default function MyProfile() {
     }
   };
 
-  // 등록된 상품 목록 가져오기
   const GetProductList = async () => {
     try {
       const res = await API.get(`/product/${account}`, {
@@ -144,43 +142,46 @@ export default function MyProfile() {
     }
   }, [loading]);
 
-  return (
-    <>
-      {accountname === account ? (
-        <>
-          <Header />
-          <ConWrapStyle>
-            <ContDivStyle>
-              <Profile
-                myProfile={myProfile}
-                align="center"
-                margin="16px 0 17px 0"
-                namemarginbottom="6px"
-              >
-                <Button variant="active" size="m" go={'/profile_edit'}>
-                  {'프로필 수정'}
-                </Button>
-                <Button variant="active" size="m" go={'/product_upload'}>
-                  {'상품 등록'}
-                </Button>
-              </Profile>
-              <ProductList
-                productList={productList}
-                GetProductList={GetProductList}
-              />
-              <ListOrAlbum toggle={toggle} onclick={onClick} />
-            </ContDivStyle>
-            {toggle ? (
-              <PostCardList posts={posts} />
-            ) : (
-              <PostAlbum posts={postsAlbum} />
-            )}
-            <div ref={target} style={{ width: '100%', height: '20px' }}></div>
-          </ConWrapStyle>
-        </>
-      ) : (
-        <NotFound />
-      )}
-    </>
-  );
+  if (!posts) return <Loading />;
+  else {
+    return (
+      <>
+        {accountname === account ? (
+          <>
+            <Header />
+            <ConWrapStyle>
+              <ContDivStyle>
+                <Profile
+                  myProfile={myProfile}
+                  align="center"
+                  margin="16px 0 17px 0"
+                  namemarginbottom="6px"
+                >
+                  <Button variant="active" size="m" go={'/profile_edit'}>
+                    {'프로필 수정'}
+                  </Button>
+                  <Button variant="active" size="m" go={'/product_upload'}>
+                    {'상품 등록'}
+                  </Button>
+                </Profile>
+                <ProductList
+                  productList={productList}
+                  GetProductList={GetProductList}
+                />
+                <ListOrAlbum toggle={toggle} onclick={onClick} />
+              </ContDivStyle>
+              {toggle ? (
+                <PostCardList posts={posts} />
+              ) : (
+                <PostAlbum posts={postsAlbum} />
+              )}
+              <div ref={target} style={{ width: '100%', height: '20px' }}></div>
+            </ConWrapStyle>
+          </>
+        ) : (
+          <NotFound />
+        )}
+      </>
+    );
+  }
 }

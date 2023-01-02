@@ -7,7 +7,6 @@ export default function Input({
   placeholder,
   onChange,
   message,
-  required,
   min,
   max,
   onBlur,
@@ -18,6 +17,7 @@ export default function Input({
   const handleChange = (e) => {
     onChange(e);
   };
+
   return (
     <ContDivStyle>
       <label htmlFor={type}>{label}</label>
@@ -29,7 +29,6 @@ export default function Input({
         onChange={handleChange}
         onBlur={onBlur}
         onKeyUp={onKeyUp}
-        required={required}
         minLength={min}
         maxLength={max}
         value={getValue}

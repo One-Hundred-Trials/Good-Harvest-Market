@@ -19,9 +19,6 @@ const InputStyle = styled.input`
   &:focus {
     border-bottom: 2px solid var(--point-green);
   }
-  &:invalid {
-    border-bottom: 2px solid #eb5757;
-  }
   &::placeholder {
     color: var(--sub-grey-C4);
   }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
+import API from '../../API';
 import {
   ContSecStyle,
   HeaderStyle,
@@ -35,15 +35,11 @@ export default function SignupUserProfile(porps) {
     formData.append('image', e.target.files[0]);
 
     try {
-      const res = await axios.post(
-        'https://mandarin.api.weniv.co.kr/image/uploadfile',
-        formData,
-        {
-          headers: {
-            'Content-type': 'multipart/form-data',
-          },
-        }
-      );
+      const res = await API.post('/image/uploadfile', formData, {
+        headers: {
+          'Content-type': 'multipart/form-data',
+        },
+      });
       setImgFile(res.data.filename);
     } catch (err) {
       console.error(err);
@@ -84,22 +80,15 @@ export default function SignupUserProfile(porps) {
 
   const AccountNameHandler = async () => {
     try {
-      const regex = /^[-._a-z0-9]+$/gi;
+      const regex = /^[._a-zA-Z0-9]+$/gi;
 
-      if (!signupForm.accountname) {
-        setAccountNameError('* 계정 ID는 필수 입력사항입니다.');
-        setIsAccountNameValid(false);
-      } else if (!regex.test(signupForm.accountname)) {
-        setAccountNameError('* 영문, 숫자, 밑줄, 마침표만 사용할 수 있습니다.');
-        setIsAccountNameValid(false);
-      }
       const accountNameData = {
         user: {
           accountname: signupForm.accountname,
         },
       };
-      const res = await axios.post(
-        'https://mandarin.api.weniv.co.kr/user/accountnamevalid',
+      const res = await API.post(
+        '/user/accountnamevalid',
         JSON.stringify(accountNameData),
         {
           headers: {
@@ -109,7 +98,13 @@ export default function SignupUserProfile(porps) {
         }
       );
       const json = res.data;
-      if (json.message === '이미 가입된 계정ID 입니다.') {
+      if (!signupForm.accountname) {
+        setAccountNameError('* 계정 ID는 필수 입력사항입니다.');
+        setIsAccountNameValid(false);
+      } else if (!regex.test(signupForm.accountname)) {
+        setAccountNameError('* 영문, 숫자, 밑줄, 마침표만 사용할 수 있습니다.');
+        setIsAccountNameValid(false);
+      } else if (json.message === '이미 가입된 계정ID 입니다.') {
         setAccountNameError(`* ${json.message}`);
         setIsUserNameValid(false);
       } else if (json.message === '사용 가능한 계정ID 입니다.') {
@@ -131,16 +126,22 @@ export default function SignupUserProfile(porps) {
   const SubmitHandler = async (e) => {
     e.preventDefault();
 
+    const userProfileImage =
+      imgFile && !arrayIsEmpty(imgFile)
+        ? `https://mandarin.api.weniv.co.kr/${imgFile}`
+        : 'https://mandarin.api.weniv.co.kr/1672571236285.png';
+
+    console.log(userProfileImage);
     if (isUserNameValid && isAccountNameValid) {
       try {
-        const res = await axios.post('https://mandarin.api.weniv.co.kr/user', {
+        const res = await API.post('/user', {
           user: {
             username: signupForm.username,
             email: porps.signupForm.email,
             password: porps.signupForm.password,
             accountname: signupForm.accountname,
             intro: signupForm.intro,
-            image: `https://mandarin.api.weniv.co.kr/${imgFile}`,
+            image: userProfileImage,
           },
         });
         window.location.replace('/login');
@@ -205,6 +206,7 @@ export default function SignupUserProfile(porps) {
                 ? 'abled'
                 : 'disabled'
             }
+            disabled={!signupForm.username || !signupForm.accountname}
           >
             {'풍년마켓 시작하기'}
           </Button>

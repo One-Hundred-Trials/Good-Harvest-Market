@@ -14,6 +14,7 @@ import API from '../../../../API';
 import Button from '../../../../components/Button/Button';
 import ChatIcon from '../../../../components/ChatIcon/ChatIcon';
 import ShareIcon from '../../../../components/ShareIcon/ShareIcon';
+import Loading from '../../../Loading/Loading';
 
 const ConWrapStyle = styled.main`
   ${ConWrap}
@@ -33,7 +34,7 @@ const ContDivStyle = styled.div`
 
 export default function UserProfile() {
   const auth = useRecoilValue(authAtom);
-  const account = useRecoilValue(accountAtom);
+  // const account = useRecoilValue(accountAtom);
   const [toggle, setToggle] = useState(true);
   const [productList, setProductList] = useState([]);
   const [postsAlbum, setPostsAlbum] = useState([]);
@@ -167,7 +168,7 @@ export default function UserProfile() {
   // 등록된 상품 목록 가져오기
   const GetProductList = async () => {
     try {
-      const res = await API.get(`/product/${account}`, {
+      const res = await API.get(`/product/${id}`, {
         headers: {
           Authorization: `Bearer ${auth}`,
           'Content-type': 'application/json',
@@ -208,36 +209,39 @@ export default function UserProfile() {
       observer.observe(target.current);
     }
   }, [loading]);
-
-  return (
-    <>
-      <Header />
-      <ConWrapStyle>
-        <ContDivStyle>
-          <Profile
-            myProfile={userProfile}
-            align="center"
-            margin="16px 0 17px 0"
-            namemarginbottom="6px"
-          >
-            <ChatIcon />
-            {isfollow === true ? (
-              <Button size="m" variant="active" onClick={handleFollowBtn}>
-                취소
-              </Button>
-            ) : (
-              <Button size="m" variant="able" onClick={handleFollowBtn}>
-                팔로우
-              </Button>
-            )}
-            <ShareIcon />
-          </Profile>
-          <ProductList productList={productList} />
-          <ListOrAlbum toggle={toggle} onclick={onClick} />
-        </ContDivStyle>
-        {toggle ? <PostCard posts={posts} /> : <PostAlbum posts={postsAlbum} />}
-        <div ref={target} style={{ width: '100%', height: '20px' }}></div>
-      </ConWrapStyle>
-    </>
-  );
+  
+  if (!posts) return <Loading />;
+  else {
+    return (
+      <>
+        <Header />
+        <ConWrapStyle>
+          <ContDivStyle>
+            <Profile
+              myProfile={userProfile}
+              align="center"
+              margin="16px 0 17px 0"
+              namemarginbottom="6px"
+            >
+              <ChatIcon />
+              {isfollow === true ? (
+                <Button size="m" variant="active" onClick={handleFollowBtn}>
+                  취소
+                </Button>
+              ) : (
+                <Button size="m" variant="able" onClick={handleFollowBtn}>
+                  팔로우
+                </Button>
+              )}
+              <ShareIcon />
+            </Profile>
+            <ProductList productList={productList} />
+            <ListOrAlbum toggle={toggle} onclick={onClick} />
+          </ContDivStyle>
+          {toggle ? <PostCard posts={posts} /> : <PostAlbum posts={postsAlbum} />}
+          <div ref={target} style={{ width: '100%', height: '20px' }}></div>
+        </ConWrapStyle>
+      </>
+    );
+  }
 }
