@@ -34,7 +34,7 @@ const ContDivStyle = styled.div`
 
 export default function UserProfile() {
   const auth = useRecoilValue(authAtom);
-  const account = useRecoilValue(accountAtom);
+  // const account = useRecoilValue(accountAtom);
   const [toggle, setToggle] = useState(true);
   const [productList, setProductList] = useState([]);
   const [postsAlbum, setPostsAlbum] = useState([]);
@@ -100,7 +100,7 @@ export default function UserProfile() {
   // 등록된 상품 목록 가져오기
   const GetProductList = async () => {
     try {
-      const res = await API.get(`/product/${account}`, {
+      const res = await API.get(`/product/${id}`, {
         headers: {
           Authorization: `Bearer ${auth}`,
           'Content-type': 'application/json',
