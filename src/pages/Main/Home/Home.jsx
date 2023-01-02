@@ -7,6 +7,7 @@ import PostCardList from '../../../components/PostCardList/PostCardList';
 import { ConWrap } from '../../../styles/GlobalStyles';
 import API from '../../../API';
 import { authAtom } from '../../../_state/auth';
+import Loading from '../../Loading/Loading';
 
 const ConWrapStyle = styled.main`
   ${ConWrap}
@@ -66,13 +67,16 @@ export default function Home() {
     }
   }, [loading]);
 
-  return (
-    <>
-      <Header>주말의 즐거운 풍년마켓</Header>
-      <ConWrapStyle>
-        {hasFollowing ? <PostCardList posts={post} /> : <HomeRenderBlank />}
-        <div ref={target} style={{ width: '100%', height: '20px' }}></div>
-      </ConWrapStyle>
-    </>
-  );
+  if (!post) return <Loading />;
+  else {
+    return (
+      <>
+        <Header>주말의 즐거운 풍년마켓</Header>
+        <ConWrapStyle>
+          {hasFollowing ? <PostCardList posts={post} /> : <HomeRenderBlank />}
+          <div ref={target} style={{ width: '100%', height: '20px' }}></div>
+        </ConWrapStyle>
+      </>
+    );
+  }
 }

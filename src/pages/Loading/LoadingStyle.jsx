@@ -5,13 +5,13 @@ const loading = keyframes`
   0% {
     opacity:1;
   }
-  20% {
+  30% {
     opacity:0.2;
   }
-  40% {
+  60% {
     opacity:1;
   }
-  70% {
+  100% {
     opacity:0.2;
   }
 `;
@@ -36,11 +36,5 @@ export const LoadingBgDivStyle = styled.div`
 export const LogoLeafStyle = styled.img`
   width: 30%;
   margin-top: -48px;
-  animation: 1s ${loading} ease-in-out infinite;
-  &:nth-child(2) {
-    animation: 1s ${loading} ease-in-out infinite;
-  }
-  &:last-child {
-    animation: 1s ${loading} ease-in-out infinite;
-  }
+  animation: 1.5s ${loading} ease-in-out infinite;
 `;

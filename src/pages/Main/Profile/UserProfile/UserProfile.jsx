@@ -14,6 +14,7 @@ import API from '../../../../API';
 import Button from '../../../../components/Button/Button';
 import ChatIcon from '../../../../components/ChatIcon/ChatIcon';
 import ShareIcon from '../../../../components/ShareIcon/ShareIcon';
+import Loading from '../../../Loading/Loading';
 
 const ConWrapStyle = styled.main`
   ${ConWrap}
@@ -141,29 +142,36 @@ export default function UserProfile() {
     }
   }, [loading]);
 
-  return (
-    <>
-      <Header />
-      <ConWrapStyle>
-        <ContDivStyle>
-          <Profile
-            myProfile={userProfile}
-            align="center"
-            margin="16px 0 17px 0"
-            namemarginbottom="6px"
-          >
-            <ChatIcon />
-            <Button variant="abled" size="m">
-              {'팔로우'}
-            </Button>
-            <ShareIcon />
-          </Profile>
-          <ProductList productList={productList} />
-          <ListOrAlbum toggle={toggle} onclick={onClick} />
-        </ContDivStyle>
-        {toggle ? <PostCard posts={posts} /> : <PostAlbum posts={postsAlbum} />}
-        <div ref={target} style={{ width: '100%', height: '20px' }}></div>
-      </ConWrapStyle>
-    </>
-  );
+  if (!posts) return <Loading />;
+  else {
+    return (
+      <>
+        <Header />
+        <ConWrapStyle>
+          <ContDivStyle>
+            <Profile
+              myProfile={userProfile}
+              align="center"
+              margin="16px 0 17px 0"
+              namemarginbottom="6px"
+            >
+              <ChatIcon />
+              <Button variant="abled" size="m">
+                {'팔로우'}
+              </Button>
+              <ShareIcon />
+            </Profile>
+            <ProductList productList={productList} />
+            <ListOrAlbum toggle={toggle} onclick={onClick} />
+          </ContDivStyle>
+          {toggle ? (
+            <PostCard posts={posts} />
+          ) : (
+            <PostAlbum posts={postsAlbum} />
+          )}
+          <div ref={target} style={{ width: '100%', height: '20px' }}></div>
+        </ConWrapStyle>
+      </>
+    );
+  }
 }
