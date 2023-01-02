@@ -35,7 +35,7 @@ export default function Home() {
       const { posts } = res.data;
       setPost(posts);
       setLoading(true);
-      if (res.data.posts !== null) {
+      if (res.data.posts.length > 0) {
         setHasFollowing(true);
       }
     } catch (err) {
