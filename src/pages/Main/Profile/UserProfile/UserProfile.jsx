@@ -34,7 +34,7 @@ const ContDivStyle = styled.div`
 
 export default function UserProfile() {
   const auth = useRecoilValue(authAtom);
-  const account = useRecoilValue(accountAtom);
+  // const account = useRecoilValue(accountAtom);
   const [toggle, setToggle] = useState(true);
   const [productList, setProductList] = useState([]);
   const [postsAlbum, setPostsAlbum] = useState([]);
@@ -209,7 +209,7 @@ export default function UserProfile() {
       observer.observe(target.current);
     }
   }, [loading]);
-
+  
   if (!posts) return <Loading />;
   else {
     return (
@@ -238,11 +238,7 @@ export default function UserProfile() {
             <ProductList productList={productList} />
             <ListOrAlbum toggle={toggle} onclick={onClick} />
           </ContDivStyle>
-          {toggle ? (
-            <PostCard posts={posts} />
-          ) : (
-            <PostAlbum posts={postsAlbum} />
-          )}
+          {toggle ? <PostCard posts={posts} /> : <PostAlbum posts={postsAlbum} />}
           <div ref={target} style={{ width: '100%', height: '20px' }}></div>
         </ConWrapStyle>
       </>
