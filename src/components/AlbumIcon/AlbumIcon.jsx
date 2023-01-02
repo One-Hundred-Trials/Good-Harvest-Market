@@ -14,7 +14,7 @@ export default function AlbumIcon({ toggle, onclick }) {
       <img
         src={toggle ? iconPostAlbumOn : iconPostAlbumOff}
         alt="album"
-        height="22"
+        height="26"
       />
     </BtnStyle>
   );
