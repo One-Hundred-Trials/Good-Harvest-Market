@@ -1,70 +1,114 @@
-# Getting Started with Create React App
+# 🥬 풍년마켓 🥬
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+(메인 이미지 목업)
+(1차 배포URL)
+(아이디 비밀번호)
 
-## Available Scripts
+## 1. 프로젝트 소개
 
-In the project directory, you can run:
+혜빈
 
-### `npm start`
+### 기획 내용
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+> 풍년마켓은 주말 농장을 운영하는 사람들이 농작물을 판매하기도 하고 서로 소셜 네트워크 어쩌고..
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- [팀 레포지토리](https://github.com/One-Hundred-Trials/Good-Harvest-Market)
+- [피그마 디자인](https://www.figma.com/file/UXU8HvZ5UlHXZowSmleykQ/풍년마켓-프로젝트?node-id=39%3A1814&t=UY0QgJPca3EDHS1C-0)
 
-### `npm test`
+### 개발 기간
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**2022.12.06.~2013.01.05** <br>
+**기획 및 초기 설정 기간** :12월 06일 ~ 12월 08일 <br>
+**개발 기간** :12월 09일 ~ 1월 5일
 
-### `npm run build`
+## 2. 팀원 소개 및 역할
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+| 강풍윤                                        | 고은영                                      | 김미경                                                         | 김혜빈                                      |
+| --------------------------------------------- | ------------------------------------------- | -------------------------------------------------------------- | ------------------------------------------- | --------- |
+| [KANGPUNGYUN](https://github.com/KANGPUNGYUN) | [konveloper](https://github.com/konveloper) | [mixnuts211](https://github.com/https://github.com/mixnuts211) | [khv2644511](https://github.com/khv2644511) |
+| 역할                                          | 역할                                        | 역할                                                           | 역할                                        | 팀장/역할 |
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+| 이름   | Github                                                         | 역할분담  |
+| ------ | -------------------------------------------------------------- | --------- |
+| 강풍윤 | [KANGPUNGYUN](https://github.com/KANGPUNGYUN)                  | 역할      |
+| 고은영 | [konveloper](https://github.com/konveloper)                    | 역할      |
+| 김미경 | [mixnuts211](https://github.com/https://github.com/mixnuts211) | 역할      |
+| 김혜빈 | [khv2644511](https://github.com/khv2644511)                    | 팀장 역할 |
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 3. 개발 환경
 
-### `npm run eject`
+- React
+- React Hooks
+- Styled Components
+- 배포
+- 프로젝트 관리 : Github Projects, Github issues
+- 소통 : Notion, Discord, Gather.town
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+| Front-End | Back-End | 버전 및 이슈관리 |
+| --------- | -------- | ---------------- |
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+| 제목             | 내용                                               | 설명     |
+| ---------------- | -------------------------------------------------- | -------- |
+| Front-End        | `React` <br> `React Hooks`<br> `Styled Components` | 중앙정렬 |
+| Back-End         | 제공되는 API 사용                                  | 중앙정렬 |
+| 버전 및 이슈관리 | `Git`<br>`GitHub`<br>`Notion`                      | 중앙정렬 |
+| 프로젝트 관리    | `Git Flow`                                         | 중앙정렬 |
+| 소통             | `Notion`<br> `Discord`<br> `Gather.town`           | 중앙정렬 |
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 4. 팀 진행 방식
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- [스토리보드](https://docs.google.com/presentation/d/116gDaqxT54dJkbdScNC5L8VTw5T9Cw9Gru9ccTSo6NA/edit?usp=sharing)
+- [팀 노션](https://likelion.notion.site/10-82e5f971b6e044eeae44442d0cf8ebe2)
+- 데일리 스크럼 등등 (매일 9시 5시 상황 공유 하루 업무 공유)
+- 트러블슈팅?
 
-## Learn More
+## 5. 폴더 트리
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+은영
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 6. 구현 기능
 
-### Code Splitting
+1)홈
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+| 스플래쉬 | 회원가입 | 로그인 |
+| -------- | -------- | ------ |
+| 김미경   | 강풍윤   | 김혜빈 |
 
-### Analyzing the Bundle Size
+| 홈 피드 | 계정 검색 | 팔로잉 팔로우 |
+| ------- | --------- | ------------- |
+| 김미경  | 김혜빈    | 강풍윤        |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+| 채팅 | 404  |
+| ---- | ---- |
+| 은영 | 미경 |
 
-### Making a Progressive Web App
+2)게시글
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+| 게시글 작성 | 게시글 수정 | 게시글 삭제 |
+| ----------- | ----------- | ----------- |
+| 은영        | 은영        | 은영        |
 
-### Advanced Configuration
+| 게시글 상세 및 댓글 | 댓글 삭제 | 댓글 신고 |
+| ------------------- | --------- | --------- |
+| 미경                | 미경      | 미경      |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+| 게시글 신고 | 게시글 좋아요 |
+| ----------- | ------------- |
+| 은영        | 은영          |
 
-### Deployment
+3)프로필
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+| 내 프로필 | 내 프로필 수정 | 유저 프로필 팔로우 |
+| --------- | -------------- | ------------------ |
+| 김헤빈    | 강풍윤         | 강풍윤             |
 
-### `npm run build` fails to minify
+4)상품
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+| 상품 등록 | 상품 수정 | 상품 삭제 |
+| --------- | --------- | --------- |
+| 미경      | 미경      | 미경      |
+
+## 7. 우리만의 포인트
+
+1. 웹 접근성 준수
+2.
