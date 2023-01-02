@@ -13,6 +13,7 @@ import {
 import API from '../../../../../../API';
 import { authAtom, accountAtom } from '../../../../../../_state/auth';
 import UploadFileBtn from '../../../../../../components/Button/UploadFileBtn/UploadFileBtn';
+import Loading from '../../../../../Loading/Loading';
 
 export default function ProductUpload() {
   const { id } = useParams();
@@ -64,7 +65,6 @@ export default function ProductUpload() {
         setImageSrc(productData.itemImage);
       } catch (err) {
         if (err.response) {
-          // 응답코드 2xx가 아닌 경우
           console.log(err.response.data);
           console.log(err.response.status);
           console.log(err.response.headers);
@@ -191,61 +191,64 @@ export default function ProductUpload() {
     }
   };
 
-  return (
-    <PageWrapStyle>
-      <Header
-        size="ms"
-        variant={btnAble && isItemImage === true ? 'abled' : 'disabled'}
-        disabled={btnAble ? '' : 'disabled'}
-        go={btnAble ? `/my_profile/${accountname}` : ''}
-        onClick={submitProductHandler}
-      >
-        업로드
-      </Header>
-      <ConWrapStyle>
-        <div onChange={imgHandler}>
-          <ProductUploadTitleStyle>이미지 등록</ProductUploadTitleStyle>
-          <ProductImgUploaderStyle>
-            {imageSrc && <img src={imageSrc} alt="미리보기" />}
-            <ImgVaildMessage>{itemImageMessage}</ImgVaildMessage>
-            <UploadFileBtn onChange={uploadImgHandler} />
-          </ProductImgUploaderStyle>
-        </div>
-        <Input
-          label="상품명"
-          id="productName"
-          placeholder="2~15자 이내여야 합니다."
-          required="required"
-          min="2"
-          max="15"
-          onChange={itemNameHandler}
-          onKeyUp={btnAbleHandler}
-          message={itemNameMessage}
-          getValue={itemName}
-        />
-        <Input
-          label="가격"
-          id="productPrice"
-          placeholder="숫자만 입력 가능합니다."
-          required="required"
-          min="2"
-          max="15"
-          onChange={priceHandler}
-          onKeyUp={btnAbleHandler}
-          getValue={price}
-          message={priceMessage}
-        />
-        <Input
-          label="판매 링크"
-          id="productURL"
-          placeholder="URL을 입력해 주세요."
-          required="required"
-          onChange={linkHandler}
-          onKeyUp={btnAbleHandler}
-          message={linkMessage}
-          getValue={link}
-        />
-      </ConWrapStyle>
-    </PageWrapStyle>
-  );
+  if (!itemImage) return <Loading />;
+  else {
+    return (
+      <PageWrapStyle>
+        <Header
+          size="ms"
+          variant={btnAble && isItemImage === true ? 'abled' : 'disabled'}
+          disabled={btnAble ? '' : 'disabled'}
+          go={btnAble ? `/my_profile/${accountname}` : ''}
+          onClick={submitProductHandler}
+        >
+          업로드
+        </Header>
+        <ConWrapStyle>
+          <div onChange={imgHandler}>
+            <ProductUploadTitleStyle>이미지 등록</ProductUploadTitleStyle>
+            <ProductImgUploaderStyle>
+              {imageSrc && <img src={imageSrc} alt="미리보기" />}
+              <ImgVaildMessage>{itemImageMessage}</ImgVaildMessage>
+              <UploadFileBtn onChange={uploadImgHandler} />
+            </ProductImgUploaderStyle>
+          </div>
+          <Input
+            label="상품명"
+            id="productName"
+            placeholder="2~15자 이내여야 합니다."
+            required="required"
+            min="2"
+            max="15"
+            onChange={itemNameHandler}
+            onKeyUp={btnAbleHandler}
+            message={itemNameMessage}
+            getValue={itemName}
+          />
+          <Input
+            label="가격"
+            id="productPrice"
+            placeholder="숫자만 입력 가능합니다."
+            required="required"
+            min="2"
+            max="15"
+            onChange={priceHandler}
+            onKeyUp={btnAbleHandler}
+            getValue={price}
+            message={priceMessage}
+          />
+          <Input
+            label="판매 링크"
+            id="productURL"
+            placeholder="URL을 입력해 주세요."
+            required="required"
+            onChange={linkHandler}
+            onKeyUp={btnAbleHandler}
+            message={linkMessage}
+            getValue={link}
+          />
+        </ConWrapStyle>
+      </PageWrapStyle>
+    );
+  }
 }

@@ -7,6 +7,7 @@ import API from '../../../../../API';
 import Header from '../../../../../components/Header/Header';
 import { PageWrap, ConWrap } from '../../../../../styles/GlobalStyles';
 import FollowUserList from '../../../../../components/FollowUserList/FollowUserList';
+import Loading from '../../../../Loading/Loading';
 
 const PageWrapStyle = styled.div`
   ${PageWrap}
@@ -57,24 +58,27 @@ export default function FollowingList() {
     getFollowingList();
   }, [auth, accountname]);
 
-  return (
-    <PageWrapStyle>
-      <Header>Followings</Header>
-      <ConWrapStyle>
-        <FollowContainerUlStyle>
-          {followings.map((item, i) => (
-            <FollowUserList
-              key={i}
-              width="50px"
-              height="50px"
-              image={item.image}
-              username={item.username}
-              accountname={item.accountname}
-              isfollow={item.isfollow}
-            ></FollowUserList>
-          ))}
-        </FollowContainerUlStyle>
-      </ConWrapStyle>
-    </PageWrapStyle>
-  );
+  if (!followings) return <Loading />;
+  else {
+    return (
+      <PageWrapStyle>
+        <Header>Followings</Header>
+        <ConWrapStyle>
+          <FollowContainerUlStyle>
+            {followings.map((item, i) => (
+              <FollowUserList
+                key={i}
+                width="50px"
+                height="50px"
+                image={item.image}
+                username={item.username}
+                accountname={item.accountname}
+                isfollow={item.isfollow}
+              ></FollowUserList>
+            ))}
+          </FollowContainerUlStyle>
+        </ConWrapStyle>
+      </PageWrapStyle>
+    );
+  }
 }
