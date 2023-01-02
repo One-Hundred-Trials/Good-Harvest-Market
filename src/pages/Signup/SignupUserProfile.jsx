@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
+import API from '../../API';
 import {
   ContSecStyle,
   HeaderStyle,
@@ -35,15 +35,11 @@ export default function SignupUserProfile(porps) {
     formData.append('image', e.target.files[0]);
 
     try {
-      const res = await axios.post(
-        'https://mandarin.api.weniv.co.kr/image/uploadfile',
-        formData,
-        {
-          headers: {
-            'Content-type': 'multipart/form-data',
-          },
-        }
-      );
+      const res = await API.post('/image/uploadfile', formData, {
+        headers: {
+          'Content-type': 'multipart/form-data',
+        },
+      });
       setImgFile(res.data.filename);
     } catch (err) {
       console.error(err);
@@ -91,8 +87,8 @@ export default function SignupUserProfile(porps) {
           accountname: signupForm.accountname,
         },
       };
-      const res = await axios.post(
-        'https://mandarin.api.weniv.co.kr/user/accountnamevalid',
+      const res = await API.post(
+        '/user/accountnamevalid',
         JSON.stringify(accountNameData),
         {
           headers: {
@@ -138,7 +134,7 @@ export default function SignupUserProfile(porps) {
     console.log(userProfileImage);
     if (isUserNameValid && isAccountNameValid) {
       try {
-        const res = await axios.post('https://mandarin.api.weniv.co.kr/user', {
+        const res = await API.post('/user', {
           user: {
             username: signupForm.username,
             email: porps.signupForm.email,
