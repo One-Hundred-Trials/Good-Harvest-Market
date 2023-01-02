@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import API from '../../API';
-import ProfileImg from '../../assets/img/basic-profile-36.png';
+import ProfileImg from '../ProfileImg/ProfileImg';
 import { authAtom } from '../../_state/auth';
+import BasicProfile from '../../assets/img/basic-profile.png';
 import {
   CommentInputContainerStyle,
   CommentForm,
-  MyProfileImg,
   CommentTxtInput,
   UploadBtn,
 } from './CommentInputStyle';
@@ -57,7 +57,6 @@ export default function CommentInput({ upDateComment }) {
       upDateComment();
     } catch (err) {
       if (err.response) {
-        // 응답코드 2xx가 아닌 경우
         console.log(err.response.data);
         console.log(err.response.status);
         console.log(err.response.headers);
@@ -75,7 +74,12 @@ export default function CommentInput({ upDateComment }) {
   return (
     <CommentInputContainerStyle>
       <CommentForm>
-        <MyProfileImg src={ProfileImg} alt="프로필 사진" />
+        <ProfileImg
+          width="36px"
+          height="36px"
+          image={BasicProfile}
+          alt="프로필 사진"
+        />
         <CommentTxtInput
           type="text"
           id="commentInput"
