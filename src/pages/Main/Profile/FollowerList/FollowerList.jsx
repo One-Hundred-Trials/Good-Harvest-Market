@@ -36,12 +36,15 @@ export default function FollowerList() {
   useEffect(() => {
     const getFollowerList = async () => {
       try {
-        const res = await API.get(`/profile/${accountname}/follower`, {
-          headers: {
-            'Content-type': 'application/json',
-            Authorization: `Bearer ${auth}`,
-          },
-        });
+        const res = await API.get(
+          `/profile/${accountname}/follower?limit=100`,
+          {
+            headers: {
+              'Content-type': 'application/json',
+              Authorization: `Bearer ${auth}`,
+            },
+          }
+        );
 
         const { data } = res;
         setFollowers(data);
