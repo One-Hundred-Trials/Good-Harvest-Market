@@ -75,7 +75,7 @@ export default function UserProfile() {
       }
     };
     getFollowerList();
-  }, [auth, account]);
+  }, [auth, id, account]);
 
   const handleSubmitFollow = async () => {
     try {
@@ -222,11 +222,11 @@ export default function UserProfile() {
           >
             <ChatIcon />
             {isfollow === true ? (
-              <Button size="s" variant="active" onClick={handleFollowBtn}>
+              <Button size="m" variant="active" onClick={handleFollowBtn}>
                 취소
               </Button>
             ) : (
-              <Button size="s" variant="able" onClick={handleFollowBtn}>
+              <Button size="m" variant="able" onClick={handleFollowBtn}>
                 팔로우
               </Button>
             )}
