@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import styled from 'styled-components';
+import API from '../../API';
 import Input from '../../components/Input/Input';
 import { ContSecStyle, HeaderStyle, InputFormStyle } from './SignupStyle';
 import Button from '../../components/Button/Button';
@@ -28,20 +28,21 @@ const Signup = ({ setIsSignupValid, setSignupForm, signupForm }) => {
       setEmailIsValid(false);
     }
     try {
-      const url = 'https://mandarin.api.weniv.co.kr';
-      const reqPath = '/user/emailvalid';
       const emailCheckData = {
         user: {
           email: signupForm.email,
         },
       };
-      const reqUrl = url + reqPath;
-      const res = await axios.post(reqUrl, JSON.stringify(emailCheckData), {
-        headers: {
-          'Content-type': 'application/json',
-        },
-        data: emailCheckData,
-      });
+      const res = await API.post(
+        '/user/emailvalid',
+        JSON.stringify(emailCheckData),
+        {
+          headers: {
+            'Content-type': 'application/json',
+          },
+          data: emailCheckData,
+        }
+      );
       const json = res.data;
       if (json.message === '이미 가입된 이메일 주소 입니다.') {
         setEmailError(`*${json.message}`);
@@ -118,7 +119,6 @@ const Signup = ({ setIsSignupValid, setSignupForm, signupForm }) => {
           type="email"
           name="email"
           placeholder="이메일 주소를 입력해주세요"
-          required="required"
           value={signupForm}
           onBlur={EmailHandler}
           onChange={inputChangeHandler}
@@ -129,7 +129,6 @@ const Signup = ({ setIsSignupValid, setSignupForm, signupForm }) => {
           type="password"
           name="password"
           placeholder="6자리 이상의 비밀번호를 설정해주세요"
-          required="required"
           value={signupForm}
           onBlur={PasswordHandler}
           onChange={inputChangeHandler}
@@ -141,7 +140,6 @@ const Signup = ({ setIsSignupValid, setSignupForm, signupForm }) => {
           type="password"
           name="passwordCheck"
           placeholder="위에서 설정한 비밀번호를 그대로 입력해주세요"
-          required="required"
           value={signupForm}
           onBlur={PasswordCheckHandler}
           onChange={inputChangeHandler}
@@ -155,6 +153,11 @@ const Signup = ({ setIsSignupValid, setSignupForm, signupForm }) => {
               signupForm.passwordCheck
                 ? 'abled'
                 : 'disabled'
+            }
+            disabled={
+              !signupForm.email ||
+              !signupForm.password ||
+              !signupForm.passwordCheck
             }
           >
             {'다음'}

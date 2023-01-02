@@ -17,8 +17,9 @@ import {
 } from './PostUploadStyle';
 import Header from '../../../../components/Header/Header';
 import UploadFileBtn from '../../../../components/Button/UploadFileBtn/UploadFileBtn';
+import Loading from '../../../Loading/Loading';
 
-function PostUpload() {
+export default function PostUpload() {
   const auth = useRecoilValue(authAtom);
   const account = useRecoilValue(accountAtom);
   const navigate = useNavigate();
@@ -149,39 +150,44 @@ function PostUpload() {
     }
   };
 
-  return (
-    <PageWrapStyle>
-      <Header
-        size="ms"
-        variant={isActive ? '' : 'disabled'}
-        onClick={postUploadHandler}
-        disabled={!(text || previewImgUrl)}
-      >
-        업로드
-      </Header>
-      <ConWrapStyle>
-        <MyProfileImg src={profileImg} alt="내 프로필 이미지" />
-        <PostFormStyle>
-          <TextAreaStyle
-            type="text"
-            placeholder="게시글 입력하기"
-            onChange={textChangeHandler}
-          />
-          {previewImgUrl && (
-            <ImgWrapStyle>
-              <PreviewImgWrapStyle>
-                <PreviewImg src={previewImgUrl} alt="이미지 미리보기" />
-                <DeleteImgBtn type="button" onClick={deleteImgHandler} />
-              </PreviewImgWrapStyle>
-            </ImgWrapStyle>
-          )}
-          <BtnWrapStyle>
-            <UploadFileBtn onChange={previewImgHandler} />
-          </BtnWrapStyle>
-        </PostFormStyle>
-      </ConWrapStyle>
-    </PageWrapStyle>
-  );
+  if (!profileImg) return <Loading />;
+  else {
+    return (
+      <PageWrapStyle>
+        <Header
+          size="ms"
+          variant={isActive ? '' : 'disabled'}
+          onClick={postUploadHandler}
+          disabled={!(text || previewImgUrl)}
+        >
+          업로드
+        </Header>
+        <ConWrapStyle>
+          <MyProfileImg src={profileImg} alt="내 프로필 이미지" />
+          <PostFormStyle>
+            <TextAreaStyle
+              type="text"
+              placeholder="게시글 입력하기"
+              onChange={textChangeHandler}
+            />
+            {previewImgUrl && (
+              <ImgWrapStyle>
+                <PreviewImgWrapStyle>
+                  <PreviewImg src={previewImgUrl} alt="이미지 미리보기" />
+                  <DeleteImgBtn
+                    type="button"
+                    onClick={deleteImgHandler}
+                  />
+                </PreviewImgWrapStyle>
+              </ImgWrapStyle>
+            )}
+            <BtnWrapStyle>
+              <UploadFileBtn onChange={previewImgHandler} />
+            </BtnWrapStyle>
+          </PostFormStyle>
+        </ConWrapStyle>
+      </PageWrapStyle>
+    );
+  }
 }
 
-export default PostUpload;

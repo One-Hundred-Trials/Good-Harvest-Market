@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProfileAccount from '../ProfileAccount/ProfileAccount';
-import DefaultProfileImg from '../../assets/img/basic-profile.png';
 import { ProfileImgContainerStyle } from './ProfileImgAccountStyle';
 import ProfileImg from '../ProfileImg/ProfileImg';
 

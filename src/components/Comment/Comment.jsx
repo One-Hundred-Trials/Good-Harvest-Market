@@ -8,10 +8,10 @@ import {
   CommentContainerStyle,
   InfoStyle,
   InfoDiv,
-  ProfileImg,
   MoreBtn,
   TxtStyle,
 } from './CommentStyle';
+import ProfileImg from '../ProfileImg/ProfileImg';
 
 export default function Comment({ comment, postId, deleteComment }) {
   const userAccount = useRecoilValue(accountAtom);
@@ -49,7 +49,6 @@ export default function Comment({ comment, postId, deleteComment }) {
     },
   };
 
-  // 댓글 삭제
   const commentDelHandler = async () => {
     try {
       const res = await API.delete(`/post/${postId}/comments/${comment.id}`, {
@@ -62,7 +61,6 @@ export default function Comment({ comment, postId, deleteComment }) {
       deleteComment();
     } catch (err) {
       if (err.response) {
-        // 응답코드 2xx가 아닌 경우
         console.log(err.response.data);
         console.log(err.response.status);
         console.log(err.response.headers);
@@ -72,7 +70,6 @@ export default function Comment({ comment, postId, deleteComment }) {
     }
   };
 
-  // 댓글 신고
   const commentReportHandler = async () => {
     try {
       const res = await API.post(
@@ -90,7 +87,6 @@ export default function Comment({ comment, postId, deleteComment }) {
       setModal(false);
     } catch (err) {
       if (err.response) {
-        // 응답코드 2xx가 아닌 경우
         console.log(err.response.data);
         console.log(err.response.status);
         console.log(err.response.headers);
@@ -105,7 +101,12 @@ export default function Comment({ comment, postId, deleteComment }) {
       <CommentContainerStyle>
         <InfoStyle>
           <InfoDiv>
-            <ProfileImg src={comment.author.image} alt="" />
+            <ProfileImg
+              width="36px"
+              height="36px"
+              image={comment.author.image}
+              alt=""
+            />
             <strong>{comment.author.username}</strong>
             <span>{nowDate}</span>
           </InfoDiv>

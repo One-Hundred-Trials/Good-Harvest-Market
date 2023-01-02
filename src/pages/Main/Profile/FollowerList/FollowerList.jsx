@@ -7,6 +7,7 @@ import API from '../../../../API';
 import Header from '../../../../components/Header/Header';
 import { PageWrap, ConWrap } from '../../../../styles/GlobalStyles';
 import FollowUserList from '../../../../components/FollowUserList/FollowUserList';
+import Loading from '../../../Loading/Loading';
 
 const PageWrapStyle = styled.div`
   ${PageWrap}
@@ -20,6 +21,13 @@ const ConWrapStyle = styled.main`
   }
 `;
 
+const FollowContainerUlStyle = styled.ul`
+  padding: 8px 16px;
+  & li + li {
+    margin-top: 16px;
+  }
+`;
+
 export default function FollowerList() {
   const auth = useRecoilValue(authAtom);
   const { accountname } = useParams();
@@ -28,12 +36,15 @@ export default function FollowerList() {
   useEffect(() => {
     const getFollowerList = async () => {
       try {
-        const res = await API.get(`/profile/${accountname}/follower`, {
-          headers: {
-            'Content-type': 'application/json',
-            Authorization: `Bearer ${auth}`,
-          },
-        });
+        const res = await API.get(
+          `/profile/${accountname}/follower?limit=100`,
+          {
+            headers: {
+              'Content-type': 'application/json',
+              Authorization: `Bearer ${auth}`,
+            },
+          }
+        );
 
         const { data } = res;
         setFollowers(data);
@@ -50,22 +61,27 @@ export default function FollowerList() {
     getFollowerList();
   }, [auth, accountname]);
 
-  return (
-    <PageWrapStyle>
-      <Header>Followers</Header>
-      <ConWrapStyle>
-        {followers.map((item, i) => (
-          <FollowUserList
-            key={i}
-            width="50px"
-            height="50px"
-            image={item.image}
-            username={item.username}
-            accountname={item.accountname}
-            isfollow={item.isfollow}
-          ></FollowUserList>
-        ))}
-      </ConWrapStyle>
-    </PageWrapStyle>
-  );
+  if (!followers) return <Loading />;
+  else {
+    return (
+      <PageWrapStyle>
+        <Header>Followers</Header>
+        <ConWrapStyle>
+          <FollowContainerUlStyle>
+            {followers.map((item, i) => (
+              <FollowUserList
+                key={i}
+                width="50px"
+                height="50px"
+                image={item.image}
+                username={item.username}
+                accountname={item.accountname}
+                isfollow={item.isfollow}
+              ></FollowUserList>
+            ))}
+          </FollowContainerUlStyle>
+        </ConWrapStyle>
+      </PageWrapStyle>
+    );
+  }
 }

@@ -9,6 +9,7 @@ import PostCard from '../../../components/PostCard/PostCard';
 import Comment from '../../../components/Comment/Comment';
 import CommentInput from '../../../components/CommentInput/CommentInput';
 import Header from '../../../components/Header/Header';
+import Loading from '../../Loading/Loading';
 
 const PageWrapStyle = styled.div`
   ${PageWrap}
@@ -34,7 +35,6 @@ export default function Post() {
   const [postAuthor, setPostAuthor] = useState('');
   const [commentsList, setCommentsList] = useState('');
 
-  /* post 데이터 */
   useEffect(() => {
     const GetPost = async () => {
       try {
@@ -50,7 +50,6 @@ export default function Post() {
         setPostAuthor(author);
       } catch (err) {
         if (err.response) {
-          // 응답코드 2xx가 아닌 경우
           console.log(err.response.data);
           console.log(err.response.status);
           console.log(err.response.headers);
@@ -62,7 +61,6 @@ export default function Post() {
     GetPost();
   }, [auth, id]);
 
-  /* 댓글 리스트 */
   const postCommentList = async () => {
     try {
       const res = await API.get(`/post/${id}/comments`, {
@@ -73,11 +71,8 @@ export default function Post() {
       });
       const commentData = res.data.comments;
       setCommentsList(commentData);
-      // const [commentsList, setCommentsList] = useState('');
-      // commentsList로 map => 댓글 리스트 뿌려줌
     } catch (err) {
       if (err.response) {
-        // 응답코드 2xx가 아닌 경우
         console.log(err.response.data);
         console.log(err.response.status);
         console.log(err.response.headers);
@@ -90,31 +85,34 @@ export default function Post() {
     postCommentList();
   }, []);
 
-  return (
-    <PageWrapStyle>
-      <Header id={id} />
-      <ConWrapStyle>
-        <PostCardUlCont>
-          <PostCard post={postData} author={postAuthor} />
-        </PostCardUlCont>
-        <CommentContainerStyle>
-          {commentsList ? (
-            commentsList
-              .map((comment) => (
-                <Comment
-                  key={comment.id}
-                  comment={comment}
-                  postId={id}
-                  deleteComment={postCommentList}
-                />
-              ))
-              .reverse()
-          ) : (
-            <p>첫번째 댓글을 달아보세요!</p>
-          )}
-        </CommentContainerStyle>
-      </ConWrapStyle>
-      <CommentInput upDateComment={postCommentList} />
-    </PageWrapStyle>
-  );
+  if (!postData) return <Loading />;
+  else {
+    return (
+      <PageWrapStyle>
+        <Header id={id} />
+        <ConWrapStyle>
+          <PostCardUlCont>
+            <PostCard post={postData} author={postAuthor} />
+          </PostCardUlCont>
+          <CommentContainerStyle>
+            {commentsList ? (
+              commentsList
+                .map((comment) => (
+                  <Comment
+                    key={comment.id}
+                    comment={comment}
+                    postId={id}
+                    deleteComment={postCommentList}
+                  />
+                ))
+                .reverse()
+            ) : (
+              <p>첫번째 댓글을 달아보세요!</p>
+            )}
+          </CommentContainerStyle>
+        </ConWrapStyle>
+        <CommentInput upDateComment={postCommentList} />
+      </PageWrapStyle>
+    );
+  }
 }
