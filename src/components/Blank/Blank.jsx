@@ -2,12 +2,12 @@ import React from 'react';
 import Button from '../Button/Button';
 import { BlankImgStyle, BlankTextStyle } from './BlankStyle';
 
-export default function Blank({ src, width, text, children, clickHandler }) {
+export default function Blank({ src, width, text, children, go, onClick }) {
   return (
     <div>
       <BlankImgStyle src={src} width={width} />
       <BlankTextStyle>{text}</BlankTextStyle>
-      <Button size="m" variant="abled" onClick={clickHandler}>
+      <Button size="m" variant="abled" go={go} onClick={onClick}>
         {children}
       </Button>
     </div>
