@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import API from '../../../../../API';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { authAtom } from '../../../../../_state/auth';
@@ -62,8 +62,8 @@ export default function ProfileEdit() {
           accountname: accountName,
         },
       };
-      const res = await axios.post(
-        'https://mandarin.api.weniv.co.kr/user/accountnamevalid',
+      const res = await API.post(
+        '/user/accountnamevalid',
         JSON.stringify(accountNameData),
         {
           headers: {
@@ -103,15 +103,11 @@ export default function ProfileEdit() {
     const productImage = e.target.files[0];
     formData.append('image', productImage);
     try {
-      const res = await axios.post(
-        `https://mandarin.api.weniv.co.kr/image/uploadfile`,
-        formData,
-        {
-          headers: {
-            'Content-type': 'multipart/form-data',
-          },
-        }
-      );
+      const res = await API.post(`/image/uploadfile`, formData, {
+        headers: {
+          'Content-type': 'multipart/form-data',
+        },
+      });
       console.log(res);
       const imgUrl = `https://mandarin.api.weniv.co.kr/${res.data.filename}`;
       setProfileImg(imgUrl);
@@ -131,14 +127,11 @@ export default function ProfileEdit() {
   useEffect(() => {
     const getProfile = async () => {
       try {
-        const res = await axios.get(
-          'https://mandarin.api.weniv.co.kr/user/myinfo',
-          {
-            headers: {
-              Authorization: `Bearer ${auth}`,
-            },
-          }
-        );
+        const res = await API.get('/user/myinfo', {
+          headers: {
+            Authorization: `Bearer ${auth}`,
+          },
+        });
 
         const data = res.data.user;
         console.log(data);
@@ -168,16 +161,12 @@ export default function ProfileEdit() {
     };
     if (isUserNameValid && isAccountNameValid) {
       try {
-        const res = await axios.put(
-          'https://mandarin.api.weniv.co.kr/user',
-          userInfo,
-          {
-            headers: {
-              Authorization: `Bearer ${auth}`,
-              'Content-type': 'application/json',
-            },
-          }
-        );
+        const res = await API.put('/user', userInfo, {
+          headers: {
+            Authorization: `Bearer ${auth}`,
+            'Content-type': 'application/json',
+          },
+        });
         console.log('update res', res);
         alert('사용자 정보가 정상적으로 수정되었습니다.');
         localStorage.setItem('account', JSON.stringify(accountName));
