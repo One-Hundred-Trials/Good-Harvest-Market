@@ -44,17 +44,19 @@
 
 ## 2. 팀원 소개 및 역할
 
-| 강풍윤                                        | 고은영                                      | 김미경                                                         | 김혜빈                                      |
-| --------------------------------------------- | ------------------------------------------- | -------------------------------------------------------------- | ------------------------------------------- | --------- |
-| [KANGPUNGYUN](https://github.com/KANGPUNGYUN) | [konveloper](https://github.com/konveloper) | [mixnuts211](https://github.com/https://github.com/mixnuts211) | [khv2644511](https://github.com/khv2644511) |
-| 역할                                          | 역할                                        | 역할                                                           | 역할                                        | 팀장/역할 |
+
+| 강풍윤 | 고은영 |김미경  | 김혜빈 |
+| ------ | ----- | --------- | ----- |
+|<img src="https://user-images.githubusercontent.com/38063033/210302975-ac7be059-2e9f-408b-bfa9-d9a25cf0f309.Png" width="100" height="100"/>|<img src="https://user-images.githubusercontent.com/38063033/210302856-fbe6c660-634b-40e0-a37f-700cae2e55f6.jpg" width="100" height="100"/>|<img src="https://user-images.githubusercontent.com/38063033/210302926-856d26fc-76c8-4428-8b32-45b5b3e530ed.png" width="100" height="100"/>|<img src="https://user-images.githubusercontent.com/38063033/210303041-23d865e2-63f2-4ce7-a924-a212d28ec007.jpeg" width="100" height="100"/>
+| [🔗KANGPUNGYUN](https://github.com/KANGPUNGYUN) | [🔗konveloper](https://github.com/konveloper) | [🔗mixnuts211](https://github.com/https://github.com/mixnuts211) | [🔗khv2644511](https://github.com/khv2644511) |
+| 역할   | 역할 | 역할  | 팀장/역할 |
 
 | 이름   | Github                                                         | 역할분담  |
 | ------ | -------------------------------------------------------------- | --------- |
-| 강풍윤 | [KANGPUNGYUN](https://github.com/KANGPUNGYUN)                  | 역할      |
-| 고은영 | [konveloper](https://github.com/konveloper)                    | 역할      |
-| 김미경 | [mixnuts211](https://github.com/https://github.com/mixnuts211) | 역할      |
-| 김혜빈 | [khv2644511](https://github.com/khv2644511)                    | 팀장 역할 |
+| 강풍윤 | [🔗KANGPUNGYUN](https://github.com/KANGPUNGYUN)                  | 역할      |
+| 고은영 | [🔗konveloper](https://github.com/konveloper)                    | 역할      |
+| 김미경 | [🔗mixnuts211](https://github.com/https://github.com/mixnuts211) | 역할      |
+| 김혜빈 | [🔗khv2644511](https://github.com/khv2644511)                    | 팀장 역할 |
 
 ## 3. 개발 환경
 
