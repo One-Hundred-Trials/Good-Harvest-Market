@@ -2,11 +2,13 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import API from '../../../../API';
+import BlankList from '../../../../components/Blank/BlankList';
 import Header from '../../../../components/Header/Header';
 import ProfileImgAccount from '../../../../components/ProfileImgAccount/ProfileImgAccount';
 import { PageWrap, ConWrap } from '../../../../styles/GlobalStyles';
 import { authAtom } from '../../../../_state/auth';
 import Loading from '../../../Loading/Loading';
+import BlankDuck from '../../../../assets/img/blank-duck.png';
 
 const PageWrapStyle = styled.div`
   ${PageWrap}
@@ -57,7 +59,9 @@ export default function Search() {
       <PageWrapStyle>
         <Header setKeyWord={setKeyWord} />
         {keyword === '' ? (
-          <div>검색어를 입력해주세요~</div>
+          <BlankList imgSrc={BlankDuck} width="70px">
+            찾고 싶은 이웃들을 검색 해보세요!
+          </BlankList>
         ) : (
           <ConWrapStyle>
             {search.map((item, i) => (
