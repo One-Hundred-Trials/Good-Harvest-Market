@@ -84,8 +84,14 @@
 
 💖 김혜빈
 
-- ㅇㅇ
-- ㅇㅇ
+- 로그인 기능 구현
+- 유저 검색 기능 구현
+- 좋아요 기능 구현
+- Outlet을 통한 라우터 기능 구현
+- IntersectionObserver를 통한 무한 스크롤 기능 구현
+- 게시글 조건부 렌더링
+- Profile, PostCard, Input UI
+- eslint, prettier 셋팅
 
 ## 3. 개발 환경
 
