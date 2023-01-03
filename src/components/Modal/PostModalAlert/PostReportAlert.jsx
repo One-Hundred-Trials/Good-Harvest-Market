@@ -42,14 +42,12 @@ export default function PostReportAlert({ setAlert, postId, accountName }) {
       );
       console.log(res);
       if (res) {
-        // alert('신고가 접수되었습니다.');
-        console.log(accountName);
+        alert('신고가 접수되었습니다.');
         setAlert(false);
         moveProfileHandler();
       }
     } catch (err) {
       if (err.response) {
-        // 응답코드 2xx가 아닌 경우
         console.log(err.response.data);
         console.log(err.response.status);
         console.log(err.response.headers);
