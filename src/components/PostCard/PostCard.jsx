@@ -29,7 +29,6 @@ export default function PostCard({ post, author }) {
   const [modal, setModal] = useState(false);
   const [like, setLike] = useState(post.hearted);
   const [likeCount, setLikeCount] = useState(post.heartCount);
-  const auth = useRecoilValue(authAtom);
 
   const modalUp = () => {
     setModal(true);

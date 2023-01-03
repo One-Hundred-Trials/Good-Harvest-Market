@@ -26,10 +26,7 @@ export default function HeartIcon({
   setLike,
   setLikeCount,
 }) {
-  // const [like, setLike] = useState(hearted);
-  // const [likeCount, setLikeCount] = useState(heartCount);
   const auth = useRecoilValue(authAtom);
-  // console.log(postId);
 
   const heartOnHandler = async () => {
     try {
