@@ -1,3 +1,4 @@
+import { logDOM } from '@testing-library/react';
 import React, { useState, useRef, useEffect } from 'react';
 import {
   ModalContainerDiv,
@@ -7,8 +8,9 @@ import {
 } from './PostModalStyle';
 import PostReportAlert from './PostReportAlert';
 
-export default function PostReportModal({ postId, setModal }) {
+export default function PostReportModal({ setModal, postId, accountName }) {
   const [alert, setAlert] = useState(false);
+
   const alertShow = () => {
     setAlert(true);
   };
@@ -36,7 +38,13 @@ export default function PostReportModal({ postId, setModal }) {
             <ModalBtn onClick={alertShow}>신고하기</ModalBtn>
           </li>
         </ModalUl>
-        {alert && <PostReportAlert postId={postId} setAlert={setAlert} />}
+        {alert && (
+          <PostReportAlert
+            accountName={accountName}
+            postId={postId}
+            setAlert={setAlert}
+          />
+        )}
       </ModalContainerDiv>
     </ModalBgtDiv>
   );
