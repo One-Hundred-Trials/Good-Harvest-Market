@@ -20,6 +20,7 @@ module.exports = {
   },
   plugins: ['react', 'import'],
   rules: {
+    'prettier/prettier': ['error', { endOfLine: 'auto' }],
     'import/no-unresolved': 'off',
     'import/extensions': [
       'error',
