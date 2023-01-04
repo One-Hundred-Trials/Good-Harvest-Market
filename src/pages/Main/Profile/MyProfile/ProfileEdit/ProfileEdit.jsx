@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import API from '../../../../../API';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
+import API from '../../../../../API';
 import { authAtom } from '../../../../../_state/auth';
 import UploadProfileImg from '../../../../../components/UploadProfileImg/UploadProfileImg';
 import Input from '../../../../../components/Input/Input';

@@ -26,8 +26,6 @@ module.exports = {
       'error',
       {
         ignorePackages: false,
-      },
-      {
         js: 'never',
         jsx: 'never',
       },

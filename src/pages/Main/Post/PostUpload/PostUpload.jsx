@@ -174,10 +174,7 @@ export default function PostUpload() {
               <ImgWrapStyle>
                 <PreviewImgWrapStyle>
                   <PreviewImg src={previewImgUrl} alt="이미지 미리보기" />
-                  <DeleteImgBtn
-                    type="button"
-                    onClick={deleteImgHandler}
-                  />
+                  <DeleteImgBtn type="button" onClick={deleteImgHandler} />
                 </PreviewImgWrapStyle>
               </ImgWrapStyle>
             )}
@@ -190,4 +187,3 @@ export default function PostUpload() {
     );
   }
 }
-
