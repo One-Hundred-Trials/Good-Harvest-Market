@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
-import { accountAtom } from '../../_state/auth';
-import HeartIcon from '../HearIcon/HeartIcon';
+import { accountAtom, authAtom } from '../../_state/auth';
+import HeartIcon from '../HeartIcon/HeartIcon';
 import CommentIcon from '../CommentsIcon/CommentIcon';
 import ProfileImgAccount from '../ProfileImgAccount/ProfileImgAccount';
 import PostModal from '../../components/Modal/PostModalAlert/PostModal';
@@ -21,11 +21,14 @@ import {
   PostCountDivStyle,
   PostDateStyle,
 } from './PostCardStyle';
+import API from '../../API';
 
 export default function PostCard({ post, author }) {
   const userAccount = useRecoilValue(accountAtom);
   const [slidePx, setSlidePx] = useState(0);
   const [modal, setModal] = useState(false);
+  const [like, setLike] = useState(post.hearted);
+  const [likeCount, setLikeCount] = useState(post.heartCount);
 
   const modalUp = () => {
     setModal(true);
@@ -102,7 +105,13 @@ export default function PostCard({ post, author }) {
             ) : null}
           </PostCarouselStyle>
           <PostCountDivStyle>
-            <HeartIcon heartCount={post.heartCount} />
+            <HeartIcon
+              heartCount={likeCount}
+              like={like}
+              setLike={setLike}
+              setLikeCount={setLikeCount}
+              postId={post.id}
+            />
             <Link to={`/post/${post.id}`}>
               <CommentIcon commentCount={post.commentCount} />
             </Link>
