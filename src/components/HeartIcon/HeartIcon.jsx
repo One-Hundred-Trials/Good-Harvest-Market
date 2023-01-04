@@ -1,23 +1,10 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
-import styled from 'styled-components';
 import API from '../../API';
 import HeartOff from '../../assets/img/icon-heart.png';
 import HeartOn from '../../assets/img/icon-heart-on.png';
-
 import { authAtom } from '../../_state/auth';
-
-const HeartStyle = styled.span`
-  display: flex;
-  align-items: center;
-  gap: 7.82px;
-  color: var(--main-grey-76);
-`;
-
-const HeartImgStyle = styled.img`
-  width: 16.36px;
-  height: 14.55px;
-`;
+import { HeartStyle, HeartImgStyle } from './HeartIconStyle';
 
 export default function HeartIcon({
   heartCount,

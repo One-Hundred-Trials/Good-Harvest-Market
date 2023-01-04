@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { accountAtom, authAtom } from '../../_state/auth';
-import HeartIcon from '../HearIcon/HeartIcon';
+import HeartIcon from '../HeartIcon/HeartIcon';
 import CommentIcon from '../CommentsIcon/CommentIcon';
 import ProfileImgAccount from '../ProfileImgAccount/ProfileImgAccount';
 import PostModal from '../../components/Modal/PostModalAlert/PostModal';
