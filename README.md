@@ -1,7 +1,7 @@
 # <span id="top">🥬 풍년마켓 🥬</span>
 
 (메인 이미지 목업)
-* 🔗 배포 URL
+* 🔗 [배포 URL](https://pungnyeon.netlify.app/)
 * 🔒 서비스 이용 계정
   - ID: pung@naver.com
   - PW : pung100
