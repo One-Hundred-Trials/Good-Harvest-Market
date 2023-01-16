@@ -40,6 +40,7 @@ module.exports = {
     ],
     'import/no-cycle': 'off',
     'no-console': 'off',
+    'no-param-reassign': 0,
     'no-unused-vars': 'off',
     'no-else-return': 'off',
     'no-useless-concat': 'off',

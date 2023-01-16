@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import API from '../../API';
+import { axiosPrivate } from '../../api/api';
 import Input from '../../components/Input/Input';
 import { ContSecStyle, HeaderStyle, InputFormStyle } from './SignupStyle';
 import Button from '../../components/Button/Button';
@@ -33,17 +33,15 @@ const Signup = ({ setIsSignupValid, setSignupForm, signupForm }) => {
           email: signupForm.email,
         },
       };
-      const res = await API.post(
+      const res = await axiosPrivate.post(
         '/user/emailvalid',
         JSON.stringify(emailCheckData),
         {
-          headers: {
-            'Content-type': 'application/json',
-          },
           data: emailCheckData,
         }
       );
       const json = res.data;
+      console.log(json);
       if (json.message === '이미 가입된 이메일 주소 입니다.') {
         setEmailError(`*${json.message}`);
         setEmailIsValid(false);
