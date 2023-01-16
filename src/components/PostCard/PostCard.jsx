@@ -21,7 +21,6 @@ import {
   PostCountDivStyle,
   PostDateStyle,
 } from './PostCardStyle';
-import API from '../../API';
 
 export default function PostCard({ post, author }) {
   const userAccount = useRecoilValue(accountAtom);
