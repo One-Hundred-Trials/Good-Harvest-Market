@@ -21,7 +21,7 @@ export const axiosPrivate = axios.create({
 
 axiosPrivate.interceptors.request.use(
   (config) => {
-    const token = JSON.parse(localStorage.getItem('token'));
+    const token = JSON.parse(localStorage.getItem('auth'));
 
     if (!config.headers.Authorization) {
       config.headers = {

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import { authAtom, accountAtom } from '../../../../_state/auth';
-import API from '../../../../API';
+import { url } from '../../../../api/api';
+import getMyProfile from '../../../../api/Profile/getMyProfile';
+import postImage from '../../../../api/ImgUpload/postImage';
+import createPost from '../../../../api/Feed/createPost';
 import {
   PageWrapStyle,
   ConWrapStyle,
@@ -20,8 +21,7 @@ import UploadFileBtn from '../../../../components/Button/UploadFileBtn/UploadFil
 import Loading from '../../../Loading/Loading';
 
 export default function PostUpload() {
-  const auth = useRecoilValue(authAtom);
-  const account = useRecoilValue(accountAtom);
+  const accountName = JSON.parse(localStorage.getItem('account'));
   const navigate = useNavigate();
   const [profileImg, setProfileImg] = useState('');
   const [isActive, setIsActive] = useState(false);
@@ -32,12 +32,8 @@ export default function PostUpload() {
   useEffect(() => {
     const getMyProfileImg = async () => {
       try {
-        const res = await API.get('/user/myinfo', {
-          headers: {
-            Authorization: `Bearer ${auth}`,
-          },
-        });
-        setProfileImg(res.data.user.image);
+        const res = await getMyProfile();
+        setProfileImg(res.user.image);
       } catch (err) {
         if (err.response) {
           console.log(err.response.data);
@@ -67,12 +63,8 @@ export default function PostUpload() {
     const formData = new FormData();
     formData.append('image', file);
     try {
-      const res = await API.post('/image/uploadfile', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-      const feedImgUrl = `https://mandarin.api.weniv.co.kr/${res.data.filename}`;
+      const res = await postImage(formData);
+      const feedImgUrl = `${url}/${res[0].filename}`;
       return feedImgUrl;
     } catch (err) {
       if (err.response) {
@@ -132,13 +124,8 @@ export default function PostUpload() {
         alert('내용 또는 이미지를 입력해주세요.');
         return;
       }
-      const res = await API.post('/post', JSON.stringify(postData), {
-        headers: {
-          Authorization: `Bearer ${auth}`,
-          'Content-type': 'application/json',
-        },
-      });
-      navigate(`/my_profile/${account}`);
+      const res = await createPost(postData);
+      navigate(`/my_profile/${accountName}`);
     } catch (err) {
       if (err.response) {
         console.log(err.response.data);
