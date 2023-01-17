@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { url } from '../../../../api/api';
+import { baseUrl } from '../../../../api/api';
 import getMyProfile from '../../../../api/Profile/getMyProfile';
 import postImage from '../../../../api/ImgUpload/postImage';
 import createPost from '../../../../api/Feed/createPost';
@@ -64,7 +64,7 @@ export default function PostUpload() {
     formData.append('image', file);
     try {
       const res = await postImage(formData);
-      const feedImgUrl = `${url}/${res[0].filename}`;
+      const feedImgUrl = `${baseUrl}/${res[0].filename}`;
       return feedImgUrl;
     } catch (err) {
       if (err.response) {
