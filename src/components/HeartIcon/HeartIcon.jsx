@@ -1,9 +1,8 @@
 import React from 'react';
-import { useRecoilValue } from 'recoil';
-import API from '../../API';
+import postLiked from '../../api/Feed/postLiked';
+import deleteLiked from '../../api/Feed/deleteLiked';
 import HeartOff from '../../assets/img/icon-heart.png';
 import HeartOn from '../../assets/img/icon-heart-on.png';
-import { authAtom } from '../../_state/auth';
 import { HeartStyle, HeartImgStyle } from './HeartIconStyle';
 
 export default function HeartIcon({
@@ -13,19 +12,11 @@ export default function HeartIcon({
   setLike,
   setLikeCount,
 }) {
-  const auth = useRecoilValue(authAtom);
-
   const heartOnHandler = async () => {
     try {
-      const res = await API.post(`/post/${postId}/heart`, JSON.stringify(), {
-        headers: {
-          Authorization: `Bearer ${auth}`,
-          'Content-type': 'application/json',
-        },
-      });
-      const { post } = res.data;
-      setLike(post.hearted);
-      setLikeCount(post.heartCount);
+      const res = await postLiked(postId);
+      setLike(res.post.hearted);
+      setLikeCount(res.post.heartCount);
     } catch (err) {
       if (err.response) {
         console.log(err.response.data);
@@ -39,15 +30,10 @@ export default function HeartIcon({
 
   const heartOffHandler = async () => {
     try {
-      const res = await API.delete(`/post/${postId}/unheart`, {
-        headers: {
-          Authorization: `Bearer ${auth}`,
-          'Content-type': 'application/json',
-        },
-      });
-      const { post } = res.data;
-      setLike(post.hearted);
-      setLikeCount(post.heartCount);
+      const res = await deleteLiked(postId);
+      console.log(res);
+      setLike(res.post.hearted);
+      setLikeCount(res.post.heartCount);
     } catch (err) {
       if (err.response) {
         console.log(err.response.data);
@@ -58,6 +44,7 @@ export default function HeartIcon({
       }
     }
   };
+
   const handleClick = () => {
     setLike((prev) => !prev);
     if (like) {
