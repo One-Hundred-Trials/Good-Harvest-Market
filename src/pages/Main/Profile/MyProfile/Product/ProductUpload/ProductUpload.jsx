@@ -9,9 +9,10 @@ import {
   ProductImgUploaderStyle,
   ImgVaildMessage,
 } from './ProductUploadStyle';
-import API from '../../../../../../API';
 import { authAtom, accountAtom } from '../../../../../../_state/auth';
+import API from '../../../../../../API';
 import UploadFileBtn from '../../../../../../components/Button/UploadFileBtn/UploadFileBtn';
+import uploadProduct from '../../../../../../api/Product/uploadProduct';
 
 export default function ProductUpload() {
   const auth = useRecoilValue(authAtom);
@@ -139,24 +140,8 @@ export default function ProductUpload() {
     },
   };
 
-  const submitProductHandler = async () => {
-    try {
-      const res = await API.post('/product', JSON.stringify(productData), {
-        headers: {
-          Authorization: `Bearer ${auth}`,
-          'Content-type': 'application/json',
-        },
-      });
-      console.log(res);
-    } catch (err) {
-      if (err.response) {
-        console.log(err.response.data);
-        console.log(err.response.status);
-        console.log(err.response.headers);
-      } else {
-        console.log(`Error: ${err.message}`);
-      }
-    }
+  const submitProductHandler = () => {
+    uploadProduct(productData);
   };
 
   return (
