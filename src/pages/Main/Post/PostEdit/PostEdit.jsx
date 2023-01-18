@@ -18,7 +18,7 @@ import {
   DeleteImgBtn,
 } from '../PostUpload/PostUploadStyle';
 import Header from '../../../../components/Header/Header';
-import UploadFileBtn from '../../../../components/Button/UploadFileBtn/UploadFileBtn';
+import UploadFileBtn from '../../../../components/UploadFileBtn/UploadFileBtn';
 
 export default function PostEdit() {
   const accountName = JSON.parse(localStorage.getItem('account'));

@@ -11,7 +11,7 @@ import {
 } from './ProductUploadStyle';
 import API from '../../../../../../API';
 import { authAtom, accountAtom } from '../../../../../../_state/auth';
-import UploadFileBtn from '../../../../../../components/Button/UploadFileBtn/UploadFileBtn';
+import UploadFileBtn from '../../../../../../components/UploadFileBtn/UploadFileBtn';
 
 export default function ProductUpload() {
   const auth = useRecoilValue(authAtom);

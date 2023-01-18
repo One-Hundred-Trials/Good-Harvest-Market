@@ -12,7 +12,7 @@ import {
 } from './ProductEditStyle';
 import API from '../../../../../../API';
 import { authAtom, accountAtom } from '../../../../../../_state/auth';
-import UploadFileBtn from '../../../../../../components/Button/UploadFileBtn/UploadFileBtn';
+import UploadFileBtn from '../../../../../../components/UploadFileBtn/UploadFileBtn';
 import Loading from '../../../../../Loading/Loading';
 
 export default function ProductUpload() {
