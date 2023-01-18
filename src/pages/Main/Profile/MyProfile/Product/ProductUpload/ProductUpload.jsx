@@ -10,7 +10,8 @@ import {
   ImgVaildMessage,
 } from './ProductUploadStyle';
 import { authAtom, accountAtom } from '../../../../../../_state/auth';
-import API from '../../../../../../API';
+import { baseUrl } from '../../../../../../api/api';
+import postImage from '../../../../../../api/ImgUpload/postImage';
 import UploadFileBtn from '../../../../../../components/Button/UploadFileBtn/UploadFileBtn';
 import uploadProduct from '../../../../../../api/Product/uploadProduct';
 
@@ -111,12 +112,8 @@ export default function ProductUpload() {
     const productImage = e.target.files[0];
     formData.append('image', productImage);
     try {
-      const res = await API.post(`/image/uploadfile`, formData, {
-        headers: {
-          'Content-type': 'multipart/form-data',
-        },
-      });
-      const imgUrl = `https://mandarin.api.weniv.co.kr/${res.data.filename}`;
+      const res = await postImage(formData);
+      const imgUrl = `${baseUrl}/${res[0].filename}`;
       setItemImage(imgUrl);
       saveImgFile(productImage);
     } catch (err) {
