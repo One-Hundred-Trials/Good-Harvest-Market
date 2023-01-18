@@ -1,5 +1,5 @@
 import React from 'react';
-import deleteAPI from '../../../api/deleteAPI';
+import deleteAPI from '../../../../api/deleteAPI';
 import {
   ModalAlertDiv,
   AlertBox,

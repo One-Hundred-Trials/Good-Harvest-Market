@@ -4,8 +4,8 @@ import { useRecoilValue } from 'recoil';
 import API from '../../../../../API';
 import { authAtom } from '../../../../../_state/auth';
 import UploadProfileImg from '../../../../../components/UploadProfileImg/UploadProfileImg';
-import Input from '../../../../../components/Input/Input';
-import Header from '../../../../../components/Header/Header';
+import Input from '../../../../../components/common/Input/Input';
+import Header from '../../../../../components/common/Header/Header';
 import InputFormStyle from '../ProfileEdit/ProfileEditStyle';
 
 export default function ProfileEdit() {

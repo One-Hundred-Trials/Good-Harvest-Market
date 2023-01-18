@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { axiosPrivate } from '../../api/api';
 import postUserSignUp from '../../api/SignUp/postUserSignUp';
-import Input from '../../components/Input/Input';
+import Input from '../../components/common/Input/Input';
 import { ContSecStyle, HeaderStyle, InputFormStyle } from './SignupStyle';
-import Button from '../../components/Button/Button';
+import Button from '../../components/common/Button/Button';
 
 const BtnContainerStyle = styled.div`
   margin-top: 14px;

@@ -8,7 +8,7 @@ import { PageWrap, ConWrap } from '../../../styles/GlobalStyles';
 import PostCard from '../../../components/PostCard/PostCard';
 import Comment from '../../../components/Comment/Comment';
 import CommentInput from '../../../components/CommentInput/CommentInput';
-import Header from '../../../components/Header/Header';
+import Header from '../../../components/common/Header/Header';
 import Loading from '../../Loading/Loading';
 
 const PageWrapStyle = styled.div`

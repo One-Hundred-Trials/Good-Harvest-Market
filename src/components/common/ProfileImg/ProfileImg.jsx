@@ -1,5 +1,5 @@
 import React from 'react';
-import DefaultProfileImg from '../../assets/img/basic-profile.png';
+import DefaultProfileImg from '../../../assets/img/basic-profile.png';
 import { ProfileImgStyle, ProfileContImg } from './ProfileImgStyle';
 
 export default function ProfileImg({ image, width, height }) {

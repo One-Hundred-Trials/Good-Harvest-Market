@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
-import Header from '../../../../../../components/Header/Header';
-import Input from '../../../../../../components/Input/Input';
+import Header from '../../../../../../components/common/Header/Header';
+import Input from '../../../../../../components/common/Input/Input';
 import {
   PageWrapStyle,
   ConWrapStyle,
@@ -12,7 +12,7 @@ import {
 } from './ProductEditStyle';
 import API from '../../../../../../API';
 import { authAtom, accountAtom } from '../../../../../../_state/auth';
-import UploadFileBtn from '../../../../../../components/UploadFileBtn/UploadFileBtn';
+import UploadFileBtn from '../../../../../../components/common/UploadFileBtn/UploadFileBtn';
 import Loading from '../../../../../Loading/Loading';
 
 export default function ProductUpload() {

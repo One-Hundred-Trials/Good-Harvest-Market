@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useRecoilValue } from 'recoil';
-import Header from '../../../../../../components/Header/Header';
-import Input from '../../../../../../components/Input/Input';
+import Header from '../../../../../../components/common/Header/Header';
+import Input from '../../../../../../components/common/Input/Input';
 import {
   PageWrapStyle,
   ConWrapStyle,
@@ -11,7 +11,7 @@ import {
 } from './ProductUploadStyle';
 import API from '../../../../../../API';
 import { authAtom, accountAtom } from '../../../../../../_state/auth';
-import UploadFileBtn from '../../../../../../components/UploadFileBtn/UploadFileBtn';
+import UploadFileBtn from '../../../../../../components/common/UploadFileBtn/UploadFileBtn';
 
 export default function ProductUpload() {
   const auth = useRecoilValue(authAtom);

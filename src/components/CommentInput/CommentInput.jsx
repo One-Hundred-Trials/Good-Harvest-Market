@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import API from '../../API';
-import ProfileImg from '../ProfileImg/ProfileImg';
+import ProfileImg from '../common/ProfileImg/ProfileImg';
 import { authAtom } from '../../_state/auth';
 import BasicProfile from '../../assets/img/basic-profile.png';
 import {

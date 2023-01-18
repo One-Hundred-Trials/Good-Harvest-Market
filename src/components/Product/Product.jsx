@@ -9,7 +9,7 @@ import {
   ProductName,
   ProductPrice,
 } from './ProductStyle';
-import ProductModal from '../../components/Modal/ProductModalAlert/ProductModal';
+import ProductModal from '../../components/common/Modal/ProductModalAlert/ProductModal';
 
 export default function Product({ product, GetProductList }) {
   const userAccount = useRecoilValue(accountAtom);

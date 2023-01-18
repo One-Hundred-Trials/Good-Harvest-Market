@@ -7,9 +7,9 @@ import {
   DescriptStyle,
   InputFormStyle,
 } from './SignupUserProfileStyle';
-import Input from '../../components/Input/Input';
+import Input from '../../components/common/Input/Input';
 import UploadProfileImg from '../../components/UploadProfileImg/UploadProfileImg';
-import Button from '../../components/Button/Button';
+import Button from '../../components/common/Button/Button';
 import basicProfile from '../../assets/img/basic-profile-50.png';
 
 const BtnContainerStyle = styled.div`

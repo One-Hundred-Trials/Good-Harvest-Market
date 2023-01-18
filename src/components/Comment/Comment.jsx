@@ -3,7 +3,7 @@ import { useRecoilValue } from 'recoil';
 import API from '../../API';
 import { authAtom, accountAtom } from '../../_state/auth';
 import iconMoreImg from '../../assets/img/icon-more-18.png';
-import CommentModal from '../Modal/CommentModel/CommentModal';
+import CommentModal from '../common/Modal/CommentModel/CommentModal';
 import {
   CommentContainerStyle,
   InfoStyle,
@@ -11,7 +11,7 @@ import {
   MoreBtn,
   TxtStyle,
 } from './CommentStyle';
-import ProfileImg from '../ProfileImg/ProfileImg';
+import ProfileImg from '../common/ProfileImg/ProfileImg';
 
 export default function Comment({ comment, postId, deleteComment }) {
   const userAccount = useRecoilValue(accountAtom);
