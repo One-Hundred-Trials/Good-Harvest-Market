@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
-import { authAtom } from '../../../../_state/auth';
-import API from '../../../../API';
-import Header from '../../../../components/Header/Header';
-import { PageWrap, ConWrap } from '../../../../styles/GlobalStyles';
-import FollowUserList from '../../../../components/FollowUserList/FollowUserList';
-import Loading from '../../../Loading/Loading';
+import { authAtom } from '../../../../../_state/auth';
+import getFollowersList from '../../../../../api/Follow/getFollowerList';
+import Header from '../../../../../components/Header/Header';
+import { PageWrap, ConWrap } from '../../../../../styles/GlobalStyles';
+import FollowUserList from '../../../../../components/FollowUserList/FollowUserList';
+import Loading from '../../../../Loading/Loading';
 
 const PageWrapStyle = styled.div`
   ${PageWrap}
@@ -36,17 +36,7 @@ export default function FollowerList() {
   useEffect(() => {
     const getFollowerList = async () => {
       try {
-        const res = await API.get(
-          `/profile/${accountname}/follower?limit=100`,
-          {
-            headers: {
-              'Content-type': 'application/json',
-              Authorization: `Bearer ${auth}`,
-            },
-          }
-        );
-
-        const { data } = res;
+        const data = await getFollowersList(accountname);
         setFollowers(data);
       } catch (err) {
         if (err.response) {

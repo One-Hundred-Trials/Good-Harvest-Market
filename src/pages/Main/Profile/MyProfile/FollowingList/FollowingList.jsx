@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { authAtom } from '../../../../../_state/auth';
-import API from '../../../../../API';
+import getFollowingsList from '../../../../../api/Follow/getFollwingList';
 import Header from '../../../../../components/Header/Header';
 import { PageWrap, ConWrap } from '../../../../../styles/GlobalStyles';
 import FollowUserList from '../../../../../components/FollowUserList/FollowUserList';
@@ -36,17 +36,7 @@ export default function FollowingList() {
   useEffect(() => {
     const getFollowingList = async () => {
       try {
-        const res = await API.get(
-          `/profile/${accountname}/following?limit=100`,
-          {
-            headers: {
-              'Content-type': 'application/json',
-              Authorization: `Bearer ${auth}`,
-            },
-          }
-        );
-
-        const { data } = res;
+        const data = await getFollowingsList(accountname);
         setFollowings(data);
       } catch (err) {
         if (err.response) {
