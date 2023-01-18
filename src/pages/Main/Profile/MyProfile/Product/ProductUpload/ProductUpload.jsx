@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useRecoilValue } from 'recoil';
 import Header from '../../../../../../components/Header/Header';
 import Input from '../../../../../../components/Input/Input';
 import {
@@ -9,15 +8,13 @@ import {
   ProductImgUploaderStyle,
   ImgVaildMessage,
 } from './ProductUploadStyle';
-import { authAtom, accountAtom } from '../../../../../../_state/auth';
 import { baseUrl } from '../../../../../../api/api';
 import postImage from '../../../../../../api/ImgUpload/postImage';
 import UploadFileBtn from '../../../../../../components/Button/UploadFileBtn/UploadFileBtn';
 import uploadProduct from '../../../../../../api/Product/uploadProduct';
 
 export default function ProductUpload() {
-  const auth = useRecoilValue(authAtom);
-  const accountname = useRecoilValue(accountAtom);
+  const accountname = JSON.parse(localStorage.getItem('account'));
 
   const [itemName, setItemName] = useState('');
   const [price, setPrice] = useState('');
