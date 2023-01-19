@@ -1,11 +1,8 @@
-import { axiosPrivate } from '../api';
+import putAPI from '../putAPI';
 
 const editProduct = async (id, product) => {
   try {
-    const res = await axiosPrivate.put(
-      `/product/${id}`,
-      JSON.stringify(product)
-    );
+    const res = await putAPI(`/product/${id}`, product);
     console.log(res);
   } catch (err) {
     if (err.response) {
