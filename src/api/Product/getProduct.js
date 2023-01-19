@@ -1,16 +1,10 @@
-import { axiosPrivate } from '../api';
+import getAPI from '../getAPI';
 
-const uploadProduct = async (id, Image, ItemName, Price, Link, ImageSrc) => {
+const getProduct = async (id) => {
   try {
-    const res = await axiosPrivate.get(`/product/detail/${id}`);
+    const res = await getAPI(`/product/detail/${id}`);
     console.log(res);
-    console.log(res.data);
-    const productData = res.data.product;
-    Image(productData.itemImage);
-    ItemName(productData.itemName);
-    Price(new Intl.NumberFormat().format(productData.price));
-    Link(productData.link);
-    ImageSrc(productData.itemImage);
+    return res;
   } catch (err) {
     if (err.response) {
       console.log(err.response.data);
@@ -20,6 +14,7 @@ const uploadProduct = async (id, Image, ItemName, Price, Link, ImageSrc) => {
       console.log(`Error: ${err.message}`);
     }
   }
+  return null;
 };
 
-export default uploadProduct;
+export default getProduct;

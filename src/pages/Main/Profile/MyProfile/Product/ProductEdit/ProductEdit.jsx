@@ -11,7 +11,7 @@ import {
 } from './ProductEditStyle';
 import UploadFileBtn from '../../../../../../components/Button/UploadFileBtn/UploadFileBtn';
 import Loading from '../../../../../Loading/Loading';
-import uploadProduct from '../../../../../../api/Product/getProduct';
+import getProduct from '../../../../../../api/Product/getProduct';
 import postImage from '../../../../../../api/ImgUpload/postImage';
 import { baseUrl } from '../../../../../../api/api';
 import editProduct from '../../../../../../api/Product/putProduct';
@@ -48,15 +48,18 @@ export default function ProductUpload() {
   };
 
   useEffect(() => {
-    uploadProduct(
-      id,
-      setItemImage,
-      setItemName,
-      setPrice,
-      setLink,
-      setImageSrc
-    );
-  }, [id]);
+    const getData = async () => {
+      const res = await getProduct(id);
+      const resData = res.product;
+      console.log(resData);
+      setItemImage(resData.itemImage);
+      setItemName(resData.itemName);
+      setPrice(new Intl.NumberFormat().format(resData.price));
+      setLink(resData.link);
+      setImageSrc(resData.itemImage);
+    };
+    getData();
+  }, [id, itemImage]);
 
   const itemNameHandler = (e) => {
     setItemName(e.target.value);
