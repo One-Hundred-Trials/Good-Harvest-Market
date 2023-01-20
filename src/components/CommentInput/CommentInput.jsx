@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import API from '../../API';
 import ProfileImg from '../ProfileImg/ProfileImg';
-import { authAtom } from '../../_state/auth';
 import BasicProfile from '../../assets/img/basic-profile.png';
 import {
   CommentInputContainerStyle,
@@ -11,9 +8,9 @@ import {
   CommentTxtInput,
   UploadBtn,
 } from './CommentInputStyle';
+import { axiosPrivate } from '../../api/api';
 
 export default function CommentInput({ upDateComment }) {
-  const auth = useRecoilValue(authAtom);
   const { id } = useParams();
   const [content, setContent] = useState('');
   const [btnAble, setBtnAble] = useState(false);
@@ -42,15 +39,9 @@ export default function CommentInput({ upDateComment }) {
 
   const commentUpload = async (e) => {
     try {
-      const res = await API.post(
+      const res = await axiosPrivate.post(
         `/post/${id}/comments`,
-        JSON.stringify(commentData),
-        {
-          headers: {
-            Authorization: `Bearer ${auth}`,
-            'Content-type': 'application/json',
-          },
-        }
+        JSON.stringify(commentData)
       );
       console.log(res);
       inputClear();
