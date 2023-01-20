@@ -1,35 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import { authAtom } from '../../../_state/auth';
-import API from '../../../API';
-import { PageWrap, ConWrap } from '../../../styles/GlobalStyles';
+import {
+  PageWrapStyle,
+  ConWrapStyle,
+  PostCardUlCont,
+  CommentContainerStyle,
+} from './PostStyle';
 import PostCard from '../../../components/PostCard/PostCard';
 import Comment from '../../../components/Comment/Comment';
 import CommentInput from '../../../components/CommentInput/CommentInput';
 import Header from '../../../components/Header/Header';
 import Loading from '../../Loading/Loading';
-
-const PageWrapStyle = styled.div`
-  ${PageWrap}
-`;
-
-const ConWrapStyle = styled.main`
-  ${ConWrap}
-`;
-
-const PostCardUlCont = styled.ul`
-  padding: 20px 16px;
-`;
-
-const CommentContainerStyle = styled.div`
-  padding: 20px 16px;
-  border-top: 1px solid var(--sub-grey-C4);
-`;
+import getAPI from '../../../api/getAPI';
 
 export default function Post() {
-  const auth = useRecoilValue(authAtom);
+  const auth = JSON.parse(localStorage.getItem('auth'));
   const { id } = useParams();
   const [postData, setPostData] = useState('');
   const [postAuthor, setPostAuthor] = useState('');
@@ -38,15 +23,10 @@ export default function Post() {
   useEffect(() => {
     const GetPost = async () => {
       try {
-        const res = await API.get(`/post/${id}`, {
-          headers: {
-            Authorization: `Bearer ${auth}`,
-            'Content-type': 'application/json',
-          },
-        });
-        const { post } = res.data;
+        const res = await getAPI(`/post/${id}`);
+        const { post } = res;
         setPostData(post);
-        const { author } = res.data.post;
+        const { author } = res.post;
         setPostAuthor(author);
       } catch (err) {
         if (err.response) {
@@ -61,15 +41,10 @@ export default function Post() {
     GetPost();
   }, [auth, id]);
 
-  const postCommentList = async () => {
+  const postCommentList = useCallback(async () => {
     try {
-      const res = await API.get(`/post/${id}/comments`, {
-        headers: {
-          Authorization: `Bearer ${auth}`,
-          'Content-type': 'application/json',
-        },
-      });
-      const commentData = res.data.comments;
+      const res = await getAPI(`/post/${id}/comments`);
+      const commentData = res.comments;
       setCommentsList(commentData);
     } catch (err) {
       if (err.response) {
@@ -80,10 +55,11 @@ export default function Post() {
         console.log(`Error: ${err.message}`);
       }
     }
-  };
+  }, [id]);
+
   useEffect(() => {
     postCommentList();
-  }, []);
+  }, [postCommentList]);
 
   if (!postData) return <Loading />;
   else {
