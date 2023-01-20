@@ -1,7 +1,4 @@
 import React, { useState } from 'react';
-import { useRecoilValue } from 'recoil';
-import API from '../../API';
-import { authAtom, accountAtom } from '../../_state/auth';
 import iconMoreImg from '../../assets/img/icon-more-18.png';
 import CommentModal from '../Modal/CommentModel/CommentModal';
 import {
@@ -12,10 +9,11 @@ import {
   TxtStyle,
 } from './CommentStyle';
 import ProfileImg from '../ProfileImg/ProfileImg';
+import deleteAPI from '../../api/deleteAPI';
+import postComment from '../../api/Comment/postComment';
 
 export default function Comment({ comment, postId, deleteComment }) {
-  const userAccount = useRecoilValue(accountAtom);
-  const auth = useRecoilValue(authAtom);
+  const userAccount = JSON.parse(localStorage.getItem('account'));
   const [modal, setModal] = useState(false);
   const [commentText, setReportComment] = useState(`${comment.content}`);
 
@@ -51,12 +49,7 @@ export default function Comment({ comment, postId, deleteComment }) {
 
   const commentDelHandler = async () => {
     try {
-      const res = await API.delete(`/post/${postId}/comments/${comment.id}`, {
-        headers: {
-          'Content-type': 'application/json',
-          Authorization: `Bearer ${auth}`,
-        },
-      });
+      const res = await deleteAPI(`/post/${postId}/comments/${comment.id}`);
       console.log(res);
       deleteComment();
     } catch (err) {
@@ -72,16 +65,7 @@ export default function Comment({ comment, postId, deleteComment }) {
 
   const commentReportHandler = async () => {
     try {
-      const res = await API.post(
-        `/post/${postId}/comments/${comment.id}/report`,
-        JSON.stringify(commentReport),
-        {
-          headers: {
-            'Content-type': 'application/json',
-            Authorization: `Bearer ${auth}`,
-          },
-        }
-      );
+      const res = await postComment(postId, comment, commentReport);
       console.log(res);
       setReportComment(`신고가 접수되었습니다.`);
       setModal(false);
