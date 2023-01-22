@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
-import API from '../../../../../API';
 import { authAtom } from '../../../../../_state/auth';
 import UploadProfileImg from '../../../../../components/UploadProfileImg/UploadProfileImg';
 import Input from '../../../../../components/Input/Input';
 import Header from '../../../../../components/Header/Header';
 import InputFormStyle from '../ProfileEdit/ProfileEditStyle';
+import postImage from '../../../../../api/ImgUpload/postImage';
+import getMyProfile from '../../../../../api/Profile/getMyProfile';
+import postAccountNameValid from '../../../../../api/ProfileSetting/postAccountNameValid';
+import updateMyProfile from '../../../../../api/Profile/updateMyProfile';
 
 export default function ProfileEdit() {
   const auth = useRecoilValue(authAtom);
@@ -62,21 +65,11 @@ export default function ProfileEdit() {
           accountname: accountName,
         },
       };
-      const res = await API.post(
-        '/user/accountnamevalid',
-        JSON.stringify(accountNameData),
-        {
-          headers: {
-            'Content-type': 'application/json',
-          },
-          data: accountNameData,
-        }
-      );
-      const json = res.data;
-      if (json.message === '이미 가입된 계정ID 입니다.') {
-        setAccountNameError(`* ${json.message}`);
+      const res = await postAccountNameValid(accountNameData);
+      if (res.message === '이미 가입된 계정ID 입니다.') {
+        setAccountNameError(`* ${res.message}`);
         setIsUserNameValid(false);
-      } else if (json.message === '사용 가능한 계정ID 입니다.') {
+      } else if (res.message === '사용 가능한 계정ID 입니다.') {
         setAccountNameError('');
         setIsAccountNameValid(true);
       }
@@ -103,16 +96,10 @@ export default function ProfileEdit() {
     const productImage = e.target.files[0];
     formData.append('image', productImage);
     try {
-      const res = await API.post(`/image/uploadfile`, formData, {
-        headers: {
-          'Content-type': 'multipart/form-data',
-        },
-      });
-      console.log(res);
-      const imgUrl = `https://mandarin.api.weniv.co.kr/${res.data.filename}`;
+      const res = await postImage(formData);
+      const imgUrl = `https://mandarin.api.weniv.co.kr/${res[0].filename}`;
       setProfileImg(imgUrl);
       setPrevProfileImg(imgUrl);
-      console.log(profileImg);
     } catch (err) {
       if (err.response) {
         console.log(err.response.data);
@@ -127,14 +114,8 @@ export default function ProfileEdit() {
   useEffect(() => {
     const getProfile = async () => {
       try {
-        const res = await API.get('/user/myinfo', {
-          headers: {
-            Authorization: `Bearer ${auth}`,
-          },
-        });
-
-        const data = res.data.user;
-        console.log(data);
+        const res = await getMyProfile();
+        const data = res.user;
 
         setUserName(data.username);
         setIsUserNameValid(true);
@@ -161,12 +142,7 @@ export default function ProfileEdit() {
     };
     if (isUserNameValid && isAccountNameValid) {
       try {
-        const res = await API.put('/user', userInfo, {
-          headers: {
-            Authorization: `Bearer ${auth}`,
-            'Content-type': 'application/json',
-          },
-        });
+        const res = await updateMyProfile(userInfo);
         console.log('update res', res);
         alert('사용자 정보가 정상적으로 수정되었습니다.');
         localStorage.setItem('account', JSON.stringify(accountName));
