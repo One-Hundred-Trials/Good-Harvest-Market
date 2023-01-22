@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import API from '../../API';
 import {
   ContSecStyle,
   HeaderStyle,
@@ -11,6 +11,9 @@ import Input from '../../components/Input/Input';
 import UploadProfileImg from '../../components/UploadProfileImg/UploadProfileImg';
 import Button from '../../components/Button/Button';
 import basicProfile from '../../assets/img/basic-profile-50.png';
+import postMyProfile from '../../api/ProfileSetting/postMyProfile';
+import postImage from '../../api/ImgUpload/postImage';
+import postAccountNameValid from '../../api/ProfileSetting/postAccountNameValid';
 
 const BtnContainerStyle = styled.div`
   margin-top: 14px;
@@ -29,18 +32,16 @@ export default function SignupUserProfile(porps) {
   const [isUserNameValid, setIsUserNameValid] = useState(false);
   const [isAccountNameValid, setIsAccountNameValid] = useState(false);
 
+  const navigate = useNavigate();
+
   const formData = new FormData();
 
   const UploadProfileImgHandler = async (e) => {
     formData.append('image', e.target.files[0]);
 
     try {
-      const res = await API.post('/image/uploadfile', formData, {
-        headers: {
-          'Content-type': 'multipart/form-data',
-        },
-      });
-      setImgFile(res.data.filename);
+      const res = await postImage(formData);
+      setImgFile(res[0].filename);
     } catch (err) {
       console.error(err);
     }
@@ -87,27 +88,17 @@ export default function SignupUserProfile(porps) {
           accountname: signupForm.accountname,
         },
       };
-      const res = await API.post(
-        '/user/accountnamevalid',
-        JSON.stringify(accountNameData),
-        {
-          headers: {
-            'Content-type': 'application/json',
-          },
-          data: accountNameData,
-        }
-      );
-      const json = res.data;
+      const res = await postAccountNameValid(accountNameData);
       if (!signupForm.accountname) {
         setAccountNameError('* 계정 ID는 필수 입력사항입니다.');
         setIsAccountNameValid(false);
       } else if (!regex.test(signupForm.accountname)) {
         setAccountNameError('* 영문, 숫자, 밑줄, 마침표만 사용할 수 있습니다.');
         setIsAccountNameValid(false);
-      } else if (json.message === '이미 가입된 계정ID 입니다.') {
-        setAccountNameError(`* ${json.message}`);
+      } else if (res.message === '이미 가입된 계정ID 입니다.') {
+        setAccountNameError(`* ${res.message}`);
         setIsUserNameValid(false);
-      } else if (json.message === '사용 가능한 계정ID 입니다.') {
+      } else if (res.message === '사용 가능한 계정ID 입니다.') {
         setAccountNameError('');
         setIsAccountNameValid(true);
       }
@@ -132,19 +123,22 @@ export default function SignupUserProfile(porps) {
         : 'https://mandarin.api.weniv.co.kr/1672571236285.png';
 
     console.log(userProfileImage);
+
+    const userInfo = {
+      user: {
+        username: signupForm.username,
+        email: porps.signupForm.email,
+        password: porps.signupForm.password,
+        accountname: signupForm.accountname,
+        intro: signupForm.intro,
+        image: userProfileImage,
+      },
+    };
     if (isUserNameValid && isAccountNameValid) {
       try {
-        const res = await API.post('/user', {
-          user: {
-            username: signupForm.username,
-            email: porps.signupForm.email,
-            password: porps.signupForm.password,
-            accountname: signupForm.accountname,
-            intro: signupForm.intro,
-            image: userProfileImage,
-          },
-        });
-        window.location.replace('/login');
+        const res = await postMyProfile(userInfo);
+        console.log(res);
+        navigate('/login');
       } catch (err) {
         console.error(err);
       }
