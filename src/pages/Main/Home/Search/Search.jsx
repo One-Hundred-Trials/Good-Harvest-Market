@@ -25,18 +25,8 @@ export default function Search() {
 
   const SearchUserName = useCallback(async () => {
     if (keyword.length > 0) {
-      try {
-        const data = await getSearchUser(keyword);
-        setSearch(data);
-      } catch (err) {
-        if (err.response) {
-          console.log(err.response.data);
-          console.log(err.response.status);
-          console.log(err.response.headers);
-        } else {
-          console.log(`Error: ${err.message}`);
-        }
-      }
+      const data = await getSearchUser(keyword);
+      setSearch(data);
     }
   }, [keyword]);
 
