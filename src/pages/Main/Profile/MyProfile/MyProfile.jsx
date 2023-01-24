@@ -16,6 +16,7 @@ import NotFound from '../../../NotFound/NotFound';
 import Loading from '../../../Loading/Loading';
 import getMyPost from '../../../../api/Profile/getMyPost';
 import getMyProfile from '../../../../api/Profile/getMyProfile';
+import getUserProduct from '../../../../api/Profile/getUserProduct';
 
 const ConWrapStyle = styled.main`
   ${ConWrap}
@@ -61,36 +62,21 @@ export default function MyProfile() {
     setPosts(post);
   }, [pageNumber, account]);
 
-  const GetMyProfileData = async () => {
+  const GetMyProfileData = useCallback(async () => {
     const res = await getMyProfile();
     const { user } = res;
     setMyProfile(user);
-  };
+  }, []);
 
-  const GetProductList = async () => {
-    try {
-      const res = await API.get(`/product/${account}`, {
-        headers: {
-          Authorization: `Bearer ${auth}`,
-          'Content-type': 'application/json',
-        },
-      });
-      setProductList(res.data.product);
-    } catch (err) {
-      if (err.response) {
-        console.log(err.response.data);
-        console.log(err.response.status);
-        console.log(err.response.headers);
-      } else {
-        console.log(`Error: ${err.message}`);
-      }
-    }
-  };
+  const GetProductList = useCallback(async () => {
+    const res = await getUserProduct(account);
+    setProductList(res.product);
+  }, [account]);
 
   useEffect(() => {
     GetMyProfileData();
     GetProductList();
-  }, []);
+  }, [GetMyProfileData, GetProductList]);
 
   useEffect(() => {
     GetMyPostData();
