@@ -19,6 +19,7 @@ import getUserFeedData from '../../../../api/Profile/getUserFeedData';
 import getUserFollowerList from '../../../../api/Profile/getUserFollowerList';
 import getUserProfile from '../../../../api/Profile/getUserProfile';
 import getUserProduct from '../../../../api/Profile/getUserProduct';
+import addFollow from '../../../../api/Profile/addFollow';
 
 const ConWrapStyle = styled.main`
   ${ConWrap}
@@ -64,21 +65,11 @@ export default function UserProfile() {
 
   useEffect(() => {
     getFollowerList();
-  }, [getFollowerList]);
+  }, [getFollowerList, isfollow]);
 
   const handleSubmitFollow = async () => {
-    try {
-      const res = await API.post(`/profile/${id}/follow`, JSON.stringify(), {
-        headers: {
-          Authorization: `Bearer ${auth}`,
-          'Content-type': 'application/json',
-        },
-      });
-
-      setIsFollow(res.data.profile.isfollow);
-    } catch (err) {
-      console.error(err);
-    }
+    const res = await addFollow(id);
+    setIsFollow(res.profile.isfollow);
   };
 
   const handleSubmitUnFollow = async () => {
