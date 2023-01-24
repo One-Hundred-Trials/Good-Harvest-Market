@@ -15,8 +15,8 @@ import Button from '../../../../components/Button/Button';
 import ChatIcon from '../../../../components/ChatIcon/ChatIcon';
 import ShareIcon from '../../../../components/ShareIcon/ShareIcon';
 import Loading from '../../../Loading/Loading';
-import getUserProfile from '../../../../api/Profile/getUserProfile';
 import getUserFeedData from '../../../../api/Profile/getUserFeedData';
+import getUserFollowerList from '../../../../api/Profile/getUserProfile';
 
 const ConWrapStyle = styled.main`
   ${ConWrap}
@@ -51,7 +51,8 @@ export default function UserProfile() {
   const target = useRef();
 
   const getFollowerList = useCallback(async () => {
-    const res = await getUserProfile(account, id);
+    const res = await getUserFollowerList(account, id);
+    console.log(res);
     const filteraccount = Object.values(res).filter(
       (list) => list.accountname === id
     );
@@ -128,6 +129,9 @@ export default function UserProfile() {
         },
       });
       const { profile } = res.data;
+      console.log(res.data);
+      console.log(profile);
+
       setUserProfile(profile);
     } catch (err) {
       if (err.response) {

@@ -1,6 +1,6 @@
 import { axiosPrivate } from '../api';
 
-const getUserProfile = async (account) => {
+const getUserFollowerList = async (account) => {
   try {
     const response = await axiosPrivate.get(
       `/profile/${account}/follower?limit=100`
@@ -17,4 +17,4 @@ const getUserProfile = async (account) => {
   }
   return null;
 };
-export default getUserProfile;
+export default getUserFollowerList;
