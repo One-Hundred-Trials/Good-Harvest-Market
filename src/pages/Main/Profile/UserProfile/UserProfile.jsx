@@ -20,6 +20,7 @@ import getUserFollowerList from '../../../../api/Profile/getUserFollowerList';
 import getUserProfile from '../../../../api/Profile/getUserProfile';
 import getUserProduct from '../../../../api/Profile/getUserProduct';
 import addFollow from '../../../../api/Profile/addFollow';
+import deleteFollow from '../../../../api/Profile/deleteFollow';
 
 const ConWrapStyle = styled.main`
   ${ConWrap}
@@ -73,17 +74,8 @@ export default function UserProfile() {
   };
 
   const handleSubmitUnFollow = async () => {
-    try {
-      const res = await API.delete(`/profile/${id}/unfollow`, {
-        headers: {
-          Authorization: `Bearer ${auth}`,
-          'Content-type': 'application/json',
-        },
-      });
-      setIsFollow(res.data.profile.isfollow);
-    } catch (err) {
-      console.error(err);
-    }
+    const res = await deleteFollow(id);
+    setIsFollow(res.profile.isfollow);
   };
 
   const handleFollowBtn = () => {
