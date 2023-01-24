@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { useRecoilValue } from 'recoil';
@@ -15,6 +15,7 @@ import Button from '../../../../components/Button/Button';
 import ChatIcon from '../../../../components/ChatIcon/ChatIcon';
 import ShareIcon from '../../../../components/ShareIcon/ShareIcon';
 import Loading from '../../../Loading/Loading';
+import getUserProfile from '../../../../api/Profile/getUserProfile';
 
 const ConWrapStyle = styled.main`
   ${ConWrap}
@@ -48,35 +49,19 @@ export default function UserProfile() {
   const [loading, setLoading] = useState(false);
   const target = useRef();
 
-  useEffect(() => {
-    const getFollowerList = async () => {
-      try {
-        const res = await API.get(`/profile/${account}/follower?limit=100`, {
-          headers: {
-            'Content-type': 'application/json',
-            Authorization: `Bearer ${auth}`,
-          },
-        });
+  const getFollowerList = useCallback(async () => {
+    const res = await getUserProfile(account, id);
+    const filteraccount = Object.values(res).filter(
+      (list) => list.accountname === id
+    );
+    if (filteraccount[0] !== undefined) {
+      setIsFollow(filteraccount[0].isfollow);
+    }
+  }, [id, account]);
 
-        const { data } = res;
-        const filteraccount = Object.values(res.data).filter(
-          (list) => list.accountname === id
-        );
-        if (filteraccount[0] !== undefined) {
-          setIsFollow(filteraccount[0].isfollow);
-        }
-      } catch (err) {
-        if (err.response) {
-          console.log(err.response.data);
-          console.log(err.response.status);
-          console.log(err.response.headers);
-        } else {
-          console.log(`Error: ${err.message}`);
-        }
-      }
-    };
+  useEffect(() => {
     getFollowerList();
-  }, [auth, id, account]);
+  }, [getFollowerList]);
 
   const handleSubmitFollow = async () => {
     try {
