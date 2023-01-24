@@ -16,7 +16,9 @@ import ChatIcon from '../../../../components/ChatIcon/ChatIcon';
 import ShareIcon from '../../../../components/ShareIcon/ShareIcon';
 import Loading from '../../../Loading/Loading';
 import getUserFeedData from '../../../../api/Profile/getUserFeedData';
-import getUserFollowerList from '../../../../api/Profile/getUserProfile';
+import getUserFollowerList from '../../../../api/Profile/getUserFollowerList';
+import getUserProfile from '../../../../api/Profile/getUserProfile';
+import getUserProduct from '../../../../api/Profile/getUserProduct';
 
 const ConWrapStyle = styled.main`
   ${ConWrap}
@@ -52,7 +54,6 @@ export default function UserProfile() {
 
   const getFollowerList = useCallback(async () => {
     const res = await getUserFollowerList(account, id);
-    console.log(res);
     const filteraccount = Object.values(res).filter(
       (list) => list.accountname === id
     );
@@ -121,56 +122,22 @@ export default function UserProfile() {
     GetUserPostData();
   }, [GetUserPostData]);
 
-  const GetUserProfileData = async () => {
-    try {
-      const res = await API.get(`/profile/${id}`, {
-        headers: {
-          Authorization: `Bearer ${auth}`,
-        },
-      });
-      const { profile } = res.data;
-      console.log(res.data);
-      console.log(profile);
-
-      setUserProfile(profile);
-    } catch (err) {
-      if (err.response) {
-        // 응답코드 2xx가 아닌 경우
-        console.log(err.response.data);
-        console.log(err.response.status);
-        console.log(err.response.headers);
-      } else {
-        console.log(`Error: ${err.message}`);
-      }
-    }
-  };
+  const GetUserProfileData = useCallback(async () => {
+    const res = await getUserProfile(id);
+    const { profile } = res;
+    setUserProfile(profile);
+  }, [id]);
 
   // 등록된 상품 목록 가져오기
-  const GetProductList = async () => {
-    try {
-      const res = await API.get(`/product/${id}`, {
-        headers: {
-          Authorization: `Bearer ${auth}`,
-          'Content-type': 'application/json',
-        },
-      });
-      setProductList(res.data.product);
-    } catch (err) {
-      if (err.response) {
-        // 응답코드 2xx가 아닌 경우
-        console.log(err.response.data);
-        console.log(err.response.status);
-        console.log(err.response.headers);
-      } else {
-        console.log(`Error: ${err.message}`);
-      }
-    }
-  };
+  const GetProductList = useCallback(async () => {
+    const res = await getUserProduct(id);
+    setProductList(res.product);
+  }, [id]);
 
   useEffect(() => {
     GetUserProfileData();
     GetProductList();
-  }, []);
+  }, [GetUserProfileData, GetProductList]);
 
   useEffect(() => {
     if (loading) {
