@@ -16,6 +16,7 @@ import ChatIcon from '../../../../components/ChatIcon/ChatIcon';
 import ShareIcon from '../../../../components/ShareIcon/ShareIcon';
 import Loading from '../../../Loading/Loading';
 import getUserProfile from '../../../../api/Profile/getUserProfile';
+import getUserFeedData from '../../../../api/Profile/getUserFeedData';
 
 const ConWrapStyle = styled.main`
   ${ConWrap}
@@ -106,29 +107,19 @@ export default function UserProfile() {
 
   const loadMore = () => setPageNumber((prev) => prev + 3);
 
-  const GetUserPostData = async () => {
-    try {
-      const res = await API.get(`/post/${id}/userpost?limit=${pageNumber}`, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${auth}`,
-        },
-      });
-      const { post } = res.data;
-      const haveImage = post.filter((v) => v.image);
-      setPostsAlbum(haveImage);
-      setPosts(post);
-      setLoading(true);
-    } catch (err) {
-      if (err.response) {
-        console.log(err.response.data);
-        console.log(err.response.status);
-        console.log(err.response.headers);
-      } else {
-        console.log(`Error: ${err.message}`);
-      }
-    }
-  };
+  const GetUserPostData = useCallback(async () => {
+    const res = await getUserFeedData(id, pageNumber);
+    const { post } = res;
+    const haveImage = post.filter((v) => v.image);
+    setPostsAlbum(haveImage);
+    setPosts(post);
+    setLoading(true);
+  }, [id, pageNumber]);
+
+  useEffect(() => {
+    GetUserPostData();
+  }, [GetUserPostData]);
+
   const GetUserProfileData = async () => {
     try {
       const res = await API.get(`/profile/${id}`, {
@@ -176,10 +167,6 @@ export default function UserProfile() {
     GetUserProfileData();
     GetProductList();
   }, []);
-
-  useEffect(() => {
-    GetUserPostData();
-  }, [pageNumber]);
 
   useEffect(() => {
     if (loading) {
