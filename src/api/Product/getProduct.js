@@ -1,10 +1,10 @@
-import getAPI from '../getAPI';
+import { axiosPrivate } from '../api';
 
 const getProduct = async (id) => {
   try {
-    const res = await getAPI(`/product/detail/${id}`);
+    const res = await axiosPrivate.get(`/product/detail/${id}`);
     console.log(res);
-    return res;
+    return res.data;
   } catch (err) {
     if (err.response) {
       console.log(err.response.data);

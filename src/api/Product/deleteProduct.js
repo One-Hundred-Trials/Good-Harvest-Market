@@ -1,8 +1,8 @@
-import deleteAPI from '../deleteAPI';
+import { axiosPrivate } from '../api';
 
 const deleteProduct = async (productId) => {
   try {
-    const res = await deleteAPI(`/product/${productId}`);
+    const res = await axiosPrivate.delete(`/product/${productId}`);
     console.log(res);
   } catch (err) {
     if (err.response) {
