@@ -11,7 +11,8 @@ import Comment from '../../../components/Comment/Comment';
 import CommentInput from '../../../components/CommentInput/CommentInput';
 import Header from '../../../components/Header/Header';
 import Loading from '../../Loading/Loading';
-import getAPI from '../../../api/getAPI';
+import getComment from '../../../api/Comment/getComment';
+import getPost from '../../../api/Post/getPost';
 
 export default function Post() {
   const auth = JSON.parse(localStorage.getItem('auth'));
@@ -22,39 +23,19 @@ export default function Post() {
 
   useEffect(() => {
     const GetPost = async () => {
-      try {
-        const res = await getAPI(`/post/${id}`);
-        const { post } = res;
-        setPostData(post);
-        const { author } = res.post;
-        setPostAuthor(author);
-      } catch (err) {
-        if (err.response) {
-          console.log(err.response.data);
-          console.log(err.response.status);
-          console.log(err.response.headers);
-        } else {
-          console.log(`Error: ${err.message}`);
-        }
-      }
+      const res = await getPost(id);
+      const { post } = res;
+      setPostData(post);
+      const { author } = res.post;
+      setPostAuthor(author);
     };
     GetPost();
   }, [auth, id]);
 
   const postCommentList = useCallback(async () => {
-    try {
-      const res = await getAPI(`/post/${id}/comments`);
-      const commentData = res.comments;
-      setCommentsList(commentData);
-    } catch (err) {
-      if (err.response) {
-        console.log(err.response.data);
-        console.log(err.response.status);
-        console.log(err.response.headers);
-      } else {
-        console.log(`Error: ${err.message}`);
-      }
-    }
+    const res = await getComment(id);
+    const commentData = res.comments;
+    setCommentsList(commentData);
   }, [id]);
 
   useEffect(() => {
@@ -78,7 +59,7 @@ export default function Post() {
                     key={comment.id}
                     comment={comment}
                     postId={id}
-                    deleteComment={postCommentList}
+                    updateDeleteComment={postCommentList}
                   />
                 ))
                 .reverse()

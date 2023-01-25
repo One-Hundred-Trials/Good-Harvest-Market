@@ -8,7 +8,7 @@ import {
   CommentTxtInput,
   UploadBtn,
 } from './CommentInputStyle';
-import { axiosPrivate } from '../../api/api';
+import postComment from '../../api/Comment/postComment';
 
 export default function CommentInput({ upDateComment }) {
   const { id } = useParams();
@@ -26,6 +26,7 @@ export default function CommentInput({ upDateComment }) {
   const commentInputHandler = (e) => {
     setContent(e.target.value);
   };
+
   const inputClear = () => {
     setContent('');
     setBtnAble(false);
@@ -37,24 +38,10 @@ export default function CommentInput({ upDateComment }) {
     },
   };
 
-  const commentUpload = async (e) => {
-    try {
-      const res = await axiosPrivate.post(
-        `/post/${id}/comments`,
-        JSON.stringify(commentData)
-      );
-      console.log(res);
-      inputClear();
-      upDateComment();
-    } catch (err) {
-      if (err.response) {
-        console.log(err.response.data);
-        console.log(err.response.status);
-        console.log(err.response.headers);
-      } else {
-        console.log(`Error: ${err.message}`);
-      }
-    }
+  const commentUpload = async () => {
+    await postComment(id, commentData);
+    inputClear();
+    upDateComment();
   };
 
   const handleSubmit = (e) => {

@@ -1,10 +1,10 @@
 import { axiosPrivate } from '../api';
 
-const postComment = async (id, commentData) => {
+const reportComment = async (postId, comment, commentReport) => {
   try {
     const res = await axiosPrivate.post(
-      `/post/${id}/comments`,
-      JSON.stringify(commentData)
+      `/post/${postId}/comments/${comment.id}/report`,
+      JSON.stringify(commentReport)
     );
     console.log(res);
   } catch (err) {
@@ -18,4 +18,4 @@ const postComment = async (id, commentData) => {
   }
 };
 
-export default postComment;
+export default reportComment;

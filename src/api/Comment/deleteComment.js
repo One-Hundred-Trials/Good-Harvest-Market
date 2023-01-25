@@ -1,10 +1,9 @@
 import { axiosPrivate } from '../api';
 
-const postComment = async (id, commentData) => {
+const deleteComment = async (postId, comment) => {
   try {
-    const res = await axiosPrivate.post(
-      `/post/${id}/comments`,
-      JSON.stringify(commentData)
+    const res = await axiosPrivate.delete(
+      `/post/${postId}/comments/${comment.id}`
     );
     console.log(res);
   } catch (err) {
@@ -18,4 +17,4 @@ const postComment = async (id, commentData) => {
   }
 };
 
-export default postComment;
+export default deleteComment;

@@ -9,10 +9,10 @@ import {
   TxtStyle,
 } from './CommentStyle';
 import ProfileImg from '../ProfileImg/ProfileImg';
-import deleteAPI from '../../api/deleteAPI';
-import postComment from '../../api/Comment/postComment';
+import deleteComment from '../../api/Comment/deleteComment';
+import reportComment from '../../api/Comment/reportComment';
 
-export default function Comment({ comment, postId, deleteComment }) {
+export default function Comment({ comment, postId, updateDeleteComment }) {
   const userAccount = JSON.parse(localStorage.getItem('account'));
   const [modal, setModal] = useState(false);
   const [commentText, setReportComment] = useState(`${comment.content}`);
@@ -48,36 +48,14 @@ export default function Comment({ comment, postId, deleteComment }) {
   };
 
   const commentDelHandler = async () => {
-    try {
-      const res = await deleteAPI(`/post/${postId}/comments/${comment.id}`);
-      console.log(res);
-      deleteComment();
-    } catch (err) {
-      if (err.response) {
-        console.log(err.response.data);
-        console.log(err.response.status);
-        console.log(err.response.headers);
-      } else {
-        console.log(`Error: ${err.message}`);
-      }
-    }
+    await deleteComment(postId, comment);
+    updateDeleteComment();
   };
 
   const commentReportHandler = async () => {
-    try {
-      const res = await postComment(postId, comment, commentReport);
-      console.log(res);
-      setReportComment(`신고가 접수되었습니다.`);
-      setModal(false);
-    } catch (err) {
-      if (err.response) {
-        console.log(err.response.data);
-        console.log(err.response.status);
-        console.log(err.response.headers);
-      } else {
-        console.log(`Error: ${err.message}`);
-      }
-    }
+    await reportComment(postId, comment, commentReport);
+    setReportComment(`신고가 접수되었습니다.`);
+    setModal(false);
   };
 
   return (
