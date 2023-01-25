@@ -35,18 +35,8 @@ export default function FollowingList() {
 
   useEffect(() => {
     const getFollowingList = async () => {
-      try {
-        const data = await getFollowingsList(accountname);
-        setFollowings(data);
-      } catch (err) {
-        if (err.response) {
-          console.log(err.response.data);
-          console.log(err.response.status);
-          console.log(err.response.headers);
-        } else {
-          console.log(`Error: ${err.message}`);
-        }
-      }
+      const data = await getFollowingsList(accountname);
+      setFollowings(data);
     };
     getFollowingList();
   }, [auth, accountname]);
