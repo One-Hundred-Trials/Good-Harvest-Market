@@ -50,31 +50,27 @@ export default function ProfileEdit() {
   };
 
   const AccountNameHandler = async (e) => {
-    try {
-      const regex = /^[._a-zA-Z0-9]+$/gi;
+    const regex = /^[._a-zA-Z0-9]+$/gi;
 
-      if (!accountName) {
-        setAccountNameError('* 계정 ID는 필수 입력사항입니다.');
-        setIsAccountNameValid(false);
-      } else if (!regex.test(accountName)) {
-        setAccountNameError('* 영문, 숫자, 밑줄, 마침표만 사용할 수 있습니다.');
-        setIsAccountNameValid(false);
-      }
-      const accountNameData = {
-        user: {
-          accountname: accountName,
-        },
-      };
-      const res = await postAccountNameValid(accountNameData);
-      if (res.message === '이미 가입된 계정ID 입니다.') {
-        setAccountNameError(`* ${res.message}`);
-        setIsUserNameValid(false);
-      } else if (res.message === '사용 가능한 계정ID 입니다.') {
-        setAccountNameError('');
-        setIsAccountNameValid(true);
-      }
-    } catch (err) {
-      console.error(err);
+    if (!accountName) {
+      setAccountNameError('* 계정 ID는 필수 입력사항입니다.');
+      setIsAccountNameValid(false);
+    } else if (!regex.test(accountName)) {
+      setAccountNameError('* 영문, 숫자, 밑줄, 마침표만 사용할 수 있습니다.');
+      setIsAccountNameValid(false);
+    }
+    const accountNameData = {
+      user: {
+        accountname: accountName,
+      },
+    };
+    const res = await postAccountNameValid(accountNameData);
+    if (res.message === '이미 가입된 계정ID 입니다.') {
+      setAccountNameError(`* ${res.message}`);
+      setIsUserNameValid(false);
+    } else if (res.message === '사용 가능한 계정ID 입니다.') {
+      setAccountNameError('');
+      setIsAccountNameValid(true);
     }
   };
 
@@ -95,38 +91,24 @@ export default function ProfileEdit() {
   const uploadImgHandler = async (e) => {
     const productImage = e.target.files[0];
     formData.append('image', productImage);
-    try {
-      const res = await postImage(formData);
-      const imgUrl = `https://mandarin.api.weniv.co.kr/${res[0].filename}`;
-      setProfileImg(imgUrl);
-      setPrevProfileImg(imgUrl);
-    } catch (err) {
-      if (err.response) {
-        console.log(err.response.data);
-        console.log(err.response.status);
-        console.log(err.response.headers);
-      } else {
-        console.log(`Error: ${err.message}`);
-      }
-    }
+    const res = await postImage(formData);
+    const imgUrl = `https://mandarin.api.weniv.co.kr/${res[0].filename}`;
+    setProfileImg(imgUrl);
+    setPrevProfileImg(imgUrl);
   };
 
   useEffect(() => {
     const getProfile = async () => {
-      try {
-        const res = await getMyProfile();
-        const data = res.user;
+      const res = await getMyProfile();
+      const data = res.user;
 
-        setUserName(data.username);
-        setIsUserNameValid(true);
-        setAccountName(data.accountname);
-        setIsAccountNameValid(true);
-        setIntro(data.intro);
-        setPrevProfileImg(data.image);
-        setProfileImg(data.image);
-      } catch (err) {
-        console.error(err);
-      }
+      setUserName(data.username);
+      setIsUserNameValid(true);
+      setAccountName(data.accountname);
+      setIsAccountNameValid(true);
+      setIntro(data.intro);
+      setPrevProfileImg(data.image);
+      setProfileImg(data.image);
     };
     getProfile();
   }, []);
@@ -141,15 +123,11 @@ export default function ProfileEdit() {
       },
     };
     if (isUserNameValid && isAccountNameValid) {
-      try {
-        const res = await updateMyProfile(userInfo);
-        console.log('update res', res);
-        alert('사용자 정보가 정상적으로 수정되었습니다.');
-        localStorage.setItem('account', JSON.stringify(accountName));
-        navigateToMyProfile();
-      } catch (err) {
-        console.error(err);
-      }
+      const res = await updateMyProfile(userInfo);
+      console.log('update res', res);
+      alert('사용자 정보가 정상적으로 수정되었습니다.');
+      localStorage.setItem('account', JSON.stringify(accountName));
+      navigateToMyProfile();
     } else {
       alert('사용자 정보를 형식에 맞게 입력해주세요.');
     }

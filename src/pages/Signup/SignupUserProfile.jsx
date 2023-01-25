@@ -38,13 +38,8 @@ export default function SignupUserProfile(porps) {
 
   const UploadProfileImgHandler = async (e) => {
     formData.append('image', e.target.files[0]);
-
-    try {
-      const res = await postImage(formData);
-      setImgFile(res[0].filename);
-    } catch (err) {
-      console.error(err);
-    }
+    const res = await postImage(formData);
+    setImgFile(res[0].filename);
   };
 
   const inputChangeHandler = (e) => {
@@ -80,30 +75,26 @@ export default function SignupUserProfile(porps) {
   };
 
   const AccountNameHandler = async () => {
-    try {
-      const regex = /^[._a-zA-Z0-9]+$/gi;
+    const regex = /^[._a-zA-Z0-9]+$/gi;
 
-      const accountNameData = {
-        user: {
-          accountname: signupForm.accountname,
-        },
-      };
-      const res = await postAccountNameValid(accountNameData);
-      if (!signupForm.accountname) {
-        setAccountNameError('* 계정 ID는 필수 입력사항입니다.');
-        setIsAccountNameValid(false);
-      } else if (!regex.test(signupForm.accountname)) {
-        setAccountNameError('* 영문, 숫자, 밑줄, 마침표만 사용할 수 있습니다.');
-        setIsAccountNameValid(false);
-      } else if (res.message === '이미 가입된 계정ID 입니다.') {
-        setAccountNameError(`* ${res.message}`);
-        setIsUserNameValid(false);
-      } else if (res.message === '사용 가능한 계정ID 입니다.') {
-        setAccountNameError('');
-        setIsAccountNameValid(true);
-      }
-    } catch (err) {
-      console.error(err);
+    const accountNameData = {
+      user: {
+        accountname: signupForm.accountname,
+      },
+    };
+    const res = await postAccountNameValid(accountNameData);
+    if (!signupForm.accountname) {
+      setAccountNameError('* 계정 ID는 필수 입력사항입니다.');
+      setIsAccountNameValid(false);
+    } else if (!regex.test(signupForm.accountname)) {
+      setAccountNameError('* 영문, 숫자, 밑줄, 마침표만 사용할 수 있습니다.');
+      setIsAccountNameValid(false);
+    } else if (res.message === '이미 가입된 계정ID 입니다.') {
+      setAccountNameError(`* ${res.message}`);
+      setIsUserNameValid(false);
+    } else if (res.message === '사용 가능한 계정ID 입니다.') {
+      setAccountNameError('');
+      setIsAccountNameValid(true);
     }
   };
 
@@ -135,13 +126,9 @@ export default function SignupUserProfile(porps) {
       },
     };
     if (isUserNameValid && isAccountNameValid) {
-      try {
-        const res = await postMyProfile(userInfo);
-        console.log(res);
-        navigate('/login');
-      } catch (err) {
-        console.error(err);
-      }
+      const res = await postMyProfile(userInfo);
+      console.log(res);
+      navigate('/login');
     }
   };
 
