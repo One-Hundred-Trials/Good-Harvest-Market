@@ -31,18 +31,8 @@ export default function PostUpload() {
 
   useEffect(() => {
     const getMyProfileImg = async () => {
-      try {
-        const res = await getMyProfile();
-        setProfileImg(res.user.image);
-      } catch (err) {
-        if (err.response) {
-          console.log(err.response.data);
-          console.log(err.response.status);
-          console.log(err.response.headers);
-        } else {
-          console.log(`Error: ${err.message}`);
-        }
-      }
+      const res = await getMyProfile();
+      setProfileImg(res.user.image);
     };
     getMyProfileImg();
   }, []);
@@ -57,25 +47,6 @@ export default function PostUpload() {
 
   const textChangeHandler = (e) => {
     setText(e.target.value);
-  };
-
-  const imgUploadHandler = async (file) => {
-    const formData = new FormData();
-    formData.append('image', file);
-    try {
-      const res = await postImage(formData);
-      const feedImgUrl = `${baseUrl}/${res[0].filename}`;
-      return feedImgUrl;
-    } catch (err) {
-      if (err.response) {
-        console.log(err.response.data);
-        console.log(err.response.status);
-        console.log(err.response.headers);
-      } else {
-        console.log(`Error: ${err.message}`);
-      }
-      return null;
-    }
   };
 
   const previewImgHandler = (e) => {
@@ -111,6 +82,18 @@ export default function PostUpload() {
     e.target.value = null;
   };
 
+  const imgUploadHandler = async (file) => {
+    const formData = new FormData();
+    formData.append('image', file);
+    if (file) {
+      const res = await postImage(formData);
+      const feedImgUrl = `${baseUrl}/${res[0].filename}`;
+      return feedImgUrl;
+    } else {
+      return null;
+    }
+  };
+
   const postUploadHandler = async () => {
     const image = await imgUploadHandler(imgFile);
     const postData = {
@@ -119,22 +102,8 @@ export default function PostUpload() {
         image,
       },
     };
-    try {
-      if (!text && imgFile.length === 0) {
-        alert('내용 또는 이미지를 입력해주세요.');
-        return;
-      }
-      const res = await createPost(postData);
-      navigate(`/my_profile/${accountName}`);
-    } catch (err) {
-      if (err.response) {
-        console.log(err.response.data);
-        console.log(err.response.status);
-        console.log(err.response.headers);
-      } else {
-        console.log(`Error: ${err.message}`);
-      }
-    }
+    const res = await createPost(postData);
+    navigate(`/my_profile/${accountName}`);
   };
 
   if (!profileImg) return <Loading />;
