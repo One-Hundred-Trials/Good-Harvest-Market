@@ -1,11 +1,12 @@
 import { axiosPrivate } from '../api';
 
-const getMyProfile = async () => {
+const getUserProfile = async (id) => {
   try {
-    const res = await axiosPrivate.get('/user/myinfo');
-    return res.data;
+    const response = await axiosPrivate.get(`/profile/${id}`);
+    return response.data;
   } catch (err) {
     if (err.response) {
+      // 응답코드 2xx가 아닌 경우
       console.log(err.response.data);
       console.log(err.response.status);
       console.log(err.response.headers);
@@ -15,5 +16,4 @@ const getMyProfile = async () => {
   }
   return null;
 };
-
-export default getMyProfile;
+export default getUserProfile;

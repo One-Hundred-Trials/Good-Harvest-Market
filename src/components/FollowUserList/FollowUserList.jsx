@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { authAtom } from '../../_state/auth';
-import API from '../../API';
-import Button from '../common/Button/Button';
-import ProfileImgAccount from '../common/ProfileImgAccount/ProfileImgAccount';
+import Button from '../Button/Button';
+import ProfileImgAccount from '../ProfileImgAccount/ProfileImgAccount';
 import FollowListStyle from './FollowUserListStyle';
+import addFollow from '../../api/Profile/addFollow';
+import deleteFollow from '../../api/Profile/deleteFollow';
 
 export default function FollowUserList({
   image,
@@ -18,36 +19,13 @@ export default function FollowUserList({
   const auth = useRecoilValue(authAtom);
 
   const handleSubmitFollow = async () => {
-    try {
-      const res = await API.post(
-        `/profile/${accountname}/follow`,
-        JSON.stringify(),
-        {
-          headers: {
-            Authorization: `Bearer ${auth}`,
-            'Content-type': 'application/json',
-          },
-        }
-      );
-
-      setFollow(res.data.profile.isfollow);
-    } catch (err) {
-      console.error(err);
-    }
+    const res = await addFollow(accountname);
+    setFollow(res.profile.isfollow);
   };
 
   const handleSubmitUnFollow = async () => {
-    try {
-      const res = await API.delete(`/profile/${accountname}/unfollow`, {
-        headers: {
-          Authorization: `Bearer ${auth}`,
-          'Content-type': 'application/json',
-        },
-      });
-      setFollow(res.data.profile.isfollow);
-    } catch (err) {
-      console.error(err);
-    }
+    const res = await deleteFollow(accountname);
+    setFollow(res.profile.isfollow);
   };
 
   const handleFollowBtn = () => {

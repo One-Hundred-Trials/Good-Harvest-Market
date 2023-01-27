@@ -1,63 +1,29 @@
 import React from 'react';
-import { useRecoilValue } from 'recoil';
-import API from '../../API';
+import postLiked from '../../api/Feed/postLiked';
+import deleteLiked from '../../api/Feed/deleteLiked';
 import HeartOff from '../../assets/img/icon-heart.png';
 import HeartOn from '../../assets/img/icon-heart-on.png';
-import { authAtom } from '../../_state/auth';
 import { HeartStyle, HeartImgStyle } from './HeartIconStyle';
 
 export default function HeartIcon({
-  heartCount,
-  like,
   postId,
+  like,
+  heartCount,
   setLike,
   setLikeCount,
 }) {
-  const auth = useRecoilValue(authAtom);
-
   const heartOnHandler = async () => {
-    try {
-      const res = await API.post(`/post/${postId}/heart`, JSON.stringify(), {
-        headers: {
-          Authorization: `Bearer ${auth}`,
-          'Content-type': 'application/json',
-        },
-      });
-      const { post } = res.data;
-      setLike(post.hearted);
-      setLikeCount(post.heartCount);
-    } catch (err) {
-      if (err.response) {
-        console.log(err.response.data);
-        console.log(err.response.status);
-        console.log(err.response.headers);
-      } else {
-        console.log(`Error: ${err.message}`);
-      }
-    }
+    const res = await postLiked(postId);
+    setLike(res.post.hearted);
+    setLikeCount(res.post.heartCount);
   };
 
   const heartOffHandler = async () => {
-    try {
-      const res = await API.delete(`/post/${postId}/unheart`, {
-        headers: {
-          Authorization: `Bearer ${auth}`,
-          'Content-type': 'application/json',
-        },
-      });
-      const { post } = res.data;
-      setLike(post.hearted);
-      setLikeCount(post.heartCount);
-    } catch (err) {
-      if (err.response) {
-        console.log(err.response.data);
-        console.log(err.response.status);
-        console.log(err.response.headers);
-      } else {
-        console.log(`Error: ${err.message}`);
-      }
-    }
+    const res = await deleteLiked(postId);
+    setLike(res.post.hearted);
+    setLikeCount(res.post.heartCount);
   };
+
   const handleClick = () => {
     setLike((prev) => !prev);
     if (like) {

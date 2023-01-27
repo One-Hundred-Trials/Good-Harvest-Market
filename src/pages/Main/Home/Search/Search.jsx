@@ -1,14 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import API from '../../../../API';
 import BlankList from '../../../../components/Blank/BlankList';
 import Header from '../../../../components/common/Header/Header';
 import ProfileImgAccount from '../../../../components/common/ProfileImgAccount/ProfileImgAccount';
 import { PageWrap, ConWrap } from '../../../../styles/GlobalStyles';
-import { authAtom } from '../../../../_state/auth';
 import Loading from '../../../Loading/Loading';
 import BlankDuck from '../../../../assets/img/blank-duck.png';
+import getSearchUser from '../../../../api/Search/getSearchUser';
 
 const PageWrapStyle = styled.div`
   ${PageWrap}
@@ -22,36 +20,19 @@ const ConWrapStyle = styled.main`
 `;
 
 export default function Search() {
-  const auth = useRecoilValue(authAtom);
   const [search, setSearch] = useState([]);
   const [keyword, setKeyWord] = useState('');
 
-  const SearchUserName = async () => {
+  const SearchUserName = useCallback(async () => {
     if (keyword.length > 0) {
-      try {
-        const res = await API.get(`/user/searchuser/?keyword=${keyword}`, {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${auth}`,
-          },
-        });
-        const { data } = res;
-        setSearch(data);
-      } catch (err) {
-        if (err.response) {
-          console.log(err.response.data);
-          console.log(err.response.status);
-          console.log(err.response.headers);
-        } else {
-          console.log(`Error: ${err.message}`);
-        }
-      }
+      const data = await getSearchUser(keyword);
+      setSearch(data);
     }
-  };
+  }, [keyword]);
 
   useEffect(() => {
     SearchUserName();
-  }, [keyword]);
+  }, [SearchUserName]);
 
   if (!search) return <Loading />;
   else {

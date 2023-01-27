@@ -20,19 +20,9 @@ export default function PostModalAlert({ setAlert, postId }) {
   };
 
   const postDeleteHandler = async () => {
-    try {
-      const res = await deleteAPI(`/post/${postId}`);
-      setAlert(false);
-      moveProfileHandler();
-    } catch (err) {
-      if (err.response) {
-        console.log(err.response.data);
-        console.log(err.response.status);
-        console.log(err.response.headers);
-      } else {
-        console.log(`Error: ${err.message}`);
-      }
-    }
+    const res = await deleteAPI(`/post/${postId}`);
+    setAlert(false);
+    moveProfileHandler();
   };
 
   return (

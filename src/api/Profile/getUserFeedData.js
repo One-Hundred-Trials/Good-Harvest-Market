@@ -1,9 +1,11 @@
 import { axiosPrivate } from '../api';
 
-const getMyProfile = async () => {
+const getUserFeedData = async (id, pageNumber) => {
   try {
-    const res = await axiosPrivate.get('/user/myinfo');
-    return res.data;
+    const response = await axiosPrivate.get(
+      `/post/${id}/userpost?limit=${pageNumber}`
+    );
+    return response.data;
   } catch (err) {
     if (err.response) {
       console.log(err.response.data);
@@ -16,4 +18,4 @@ const getMyProfile = async () => {
   return null;
 };
 
-export default getMyProfile;
+export default getUserFeedData;

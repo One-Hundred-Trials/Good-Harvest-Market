@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { useRecoilValue } from 'recoil';
-import Header from '../../../../../../components/common/Header/Header';
-import Input from '../../../../../../components/common/Input/Input';
+import Header from '../../../../../../components/Header/Header';
+import Input from '../../../../../../components/Input/Input';
 import {
   PageWrapStyle,
   ConWrapStyle,
@@ -9,13 +8,13 @@ import {
   ProductImgUploaderStyle,
   ImgVaildMessage,
 } from './ProductUploadStyle';
-import API from '../../../../../../API';
-import { authAtom, accountAtom } from '../../../../../../_state/auth';
-import UploadFileBtn from '../../../../../../components/common/UploadFileBtn/UploadFileBtn';
+import { baseUrl } from '../../../../../../api/api';
+import postImage from '../../../../../../api/ImgUpload/postImage';
+import UploadFileBtn from '../../../../../../components/Button/UploadFileBtn/UploadFileBtn';
+import uploadProduct from '../../../../../../api/Product/uploadProduct';
 
 export default function ProductUpload() {
-  const auth = useRecoilValue(authAtom);
-  const accountname = useRecoilValue(accountAtom);
+  const accountname = JSON.parse(localStorage.getItem('account'));
 
   const [itemName, setItemName] = useState('');
   const [price, setPrice] = useState('');
@@ -110,12 +109,8 @@ export default function ProductUpload() {
     const productImage = e.target.files[0];
     formData.append('image', productImage);
     try {
-      const res = await API.post(`/image/uploadfile`, formData, {
-        headers: {
-          'Content-type': 'multipart/form-data',
-        },
-      });
-      const imgUrl = `https://mandarin.api.weniv.co.kr/${res.data.filename}`;
+      const res = await postImage(formData);
+      const imgUrl = `${baseUrl}/${res[0].filename}`;
       setItemImage(imgUrl);
       saveImgFile(productImage);
     } catch (err) {
@@ -139,24 +134,8 @@ export default function ProductUpload() {
     },
   };
 
-  const submitProductHandler = async () => {
-    try {
-      const res = await API.post('/product', JSON.stringify(productData), {
-        headers: {
-          Authorization: `Bearer ${auth}`,
-          'Content-type': 'application/json',
-        },
-      });
-      console.log(res);
-    } catch (err) {
-      if (err.response) {
-        console.log(err.response.data);
-        console.log(err.response.status);
-        console.log(err.response.headers);
-      } else {
-        console.log(`Error: ${err.message}`);
-      }
-    }
+  const submitProductHandler = () => {
+    uploadProduct(productData);
   };
 
   return (

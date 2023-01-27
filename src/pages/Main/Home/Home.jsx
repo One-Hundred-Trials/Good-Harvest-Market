@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import Header from '../../../components/common/Header/Header';
@@ -8,6 +8,7 @@ import { ConWrap } from '../../../styles/GlobalStyles';
 import API from '../../../API';
 import { authAtom } from '../../../_state/auth';
 import Loading from '../../Loading/Loading';
+import getFollowFeed from '../../../api/Feed/getFollowFeed';
 
 const ConWrapStyle = styled.main`
   ${ConWrap}
@@ -16,7 +17,6 @@ const ConWrapStyle = styled.main`
 
 export default function Home() {
   const [post, setPost] = useState(null);
-  const auth = useRecoilValue(authAtom);
   const [hasFollowing, setHasFollowing] = useState(null);
   const [pageNumber, setPageNumber] = useState(5);
   const [loading, setLoading] = useState(false);
@@ -24,18 +24,14 @@ export default function Home() {
 
   const loadMore = () => setPageNumber((prev) => prev + 3);
 
-  const userFollowingData = async () => {
+  const userFollowingData = useCallback(async () => {
     try {
-      const res = await API.get(`/post/feed?limit=${pageNumber}`, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${auth}`,
-        },
-      });
-      const { posts } = res.data;
+      const res = await getFollowFeed(pageNumber);
+      console.log(res);
+      const { posts } = res;
       setPost(posts);
       setLoading(true);
-      if (res.data.posts.length > 0) {
+      if (posts.length > 0) {
         setHasFollowing(true);
       }
     } catch (err) {
@@ -47,11 +43,11 @@ export default function Home() {
         console.log(`Error: ${err.message}`);
       }
     }
-  };
+  }, [pageNumber]);
 
   useEffect(() => {
     userFollowingData();
-  }, [pageNumber]);
+  }, [userFollowingData]);
 
   useEffect(() => {
     if (loading) {

@@ -1,9 +1,9 @@
 import { axiosPrivate } from '../api';
 
-const getMyProfile = async () => {
+const deleteProduct = async (productId) => {
   try {
-    const res = await axiosPrivate.get('/user/myinfo');
-    return res.data;
+    const res = await axiosPrivate.delete(`/product/${productId}`);
+    console.log(res);
   } catch (err) {
     if (err.response) {
       console.log(err.response.data);
@@ -13,7 +13,6 @@ const getMyProfile = async () => {
       console.log(`Error: ${err.message}`);
     }
   }
-  return null;
 };
 
-export default getMyProfile;
+export default deleteProduct;

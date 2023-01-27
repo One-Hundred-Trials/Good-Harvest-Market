@@ -1,8 +1,8 @@
 import { axiosPrivate } from '../api';
 
-const getMyProfile = async () => {
+const postLiked = async (postId) => {
   try {
-    const res = await axiosPrivate.get('/user/myinfo');
+    const res = await axiosPrivate.post(`/post/${postId}/heart`);
     return res.data;
   } catch (err) {
     if (err.response) {
@@ -16,4 +16,4 @@ const getMyProfile = async () => {
   return null;
 };
 
-export default getMyProfile;
+export default postLiked;

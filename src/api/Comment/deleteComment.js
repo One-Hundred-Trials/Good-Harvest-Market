@@ -1,9 +1,11 @@
 import { axiosPrivate } from '../api';
 
-const getMyProfile = async () => {
+const deleteComment = async (postId, comment) => {
   try {
-    const res = await axiosPrivate.get('/user/myinfo');
-    return res.data;
+    const res = await axiosPrivate.delete(
+      `/post/${postId}/comments/${comment.id}`
+    );
+    console.log(res);
   } catch (err) {
     if (err.response) {
       console.log(err.response.data);
@@ -13,7 +15,6 @@ const getMyProfile = async () => {
       console.log(`Error: ${err.message}`);
     }
   }
-  return null;
 };
 
-export default getMyProfile;
+export default deleteComment;
