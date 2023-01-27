@@ -1,9 +1,9 @@
-import { imgInstance } from '../api';
+import { axiosPrivate } from '../api';
 
-const postImage = async (imgData) => {
+const updateMyProfile = async (formData) => {
   try {
-    const response = await imgInstance.post('/image/uploadfiles', imgData);
-
+    const response = await axiosPrivate.put('/user', formData);
+    console.log(response);
     return response.data;
   } catch (err) {
     if (err.response) {
@@ -16,4 +16,5 @@ const postImage = async (imgData) => {
   }
   return null;
 };
-export default postImage;
+
+export default updateMyProfile;

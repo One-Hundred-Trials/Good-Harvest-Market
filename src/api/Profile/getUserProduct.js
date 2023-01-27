@@ -1,9 +1,8 @@
-import { imgInstance } from '../api';
+import { axiosPrivate } from '../api';
 
-const postImage = async (imgData) => {
+const getUserProduct = async (accountName) => {
   try {
-    const response = await imgInstance.post('/image/uploadfiles', imgData);
-
+    const response = await axiosPrivate.get(`/product/${accountName}`);
     return response.data;
   } catch (err) {
     if (err.response) {
@@ -16,4 +15,5 @@ const postImage = async (imgData) => {
   }
   return null;
 };
-export default postImage;
+
+export default getUserProduct;

@@ -1,9 +1,10 @@
-import { imgInstance } from '../api';
+import { axiosPrivate } from '../api';
 
-const postImage = async (imgData) => {
+const getFollowingsList = async (account) => {
   try {
-    const response = await imgInstance.post('/image/uploadfiles', imgData);
-
+    const response = await axiosPrivate.get(
+      `/profile/${account}/following?limit=1000`
+    );
     return response.data;
   } catch (err) {
     if (err.response) {
@@ -16,4 +17,5 @@ const postImage = async (imgData) => {
   }
   return null;
 };
-export default postImage;
+
+export default getFollowingsList;
