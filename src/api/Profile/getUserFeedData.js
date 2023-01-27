@@ -1,12 +1,13 @@
 import { axiosPrivate } from '../api';
 
-const getUserProduct = async (id) => {
+const getUserFeedData = async (id, pageNumber) => {
   try {
-    const response = await axiosPrivate.get(`/product/${id}`);
+    const response = await axiosPrivate.get(
+      `/post/${id}/userpost?limit=${pageNumber}`
+    );
     return response.data;
   } catch (err) {
     if (err.response) {
-      // 응답코드 2xx가 아닌 경우
       console.log(err.response.data);
       console.log(err.response.status);
       console.log(err.response.headers);
@@ -17,4 +18,4 @@ const getUserProduct = async (id) => {
   return null;
 };
 
-export default getUserProduct;
+export default getUserFeedData;

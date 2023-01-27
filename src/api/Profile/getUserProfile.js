@@ -1,8 +1,8 @@
 import { axiosPrivate } from '../api';
 
-const getUserProduct = async (id) => {
+const getUserProfile = async (id) => {
   try {
-    const response = await axiosPrivate.get(`/product/${id}`);
+    const response = await axiosPrivate.get(`/profile/${id}`);
     return response.data;
   } catch (err) {
     if (err.response) {
@@ -16,5 +16,4 @@ const getUserProduct = async (id) => {
   }
   return null;
 };
-
-export default getUserProduct;
+export default getUserProfile;
