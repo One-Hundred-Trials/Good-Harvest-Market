@@ -28,8 +28,10 @@ export default function LoginEmail() {
   };
 
   const login = async () => {
-    try {
-      const data = await postUserLogin(loginData);
+    const data = await postUserLogin(loginData);
+    if (data.status === 422) {
+      setMessage('*이메일 또는 비밀번호가 일치하지 않습니다.');
+    } else {
       const { token } = data.user;
       const { accountname } = data.user;
       localStorage.setItem('auth', JSON.stringify(token));
@@ -38,12 +40,7 @@ export default function LoginEmail() {
       if (token) {
         navigate('/home');
       }
-      return data;
-    } catch (error) {
-      setMessage('*이메일 또는 비밀번호가 일치하지 않습니다.');
-      console.error(error);
     }
-    return null;
   };
 
   const handleSubmit = (e) => {
