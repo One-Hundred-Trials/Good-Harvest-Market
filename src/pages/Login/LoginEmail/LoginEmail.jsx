@@ -6,6 +6,7 @@ import Button from '../../../components/Button/Button';
 import Input from '../../../components/Input/Input';
 import { authAtom } from '../../../_state/auth';
 import { ContSecStyle, HeaderStyle, InputFormStyle } from './LoginEmailStyle';
+import postUserLogin from '../../../api/Login/postUserLogin';
 
 export default function LoginEmail() {
   const navigate = useNavigate();
@@ -27,19 +28,10 @@ export default function LoginEmail() {
   };
 
   const login = async () => {
-    try {
-      const response = await axios.post(
-        'https://mandarin.api.weniv.co.kr/user/login',
-        JSON.stringify(loginData),
-        {
-          headers: {
-            'Content-type': 'application/json',
-          },
-          data: loginData,
-        }
-      );
-      const { data } = response;
-      // console.log(data);
+    const data = await postUserLogin(loginData);
+    if (data.status === 422) {
+      setMessage('*이메일 또는 비밀번호가 일치하지 않습니다.');
+    } else {
       const { token } = data.user;
       const { accountname } = data.user;
       localStorage.setItem('auth', JSON.stringify(token));
@@ -48,13 +40,7 @@ export default function LoginEmail() {
       if (token) {
         navigate('/home');
       }
-      return response;
-    } catch (error) {
-      setMessage('*이메일 또는 비밀번호가 일치하지 않습니다.');
-      // console.log(`Error: ${error.message}`);
-      console.error(error);
     }
-    return null;
   };
 
   const handleSubmit = (e) => {

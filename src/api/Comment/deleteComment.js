@@ -1,10 +1,11 @@
-import { imgInstance } from '../api';
+import { axiosPrivate } from '../api';
 
-const postImage = async (imgData) => {
+const deleteComment = async (postId, comment) => {
   try {
-    const response = await imgInstance.post('/image/uploadfiles', imgData);
-
-    return response.data;
+    const res = await axiosPrivate.delete(
+      `/post/${postId}/comments/${comment.id}`
+    );
+    console.log(res);
   } catch (err) {
     if (err.response) {
       console.log(err.response.data);
@@ -14,6 +15,6 @@ const postImage = async (imgData) => {
       console.log(`Error: ${err.message}`);
     }
   }
-  return null;
 };
-export default postImage;
+
+export default deleteComment;

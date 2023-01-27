@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { useRecoilValue } from 'recoil';
@@ -14,6 +14,9 @@ import { authAtom } from '../../../../_state/auth';
 import Button from '../../../../components/Button/Button';
 import NotFound from '../../../NotFound/NotFound';
 import Loading from '../../../Loading/Loading';
+import getMyPost from '../../../../api/Profile/getMyPost';
+import getMyProfile from '../../../../api/Profile/getMyProfile';
+import getUserProduct from '../../../../api/Profile/getUserProduct';
 
 const ConWrapStyle = styled.main`
   ${ConWrap}
@@ -45,88 +48,39 @@ export default function MyProfile() {
   const auth = useRecoilValue(authAtom);
   const account = JSON.parse(localStorage.getItem('account'));
   const { accountname } = useParams();
-
   const onClick = () => {
     setToggle((prev) => !prev);
   };
 
   const loadMore = () => setPageNumber((prev) => prev + 3);
 
-  const GetMyPostData = async () => {
-    try {
-      const res = await API.get(
-        `/post/${account}/userpost?limit=${pageNumber}`,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${auth}`,
-          },
-        }
-      );
-      const { post } = res.data;
-      const haveImage = post.filter((v) => v.image);
-      setPostsAlbum(haveImage);
-      setPosts(post);
-      setLoading(true);
-    } catch (err) {
-      if (err.response) {
-        console.log(err.response.data);
-        console.log(err.response.status);
-        console.log(err.response.headers);
-      } else {
-        console.log(`Error: ${err.message}`);
-      }
-    }
-  };
+  const GetMyPostData = useCallback(async () => {
+    const data = await getMyPost(account, pageNumber);
+    const { post } = data;
+    const haveImage = post.filter((v) => v.image);
+    setPostsAlbum(haveImage);
+    setPosts(post);
+  }, [pageNumber, account]);
 
-  const GetMyProfileData = async () => {
-    try {
-      const res = await API.get(`/user/myinfo`, {
-        headers: {
-          Authorization: `Bearer ${auth}`,
-        },
-      });
-      const { user } = res.data;
-      setMyProfile(user);
-    } catch (err) {
-      if (err.response) {
-        console.log(err.response.data);
-        console.log(err.response.status);
-        console.log(err.response.headers);
-      } else {
-        console.log(`Error: ${err.message}`);
-      }
-    }
-  };
+  const GetMyProfileData = useCallback(async () => {
+    const res = await getMyProfile();
+    const { user } = res;
+    setMyProfile(user);
+  }, []);
 
-  const GetProductList = async () => {
-    try {
-      const res = await API.get(`/product/${account}`, {
-        headers: {
-          Authorization: `Bearer ${auth}`,
-          'Content-type': 'application/json',
-        },
-      });
-      setProductList(res.data.product);
-    } catch (err) {
-      if (err.response) {
-        console.log(err.response.data);
-        console.log(err.response.status);
-        console.log(err.response.headers);
-      } else {
-        console.log(`Error: ${err.message}`);
-      }
-    }
-  };
+  const GetProductList = useCallback(async () => {
+    const res = await getUserProduct(account);
+    setProductList(res.product);
+  }, [account]);
 
   useEffect(() => {
     GetMyProfileData();
     GetProductList();
-  }, []);
+  }, [GetMyProfileData, GetProductList]);
 
   useEffect(() => {
     GetMyPostData();
-  }, [pageNumber]);
+  }, [GetMyPostData]);
 
   useEffect(() => {
     if (loading) {

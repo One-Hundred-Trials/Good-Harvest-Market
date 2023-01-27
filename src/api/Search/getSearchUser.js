@@ -1,9 +1,10 @@
-import { imgInstance } from '../api';
+import { axiosPrivate } from '../api';
 
-const postImage = async (imgData) => {
+const getSearchUser = async (keyword) => {
   try {
-    const response = await imgInstance.post('/image/uploadfiles', imgData);
-
+    const response = await axiosPrivate.get(
+      `/user/searchuser/?keyword=${keyword}`
+    );
     return response.data;
   } catch (err) {
     if (err.response) {
@@ -16,4 +17,5 @@ const postImage = async (imgData) => {
   }
   return null;
 };
-export default postImage;
+
+export default getSearchUser;

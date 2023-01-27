@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import { authAtom, accountAtom } from '../../../../_state/auth';
-import API from '../../../../API';
+import { baseUrl } from '../../../../api/api';
+import getMyProfile from '../../../../api/Profile/getMyProfile';
+import getAPI from '../../../../api/getAPI';
+import putAPI from '../../../../api/putAPI';
+import postImage from '../../../../api/ImgUpload/postImage';
 import {
   PageWrapStyle,
   ConWrapStyle,
@@ -19,9 +21,8 @@ import Header from '../../../../components/Header/Header';
 import UploadFileBtn from '../../../../components/Button/UploadFileBtn/UploadFileBtn';
 
 export default function PostEdit() {
+  const accountName = JSON.parse(localStorage.getItem('account'));
   const navigate = useNavigate();
-  const auth = useRecoilValue(authAtom);
-  const account = useRecoilValue(accountAtom);
   const { id } = useParams();
   const [profileImg, setProfileImg] = useState('');
   const [isActive, setIsActive] = useState(false);
@@ -33,12 +34,8 @@ export default function PostEdit() {
   useEffect(() => {
     const getMyProfileImg = async () => {
       try {
-        const res = await API.get('/user/myinfo', {
-          headers: {
-            Authorization: `Bearer ${auth}`,
-          },
-        });
-        setProfileImg(res.data.user.image);
+        const res = await getMyProfile();
+        setProfileImg(res.user.image);
       } catch (err) {
         if (err.response) {
           console.log(err.response.data);
@@ -55,13 +52,8 @@ export default function PostEdit() {
   useEffect(() => {
     const getPostData = async () => {
       try {
-        const res = await API.get(`/post/${id}`, {
-          headers: {
-            Authorization: `Bearer ${auth}`,
-            'Content-type': 'application/json',
-          },
-        });
-        const { post } = res.data;
+        const res = await getAPI(`/post/${id}`);
+        const { post } = res;
         if (post.content) {
           setText(post.content);
         }
@@ -95,18 +87,11 @@ export default function PostEdit() {
   };
 
   const imgUploadHandler = async (file) => {
-    if (!file) {
-      return prevImgFile;
-    }
     const formData = new FormData();
     formData.append('image', file);
     try {
-      const res = await API.post('/image/uploadfile', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-      const feedImgUrl = `https://mandarin.api.weniv.co.kr/${res.data.filename}`;
+      const res = await postImage(formData);
+      const feedImgUrl = `${baseUrl}/${res[0].filename}`;
       return feedImgUrl;
     } catch (err) {
       if (err.response) {
@@ -166,13 +151,9 @@ export default function PostEdit() {
         alert('내용 또는 이미지를 입력해주세요.');
         return;
       }
-      const res = await API.put(`/post/${id}`, JSON.stringify(postData), {
-        headers: {
-          Authorization: `Bearer ${auth}`,
-          'Content-type': 'application/json',
-        },
-      });
-      navigate(`/my_profile/${account}`);
+      const res = await putAPI(`/post/${id}`, postData);
+      console.log(res);
+      navigate(`/my_profile/${accountName}`);
     } catch (err) {
       if (err.response) {
         console.log(err.response.data);
