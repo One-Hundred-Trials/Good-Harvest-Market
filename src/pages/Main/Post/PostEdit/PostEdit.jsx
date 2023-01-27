@@ -69,18 +69,11 @@ export default function PostEdit() {
   const imgUploadHandler = async (file) => {
     const formData = new FormData();
     formData.append('image', file);
-    try {
+    if (file) {
       const res = await postImage(formData);
       const feedImgUrl = `${baseUrl}/${res[0].filename}`;
       return feedImgUrl;
-    } catch (err) {
-      if (err.response) {
-        console.log(err.response.data);
-        console.log(err.response.status);
-        console.log(err.response.headers);
-      } else {
-        console.log(`Error: ${err.message}`);
-      }
+    } else {
       return null;
     }
   };

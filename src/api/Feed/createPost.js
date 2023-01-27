@@ -12,8 +12,8 @@ const createPost = async (formData) => {
     } else {
       console.log(`Error: ${err.message}`);
     }
-    return null;
   }
+  return null;
 };
 
 export default createPost;

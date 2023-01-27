@@ -2,9 +2,8 @@ import { imgInstance } from '../api';
 
 const postImage = async (imgData) => {
   try {
-    const response = await imgInstance.post('/image/uploadfiles', imgData);
-
-    return response.data;
+    const res = await imgInstance.post('/image/uploadfiles', imgData);
+    return res.data;
   } catch (err) {
     if (err.response) {
       console.log(err.response.data);
@@ -16,4 +15,5 @@ const postImage = async (imgData) => {
   }
   return null;
 };
+
 export default postImage;
