@@ -1,7 +1,4 @@
 import React, { useState } from 'react';
-import { useRecoilValue } from 'recoil';
-import API from '../../API';
-import { authAtom, accountAtom } from '../../_state/auth';
 import iconMoreImg from '../../assets/img/icon-more-18.png';
 import CommentModal from '../Modal/CommentModel/CommentModal';
 import {
@@ -12,10 +9,11 @@ import {
   TxtStyle,
 } from './CommentStyle';
 import ProfileImg from '../ProfileImg/ProfileImg';
+import deleteComment from '../../api/Comment/deleteComment';
+import reportComment from '../../api/Comment/reportComment';
 
-export default function Comment({ comment, postId, deleteComment }) {
-  const userAccount = useRecoilValue(accountAtom);
-  const auth = useRecoilValue(authAtom);
+export default function Comment({ comment, postId, updateDeleteComment }) {
+  const userAccount = JSON.parse(localStorage.getItem('account'));
   const [modal, setModal] = useState(false);
   const [commentText, setReportComment] = useState(`${comment.content}`);
 
@@ -50,50 +48,14 @@ export default function Comment({ comment, postId, deleteComment }) {
   };
 
   const commentDelHandler = async () => {
-    try {
-      const res = await API.delete(`/post/${postId}/comments/${comment.id}`, {
-        headers: {
-          'Content-type': 'application/json',
-          Authorization: `Bearer ${auth}`,
-        },
-      });
-      console.log(res);
-      deleteComment();
-    } catch (err) {
-      if (err.response) {
-        console.log(err.response.data);
-        console.log(err.response.status);
-        console.log(err.response.headers);
-      } else {
-        console.log(`Error: ${err.message}`);
-      }
-    }
+    await deleteComment(postId, comment);
+    updateDeleteComment();
   };
 
   const commentReportHandler = async () => {
-    try {
-      const res = await API.post(
-        `/post/${postId}/comments/${comment.id}/report`,
-        JSON.stringify(commentReport),
-        {
-          headers: {
-            'Content-type': 'application/json',
-            Authorization: `Bearer ${auth}`,
-          },
-        }
-      );
-      console.log(res);
-      setReportComment(`신고가 접수되었습니다.`);
-      setModal(false);
-    } catch (err) {
-      if (err.response) {
-        console.log(err.response.data);
-        console.log(err.response.status);
-        console.log(err.response.headers);
-      } else {
-        console.log(`Error: ${err.message}`);
-      }
-    }
+    await reportComment(postId, comment, commentReport);
+    setReportComment(`신고가 접수되었습니다.`);
+    setModal(false);
   };
 
   return (

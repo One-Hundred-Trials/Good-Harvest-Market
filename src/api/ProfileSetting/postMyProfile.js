@@ -1,9 +1,9 @@
-import { imgInstance } from '../api';
+import { instance } from '../api';
 
-const postImage = async (imgData) => {
+const postMyProfile = async (formData) => {
   try {
-    const response = await imgInstance.post('/image/uploadfiles', imgData);
-
+    console.log(formData);
+    const response = await instance.post('/user', formData);
     return response.data;
   } catch (err) {
     if (err.response) {
@@ -16,4 +16,5 @@ const postImage = async (imgData) => {
   }
   return null;
 };
-export default postImage;
+
+export default postMyProfile;

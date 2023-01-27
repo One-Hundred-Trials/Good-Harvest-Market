@@ -1,7 +1,5 @@
 import React from 'react';
-import { useRecoilValue } from 'recoil';
-import API from '../../../API';
-import { authAtom, accountAtom } from '../../../_state/auth';
+import deleteAPI from '../../../api/deleteAPI';
 import {
   ModalAlertDiv,
   AlertBox,
@@ -12,30 +10,22 @@ import {
 } from './PostAlertStyle';
 
 export default function PostModalAlert({ setAlert, postId }) {
-  const auth = useRecoilValue(authAtom);
-  const account = useRecoilValue(accountAtom);
+  const accountName = JSON.parse(localStorage.getItem('account'));
   const alertClose = () => {
     setAlert(false);
   };
 
   const moveProfileHandler = () => {
-    window.location.replace(`/my_profile/${account}`);
+    window.location.replace(`/my_profile/${accountName}`);
   };
 
   const postDeleteHandler = async () => {
     try {
-      const res = await API.delete(`/post/${postId}`, {
-        headers: {
-          'Content-type': 'application/json',
-          Authorization: `Bearer ${auth}`,
-        },
-      });
-      console.log(res);
+      const res = await deleteAPI(`/post/${postId}`);
       setAlert(false);
       moveProfileHandler();
     } catch (err) {
       if (err.response) {
-        // 응답코드 2xx가 아닌 경우
         console.log(err.response.data);
         console.log(err.response.status);
         console.log(err.response.headers);

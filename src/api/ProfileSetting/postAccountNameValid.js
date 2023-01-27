@@ -1,9 +1,8 @@
-import { imgInstance } from '../api';
+import { instance } from '../api';
 
-const postImage = async (imgData) => {
+const postAccountNameValid = async (formData) => {
   try {
-    const response = await imgInstance.post('/image/uploadfiles', imgData);
-
+    const response = await instance.post('/user/accountnamevalid', formData);
     return response.data;
   } catch (err) {
     if (err.response) {
@@ -16,4 +15,5 @@ const postImage = async (imgData) => {
   }
   return null;
 };
-export default postImage;
+
+export default postAccountNameValid;
