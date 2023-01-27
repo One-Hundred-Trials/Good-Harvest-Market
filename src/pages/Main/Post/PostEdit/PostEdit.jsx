@@ -1,10 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { baseUrl } from '../../../../api/api';
-import getMyProfile from '../../../../api/Profile/getMyProfile';
-import getAPI from '../../../../api/getAPI';
-import putAPI from '../../../../api/putAPI';
-import postImage from '../../../../api/ImgUpload/postImage';
 import {
   PageWrapStyle,
   ConWrapStyle,
@@ -19,6 +14,11 @@ import {
 } from '../PostUpload/PostUploadStyle';
 import Header from '../../../../components/Header/Header';
 import UploadFileBtn from '../../../../components/Button/UploadFileBtn/UploadFileBtn';
+import { baseUrl } from '../../../../api/api';
+import getMyProfile from '../../../../api/Profile/getMyProfile';
+import getPost from '../../../../api/Feed/getPost';
+import postImage from '../../../../api/ImgUpload/postImage';
+import putPost from '../../../../api/Feed/putPost';
 
 export default function PostEdit() {
   const accountName = JSON.parse(localStorage.getItem('account'));
@@ -33,46 +33,26 @@ export default function PostEdit() {
 
   useEffect(() => {
     const getMyProfileImg = async () => {
-      try {
-        const res = await getMyProfile();
-        setProfileImg(res.user.image);
-      } catch (err) {
-        if (err.response) {
-          console.log(err.response.data);
-          console.log(err.response.status);
-          console.log(err.response.headers);
-        } else {
-          console.log(`Error: ${err.message}`);
-        }
-      }
+      const res = await getMyProfile();
+      setProfileImg(res.user.image);
     };
     getMyProfileImg();
   }, []);
 
   useEffect(() => {
     const getPostData = async () => {
-      try {
-        const res = await getAPI(`/post/${id}`);
-        const { post } = res;
-        if (post.content) {
-          setText(post.content);
-        }
-        if (post.image) {
-          setPrevImgFile(post.image);
-          setPreviewImgUrl(post.image);
-        }
-      } catch (err) {
-        if (err.response) {
-          console.log(err.response.data);
-          console.log(err.response.status);
-          console.log(err.response.headers);
-        } else {
-          console.log(`Error: ${err.message}`);
-        }
+      const res = await getPost(id);
+      const { post } = res;
+      if (post.content) {
+        setText(post.content);
+      }
+      if (post.image) {
+        setPrevImgFile(post.image);
+        setPreviewImgUrl(post.image);
       }
     };
     getPostData();
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     if (text || previewImgUrl) {
@@ -89,18 +69,11 @@ export default function PostEdit() {
   const imgUploadHandler = async (file) => {
     const formData = new FormData();
     formData.append('image', file);
-    try {
+    if (file) {
       const res = await postImage(formData);
       const feedImgUrl = `${baseUrl}/${res[0].filename}`;
       return feedImgUrl;
-    } catch (err) {
-      if (err.response) {
-        console.log(err.response.data);
-        console.log(err.response.status);
-        console.log(err.response.headers);
-      } else {
-        console.log(`Error: ${err.message}`);
-      }
+    } else {
       return null;
     }
   };
@@ -146,23 +119,8 @@ export default function PostEdit() {
         image,
       },
     };
-    try {
-      if (!text && imgFile.length === 0) {
-        alert('내용 또는 이미지를 입력해주세요.');
-        return;
-      }
-      const res = await putAPI(`/post/${id}`, postData);
-      console.log(res);
-      navigate(`/my_profile/${accountName}`);
-    } catch (err) {
-      if (err.response) {
-        console.log(err.response.data);
-        console.log(err.response.status);
-        console.log(err.response.headers);
-      } else {
-        console.log(`Error: ${err.message}`);
-      }
-    }
+    const res = await putPost(id, postData);
+    navigate(`/my_profile/${accountName}`);
   };
 
   return (
