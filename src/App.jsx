@@ -19,7 +19,7 @@ import Post from './pages/Main/Post/Post';
 import PostEdit from './pages/Main/Post/PostEdit/PostEdit';
 import ChatRoom from './pages/Main/Chat/ChatRoom/ChatRoom';
 import FollowingList from './pages/Main/Profile/MyProfile/FollowingList/FollowingList';
-import FollowerList from './pages/Main/Profile/FollowerList/FollowerList';
+import FollowerList from './pages/Main/Profile/MyProfile/FollowerList/FollowerList';
 import Splash from './pages/Splash/Splash';
 
 const router = createBrowserRouter([
