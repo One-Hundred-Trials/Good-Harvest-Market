@@ -1,8 +1,8 @@
 import { axiosPrivate } from '../api';
 
-const getMyProfile = async () => {
+const getUserProduct = async (accountName) => {
   try {
-    const response = await axiosPrivate.get('/user/myinfo');
+    const response = await axiosPrivate.get(`/product/${accountName}`);
     return response.data;
   } catch (err) {
     if (err.response) {
@@ -12,8 +12,8 @@ const getMyProfile = async () => {
     } else {
       console.log(`Error: ${err.message}`);
     }
-    return null;
   }
+  return null;
 };
 
-export default getMyProfile;
+export default getUserProduct;
