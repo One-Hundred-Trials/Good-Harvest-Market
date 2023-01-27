@@ -18,7 +18,7 @@ import { baseUrl } from '../../../../api/api';
 import getMyProfile from '../../../../api/Profile/getMyProfile';
 import getPost from '../../../../api/Feed/getPost';
 import postImage from '../../../../api/ImgUpload/postImage';
-import putPost from '../../../../api/Feed/editPost';
+import putPost from '../../../../api/Feed/putPost';
 
 export default function PostEdit() {
   const accountName = JSON.parse(localStorage.getItem('account'));

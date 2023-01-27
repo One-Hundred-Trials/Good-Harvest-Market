@@ -12,6 +12,7 @@ const getMyProfile = async () => {
     } else {
       console.log(`Error: ${err.message}`);
     }
+  }
   return null;
 };
 
