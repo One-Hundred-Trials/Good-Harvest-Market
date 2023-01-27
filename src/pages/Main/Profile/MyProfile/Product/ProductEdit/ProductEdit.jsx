@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Header from '../../../../../../components/Header/Header';
-import Input from '../../../../../../components/Input/Input';
+import Header from '../../../../../../components/common/Header/Header';
+import Input from '../../../../../../components/common/Input/Input';
 import {
   PageWrapStyle,
   ConWrapStyle,
@@ -9,7 +9,7 @@ import {
   ProductImgUploaderStyle,
   ImgVaildMessage,
 } from './ProductEditStyle';
-import UploadFileBtn from '../../../../../../components/Button/UploadFileBtn/UploadFileBtn';
+import UploadFileBtn from '../../../../../../components/common/UploadFileBtn/UploadFileBtn';
 import Loading from '../../../../../Loading/Loading';
 import getProduct from '../../../../../../api/Product/getProduct';
 import postImage from '../../../../../../api/ImgUpload/postImage';

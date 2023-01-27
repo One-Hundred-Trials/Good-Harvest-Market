@@ -12,8 +12,8 @@ import {
   PreviewImg,
   DeleteImgBtn,
 } from '../PostUpload/PostUploadStyle';
-import Header from '../../../../components/Header/Header';
-import UploadFileBtn from '../../../../components/Button/UploadFileBtn/UploadFileBtn';
+import Header from '../../../../components/common/Header/Header';
+import UploadFileBtn from '../../../../components/common/UploadFileBtn/UploadFileBtn';
 import { baseUrl } from '../../../../api/api';
 import getMyProfile from '../../../../api/Profile/getMyProfile';
 import getPost from '../../../../api/Feed/getPost';

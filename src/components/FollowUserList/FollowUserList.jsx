@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { authAtom } from '../../_state/auth';
-import Button from '../Button/Button';
-import ProfileImgAccount from '../ProfileImgAccount/ProfileImgAccount';
+import Button from '../common/Button/Button';
+import ProfileImgAccount from '../common/ProfileImgAccount/ProfileImgAccount';
 import FollowListStyle from './FollowUserListStyle';
 import addFollow from '../../api/Profile/addFollow';
 import deleteFollow from '../../api/Profile/deleteFollow';

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Header from '../../../../../../components/Header/Header';
-import Input from '../../../../../../components/Input/Input';
+import Header from '../../../../../../components/common/Header/Header';
+import Input from '../../../../../../components/common/Input/Input';
 import {
   PageWrapStyle,
   ConWrapStyle,
@@ -10,7 +10,7 @@ import {
 } from './ProductUploadStyle';
 import { baseUrl } from '../../../../../../api/api';
 import postImage from '../../../../../../api/ImgUpload/postImage';
-import UploadFileBtn from '../../../../../../components/Button/UploadFileBtn/UploadFileBtn';
+import UploadFileBtn from '../../../../../../components/common/UploadFileBtn/UploadFileBtn';
 import uploadProduct from '../../../../../../api/Product/uploadProduct';
 
 export default function ProductUpload() {

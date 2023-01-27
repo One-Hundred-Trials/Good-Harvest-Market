@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import ProfileImg from '../ProfileImg/ProfileImg';
+import ProfileImg from '../common/ProfileImg/ProfileImg';
 import BasicProfile from '../../assets/img/basic-profile.png';
 import {
   CommentInputContainerStyle,

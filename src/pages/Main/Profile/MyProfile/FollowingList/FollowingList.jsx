@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { authAtom } from '../../../../../_state/auth';
 import getFollowingsList from '../../../../../api/Follow/getFollwingList';
-import Header from '../../../../../components/Header/Header';
+import Header from '../../../../../components/common/Header/Header';
 import { PageWrap, ConWrap } from '../../../../../styles/GlobalStyles';
 import FollowUserList from '../../../../../components/FollowUserList/FollowUserList';
 import Loading from '../../../../Loading/Loading';

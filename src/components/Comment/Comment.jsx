@@ -8,7 +8,7 @@ import {
   MoreBtn,
   TxtStyle,
 } from './CommentStyle';
-import ProfileImg from '../ProfileImg/ProfileImg';
+import ProfileImg from '../common/ProfileImg/ProfileImg';
 import deleteComment from '../../api/Comment/deleteComment';
 import reportComment from '../../api/Comment/reportComment';
 
