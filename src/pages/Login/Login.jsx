@@ -8,7 +8,7 @@ import {
   SNSFlexDivStyle,
   SNSImgStyle,
 } from './LoginStyle';
-import Button from '../../components/Button/Button';
+import Button from '../../components/common/Button/Button';
 import fullLogo from '../../assets/img/full-logo.png';
 import duckFarm from '../../assets/img/duck-farm.png';
 import kakao from '../../assets/img/kakako.png';

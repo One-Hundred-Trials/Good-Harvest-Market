@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import Header from '../../../components/Header/Header';
+import Header from '../../../components/common/Header/Header';
 import HomeRenderBlank from '../../../components/HomeRender/HomeRenderBlank';
 import PostCardList from '../../../components/PostCardList/PostCardList';
 import { ConWrap } from '../../../styles/GlobalStyles';

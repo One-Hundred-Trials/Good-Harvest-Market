@@ -4,9 +4,9 @@ import { useRecoilValue } from 'recoil';
 import { accountAtom, authAtom } from '../../_state/auth';
 import HeartIcon from '../HeartIcon/HeartIcon';
 import CommentIcon from '../CommentsIcon/CommentIcon';
-import ProfileImgAccount from '../ProfileImgAccount/ProfileImgAccount';
-import PostModal from '../../components/Modal/PostModalAlert/PostModal';
-import PostReportModal from '../../components/Modal/PostModalAlert/PostReportModal';
+import ProfileImgAccount from '../common/ProfileImgAccount/ProfileImgAccount';
+import PostModal from '../../components/common/Modal/PostModalAlert/PostModal';
+import PostReportModal from '../../components/common/Modal/PostModalAlert/PostReportModal';
 import {
   PostAccountLiStyle,
   PostProfileDivStyle,

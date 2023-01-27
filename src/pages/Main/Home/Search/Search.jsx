@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import BlankList from '../../../../components/Blank/BlankList';
-import Header from '../../../../components/Header/Header';
-import ProfileImgAccount from '../../../../components/ProfileImgAccount/ProfileImgAccount';
+import Header from '../../../../components/common/Header/Header';
+import ProfileImgAccount from '../../../../components/common/ProfileImgAccount/ProfileImgAccount';
 import { PageWrap, ConWrap } from '../../../../styles/GlobalStyles';
 import Loading from '../../../Loading/Loading';
 import BlankDuck from '../../../../assets/img/blank-duck.png';

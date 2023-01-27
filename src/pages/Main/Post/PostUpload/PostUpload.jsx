@@ -16,8 +16,8 @@ import {
   PreviewImg,
   DeleteImgBtn,
 } from './PostUploadStyle';
-import Header from '../../../../components/Header/Header';
-import UploadFileBtn from '../../../../components/Button/UploadFileBtn/UploadFileBtn';
+import Header from '../../../../components/common/Header/Header';
+import UploadFileBtn from '../../../../components/common/UploadFileBtn/UploadFileBtn';
 import Loading from '../../../Loading/Loading';
 
 export default function PostUpload() {
