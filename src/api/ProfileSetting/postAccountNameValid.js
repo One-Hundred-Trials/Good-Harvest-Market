@@ -1,9 +1,8 @@
-import { axiosPrivate } from '../api';
+import { instance } from '../api';
 
-const getMyProfile = async () => {
+const postAccountNameValid = async (formData) => {
   try {
-    const response = await axiosPrivate.get('/user/myinfo');
-
+    const response = await instance.post('/user/accountnamevalid', formData);
     return response.data;
   } catch (err) {
     if (err.response) {
@@ -17,4 +16,4 @@ const getMyProfile = async () => {
   return null;
 };
 
-export default getMyProfile;
+export default postAccountNameValid;

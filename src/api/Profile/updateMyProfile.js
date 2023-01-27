@@ -1,9 +1,9 @@
 import { axiosPrivate } from '../api';
 
-const getMyProfile = async () => {
+const updateMyProfile = async (formData) => {
   try {
-    const response = await axiosPrivate.get('/user/myinfo');
-
+    const response = await axiosPrivate.put('/user', formData);
+    console.log(response);
     return response.data;
   } catch (err) {
     if (err.response) {
@@ -17,4 +17,4 @@ const getMyProfile = async () => {
   return null;
 };
 
-export default getMyProfile;
+export default updateMyProfile;

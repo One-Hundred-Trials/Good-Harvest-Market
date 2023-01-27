@@ -1,9 +1,9 @@
-import { axiosPrivate } from '../api';
+import { instance } from '../api';
 
-const getMyProfile = async () => {
+const postMyProfile = async (formData) => {
   try {
-    const response = await axiosPrivate.get('/user/myinfo');
-
+    console.log(formData);
+    const response = await instance.post('/user', formData);
     return response.data;
   } catch (err) {
     if (err.response) {
@@ -17,4 +17,4 @@ const getMyProfile = async () => {
   return null;
 };
 
-export default getMyProfile;
+export default postMyProfile;
