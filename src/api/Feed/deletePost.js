@@ -1,4 +1,4 @@
-import { axiosPrivate } from './api';
+import { axiosPrivate } from '../api';
 
 const deletePost = async (postId) => {
   try {
