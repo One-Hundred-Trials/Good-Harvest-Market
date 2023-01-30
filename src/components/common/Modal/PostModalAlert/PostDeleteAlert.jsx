@@ -1,5 +1,5 @@
 import React from 'react';
-import deleteAPI from '../../../../api/deleteAPI';
+import deletePost from '../../../../api/Feed/deletePost';
 import {
   ModalAlertDiv,
   AlertBox,
@@ -20,7 +20,7 @@ export default function PostModalAlert({ setAlert, postId }) {
   };
 
   const postDeleteHandler = async () => {
-    const res = await deleteAPI(`/post/${postId}`);
+    const res = await deletePost(`/post/${postId}`);
     setAlert(false);
     moveProfileHandler();
   };
