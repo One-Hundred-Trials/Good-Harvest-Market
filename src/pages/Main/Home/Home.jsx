@@ -1,12 +1,9 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import Header from '../../../components/common/Header/Header';
 import HomeRenderBlank from '../../../components/HomeRender/HomeRenderBlank';
 import PostCardList from '../../../components/PostCardList/PostCardList';
 import { ConWrap } from '../../../styles/GlobalStyles';
-import API from '../../../API';
-import { authAtom } from '../../../_state/auth';
 import Loading from '../../Loading/Loading';
 import getFollowFeed from '../../../api/Feed/getFollowFeed';
 
@@ -25,23 +22,12 @@ export default function Home() {
   const loadMore = () => setPageNumber((prev) => prev + 3);
 
   const userFollowingData = useCallback(async () => {
-    try {
-      const res = await getFollowFeed(pageNumber);
-      console.log(res);
-      const { posts } = res;
-      setPost(posts);
-      setLoading(true);
-      if (posts.length > 0) {
-        setHasFollowing(true);
-      }
-    } catch (err) {
-      if (err.response) {
-        console.log(err.response.data);
-        console.log(err.response.status);
-        console.log(err.response.headers);
-      } else {
-        console.log(`Error: ${err.message}`);
-      }
+    const res = await getFollowFeed(pageNumber);
+    const { posts } = res;
+    setPost(posts);
+    setLoading(true);
+    if (posts.length > 0) {
+      setHasFollowing(true);
     }
   }, [pageNumber]);
 
