@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import {
   PageWrapStyle,
   ConWrapStyle,
@@ -66,18 +66,6 @@ export default function PostEdit() {
     setText(e.target.value);
   };
 
-  const imgUploadHandler = async (file) => {
-    const formData = new FormData();
-    formData.append('image', file);
-    if (file) {
-      const res = await postImage(formData);
-      const feedImgUrl = `${baseUrl}/${res[0].filename}`;
-      return feedImgUrl;
-    } else {
-      return null;
-    }
-  };
-
   const previewImgHandler = (e) => {
     const correctForm = /(.*?)\.(jpg|gif|png|jpeg|bmp|tif|heic|)$/;
     const file = e.target.files[0];
@@ -99,7 +87,7 @@ export default function PostEdit() {
       setImgFile(file);
     }
     fileReader.onload = () => {
-      setPreviewImgUrl(fileReader.result);
+      setPreviewImgUrl((preview) => [...preview, fileReader.result]);
       e.target.value = null;
     };
   };
@@ -109,6 +97,21 @@ export default function PostEdit() {
     setPreviewImgUrl('');
     setImgFile('');
     e.target.value = null;
+  };
+
+  const imgUploadHandler = async (file) => {
+    if (!file) {
+      return prevImgFile;
+    }
+    const formData = new FormData();
+    formData.append('image', file);
+    if (file) {
+      const res = await postImage(formData);
+      const feedImgUrl = `${baseUrl}/${res[0].filename}`;
+      return feedImgUrl;
+    } else {
+      return null;
+    }
   };
 
   const editUploadHandler = async () => {
