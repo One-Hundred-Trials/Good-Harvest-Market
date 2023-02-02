@@ -20,7 +20,7 @@ export default function PostModalAlert({ setAlert, postId }) {
   };
 
   const postDeleteHandler = async () => {
-    const res = await deletePost(`/post/${postId}`);
+    const res = await deletePost(postId);
     setAlert(false);
     moveProfileHandler();
   };
