@@ -30,6 +30,7 @@ module.exports = {
         jsx: 'never',
       },
     ],
+    'import/ignore': ['*.png', '*.jpg'],
     'react/destructuring-assignment': [0, 'always'],
     'react/prop-types': 'off',
     'react/jsx-no-useless-fragment': [
@@ -51,7 +52,7 @@ module.exports = {
     'react/jsx-filename-extension': [
       1,
       {
-        extensions: ['.js', '.jsx'],
+        extensions: ['.js', '.jsx', '*.png'],
       },
     ],
 

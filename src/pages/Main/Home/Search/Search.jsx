@@ -1,12 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
-import BlankList from '../../../../components/Blank/BlankList';
-import Header from '../../../../components/common/Header/Header';
-import ProfileImgAccount from '../../../../components/common/ProfileImgAccount/ProfileImgAccount';
-import { PageWrap, ConWrap } from '../../../../styles/GlobalStyles';
-import Loading from '../../../Loading/Loading';
-import BlankDuck from '../../../../assets/img/blank-duck.png';
-import getSearchUser from '../../../../api/Search/getSearchUser';
+import BlankList from 'components/Blank/BlankList';
+import Header from 'components/common/Header/Header';
+import ProfileImgAccount from 'components/common/ProfileImgAccount/ProfileImgAccount';
+import { PageWrap, ConWrap } from 'styles/GlobalStyles';
+import Loading from 'pages/Loading/Loading';
+import getSearchUser from 'api/Search/getSearchUser';
+import BlankDuck from 'assets/img/blank-duck.png';
 
 const PageWrapStyle = styled.div`
   ${PageWrap}
