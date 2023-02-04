@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import styled from 'styled-components';
-import Header from '../../../components/common/Header/Header';
-import HomeRenderBlank from '../../../components/HomeRender/HomeRenderBlank';
-import PostCardList from '../../../components/PostCardList/PostCardList';
-import { ConWrap } from '../../../styles/GlobalStyles';
-import Loading from '../../Loading/Loading';
-import getFollowFeed from '../../../api/Feed/getFollowFeed';
+import Header from 'components/common/Header/Header';
+import HomeRenderBlank from 'components/HomeRender/HomeRenderBlank';
+import PostCardList from 'components/PostCardList/PostCardList';
+import getFollowFeed from 'api/Feed/getFollowFeed';
+import Loading from 'pages/Loading/Loading';
+import { ConWrap } from 'styles/GlobalStyles';
 
 const ConWrapStyle = styled.main`
   ${ConWrap}
