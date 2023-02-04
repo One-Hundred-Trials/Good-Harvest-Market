@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import {
+  H2IR,
   ContSectionStyle,
   LogoiImgStyle,
   DuckImgStyle,
@@ -21,6 +22,7 @@ export default function Login() {
 
   return (
     <ContSectionStyle>
+      <H2IR>풍년마켓 로그인 페이지</H2IR>
       <LogoiImgStyle src={fullLogo} alt="" />
       <DuckImgStyle src={duckFarm} alt="" />
       <Div>

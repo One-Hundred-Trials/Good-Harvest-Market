@@ -18,6 +18,7 @@ import {
   PreviewImgWrapStyle,
   PreviewImg,
   DeleteImgBtn,
+  H2IR,
 } from './PostUploadStyle';
 
 export default function PostUpload() {
@@ -119,6 +120,7 @@ export default function PostUpload() {
           업로드
         </Header>
         <ConWrapStyle>
+          <H2IR>게시글 작성창</H2IR>
           <MyProfileImg src={profileImg} alt="내 프로필 이미지" />
           <PostFormStyle>
             <TextAreaStyle
