@@ -1,8 +1,12 @@
 import styled from 'styled-components';
-import { PageWrap, ConWrap } from '../../../../styles/GlobalStyles';
+import { PageWrap, ConWrap, IR } from '../../../../styles/GlobalStyles';
 
 export const PageWrapStyle = styled.div`
   ${PageWrap}
+`;
+
+export const H2IR = styled.h2`
+  ${IR}
 `;
 
 export const ConWrapStyle = styled.section`

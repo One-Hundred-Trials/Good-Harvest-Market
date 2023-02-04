@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PostAlbumList from '../PostAlbumList/PostAlbumList';
+import { IR } from '../../styles/GlobalStyles';
 
 const UlStyle = styled.ul`
   display: grid;
@@ -11,9 +12,14 @@ const UlStyle = styled.ul`
   background-color: var(--white);
 `;
 
+const H2IR = styled.h2`
+  ${IR}
+`;
+
 export default function PostAlbum({ posts }) {
   return (
     <section>
+      <H2IR>앨범형 게시글</H2IR>
       <UlStyle>
         {posts.map((post) => (
           <PostAlbumList key={post.id} image={post.image.split(',')[0]} />
