@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import Input from 'components/common/Input/Input';
+import UploadProfileImg from 'components/UploadProfileImg/UploadProfileImg';
+import Button from 'components/common/Button/Button';
+import postMyProfile from 'api/ProfileSetting/postMyProfile';
+import postImage from 'api/ImgUpload/postImage';
+import postAccountNameValid from 'api/ProfileSetting/postAccountNameValid';
+import basicProfile from 'assets/img/basic-profile-50.png';
 import {
   ContSecStyle,
   HeaderStyle,
   DescriptStyle,
   InputFormStyle,
 } from './SignupUserProfileStyle';
-import Input from '../../components/common/Input/Input';
-import UploadProfileImg from '../../components/UploadProfileImg/UploadProfileImg';
-import Button from '../../components/common/Button/Button';
-import basicProfile from '../../assets/img/basic-profile-50.png';
-import postMyProfile from '../../api/ProfileSetting/postMyProfile';
-import postImage from '../../api/ImgUpload/postImage';
-import postAccountNameValid from '../../api/ProfileSetting/postAccountNameValid';
 
 const BtnContainerStyle = styled.div`
   margin-top: 14px;
