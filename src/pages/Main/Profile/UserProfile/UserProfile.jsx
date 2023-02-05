@@ -105,10 +105,10 @@ export default function UserProfile() {
   }, [GetUserPostData]);
 
   const GetUserProfileData = useCallback(async () => {
-    const res = await getUserProfile(id);
+    const res = await getUserProfile(id, isfollow);
     const { profile } = res;
     setUserProfile(profile);
-  }, [id]);
+  }, [id, isfollow]);
 
   // 등록된 상품 목록 가져오기
   const GetProductList = useCallback(async () => {

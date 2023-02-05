@@ -3,7 +3,7 @@ import { axiosPrivate } from '../api';
 const getUserFollowerList = async (account) => {
   try {
     const response = await axiosPrivate.get(
-      `/profile/${account}/follower?limit=100`
+      `/profile/${account}/follower/?limit=100`
     );
     return response.data;
   } catch (err) {
