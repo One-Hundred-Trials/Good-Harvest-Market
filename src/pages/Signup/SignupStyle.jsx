@@ -36,3 +36,7 @@ export const InputFormStyle = styled.form`
     }
   }
 `;
+
+export const BtnContainerStyle = styled.div`
+  margin-top: 14px;
+`;
