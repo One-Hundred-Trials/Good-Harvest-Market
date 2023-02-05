@@ -1,13 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
 import PostCard from '../PostCard/PostCard';
-
-const ContUlStyle = styled.ul`
-  background-color: var(--white);
-  & li + li {
-    margin-top: 35px;
-  }
-`;
+import ContUlStyle from './PostCardListStyle';
 
 export default function PostCardList({ posts }) {
   return (
