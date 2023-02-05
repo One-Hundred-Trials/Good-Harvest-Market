@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import IntroLogoBg from '../../assets/img/intro-logo-bg.png';
-import IntroLogoLeaf from '../../assets/img/intro-logo-leaf.png';
-import IntroLogoText from '../../assets/img/intro-logo-text.png';
-import Login from '../Login/Login';
-import Home from '../Main/Home/Home';
+import { Navigate } from 'react-router-dom';
+import IntroLogoBg from 'assets/img/intro-logo-bg.png';
+import IntroLogoLeaf from 'assets/img/intro-logo-leaf.png';
+import IntroLogoText from 'assets/img/intro-logo-text.png';
 import {
   SplashArticleStyle,
   WrapStyle,
