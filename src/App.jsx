@@ -1,5 +1,6 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import { GlobalStyle } from './styles/GlobalStyles';
 import Home from 'pages/Main/Home/Home';
 import Login from 'pages/Login/Login';
@@ -97,8 +98,10 @@ const router = createBrowserRouter([
 function App() {
   return (
     <React.StrictMode>
-      <GlobalStyle />
-      <RouterProvider router={router} />
+      <HelmetProvider>
+        <GlobalStyle />
+        <RouterProvider router={router} />
+      </HelmetProvider>
     </React.StrictMode>
   );
 }
