@@ -1,16 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
 import Blank from '../Blank/Blank';
 import DuckBlank from '../../assets/img/duck-blank.png';
-
-const BlankWrap = styled.section`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 0 72px;
-  text-align: center;
-`;
+import BlankWrap from './HomeRenderStyle';
 
 export default function HomeRenderBlank() {
   return (
