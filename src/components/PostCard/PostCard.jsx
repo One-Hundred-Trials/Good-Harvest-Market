@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
-import { accountAtom, authAtom } from '../../_state/auth';
+import { accountAtom } from '_state/auth';
+import PostModal from 'components/common/Modal/PostModalAlert/PostModal';
+import PostReportModal from 'components/common/Modal/PostModalAlert/PostReportModal';
 import HeartIcon from '../HeartIcon/HeartIcon';
 import CommentIcon from '../CommentsIcon/CommentIcon';
 import ProfileImgAccount from '../common/ProfileImgAccount/ProfileImgAccount';
-import PostModal from '../../components/common/Modal/PostModalAlert/PostModal';
-import PostReportModal from '../../components/common/Modal/PostModalAlert/PostReportModal';
 import {
   PostAccountLiStyle,
   PostProfileDivStyle,

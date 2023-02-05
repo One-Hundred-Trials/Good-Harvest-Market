@@ -1,5 +1,5 @@
 import React from 'react';
-import deleteProduct from '../../../../api/Product/deleteProduct';
+import deleteProduct from 'api/Product/deleteProduct';
 import {
   ModalAlertDiv,
   AlertBox,

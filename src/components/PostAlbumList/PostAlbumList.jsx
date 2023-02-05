@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import iconImgLayer from '../../assets/img/iccon-img-layers.png';
+import iconImgLayer from 'assets/img/iccon-img-layers.png';
 
 const ListStyle = styled.li`
   position: relative;

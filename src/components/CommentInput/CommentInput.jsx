@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import BasicProfile from 'assets/img/basic-profile.png';
+import postComment from 'api/Comment/postComment';
 import ProfileImg from '../common/ProfileImg/ProfileImg';
-import BasicProfile from '../../assets/img/basic-profile.png';
 import {
   CommentInputContainerStyle,
   CommentForm,
   CommentTxtInput,
   UploadBtn,
 } from './CommentInputStyle';
-import postComment from '../../api/Comment/postComment';
 
 export default function CommentInput({ upDateComment }) {
   const { id } = useParams();

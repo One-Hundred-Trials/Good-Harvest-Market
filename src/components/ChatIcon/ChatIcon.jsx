@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import iconMessageCircle from '../../assets/img/icon-message-circle.png';
+import iconMessageCircle from 'assets/img/icon-message-circle.png';
 
 const ChatBtn = styled.button`
   display: flex;

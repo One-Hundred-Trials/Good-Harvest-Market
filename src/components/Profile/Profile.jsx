@@ -8,10 +8,6 @@ import {
 import ProfileAccount from '../common/ProfileAccount/ProfileAccount';
 import FollowersCount from '../FollowersCount/FollowersCount';
 import ProfileImg from '../common/ProfileImg/ProfileImg';
-import ChatIcon from '../../components/ChatIcon/ChatIcon';
-import Button from '../../components/common/Button/Button';
-import ShareIcon from '../../components/ShareIcon/ShareIcon';
-import DefaultProfileImg from '../../assets/img/basic-profile.png';
 
 export default function Profile({
   myProfile,
