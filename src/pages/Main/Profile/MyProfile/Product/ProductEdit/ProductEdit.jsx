@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Header from '../../../../../../components/common/Header/Header';
-import Input from '../../../../../../components/common/Input/Input';
+import Header from 'components/common/Header/Header';
+import Input from 'components/common/Input/Input';
+import UploadFileBtn from 'components/common/UploadFileBtn/UploadFileBtn';
+import Loading from 'pages/Loading/Loading';
+import getProduct from 'api/Product/getProduct';
+import postImage from 'api/ImgUpload/postImage';
+import { baseUrl } from 'api/api';
+import editProduct from 'api/Product/putProduct';
 import {
   PageWrapStyle,
   ConWrapStyle,
@@ -9,12 +15,6 @@ import {
   ProductImgUploaderStyle,
   ImgVaildMessage,
 } from './ProductEditStyle';
-import UploadFileBtn from '../../../../../../components/common/UploadFileBtn/UploadFileBtn';
-import Loading from '../../../../../Loading/Loading';
-import getProduct from '../../../../../../api/Product/getProduct';
-import postImage from '../../../../../../api/ImgUpload/postImage';
-import { baseUrl } from '../../../../../../api/api';
-import editProduct from '../../../../../../api/Product/putProduct';
 
 export default function ProductUpload() {
   const { id } = useParams();

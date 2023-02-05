@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
-import { authAtom } from '../../../../../_state/auth';
-import UploadProfileImg from '../../../../../components/UploadProfileImg/UploadProfileImg';
-import Input from '../../../../../components/common/Input/Input';
-import Header from '../../../../../components/common/Header/Header';
+import { authAtom } from '_state/auth';
+import UploadProfileImg from 'components/UploadProfileImg/UploadProfileImg';
+import Input from 'components/common/Input/Input';
+import Header from 'components/common/Header/Header';
+import postImage from 'api/ImgUpload/postImage';
+import getMyProfile from 'api/Profile/getMyProfile';
+import postAccountNameValid from 'api/ProfileSetting/postAccountNameValid';
+import updateMyProfile from 'api/Profile/updateMyProfile';
 import InputFormStyle from '../ProfileEdit/ProfileEditStyle';
-import postImage from '../../../../../api/ImgUpload/postImage';
-import getMyProfile from '../../../../../api/Profile/getMyProfile';
-import postAccountNameValid from '../../../../../api/ProfileSetting/postAccountNameValid';
-import updateMyProfile from '../../../../../api/Profile/updateMyProfile';
 
 export default function ProfileEdit() {
   const auth = useRecoilValue(authAtom);

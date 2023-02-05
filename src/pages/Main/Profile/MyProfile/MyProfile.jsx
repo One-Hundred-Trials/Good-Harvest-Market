@@ -2,21 +2,20 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { useRecoilValue } from 'recoil';
-import API from '../../../../API';
-import Header from '../../../../components/common/Header/Header';
-import ListOrAlbum from '../../../../components/ListOrAlbum/ListOrAlbum';
-import PostAlbum from '../../../../components/PostAlbum/PostAlbum';
-import PostCardList from '../../../../components/PostCardList/PostCardList';
-import ProductList from '../../../../components/ProductList/ProductList';
-import Profile from '../../../../components/Profile/Profile';
-import { ConWrap } from '../../../../styles/GlobalStyles';
-import { authAtom } from '../../../../_state/auth';
-import Button from '../../../../components/common/Button/Button';
-import NotFound from '../../../NotFound/NotFound';
-import Loading from '../../../Loading/Loading';
-import getMyPost from '../../../../api/Profile/getMyPost';
-import getMyProfile from '../../../../api/Profile/getMyProfile';
-import getUserProduct from '../../../../api/Profile/getUserProduct';
+import Header from 'components/common/Header/Header';
+import ListOrAlbum from 'components/ListOrAlbum/ListOrAlbum';
+import PostAlbum from 'components/PostAlbum/PostAlbum';
+import PostCardList from 'components/PostCardList/PostCardList';
+import ProductList from 'components/ProductList/ProductList';
+import Profile from 'components/Profile/Profile';
+import { ConWrap } from 'styles/GlobalStyles';
+import { authAtom } from '_state/auth';
+import Button from 'components/common/Button/Button';
+import NotFound from 'pages/NotFound/NotFound';
+import Loading from 'pages/Loading/Loading';
+import getMyPost from 'api/Profile/getMyPost';
+import getMyProfile from 'api/Profile/getMyProfile';
+import getUserProduct from 'api/Profile/getUserProduct';
 
 const ConWrapStyle = styled.main`
   ${ConWrap}
