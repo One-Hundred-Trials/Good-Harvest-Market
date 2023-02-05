@@ -1,18 +1,18 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
+import PostCard from 'components/PostCard/PostCard';
+import Comment from 'components/Comment/Comment';
+import CommentInput from 'components/CommentInput/CommentInput';
+import Header from 'components/common/Header/Header';
+import Loading from 'pages/Loading/Loading';
+import getComment from 'api/Comment/getComment';
+import getPost from 'api/Post/getPost';
 import {
   PageWrapStyle,
   ConWrapStyle,
   PostCardUlCont,
   CommentContainerStyle,
 } from './PostStyle';
-import PostCard from '../../../components/PostCard/PostCard';
-import Comment from '../../../components/Comment/Comment';
-import CommentInput from '../../../components/CommentInput/CommentInput';
-import Header from '../../../components/common/Header/Header';
-import Loading from '../../Loading/Loading';
-import getComment from '../../../api/Comment/getComment';
-import getPost from '../../../api/Post/getPost';
 
 export default function Post() {
   const auth = JSON.parse(localStorage.getItem('auth'));
