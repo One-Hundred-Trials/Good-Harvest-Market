@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import ChatListItem from '../../../components/ChatListItem/ChatListItem';
-import Header from '../../../components/common/Header/Header';
-import { ConWrap } from '../../../styles/GlobalStyles';
+import ChatListItem from 'components/ChatListItem/ChatListItem';
+import Header from 'components/common/Header/Header';
+import { ConWrap } from 'styles/GlobalStyles';
 
 const ChatListWrapStyle = styled.ul`
   ${ConWrap}
