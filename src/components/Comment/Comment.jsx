@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import iconMoreImg from '../../assets/img/icon-more-18.png';
+import iconMoreImg from '../../assets/img/icon-more.png';
 import CommentModal from '../common/Modal/CommentModel/CommentModal';
 import {
   CommentContainerStyle,

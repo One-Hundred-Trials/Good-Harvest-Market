@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import iconHome from '../../../assets/img/icon-home.png';
 import iconHomeFill from '../../../assets/img/icon-home-fill.png';
-import iconMessage from '../../../assets/img/icon-message-circle-1.png';
+import iconMessage from '../../../assets/img/icon-message-circle.png';
 import iconMessageFill from '../../../assets/img/icon-message-circle-fill.png';
 import iconEdit from '../../../assets/img/icon-edit.png';
 import iconUser from '../../../assets/img/icon-user.png';

@@ -11,9 +11,9 @@ import {
 import Button from '../../components/common/Button/Button';
 import fullLogo from '../../assets/img/full-logo.png';
 import duckFarm from '../../assets/img/duck-farm.png';
-import kakao from '../../assets/img/kakako.png';
-import google from '../../assets/img/google.png';
-import facebook from '../../assets/img/facebook.png';
+import logoKakao from '../../assets/img/logo-kakako.png';
+import logoGoogle from '../../assets/img/logo-google.png';
+import logoFacebook from '../../assets/img/logo-facebook.png';
 import Splash from '../Splash/Splash';
 
 export default function Login() {
@@ -33,15 +33,15 @@ export default function Login() {
         <p>SNS계정으로 로그인하기</p>
         <SNSFlexDivStyle>
           <a>
-            <SNSImgStyle src={kakao} alt="" />
+            <SNSImgStyle src={logoKakao} alt="" />
             <p>카카오톡</p>
           </a>
           <a>
-            <SNSImgStyle src={google} alt="" />
+            <SNSImgStyle src={logoGoogle} alt="" />
             <p>구글</p>
           </a>
           <a>
-            <SNSImgStyle src={facebook} alt="" />
+            <SNSImgStyle src={logoFacebook} alt="" />
             <p>페이스북</p>
           </a>
         </SNSFlexDivStyle>

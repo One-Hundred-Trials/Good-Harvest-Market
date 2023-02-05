@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import IconMore from '../../assets/img/icon-more-18.png';
+import IconMore from '../../assets/img/icon-more.png';
 
 export const PostAccountLiStyle = styled.li``;
 

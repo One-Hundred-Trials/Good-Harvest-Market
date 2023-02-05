@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import iconImgLayer from '../../assets/img/iccon-img-layers.png';
+import iconImgLayer from '../../assets/img/icon-img-layers.png';
 
 const ListStyle = styled.li`
   position: relative;
@@ -11,8 +11,7 @@ const ListStyle = styled.li`
     right: 6px;
     width: 20px;
     height: 20px;
-    /* 
-    background-image: url(${iconImgLayer});
+    /* background-image: url(${iconImgLayer});
     background-size: contain; */
   }
   img {
