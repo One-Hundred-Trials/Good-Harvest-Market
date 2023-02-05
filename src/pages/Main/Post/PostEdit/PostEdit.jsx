@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import Header from 'components/common/Header/Header';
+import UploadFileBtn from 'components/common/UploadFileBtn/UploadFileBtn';
+import { baseUrl } from 'api/api';
+import getMyProfile from 'api/Profile/getMyProfile';
+import getPost from 'api/Feed/getPost';
+import postImage from 'api/ImgUpload/postImage';
+import putPost from 'api/Feed/putPost';
 import {
   PageWrapStyle,
   ConWrapStyle,
@@ -12,13 +19,6 @@ import {
   PreviewImg,
   DeleteImgBtn,
 } from '../PostUpload/PostUploadStyle';
-import Header from '../../../../components/common/Header/Header';
-import UploadFileBtn from '../../../../components/common/UploadFileBtn/UploadFileBtn';
-import { baseUrl } from '../../../../api/api';
-import getMyProfile from '../../../../api/Profile/getMyProfile';
-import getPost from '../../../../api/Feed/getPost';
-import postImage from '../../../../api/ImgUpload/postImage';
-import putPost from '../../../../api/Feed/putPost';
 
 export default function PostEdit() {
   const accountName = JSON.parse(localStorage.getItem('account'));
