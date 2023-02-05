@@ -1,16 +1,10 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import styled from 'styled-components';
 import Header from 'components/common/Header/Header';
 import HomeRenderBlank from 'components/HomeRender/HomeRenderBlank';
 import PostCardList from 'components/PostCardList/PostCardList';
 import getFollowFeed from 'api/Feed/getFollowFeed';
 import Loading from 'pages/Loading/Loading';
-import { ConWrap } from 'styles/GlobalStyles';
-
-const ConWrapStyle = styled.main`
-  ${ConWrap}
-  padding: 20px 16px;
-`;
+import ConWrapStyle from './HomeStyle';
 
 export default function Home() {
   const [post, setPost] = useState(null);
