@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import postUserSignUp from '../../api/SignUp/postUserSignUp';
-import Input from '../../components/common/Input/Input';
+import postUserSignUp from 'api/SignUp/postUserSignUp';
+import Input from 'components/common/Input/Input';
+import Button from 'components/common/Button/Button';
 import { ContSecStyle, HeaderStyle, InputFormStyle } from './SignupStyle';
-import Button from '../../components/common/Button/Button';
 
 const BtnContainerStyle = styled.div`
   margin-top: 14px;
