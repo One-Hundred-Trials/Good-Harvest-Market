@@ -1,12 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import PostDeleteAlert from './PostDeleteAlert';
 import {
   ModalContainerDiv,
   ModalUl,
   ModalBtn,
   ModalBgtDiv,
 } from './PostModalStyle';
-import PostDeleteAlert from './PostDeleteAlert';
 
 export default function PostModal({ postId, setModal }) {
   const [alert, setAlert] = useState(false);

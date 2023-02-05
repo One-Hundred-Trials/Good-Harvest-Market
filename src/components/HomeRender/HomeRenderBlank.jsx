@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import DuckBlank from 'assets/img/duck-blank.png';
 import Blank from '../Blank/Blank';
-import DuckBlank from '../../assets/img/duck-blank.png';
 
 const BlankWrap = styled.section`
   position: absolute;

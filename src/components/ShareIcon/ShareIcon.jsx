@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
-import iconShare from '../../assets/img/icon-share.png';
+import iconShare from 'assets/img/icon-share.png';
 
 const ShareBtn = styled.button`
   display: flex;

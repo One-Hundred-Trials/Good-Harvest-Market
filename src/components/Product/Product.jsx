@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
-import { accountAtom } from '../../_state/auth';
+import { accountAtom } from '_state/auth';
+import ProductModal from 'components/common/Modal/ProductModalAlert/ProductModal';
 import {
   ProductWrap,
   ProductImgWrap,
@@ -9,7 +10,6 @@ import {
   ProductName,
   ProductPrice,
 } from './ProductStyle';
-import ProductModal from '../../components/common/Modal/ProductModalAlert/ProductModal';
 
 export default function Product({ product, GetProductList }) {
   const userAccount = useRecoilValue(accountAtom);

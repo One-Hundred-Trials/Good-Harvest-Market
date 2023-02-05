@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-import iconMoreImg from '../../assets/img/icon-more.png';
+import deleteComment from 'api/Comment/deleteComment';
+import reportComment from 'api/Comment/reportComment';
+import iconMoreImg from 'assets/img/icon-more.png';
 import CommentModal from '../common/Modal/CommentModel/CommentModal';
+import ProfileImg from '../common/ProfileImg/ProfileImg';
 import {
   CommentContainerStyle,
   InfoStyle,
@@ -8,9 +11,6 @@ import {
   MoreBtn,
   TxtStyle,
 } from './CommentStyle';
-import ProfileImg from '../common/ProfileImg/ProfileImg';
-import deleteComment from '../../api/Comment/deleteComment';
-import reportComment from '../../api/Comment/reportComment';
 
 export default function Comment({ comment, postId, updateDeleteComment }) {
   const userAccount = JSON.parse(localStorage.getItem('account'));

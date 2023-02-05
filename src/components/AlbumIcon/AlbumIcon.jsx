@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import iconPostAlbumOn from '../../assets/img/icon-post-album-on.png';
-import iconPostAlbumOff from '../../assets/img/icon-post-album-off.png';
+import iconPostAlbumOff from 'assets/img/icon-post-album-off.png';
+import iconPostAlbumOn from 'assets/img/icon-post-album-on.png';
 
 const BtnStyle = styled.button`
   width: 26px;

@@ -1,12 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ProductAlert from './ProductAlert';
 import {
   ModalBgtDiv,
   ModalContainerDiv,
   ModalUl,
   ModalBtn,
 } from './ProductModalStyle';
-import ProductAlert from './ProductAlert';
 
 export default function ModalSlide({ productId, setModal, GetProductList }) {
   const [alert, setAlert] = useState(false);

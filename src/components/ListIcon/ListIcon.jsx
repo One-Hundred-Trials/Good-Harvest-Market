@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import IconPostListOn from '../../assets/img/icon-post-list-on.png';
-import iconPostListOff from '../../assets/img/icon-post-list-off.png';
+import IconPostListOn from 'assets/img/icon-post-list-on.png';
+import iconPostListOff from 'assets/img/icon-post-list-off.png';
 
 const BtnStyle = styled.button`
   width: 26px;
