@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import BtnStyle from '../../components/common/Button/Button';
 import { Wrap } from '../../styles/GlobalStyles';
 
 export const ContSecStyle = styled.section`
@@ -45,4 +44,8 @@ export const InputFormStyle = styled.form`
       border-bottom: 2px solid var(--point-green);
     }
   }
+`;
+
+export const BtnContainerStyle = styled.div`
+  margin-top: 14px;
 `;
