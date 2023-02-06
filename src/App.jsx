@@ -21,6 +21,7 @@ import ChatRoom from './pages/Main/Chat/ChatRoom/ChatRoom';
 import FollowingList from './pages/Main/Profile/MyProfile/FollowingList/FollowingList';
 import FollowerList from './pages/Main/Profile/MyProfile/FollowerList/FollowerList';
 import Splash from './pages/Splash/Splash';
+import './styles/font.css';
 
 const router = createBrowserRouter([
   {
