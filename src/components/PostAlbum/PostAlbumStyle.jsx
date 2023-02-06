@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { IR } from '../../styles/GlobalStyles';
 
-const UlStyle = styled.ul`
+export const UlStyle = styled.ul`
   display: grid;
   grid-template-columns: repeat(3, 114px);
   grid-template-rows: repeat(3, 114px);
@@ -9,4 +10,6 @@ const UlStyle = styled.ul`
   background-color: var(--white);
 `;
 
-export default UlStyle;
+export const H2IR = styled.h2`
+  ${IR}
+`;
