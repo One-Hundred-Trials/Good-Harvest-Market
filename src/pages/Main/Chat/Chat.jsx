@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import ChatListItem from '../../../components/ChatListItem/ChatListItem';
-import Header from '../../../components/common/Header/Header';
+import ChatListItem from 'components/ChatListItem/ChatListItem';
+import Header from 'components/common/Header/Header';
 import ChatListWrapStyle from './ChatStyle';
 
 export default function Chat() {

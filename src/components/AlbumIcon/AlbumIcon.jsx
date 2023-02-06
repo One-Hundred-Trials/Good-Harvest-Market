@@ -1,6 +1,7 @@
 import React from 'react';
-import iconPostAlbumOn from '../../assets/img/icon-post-album-on.png';
-import iconPostAlbumOff from '../../assets/img/icon-post-album-off.png';
+import styled from 'styled-components';
+import iconPostAlbumOff from 'assets/img/icon-post-album-off.png';
+import iconPostAlbumOn from 'assets/img/icon-post-album-on.png';
 import BtnStyle from './AlbumIconStyle';
 
 export default function AlbumIcon({ toggle, onclick }) {

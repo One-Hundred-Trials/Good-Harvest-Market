@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useRecoilValue } from 'recoil';
-import { accountAtom } from '../../_state/auth';
+import addFollow from 'api/Profile/addFollow';
+import deleteFollow from 'api/Profile/deleteFollow';
+import { authAtom } from '_state/auth';
 import Button from '../common/Button/Button';
 import ProfileImgAccount from '../common/ProfileImgAccount/ProfileImgAccount';
 import FollowListStyle from './FollowUserListStyle';
-import addFollow from '../../api/Profile/addFollow';
-import deleteFollow from '../../api/Profile/deleteFollow';
 
 export default function FollowUserList({
   image,

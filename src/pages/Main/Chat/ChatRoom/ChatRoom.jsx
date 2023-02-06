@@ -1,7 +1,8 @@
 import React from 'react';
-import ChatCommentInput from '../../../../components/ChatCommentInput/ChatCommentInput';
-import ChatItem from '../../../../components/ChatItem/ChatItem';
-import chatSendImg from '../../../../assets/img/chat-send.png';
+import ChatCommentInput from 'components/ChatCommentInput/ChatCommentInput';
+import ChatItem from 'components/ChatItem/ChatItem';
+import Header from 'components/common/Header/Header';
+import chatSendImg from 'assets/img/chat-send.png';
 import {
   H2IR,
   PageWrapStyle,
@@ -13,7 +14,6 @@ import {
   TimeStyle,
   SendImg,
 } from './ChatRoomStyle';
-import Header from '../../../../components/common/Header/Header';
 
 export default function ChatRoom() {
   return (

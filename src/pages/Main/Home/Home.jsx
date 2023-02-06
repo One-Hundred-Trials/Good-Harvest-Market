@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import Header from '../../../components/common/Header/Header';
-import HomeRenderBlank from '../../../components/HomeRender/HomeRenderBlank';
-import PostCardList from '../../../components/PostCardList/PostCardList';
-import Loading from '../../Loading/Loading';
-import getFollowFeed from '../../../api/Feed/getFollowFeed';
+import Header from 'components/common/Header/Header';
+import HomeRenderBlank from 'components/HomeRender/HomeRenderBlank';
+import PostCardList from 'components/PostCardList/PostCardList';
+import getFollowFeed from 'api/Feed/getFollowFeed';
+import Loading from 'pages/Loading/Loading';
 import ConWrapStyle from './HomeStyle';
+
 
 export default function Home() {
   const [post, setPost] = useState(null);

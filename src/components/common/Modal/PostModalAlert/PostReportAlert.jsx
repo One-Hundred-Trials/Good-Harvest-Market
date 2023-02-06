@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
-import API from '../../../../API';
-import { authAtom } from '../../../../_state/auth';
+import API from 'API';
+import { authAtom } from '_state/auth';
 import {
   ModalAlertDiv,
   AlertBox,

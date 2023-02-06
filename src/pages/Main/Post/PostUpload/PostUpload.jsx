@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { baseUrl } from '../../../../api/api';
-import getMyProfile from '../../../../api/Profile/getMyProfile';
-import postImage from '../../../../api/ImgUpload/postImage';
-import createPost from '../../../../api/Feed/createPost';
+import { baseUrl } from 'api/api';
+import getMyProfile from 'api/Profile/getMyProfile';
+import postImage from 'api/ImgUpload/postImage';
+import createPost from 'api/Feed/createPost';
+import Header from 'components/common/Header/Header';
+import UploadFileBtn from 'components/common/UploadFileBtn/UploadFileBtn';
+import Loading from 'pages/Loading/Loading';
 import {
   PageWrapStyle,
   ConWrapStyle,
@@ -17,9 +20,6 @@ import {
   DeleteImgBtn,
   H2IR,
 } from './PostUploadStyle';
-import Header from '../../../../components/common/Header/Header';
-import UploadFileBtn from '../../../../components/common/UploadFileBtn/UploadFileBtn';
-import Loading from '../../../Loading/Loading';
 
 export default function PostUpload() {
   const accountName = JSON.parse(localStorage.getItem('account'));

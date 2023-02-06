@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import IconPostListOn from '../../assets/img/icon-post-list-on.png';
-import iconPostListOff from '../../assets/img/icon-post-list-off.png';
+import React from 'react';
+import IconPostListOn from 'assets/img/icon-post-list-on.png';
+import iconPostListOff from 'assets/img/icon-post-list-off.png';
 import BtnStyle from './ListIconStyle';
 
 export default function ListIcon({ toggle, onclick }) {

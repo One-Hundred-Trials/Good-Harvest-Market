@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import iconShare from '../../assets/img/icon-share.png';
+import iconShare from 'assets/img/icon-share.png';
 import { ShareBtn, TextArea } from './ShareIconStyle';
 
 export default function ShareIcon() {
