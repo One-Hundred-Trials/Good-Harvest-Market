@@ -16,7 +16,7 @@ export default function FollowUserList({
   isfollow,
 }) {
   const [follow, setFollow] = useState(isfollow);
-  const auth = useRecoilValue(authAtom);
+  const account = useRecoilValue(accountAtom);
 
   const handleSubmitFollow = async () => {
     const res = await addFollow(accountname);
@@ -47,15 +47,17 @@ export default function FollowUserList({
         username={username}
         accountname={accountname}
       />
-      {follow === true ? (
-        <Button size="s" variant="active" onClick={handleFollowBtn}>
-          취소
-        </Button>
-      ) : (
-        <Button size="s" variant="able" onClick={handleFollowBtn}>
-          팔로우
-        </Button>
-      )}
+
+      {account !== accountname &&
+        (follow === true ? (
+          <Button size="s" variant="active" onClick={handleFollowBtn}>
+            취소
+          </Button>
+        ) : (
+          <Button size="s" variant="able" onClick={handleFollowBtn}>
+            팔로우
+          </Button>
+        ))}
     </FollowListStyle>
   );
 }

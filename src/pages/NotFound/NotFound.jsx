@@ -1,23 +1,15 @@
 import React from 'react';
-import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import icon404Img from 'assets/img/icon-404.png';
 import Blank from 'components/Blank/Blank';
-
-const ContainerSectionStyle = styled.section`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 0 72px;
-  text-align: center;
-`;
+import ContainerSectionStyle from './NotFoundStyle';
 
 export default function NotFound() {
   const navigate = useNavigate();
 
   return (
     <ContainerSectionStyle>
+      <H2IR>오류 페이지</H2IR>
       <Blank
         src={icon404Img}
         width="300px"

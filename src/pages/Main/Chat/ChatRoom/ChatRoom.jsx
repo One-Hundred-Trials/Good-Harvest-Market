@@ -4,6 +4,7 @@ import ChatItem from 'components/ChatItem/ChatItem';
 import Header from 'components/common/Header/Header';
 import chatSendImg from 'assets/img/chat-send.png';
 import {
+  H2IR,
   PageWrapStyle,
   ConWrapStyle,
   ChatWrapStyle,
@@ -19,6 +20,7 @@ export default function ChatRoom() {
     <PageWrapStyle>
       <Header>옆동네 퐁이</Header>
       <ConWrapStyle>
+        <H2IR>채팅창</H2IR>
         <ChatWrapStyle>
           <ChatItem content="안녕하세요 풍이님!" time="12:39" />
           <ChatItem
