@@ -2,7 +2,6 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import icon404Img from '../../assets/img/icon-404.png';
 import Blank from '../../components/Blank/Blank';
-
 import ContainerSectionStyle from './NotFoundStyle';
 import { IR } from '../../styles/GlobalStyles';
 
