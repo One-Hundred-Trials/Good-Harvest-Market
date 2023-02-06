@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import icon404Img from '../../assets/img/icon-404.png';
 import Blank from '../../components/Blank/Blank';
+import { IR } from '../../styles/GlobalStyles';
 
 const ContainerSectionStyle = styled.section`
   position: absolute;
@@ -13,11 +14,16 @@ const ContainerSectionStyle = styled.section`
   text-align: center;
 `;
 
+const H2IR = styled.h2`
+  ${IR}
+`;
+
 export default function NotFound() {
   const navigate = useNavigate();
 
   return (
     <ContainerSectionStyle>
+      <H2IR>오류 페이지</H2IR>
       <Blank
         src={icon404Img}
         width="300px"

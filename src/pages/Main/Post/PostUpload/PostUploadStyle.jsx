@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { PageWrap, ConWrap } from '../../../../styles/GlobalStyles';
+import { PageWrap, ConWrap, IR } from '../../../../styles/GlobalStyles';
 import iconX from '../../../../assets/img/icon-x.png';
 
 export const PageWrapStyle = styled.div`
@@ -11,6 +11,10 @@ export const ConWrapStyle = styled.section`
   display: flex;
   position: relative;
   padding: 20px 16px;
+`;
+
+export const H2IR = styled.h2`
+  ${IR}
 `;
 
 export const MyProfileImg = styled.img`
