@@ -1,23 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import styled from 'styled-components';
 import BlankList from '../../../../components/Blank/BlankList';
 import Header from '../../../../components/common/Header/Header';
 import ProfileImgAccount from '../../../../components/common/ProfileImgAccount/ProfileImgAccount';
-import { PageWrap, ConWrap } from '../../../../styles/GlobalStyles';
 import Loading from '../../../Loading/Loading';
 import BlankDuck from '../../../../assets/img/blank-duck.png';
 import getSearchUser from '../../../../api/Search/getSearchUser';
-
-const PageWrapStyle = styled.div`
-  ${PageWrap}
-`;
-const ConWrapStyle = styled.main`
-  ${ConWrap}
-  padding: 20px 16px;
-  & > div + div {
-    margin-top: 16px;
-  }
-`;
+import { PageWrapStyle, ConWrapStyle } from './SearchStyle';
 
 export default function Search() {
   const [search, setSearch] = useState([]);

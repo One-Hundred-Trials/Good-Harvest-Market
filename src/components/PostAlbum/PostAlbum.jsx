@@ -1,6 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
 import PostAlbumList from '../PostAlbumList/PostAlbumList';
+
+import UlStyle from './PostAlbumStyle';
 import { IR } from '../../styles/GlobalStyles';
 
 const UlStyle = styled.ul`
@@ -11,6 +12,7 @@ const UlStyle = styled.ul`
   padding: 16px;
   background-color: var(--white);
 `;
+
 
 const H2IR = styled.h2`
   ${IR}

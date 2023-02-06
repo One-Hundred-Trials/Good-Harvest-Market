@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
 import {
   ContSecStyle,
   HeaderStyle,
   DescriptStyle,
   InputFormStyle,
+  BtnContainerStyle,
 } from './SignupUserProfileStyle';
 import Input from '../../components/common/Input/Input';
 import UploadProfileImg from '../../components/UploadProfileImg/UploadProfileImg';
@@ -14,10 +14,6 @@ import basicProfile from '../../assets/img/basic-profile-50.png';
 import postMyProfile from '../../api/ProfileSetting/postMyProfile';
 import postImage from '../../api/ImgUpload/postImage';
 import postAccountNameValid from '../../api/ProfileSetting/postAccountNameValid';
-
-const BtnContainerStyle = styled.div`
-  margin-top: 14px;
-`;
 
 export default function SignupUserProfile(porps) {
   const [signupForm, setSignupForm] = useState({

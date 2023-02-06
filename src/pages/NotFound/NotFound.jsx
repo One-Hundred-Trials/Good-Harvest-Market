@@ -1,8 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import icon404Img from '../../assets/img/icon-404.png';
 import Blank from '../../components/Blank/Blank';
+import ContainerSectionStyle from './NotFoundStyle';
 import { IR } from '../../styles/GlobalStyles';
 
 const ContainerSectionStyle = styled.section`
