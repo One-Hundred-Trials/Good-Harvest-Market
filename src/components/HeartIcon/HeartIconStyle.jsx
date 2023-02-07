@@ -8,6 +8,6 @@ export const HeartStyle = styled.span`
 `;
 
 export const HeartImgStyle = styled.img`
-  width: 100%;
+  width: 15px;
   height: 15px;
 `;

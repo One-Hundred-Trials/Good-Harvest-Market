@@ -45,10 +45,10 @@ export default function Header({
       <>
         <HeaderStyle>
           <button onClick={() => navigate(-1)}>
-            <img src={iconArrowLeft} alt="뒤로가기" height="22" />
+            <img src={iconArrowLeft} alt="뒤로가기" width="22" height="22" />
           </button>
           <button onClick={modalUp}>
-            <img src={iconMore} alt="더보기" height="22" />
+            <img src={iconMore} alt="더보기" width="22" height="22" />
           </button>
         </HeaderStyle>
         {modal && <LoginModal setModal={setModal} />}
@@ -58,11 +58,11 @@ export default function Header({
     return (
       <HeaderStyle>
         <button onClick={() => navigate(-1)}>
-          <img src={iconArrowLeft} alt="뒤로가기" height="22" />
+          <img src={iconArrowLeft} alt="뒤로가기" width="22" height="22" />
         </button>
         <TopChatTitleStyle>{children}</TopChatTitleStyle>
         <button>
-          <img src={iconMore} alt="더보기" height="22" />
+          <img src={iconMore} alt="더보기" width="22" height="22" />
         </button>
       </HeaderStyle>
     );
@@ -71,7 +71,7 @@ export default function Header({
       <HeaderStyle>
         <TopMainTitleStyle>{children}</TopMainTitleStyle>
         <button onClick={() => navigate('/search')}>
-          <img src={iconSearch} alt="검색하기" height="22" />
+          <img src={iconSearch} alt="검색하기" width="22" height="22" />
         </button>
       </HeaderStyle>
     );
@@ -79,7 +79,7 @@ export default function Header({
     return (
       <HeaderStyle>
         <button onClick={() => navigate(-1)}>
-          <img src={iconArrowLeft} alt="뒤로가기" height="22" />
+          <img src={iconArrowLeft} alt="뒤로가기" width="22" height="22" />
         </button>
         <TopSearchInputStyle
           type="text"
@@ -99,7 +99,7 @@ export default function Header({
     return (
       <HeaderStyle>
         <button onClick={() => navigate(-1)}>
-          <img src={iconArrowLeft} alt="뒤로가기" height="22" />
+          <img src={iconArrowLeft} alt="뒤로가기" width="22" height="22" />
         </button>
         <Button
           type="submit"
@@ -117,7 +117,7 @@ export default function Header({
     return (
       <HeaderStyle>
         <button onClick={() => navigate(-1)}>
-          <img src={iconArrowLeft} alt="뒤로가기" height="22" />
+          <img src={iconArrowLeft} alt="뒤로가기" width="22" height="22" />
         </button>
         <TopChatTitleStyle>{children}</TopChatTitleStyle>
       </HeaderStyle>
