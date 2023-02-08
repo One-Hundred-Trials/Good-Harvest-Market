@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import imageCompression from 'browser-image-compression';
 import {
   PageWrapStyle,
   ConWrapStyle,
@@ -66,10 +67,26 @@ export default function PostEdit() {
     setText(e.target.value);
   };
 
-  const previewImgHandler = (e) => {
+  const base64toFile = (base64data, fileName) => {
+    const arr = base64data.split(',');
+    const mimeType = arr[0].match(/:(.*?);/)[1];
+    const realData = arr[1];
+    const blob = new Blob([realData], { type: mimeType });
+    const file = new File([blob], fileName, { type: mimeType });
+    console.log(file);
+    return file;
+  };
+
+  const previewImgHandler = async (e) => {
     const correctForm = /(.*?)\.(jpg|gif|png|jpeg|bmp|tif|heic|)$/;
     const file = e.target.files[0];
+    console.log(file);
     const fileReader = new FileReader();
+    const options = {
+      maxSizeMB: 1,
+      maxWidthOrHeight: 400,
+      useWebWorker: true,
+    };
     if (previewImgUrl.length > 0) {
       alert('1개의 이미지 파일을 업로드 하세요.');
       return;
@@ -82,14 +99,34 @@ export default function PostEdit() {
       alert(
         '이미지 파일만 업로드가 가능합니다. (*.jpg, *.gif, *.png, *.jpeg, *.bmp, *.tif, *.heic)'
       );
-    } else {
-      fileReader.readAsDataURL(file);
-      setImgFile(file);
     }
-    fileReader.onload = () => {
-      setPreviewImgUrl((preview) => [...preview, fileReader.result]);
-      e.target.value = null;
-    };
+    try {
+      const compressedFile = await imageCompression(file, options);
+      setImgFile(file);
+      fileReader.readAsDataURL(compressedFile);
+      fileReader.onload = () => {
+        const base64data = fileReader.result;
+        setPreviewImgUrl((preview) => [...preview, base64data]);
+        base64toFile(base64data, file.name);
+        e.target.value = null;
+      };
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const imgUploadHandler = async (file) => {
+    if (!file) {
+      return prevImgFile;
+    } else {
+      const formData = new FormData();
+      formData.append('image', file);
+      const res = await postImage(formData);
+      console.log(res);
+      const feedImgUrl = `${baseUrl}/${res[0].filename}`;
+      console.log(feedImgUrl);
+      return feedImgUrl;
+    }
   };
 
   const deleteImgHandler = (e) => {
@@ -97,21 +134,6 @@ export default function PostEdit() {
     setPreviewImgUrl('');
     setImgFile('');
     e.target.value = null;
-  };
-
-  const imgUploadHandler = async (file) => {
-    if (!file) {
-      return prevImgFile;
-    }
-    const formData = new FormData();
-    formData.append('image', file);
-    if (file) {
-      const res = await postImage(formData);
-      const feedImgUrl = `${baseUrl}/${res[0].filename}`;
-      return feedImgUrl;
-    } else {
-      return null;
-    }
   };
 
   const editUploadHandler = async () => {
