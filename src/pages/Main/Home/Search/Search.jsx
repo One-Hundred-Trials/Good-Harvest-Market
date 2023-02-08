@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import MetaDatas from 'components/MetaDatas/MetaDatas';
 import BlankList from 'components/Blank/BlankList';
 import Header from 'components/common/Header/Header';
 import ProfileImgAccount from 'components/common/ProfileImgAccount/ProfileImgAccount';
@@ -25,29 +26,35 @@ export default function Search() {
   if (!search) return <Loading />;
   else {
     return (
-      <PageWrapStyle>
-        <Header setKeyWord={setKeyWord} />
-        {keyword === '' ? (
-          <BlankList imgSrc={BlankDuck} width="70px">
-            찾고 싶은 이웃들을 검색 해보세요!
-          </BlankList>
-        ) : (
-          <ConWrapStyle>
-            {search.map((item, i) => (
-              <ProfileImgAccount
-                key={i}
-                width="50px"
-                height="50px"
-                margin="0 0 0 12px"
-                namemarginbottom="6px"
-                image={item.image}
-                username={item.username}
-                accountname={item.accountname}
-              ></ProfileImgAccount>
-            ))}
-          </ConWrapStyle>
-        )}
-      </PageWrapStyle>
+      <>
+        <MetaDatas
+          title={'이웃 검색하기'}
+          desc={'풍년마켓에서 이웃들 검색하기'}
+        />
+        <PageWrapStyle>
+          <Header setKeyWord={setKeyWord} />
+          {keyword === '' ? (
+            <BlankList imgSrc={BlankDuck} width="70px">
+              찾고 싶은 이웃들을 검색 해보세요!
+            </BlankList>
+          ) : (
+            <ConWrapStyle>
+              {search.map((item, i) => (
+                <ProfileImgAccount
+                  key={i}
+                  width="50px"
+                  height="50px"
+                  margin="0 0 0 12px"
+                  namemarginbottom="6px"
+                  image={item.image}
+                  username={item.username}
+                  accountname={item.accountname}
+                ></ProfileImgAccount>
+              ))}
+            </ConWrapStyle>
+          )}
+        </PageWrapStyle>
+      </>
     );
   }
 }

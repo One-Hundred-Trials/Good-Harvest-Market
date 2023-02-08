@@ -1,7 +1,7 @@
-import React, { Children, useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
+import MetaDatas from 'components/MetaDatas/MetaDatas';
 import Button from '../../../components/common/Button/Button';
 import Input from '../../../components/common/Input/Input';
 import { authAtom } from '../../../_state/auth';
@@ -49,37 +49,43 @@ export default function LoginEmail() {
   };
 
   return (
-    <ContSecStyle>
-      <HeaderStyle>로그인</HeaderStyle>
-      <InputFormStyle onSubmit={handleSubmit}>
-        <Input
-          onChange={handleChange}
-          name="email"
-          value={form}
-          label="이메일"
-          type="email"
-          // required="true"
-        />
-        <Input
-          onChange={handleChange}
-          name="pw"
-          value={form}
-          className="pw"
-          label="비밀번호"
-          type="password"
-          message={message}
-          // required="true"
-        />
-        <Button variant={valid} className="loginBtn">
-          {'로그인'}
-        </Button>
-      </InputFormStyle>
-      <Link
-        to={'/login/sign_up'}
-        style={{ display: 'block', marginTop: '20px' }}
-      >
-        이메일로 회원가입
-      </Link>
-    </ContSecStyle>
+    <>
+      <MetaDatas
+        title={'이메일로 로그인하기'}
+        desc={'풍년마켓에서 이메일 로그인하기'}
+      />
+      <ContSecStyle>
+        <HeaderStyle>로그인</HeaderStyle>
+        <InputFormStyle onSubmit={handleSubmit}>
+          <Input
+            onChange={handleChange}
+            name="email"
+            value={form}
+            label="이메일"
+            type="email"
+            // required="true"
+          />
+          <Input
+            onChange={handleChange}
+            name="pw"
+            value={form}
+            className="pw"
+            label="비밀번호"
+            type="password"
+            message={message}
+            // required="true"
+          />
+          <Button variant={valid} className="loginBtn">
+            {'로그인'}
+          </Button>
+        </InputFormStyle>
+        <Link
+          to={'/login/sign_up'}
+          style={{ display: 'block', marginTop: '20px' }}
+        >
+          이메일로 회원가입
+        </Link>
+      </ContSecStyle>
+    </>
   );
 }

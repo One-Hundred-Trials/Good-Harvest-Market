@@ -4,7 +4,6 @@ import { Wrap } from '../../styles/GlobalStyles';
 export const ContSecStyle = styled.section`
   ${Wrap}
   text-align: center;
-  /* background-color: var(--sub-grey-C4); */
   color: var(--main-grey-76);
 `;
 

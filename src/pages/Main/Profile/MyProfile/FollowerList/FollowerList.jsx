@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { authAtom } from '_state/auth';
 import getFollowersList from 'api/Follow/getFollowerList';
+import MetaDatas from 'components/MetaDatas/MetaDatas';
 import Header from 'components/common/Header/Header';
 import { PageWrap, ConWrap } from 'styles/GlobalStyles';
 import FollowUserList from 'components/FollowUserList/FollowUserList';
@@ -44,24 +45,27 @@ export default function FollowerList() {
   if (!followers) return <Loading />;
   else {
     return (
-      <PageWrapStyle>
-        <Header>Followers</Header>
-        <ConWrapStyle>
-          <FollowContainerUlStyle>
-            {followers.map((item, i) => (
-              <FollowUserList
-                key={i}
-                width="50px"
-                height="50px"
-                image={item.image}
-                username={item.username}
-                accountname={item.accountname}
-                isfollow={item.isfollow}
-              ></FollowUserList>
-            ))}
-          </FollowContainerUlStyle>
-        </ConWrapStyle>
-      </PageWrapStyle>
+      <>
+        <MetaDatas title={'내 이웃 목록'} desc={'풍년마켓 내 이웃들 목록'} />
+        <PageWrapStyle>
+          <Header>Followers</Header>
+          <ConWrapStyle>
+            <FollowContainerUlStyle>
+              {followers.map((item, i) => (
+                <FollowUserList
+                  key={i}
+                  width="50px"
+                  height="50px"
+                  image={item.image}
+                  username={item.username}
+                  accountname={item.accountname}
+                  isfollow={item.isfollow}
+                ></FollowUserList>
+              ))}
+            </FollowContainerUlStyle>
+          </ConWrapStyle>
+        </PageWrapStyle>
+      </>
     );
   }
 }

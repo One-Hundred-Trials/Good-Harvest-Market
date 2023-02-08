@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import MetaDatas from 'components/MetaDatas/MetaDatas';
 import Input from 'components/common/Input/Input';
 import UploadProfileImg from 'components/UploadProfileImg/UploadProfileImg';
 import Button from 'components/common/Button/Button';
@@ -129,66 +130,69 @@ export default function SignupUserProfile(porps) {
   };
 
   return (
-    <ContSecStyle>
-      <HeaderStyle>프로필 설정</HeaderStyle>
-      <DescriptStyle>나중에 언제든지 변경할 수 있습니다.</DescriptStyle>
-      <InputFormStyle onSubmit={SubmitHandler}>
-        <UploadProfileImg
-          src={
-            imgFile && !arrayIsEmpty(imgFile)
-              ? `https://mandarin.api.weniv.co.kr/${imgFile}`
-              : basicProfile
-          }
-          name="proflieImg"
-          value={signupForm}
-          onChange={UploadProfileImgHandler}
-        />
-        <Input
-          label="사용자 이름"
-          type="text"
-          name="username"
-          placeholder="2~10자 이내여야 합니다."
-          min="2"
-          max="10"
-          required="required"
-          value={signupForm}
-          onBlur={UserNameHandler}
-          onChange={inputChangeHandler}
-          message={userNameError}
-        ></Input>
-        <Input
-          label="계정 ID"
-          type="text"
-          name="accountname"
-          placeholder="영문, 숫자, 특수문자(.),(_)만 사용 가능합니다."
-          required="required"
-          value={signupForm}
-          onBlur={AccountNameHandler}
-          onChange={inputChangeHandler}
-          message={accountNameError}
-        ></Input>
-        <Input
-          label="소개"
-          type="text"
-          name="intro"
-          placeholder="자신과 판매할 상품에 대해 소개해 주세요!"
-          value={signupForm}
-          onChange={inputChangeHandler}
-        ></Input>
-
-        <BtnContainerStyle>
-          <Button
-            variant={
-              signupForm.username && signupForm.accountname
-                ? 'abled'
-                : 'disabled'
+    <>
+      <MetaDatas title={'프로필 설정'} desc={'풍년마켓 내 프로필 설정하기'} />
+      <ContSecStyle>
+        <HeaderStyle>프로필 설정</HeaderStyle>
+        <DescriptStyle>나중에 언제든지 변경할 수 있습니다.</DescriptStyle>
+        <InputFormStyle onSubmit={SubmitHandler}>
+          <UploadProfileImg
+            src={
+              imgFile && !arrayIsEmpty(imgFile)
+                ? `https://mandarin.api.weniv.co.kr/${imgFile}`
+                : basicProfile
             }
-            disabled={!signupForm.username || !signupForm.accountname}
-          >
-            {'풍년마켓 시작하기'}
-          </Button>
-        </BtnContainerStyle>
-      </InputFormStyle>
-    </ContSecStyle>
+            name="proflieImg"
+            value={signupForm}
+            onChange={UploadProfileImgHandler}
+          />
+          <Input
+            label="사용자 이름"
+            type="text"
+            name="username"
+            placeholder="2~10자 이내여야 합니다."
+            min="2"
+            max="10"
+            required="required"
+            value={signupForm}
+            onBlur={UserNameHandler}
+            onChange={inputChangeHandler}
+            message={userNameError}
+          ></Input>
+          <Input
+            label="계정 ID"
+            type="text"
+            name="accountname"
+            placeholder="영문, 숫자, 특수문자(.),(_)만 사용 가능합니다."
+            required="required"
+            value={signupForm}
+            onBlur={AccountNameHandler}
+            onChange={inputChangeHandler}
+            message={accountNameError}
+          ></Input>
+          <Input
+            label="소개"
+            type="text"
+            name="intro"
+            placeholder="자신과 판매할 상품에 대해 소개해 주세요!"
+            value={signupForm}
+            onChange={inputChangeHandler}
+          ></Input>
+
+          <BtnContainerStyle>
+            <Button
+              variant={
+                signupForm.username && signupForm.accountname
+                  ? 'abled'
+                  : 'disabled'
+              }
+              disabled={!signupForm.username || !signupForm.accountname}
+            >
+              {'풍년마켓 시작하기'}
+            </Button>
+          </BtnContainerStyle>
+        </InputFormStyle>
+      </ContSecStyle>
+    </>
   );
 }

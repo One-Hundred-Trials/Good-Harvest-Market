@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import MetaDatas from 'components/MetaDatas/MetaDatas';
 import Header from 'components/common/Header/Header';
 import UploadFileBtn from 'components/common/UploadFileBtn/UploadFileBtn';
 import { baseUrl } from 'api/api';
@@ -127,38 +128,41 @@ export default function PostEdit() {
   };
 
   return (
-    <PageWrapStyle>
-      <Header
-        id={id}
-        size="ms"
-        variant={isActive ? '' : 'disabled'}
-        onClick={editUploadHandler}
-        disabled={!(text || previewImgUrl)}
-      >
-        업로드
-      </Header>
-      <ConWrapStyle>
-        <MyProfileImg src={profileImg} alt="내 프로필 이미지" />
-        <PostFormStyle>
-          <TextAreaStyle
-            type="text"
-            value={text}
-            placeholder="게시글 입력하기"
-            onChange={textChangeHandler}
-          />
-          {previewImgUrl && (
-            <ImgWrapStyle>
-              <PreviewImgWrapStyle>
-                <PreviewImg src={previewImgUrl} alt="이미지 미리보기" />
-                <DeleteImgBtn type="button" onClick={deleteImgHandler} />
-              </PreviewImgWrapStyle>
-            </ImgWrapStyle>
-          )}
-          <BtnWrapStyle>
-            <UploadFileBtn onChange={previewImgHandler} />
-          </BtnWrapStyle>
-        </PostFormStyle>
-      </ConWrapStyle>
-    </PageWrapStyle>
+    <>
+      <MetaDatas title={'게시물 수정'} desc={'풍년마켓에서 게시물 수정하기'} />
+      <PageWrapStyle>
+        <Header
+          id={id}
+          size="ms"
+          variant={isActive ? '' : 'disabled'}
+          onClick={editUploadHandler}
+          disabled={!(text || previewImgUrl)}
+        >
+          업로드
+        </Header>
+        <ConWrapStyle>
+          <MyProfileImg src={profileImg} alt="내 프로필 이미지" />
+          <PostFormStyle>
+            <TextAreaStyle
+              type="text"
+              value={text}
+              placeholder="게시글 입력하기"
+              onChange={textChangeHandler}
+            />
+            {previewImgUrl && (
+              <ImgWrapStyle>
+                <PreviewImgWrapStyle>
+                  <PreviewImg src={previewImgUrl} alt="이미지 미리보기" />
+                  <DeleteImgBtn type="button" onClick={deleteImgHandler} />
+                </PreviewImgWrapStyle>
+              </ImgWrapStyle>
+            )}
+            <BtnWrapStyle>
+              <UploadFileBtn onChange={previewImgHandler} />
+            </BtnWrapStyle>
+          </PostFormStyle>
+        </ConWrapStyle>
+      </PageWrapStyle>
+    </>
   );
 }
