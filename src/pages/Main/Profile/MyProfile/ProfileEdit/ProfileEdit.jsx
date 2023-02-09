@@ -139,7 +139,11 @@ export default function ProfileEdit() {
 
   return (
     <>
-      <MetaDatas title={'프로필 수정'} desc={'풍년마켓 프로필 수정하기'} />
+      <MetaDatas
+        title={'프로필 수정'}
+        desc={'풍년마켓 프로필 수정하기'}
+        pageURL={'/profile_edit'}
+      />
       <Header size="m" variant="able" onClick={editProfileHandler}>
         저장
       </Header>

@@ -129,7 +129,11 @@ export default function PostEdit() {
 
   return (
     <>
-      <MetaDatas title={'게시물 수정'} desc={'풍년마켓에서 게시물 수정하기'} />
+      <MetaDatas
+        title={'게시물 수정'}
+        desc={'풍년마켓에서 게시물 수정하기'}
+        pageURL={`/post/${id}/edit`}
+      />
       <PageWrapStyle>
         <Header
           id={id}

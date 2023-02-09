@@ -30,6 +30,7 @@ export default function Search() {
         <MetaDatas
           title={'이웃 검색하기'}
           desc={'풍년마켓에서 이웃들 검색하기'}
+          pageURL={'/search'}
         />
         <PageWrapStyle>
           <Header setKeyWord={setKeyWord} />

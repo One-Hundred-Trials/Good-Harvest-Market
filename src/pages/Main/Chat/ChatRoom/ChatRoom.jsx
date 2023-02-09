@@ -22,6 +22,7 @@ export default function ChatRoom() {
       <MetaDatas
         title={'옆동네 풍이님과의 대화'}
         desc={'풍년마켓에서 이웃과 대화하기'}
+        pageURL={'/chat/1'}
       />
       <PageWrapStyle>
         <Header>옆동네 퐁이</Header>

@@ -53,6 +53,7 @@ export default function LoginEmail() {
       <MetaDatas
         title={'이메일로 로그인하기'}
         desc={'풍년마켓에서 이메일 로그인하기'}
+        pageURL={'/login/login_email'}
       />
       <ContSecStyle>
         <HeaderStyle>로그인</HeaderStyle>

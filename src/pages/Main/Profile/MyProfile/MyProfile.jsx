@@ -100,7 +100,11 @@ export default function MyProfile() {
   else {
     return (
       <>
-        <MetaDatas title={'나의 프로필'} desc={'풍년마켓 나의 프로필'} />
+        <MetaDatas
+          title={'나의 프로필'}
+          desc={'풍년마켓 나의 프로필'}
+          pageURL={`/my_profile/${accountname}`}
+        />
         {accountname === account ? (
           <>
             <Header />

@@ -50,6 +50,7 @@ export default function Post() {
         <MetaDatas
           title={'게시글'}
           desc={'풍년마켓에서 이웃들의 소식 확인하기'}
+          pageURL={`/post/${id}`}
         />
         <PageWrapStyle>
           <Header id={id} />

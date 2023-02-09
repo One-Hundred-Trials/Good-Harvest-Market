@@ -46,7 +46,11 @@ export default function FollowerList() {
   else {
     return (
       <>
-        <MetaDatas title={'내 이웃 목록'} desc={'풍년마켓 내 이웃들 목록'} />
+        <MetaDatas
+          title={'내 이웃 목록'}
+          desc={'풍년마켓 내 이웃들 목록'}
+          pageURL={`/${accountname}/follower`}
+        />
         <PageWrapStyle>
           <Header>Followers</Header>
           <ConWrapStyle>

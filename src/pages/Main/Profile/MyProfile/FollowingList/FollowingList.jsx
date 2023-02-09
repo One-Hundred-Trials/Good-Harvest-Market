@@ -49,6 +49,7 @@ export default function FollowingList() {
         <MetaDatas
           title={'나를 추가한 이웃들'}
           desc={'풍년마켓 나를 추가한 이웃 목록'}
+          pageURL={`/${accountname}/following`}
         />
         <PageWrapStyle>
           <Header>Followings</Header>

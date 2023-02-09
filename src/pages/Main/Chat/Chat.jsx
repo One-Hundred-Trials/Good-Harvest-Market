@@ -11,6 +11,7 @@ export default function Chat() {
       <MetaDatas
         title={'이웃 대화 목록'}
         desc={'풍년마켓에서 이웃들과 대화하기'}
+        pageURL={'/chat'}
       />
       <Header />
       <ChatListWrapStyle>

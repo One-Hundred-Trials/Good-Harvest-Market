@@ -164,6 +164,7 @@ export default function ProductUpload() {
         <MetaDatas
           title={'상품 수정'}
           desc={'풍년마켓에서 등록한 상품을 수정하기'}
+          pageURL={`/product/${id}/edit`}
         />
         <PageWrapStyle>
           <Header

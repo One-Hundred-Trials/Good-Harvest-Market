@@ -21,7 +21,11 @@ export default function Login() {
 
   return (
     <>
-      <MetaDatas title={'로그인'} desc={'풍년마켓 로그인하기'} />
+      <MetaDatas
+        title={'로그인'}
+        desc={'풍년마켓 로그인하기'}
+        pageURL={'/login'}
+      />
       <ContSectionStyle>
         <H2IR>풍년마켓 로그인 페이지</H2IR>
         <LogoiImgStyle src={fullLogo} alt="" />

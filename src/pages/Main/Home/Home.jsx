@@ -48,7 +48,11 @@ export default function Home() {
   else {
     return (
       <>
-        <MetaDatas title={'홈 피드'} desc={'풍년마켓 나의 피드 둘러보기'} />
+        <MetaDatas
+          title={'홈 피드'}
+          desc={'풍년마켓 나의 피드 둘러보기'}
+          pageURL={'/home'}
+        />
         <Header>주말의 즐거운 풍년마켓</Header>
         <ConWrapStyle>
           {hasFollowing ? <PostCardList posts={post} /> : <HomeRenderBlank />}

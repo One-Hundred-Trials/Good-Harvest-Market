@@ -105,7 +105,11 @@ const Signup = ({ setIsSignupValid, setSignupForm, signupForm }) => {
 
   return (
     <>
-      <MetaDatas title={'회원가입'} desc={'풍년마켓 회원가입하기'} />
+      <MetaDatas
+        title={'회원가입'}
+        desc={'풍년마켓 회원가입하기'}
+        pageURL={'/login/sign_up'}
+      />
       <ContSecStyle>
         <HeaderStyle>이메일로 회원가입</HeaderStyle>
         <InputFormStyle onSubmit={SubmitHandler}>

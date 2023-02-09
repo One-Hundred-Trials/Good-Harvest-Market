@@ -140,7 +140,11 @@ export default function UserProfile() {
   else {
     return (
       <>
-        <MetaDatas title={'이웃 프로필'} desc={'풍년마켓 이웃들의 프로필'} />
+        <MetaDatas
+          title={'이웃 프로필'}
+          desc={'풍년마켓 이웃들의 프로필'}
+          pageURL={`/user_profile/${id}`}
+        />
         <Header />
         <ConWrapStyle>
           <ContDivStyle>
