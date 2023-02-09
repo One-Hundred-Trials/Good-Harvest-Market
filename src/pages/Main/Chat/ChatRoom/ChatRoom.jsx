@@ -2,7 +2,7 @@ import React from 'react';
 import ChatCommentInput from 'components/ChatCommentInput/ChatCommentInput';
 import ChatItem from 'components/ChatItem/ChatItem';
 import Header from 'components/common/Header/Header';
-import chatSendImg from 'assets/img/chat-send.png';
+import chatSendImg from 'assets/img/chat-send.svg';
 import {
   H2IR,
   PageWrapStyle,

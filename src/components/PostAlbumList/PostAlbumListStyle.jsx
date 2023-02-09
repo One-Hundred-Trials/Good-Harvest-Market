@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import iconImgLayer from 'assets/img/icon-img-layers.png';
+import iconImgLayer from 'assets/img/icon-img-layers.svg';
 
 const ListStyle = styled.li`
   position: relative;

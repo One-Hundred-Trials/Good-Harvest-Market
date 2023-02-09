@@ -10,11 +10,11 @@ import {
   SNSImgStyle,
 } from './LoginStyle';
 import Button from 'components/common/Button/Button';
-import fullLogo from 'assets/img/full-logo.png';
-import duckFarm from 'assets/img/duck-farm.png';
-import logoKakao from 'assets/img/logo-kakako.png';
-import logoGoogle from 'assets/img/logo-google.png';
-import logoFacebook from 'assets/img/logo-facebook.png';
+import fullLogo from 'assets/img/full-logo.svg';
+import duckFarm from 'assets/img/duck-farm.svg';
+import logoKakao from 'assets/img/logo-kakako.svg';
+import logoGoogle from 'assets/img/logo-google.svg';
+import logoFacebook from 'assets/img/logo-facebook.svg';
 import Splash from '../Splash/Splash';
 
 export default function Login() {

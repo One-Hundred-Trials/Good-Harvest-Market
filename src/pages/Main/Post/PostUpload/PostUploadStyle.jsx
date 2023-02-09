@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { PageWrap, ConWrap, IR } from 'styles/GlobalStyles';
-import iconX from 'assets/img/icon-x.png';
+import iconX from 'assets/img/icon-x.svg';
 
 export const PageWrapStyle = styled.div`
   ${PageWrap}
