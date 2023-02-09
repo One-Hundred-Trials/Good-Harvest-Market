@@ -1,7 +1,5 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { HelmetProvider } from 'react-helmet-async';
-import { GlobalStyle } from './styles/GlobalStyles';
 import Home from 'pages/Main/Home/Home';
 import Login from 'pages/Login/Login';
 import LoginEmail from 'pages/Login/LoginEmail/LoginEmail';
@@ -22,6 +20,7 @@ import ChatRoom from 'pages/Main/Chat/ChatRoom/ChatRoom';
 import FollowingList from 'pages/Main/Profile/MyProfile/FollowingList/FollowingList';
 import FollowerList from 'pages/Main/Profile/MyProfile/FollowerList/FollowerList';
 import Splash from 'pages/Splash/Splash';
+import { GlobalStyle } from './styles/GlobalStyles';
 import './styles/font.css';
 
 const router = createBrowserRouter([
@@ -98,10 +97,8 @@ const router = createBrowserRouter([
 function App() {
   return (
     <React.StrictMode>
-      <HelmetProvider>
-        <GlobalStyle />
-        <RouterProvider router={router} />
-      </HelmetProvider>
+      <GlobalStyle />
+      <RouterProvider router={router} />
     </React.StrictMode>
   );
 }
