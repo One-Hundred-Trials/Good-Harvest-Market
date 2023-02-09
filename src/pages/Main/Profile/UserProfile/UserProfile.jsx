@@ -141,8 +141,8 @@ export default function UserProfile() {
     return (
       <>
         <MetaDatas
-          title={'이웃 프로필'}
-          desc={'풍년마켓 이웃들의 프로필'}
+          title={`${userProfile.username}님의 게시물`}
+          desc={`풍년마켓 이웃들의 게시물`}
           pageURL={`/user_profile/${id}`}
         />
         <Header />

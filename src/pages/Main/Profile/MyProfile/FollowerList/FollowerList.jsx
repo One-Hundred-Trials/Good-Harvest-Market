@@ -47,7 +47,7 @@ export default function FollowerList() {
     return (
       <>
         <MetaDatas
-          title={'내 이웃 목록'}
+          title={'내 이웃들'}
           desc={'풍년마켓 내 이웃들 목록'}
           pageURL={`/${accountname}/follower`}
         />

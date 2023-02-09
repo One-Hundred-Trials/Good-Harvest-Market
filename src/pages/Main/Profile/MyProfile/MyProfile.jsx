@@ -101,8 +101,8 @@ export default function MyProfile() {
     return (
       <>
         <MetaDatas
-          title={'나의 프로필'}
-          desc={'풍년마켓 나의 프로필'}
+          title={'나의 게시물'}
+          desc={'풍년마켓 나의 게시물'}
           pageURL={`/my_profile/${accountname}`}
         />
         {accountname === account ? (

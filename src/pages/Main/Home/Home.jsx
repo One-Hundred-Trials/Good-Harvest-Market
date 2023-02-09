@@ -49,8 +49,8 @@ export default function Home() {
     return (
       <>
         <MetaDatas
-          title={'홈 피드'}
-          desc={'풍년마켓 나의 피드 둘러보기'}
+          title={'둘러보기'}
+          desc={'풍년마켓 나의 이웃 둘러보기'}
           pageURL={'/home'}
         />
         <Header>주말의 즐거운 풍년마켓</Header>

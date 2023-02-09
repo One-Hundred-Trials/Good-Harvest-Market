@@ -6,7 +6,7 @@ import { WrapStyle, LoadingBgDivStyle, LogoLeafStyle } from './LoadingStyle';
 export default function Loading() {
   return (
     <>
-      <MetaDatas title={'로드 중'} desc={'로드 중...'} pageURL={'/'} />
+      <MetaDatas title={'이동 중'} desc={'이동 중...'} pageURL={'/'} />
       <WrapStyle>
         <LoadingBgDivStyle>
           <LogoLeafStyle src={IntroLogoLeaf} alt="" />

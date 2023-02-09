@@ -132,8 +132,8 @@ export default function SignupUserProfile(porps) {
   return (
     <>
       <MetaDatas
-        title={'프로필 설정'}
-        desc={'풍년마켓 내 프로필 설정하기'}
+        title={'계정 설정'}
+        desc={'풍년마켓 내 계정 설정하기'}
         pageURL={'/login/sign_up'}
       />
       <ContSecStyle>
