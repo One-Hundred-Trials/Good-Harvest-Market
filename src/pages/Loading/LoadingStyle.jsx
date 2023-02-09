@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-import { Wrap } from '../../styles/GlobalStyles';
+import { Wrap } from 'styles/GlobalStyles';
 
 const loading = keyframes`
   0% {

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { PageWrap, ConWrap } from '../../../../../../styles/GlobalStyles';
+import { PageWrap, ConWrap } from 'styles/GlobalStyles';
 
 export const PageWrapStyle = styled.div`
   ${PageWrap}

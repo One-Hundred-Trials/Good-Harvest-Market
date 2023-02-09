@@ -1,24 +1,6 @@
 import React from 'react';
 import PostAlbumList from '../PostAlbumList/PostAlbumList';
-<<<<<<< HEAD
-import UlStyle from './PostAlbumStyle';
-import { IR } from '../../styles/GlobalStyles';
-
-const UlStyle = styled.ul`
-  display: grid;
-  grid-template-columns: repeat(3, 114px);
-  grid-template-rows: repeat(3, 114px);
-  gap: 8px;
-  padding: 16px;
-  background-color: var(--white);
-`;
-
-const H2IR = styled.h2`
-  ${IR}
-`;
-=======
 import { UlStyle, H2IR } from './PostAlbumStyle';
->>>>>>> 0a001cc (Modify: 충돌 해결)
 
 export default function PostAlbum({ posts }) {
   return (

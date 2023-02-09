@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Ellipsis } from '../../styles/GlobalStyles';
+import { Ellipsis } from 'styles/GlobalStyles';
 
 export const ProductWrap = styled.article`
   width: 140px;

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { IR } from 'styles/GlobalStyles';
 
-const ContainerSectionStyle = styled.section`
+export const ContainerSectionStyle = styled.section`
   position: absolute;
   top: 50%;
   left: 50%;
@@ -9,4 +10,6 @@ const ContainerSectionStyle = styled.section`
   text-align: center;
 `;
 
-export default ContainerSectionStyle;
+export const H2IR = styled.h2`
+  ${IR}
+`;

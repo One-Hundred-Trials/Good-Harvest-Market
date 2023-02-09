@@ -1,6 +1,5 @@
-import { Link } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
-import { Wrap, IR } from '../../styles/GlobalStyles';
+import { Wrap, IR } from 'styles/GlobalStyles';
 
 const loginFadeIn = keyframes`
   0% {

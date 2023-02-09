@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { IR } from '../../styles/GlobalStyles';
+import { IR } from 'styles/GlobalStyles';
 
 export const UlStyle = styled.ul`
   display: grid;

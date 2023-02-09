@@ -2,21 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import icon404Img from 'assets/img/icon-404.png';
 import Blank from 'components/Blank/Blank';
-import ContainerSectionStyle from './NotFoundStyle';
-import { IR } from '../../styles/GlobalStyles';
-
-const ContainerSectionStyle = styled.section`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 0 72px;
-  text-align: center;
-`;
-
-const H2IR = styled.h2`
-  ${IR}
-`;
+import { ContainerSectionStyle, H2IR } from './NotFoundStyle';
 
 export default function NotFound() {
   const navigate = useNavigate();
