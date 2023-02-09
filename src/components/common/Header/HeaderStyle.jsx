@@ -1,5 +1,15 @@
 import styled from 'styled-components';
 
+export const HeaderLeftBtnStyle = styled.button`
+  width: 22px;
+  height: 22px;
+`;
+
+export const HeaderRightBtnStyle = styled.button`
+  width: 24px;
+  height: 22px;
+`;
+
 export const HeaderStyle = styled.header`
   display: flex;
   justify-content: space-between;

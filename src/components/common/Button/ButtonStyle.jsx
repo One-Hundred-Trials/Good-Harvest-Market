@@ -55,7 +55,7 @@ export const BtnStyle = styled.button`
   border-radius: var(--button-radius, 44px);
   background-color: var(--background-color, var(--main-green));
   color: var(--color, var(--white));
-  outline: var(--outline, none);
+  border: var(--outline, none);
   &:disabled {
     cursor: default;
   }

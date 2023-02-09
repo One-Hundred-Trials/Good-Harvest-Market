@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import addFollow from 'api/Profile/addFollow';
 import deleteFollow from 'api/Profile/deleteFollow';
-import { authAtom } from '_state/auth';
+import { accountAtom } from '_state/auth';
 import Button from '../common/Button/Button';
 import ProfileImgAccount from '../common/ProfileImgAccount/ProfileImgAccount';
 import FollowListStyle from './FollowUserListStyle';
