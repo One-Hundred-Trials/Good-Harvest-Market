@@ -57,19 +57,34 @@ export default function PostUpload() {
     const blob = new Blob([realData], { type: mimeType });
     const file = new File([blob], fileName, { type: mimeType });
     console.log(file);
+    setImgFile(file);
     return file;
   };
 
-  const previewImgHandler = async (e) => {
-    const correctForm = /(.*?)\.(jpg|gif|png|jpeg|bmp|tif|heic|)$/;
-    const file = e.target.files[0];
-    console.log(file);
+  const imgCompress = async (file) => {
     const fileReader = new FileReader();
     const options = {
       maxSizeMB: 1,
       maxWidthOrHeight: 400,
       useWebWorker: true,
     };
+    try {
+      const compressedFile = await imageCompression(file, options);
+      fileReader.readAsDataURL(compressedFile);
+      fileReader.onload = () => {
+        const base64data = fileReader.result;
+        setPreviewImgUrl((preview) => [...preview, base64data]);
+        base64toFile(base64data, file.name);
+      };
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const previewImgHandler = async (e) => {
+    const correctForm = /(.*?)\.(jpg|gif|png|jpeg|bmp|tif|heic|)$/;
+    const file = e.target.files[0];
+    console.log(file);
     if (previewImgUrl.length > 0) {
       alert('1개의 이미지 파일을 업로드 하세요.');
       return;
@@ -84,15 +99,8 @@ export default function PostUpload() {
       );
     }
     try {
-      const compressedFile = await imageCompression(file, options);
-      setImgFile(file);
-      fileReader.readAsDataURL(compressedFile);
-      fileReader.onload = () => {
-        const base64data = fileReader.result;
-        setPreviewImgUrl((preview) => [...preview, base64data]);
-        base64toFile(base64data, file.name);
-        e.target.value = null;
-      };
+      imgCompress(file);
+      e.target.value = null;
     } catch (err) {
       console.log(err);
     }
@@ -100,6 +108,7 @@ export default function PostUpload() {
 
   const imgUploadHandler = async (file) => {
     if (file) {
+      console.log(file);
       const formData = new FormData();
       formData.append('image', file);
       const res = await postImage(formData);
@@ -121,6 +130,7 @@ export default function PostUpload() {
 
   const postUploadHandler = async () => {
     const image = await imgUploadHandler(imgFile);
+    console.log(image);
     const postData = {
       post: {
         content: text,
@@ -128,6 +138,7 @@ export default function PostUpload() {
       },
     };
     const res = await createPost(postData);
+    console.log(res);
     navigate(`/my_profile/${accountName}`);
   };
 
