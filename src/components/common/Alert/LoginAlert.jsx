@@ -7,7 +7,7 @@ import {
   AlertBody,
   AlertButtonLeft,
   AlertButtonRight,
-} from './LoginAlertStyle';
+} from './AlertStyle';
 
 export default function ModalAlert({ setAlert }) {
   const navigate = useNavigate();
