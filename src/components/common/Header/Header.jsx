@@ -4,7 +4,7 @@ import iconArrowLeft from 'assets/img/icon-arrow-left.svg';
 import iconMore from 'assets/img/icon-more.svg';
 import iconSearch from 'assets/img/icon-search.svg';
 import Button from 'components/common/Button/Button';
-import LoginModal from 'components/common/Modal/LoginModalAlert/LoginModal';
+import LoginModal from 'components/common/Modal/LoginModal';
 import {
   HeaderLeftBtnStyle,
   HeaderRightBtnStyle,

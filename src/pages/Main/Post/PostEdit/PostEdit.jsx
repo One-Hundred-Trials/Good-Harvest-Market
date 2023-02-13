@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-<<<<<<< HEAD
-=======
 import MetaDatas from 'components/MetaDatas/MetaDatas';
->>>>>>> dev
 import Header from 'components/common/Header/Header';
 import UploadFileBtn from 'components/common/UploadFileBtn/UploadFileBtn';
 import { baseUrl } from 'api/api';
