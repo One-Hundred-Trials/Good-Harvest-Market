@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { useRecoilValue } from 'recoil';
 import { authAtom, accountAtom } from '_state/auth';
+import MetaDatas from 'components/MetaDatas/MetaDatas';
 import { ConWrap } from 'styles/GlobalStyles';
 import Profile from 'components/Profile/Profile';
 import ProductList from 'components/ProductList/ProductList';
@@ -139,6 +140,11 @@ export default function UserProfile() {
   else {
     return (
       <>
+        <MetaDatas
+          title={`${userProfile.username}님의 게시물`}
+          desc={`풍년마켓 이웃들의 게시물`}
+          pageURL={`/user_profile/${id}`}
+        />
         <Header />
         <ConWrapStyle>
           <ContDivStyle>

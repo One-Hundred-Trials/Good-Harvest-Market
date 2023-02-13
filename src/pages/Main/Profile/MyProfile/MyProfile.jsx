@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { useRecoilValue } from 'recoil';
+import MetaDatas from 'components/MetaDatas/MetaDatas';
 import Header from 'components/common/Header/Header';
 import ListOrAlbum from 'components/ListOrAlbum/ListOrAlbum';
 import PostAlbum from 'components/PostAlbum/PostAlbum';
@@ -99,6 +100,11 @@ export default function MyProfile() {
   else {
     return (
       <>
+        <MetaDatas
+          title={'나의 게시물'}
+          desc={'풍년마켓 나의 게시물'}
+          pageURL={`/my_profile/${accountname}`}
+        />
         {accountname === account ? (
           <>
             <Header />

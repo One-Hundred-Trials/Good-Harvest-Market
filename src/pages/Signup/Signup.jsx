@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import MetaDatas from 'components/MetaDatas/MetaDatas';
 import postUserSignUp from 'api/SignUp/postUserSignUp';
 import Input from 'components/common/Input/Input';
 import Button from 'components/common/Button/Button';
@@ -33,16 +34,9 @@ const Signup = ({ setIsSignupValid, setSignupForm, signupForm }) => {
           email: signupForm.email,
         },
       };
+
       const data = await postUserSignUp(emailCheckData);
-      // const res = await axiosPrivate.post(
-      //   '/user/emailvalid',
-      //   JSON.stringify(emailCheckData),
-      //   {
-      //     data: emailCheckData,
-      //   }
-      // );
-      // const json = res.data;
-      // console.log(data);
+
       if (data.message === '이미 가입된 이메일 주소 입니다.') {
         setEmailError(`*${data.message}`);
         setEmailIsValid(false);
@@ -110,60 +104,67 @@ const Signup = ({ setIsSignupValid, setSignupForm, signupForm }) => {
   };
 
   return (
-    <ContSecStyle>
-      <HeaderStyle>이메일로 회원가입</HeaderStyle>
-      <InputFormStyle onSubmit={SubmitHandler}>
-        <Input
-          label="이메일"
-          type="email"
-          name="email"
-          placeholder="이메일 주소를 입력해주세요"
-          value={signupForm}
-          onBlur={EmailHandler}
-          onChange={inputChangeHandler}
-          message={emailError}
-        ></Input>
-        <Input
-          label="비밀번호"
-          type="password"
-          name="password"
-          placeholder="6자리 이상의 비밀번호를 설정해주세요"
-          value={signupForm}
-          onBlur={PasswordHandler}
-          onChange={inputChangeHandler}
-          min="6"
-          message={passwordError}
-        ></Input>
-        <Input
-          label="비밀번호 확인"
-          type="password"
-          name="passwordCheck"
-          placeholder="위에서 설정한 비밀번호를 그대로 입력해주세요"
-          value={signupForm}
-          onBlur={PasswordCheckHandler}
-          onChange={inputChangeHandler}
-          message={passwordCheckError}
-        ></Input>
-        <BtnContainerStyle>
-          <Button
-            variant={
-              signupForm.email &&
-              signupForm.password &&
-              signupForm.passwordCheck
-                ? 'abled'
-                : 'disabled'
-            }
-            disabled={
-              !signupForm.email ||
-              !signupForm.password ||
-              !signupForm.passwordCheck
-            }
-          >
-            {'다음'}
-          </Button>
-        </BtnContainerStyle>
-      </InputFormStyle>
-    </ContSecStyle>
+    <>
+      <MetaDatas
+        title={'회원가입'}
+        desc={'풍년마켓 회원가입하기'}
+        pageURL={'/login/sign_up'}
+      />
+      <ContSecStyle>
+        <HeaderStyle>이메일로 회원가입</HeaderStyle>
+        <InputFormStyle onSubmit={SubmitHandler}>
+          <Input
+            label="이메일"
+            type="email"
+            name="email"
+            placeholder="이메일 주소를 입력해주세요"
+            value={signupForm}
+            onBlur={EmailHandler}
+            onChange={inputChangeHandler}
+            message={emailError}
+          ></Input>
+          <Input
+            label="비밀번호"
+            type="password"
+            name="password"
+            placeholder="6자리 이상의 비밀번호를 설정해주세요"
+            value={signupForm}
+            onBlur={PasswordHandler}
+            onChange={inputChangeHandler}
+            min="6"
+            message={passwordError}
+          ></Input>
+          <Input
+            label="비밀번호 확인"
+            type="password"
+            name="passwordCheck"
+            placeholder="위에서 설정한 비밀번호를 그대로 입력해주세요"
+            value={signupForm}
+            onBlur={PasswordCheckHandler}
+            onChange={inputChangeHandler}
+            message={passwordCheckError}
+          ></Input>
+          <BtnContainerStyle>
+            <Button
+              variant={
+                signupForm.email &&
+                signupForm.password &&
+                signupForm.passwordCheck
+                  ? 'abled'
+                  : 'disabled'
+              }
+              disabled={
+                !signupForm.email ||
+                !signupForm.password ||
+                !signupForm.passwordCheck
+              }
+            >
+              {'다음'}
+            </Button>
+          </BtnContainerStyle>
+        </InputFormStyle>
+      </ContSecStyle>
+    </>
   );
 };
 
