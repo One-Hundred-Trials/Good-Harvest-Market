@@ -9,7 +9,7 @@ import {
   AlertBody,
   AlertButtonLeft,
   AlertButtonRight,
-} from './PostAlertStyle';
+} from './AlertStyle';
 
 export default function PostReportAlert({ setAlert, postId, accountName }) {
   const auth = useRecoilValue(authAtom);

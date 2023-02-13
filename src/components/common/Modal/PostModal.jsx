@@ -1,18 +1,22 @@
-import { logDOM } from '@testing-library/react';
 import React, { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import PostDeleteAlert from '../Alert/PostDeleteAlert';
 import {
   ModalContainerDiv,
   ModalUl,
   ModalBtn,
   ModalBgtDiv,
-} from './PostModalStyle';
-import PostReportAlert from './PostReportAlert';
+} from './ModalStyle';
 
-export default function PostReportModal({ setModal, postId, accountName }) {
+export default function PostModal({ postId, setModal }) {
   const [alert, setAlert] = useState(false);
-
   const alertShow = () => {
     setAlert(true);
+  };
+
+  const navigate = useNavigate();
+  const goEditHandler = () => {
+    navigate(`/post/${postId}/edit`);
   };
 
   const modalRef = useRef();
@@ -35,16 +39,13 @@ export default function PostReportModal({ setModal, postId, accountName }) {
       <ModalContainerDiv ref={modalRef}>
         <ModalUl>
           <li>
-            <ModalBtn onClick={alertShow}>신고하기</ModalBtn>
+            <ModalBtn onClick={alertShow}>삭제</ModalBtn>
+          </li>
+          <li>
+            <ModalBtn onClick={goEditHandler}>수정</ModalBtn>
           </li>
         </ModalUl>
-        {alert && (
-          <PostReportAlert
-            accountName={accountName}
-            postId={postId}
-            setAlert={setAlert}
-          />
-        )}
+        {alert && <PostDeleteAlert postId={postId} setAlert={setAlert} />}
       </ModalContainerDiv>
     </ModalBgtDiv>
   );

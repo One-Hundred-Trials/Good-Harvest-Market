@@ -7,7 +7,7 @@ import {
   AlertBody,
   AlertButtonLeft,
   AlertButtonRight,
-} from './PostAlertStyle';
+} from './AlertStyle';
 
 export default function PostModalAlert({ setAlert, postId }) {
   const accountName = JSON.parse(localStorage.getItem('account'));

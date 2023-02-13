@@ -4,8 +4,8 @@ import {
   ModalContainerDiv,
   ModalUl,
   ModalBtn,
-} from './LoginModalStyle';
-import LoginAlert from './LoginAlert';
+} from './ModalStyle';
+import LoginAlert from '../Alert/LoginAlert';
 
 export default function ModalSlide({ setModal }) {
   const [alert, setAlert] = useState(false);

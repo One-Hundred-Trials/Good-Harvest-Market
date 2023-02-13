@@ -7,7 +7,7 @@ import {
   AlertBody,
   AlertButtonLeft,
   AlertButtonRight,
-} from './ProductAlertStyle';
+} from './AlertStyle';
 
 export default function ModalAlert({ setAlert, productId, GetProductList }) {
   const alertClose = () => {

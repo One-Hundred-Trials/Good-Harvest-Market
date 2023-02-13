@@ -6,7 +6,7 @@ import {
   AlertBody,
   AlertButtonLeft,
   AlertButtonRight,
-} from './CommentAlertStyle';
+} from './AlertStyle';
 
 export default function CommentAlert({
   setAlert,
