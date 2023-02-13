@@ -3,9 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import iconArrowLeft from 'assets/img/icon-arrow-left.svg';
 import iconMore from 'assets/img/icon-more.svg';
 import iconSearch from 'assets/img/icon-search.svg';
-import Button from '../Button/Button';
-import LoginModal from '../Modal/LoginModalAlert/LoginModal';
+import Button from 'components/common/Button/Button';
+import LoginModal from 'components/common/Modal/LoginModalAlert/LoginModal';
 import {
+  HeaderLeftBtnStyle,
+  HeaderRightBtnStyle,
   HeaderStyle,
   TopChatTitleStyle,
   TopMainTitleStyle,
@@ -44,12 +46,12 @@ export default function Header({
     return (
       <>
         <HeaderStyle>
-          <button onClick={() => navigate(-1)}>
-            <img src={iconArrowLeft} alt="뒤로가기" height="22" />
-          </button>
-          <button onClick={modalUp}>
-            <img src={iconMore} alt="더보기" height="22" />
-          </button>
+          <HeaderLeftBtnStyle onClick={() => navigate(-1)}>
+            <img src={iconArrowLeft} alt="뒤로가기" />
+          </HeaderLeftBtnStyle>
+          <HeaderRightBtnStyle onClick={modalUp}>
+            <img src={iconMore} alt="더보기" />
+          </HeaderRightBtnStyle>
         </HeaderStyle>
         {modal && <LoginModal setModal={setModal} />}
       </>
@@ -57,30 +59,30 @@ export default function Header({
   else if (path !== '/chat' && path !== '/chat/' && path.includes('/chat/'))
     return (
       <HeaderStyle>
-        <button onClick={() => navigate(-1)}>
-          <img src={iconArrowLeft} alt="뒤로가기" height="22" />
-        </button>
+        <HeaderLeftBtnStyle onClick={() => navigate(-1)}>
+          <img src={iconArrowLeft} alt="뒤로가기" />
+        </HeaderLeftBtnStyle>
         <TopChatTitleStyle>{children}</TopChatTitleStyle>
-        <button>
-          <img src={iconMore} alt="더보기" height="22" />
-        </button>
+        <HeaderRightBtnStyle>
+          <img src={iconMore} alt="더보기" />
+        </HeaderRightBtnStyle>
       </HeaderStyle>
     );
   else if (path === '/home' || path === '')
     return (
       <HeaderStyle>
         <TopMainTitleStyle>{children}</TopMainTitleStyle>
-        <button onClick={() => navigate('/search')}>
-          <img src={iconSearch} alt="검색하기" height="22" />
-        </button>
+        <HeaderRightBtnStyle onClick={() => navigate('/search')}>
+          <img src={iconSearch} alt="검색하기" />
+        </HeaderRightBtnStyle>
       </HeaderStyle>
     );
   else if (path === '/search')
     return (
       <HeaderStyle>
-        <button onClick={() => navigate(-1)}>
-          <img src={iconArrowLeft} alt="뒤로가기" height="22" />
-        </button>
+        <HeaderLeftBtnStyle onClick={() => navigate(-1)}>
+          <img src={iconArrowLeft} alt="뒤로가기" />
+        </HeaderLeftBtnStyle>
         <TopSearchInputStyle
           type="text"
           placeholder="계정 검색"
@@ -98,9 +100,9 @@ export default function Header({
   )
     return (
       <HeaderStyle>
-        <button onClick={() => navigate(-1)}>
-          <img src={iconArrowLeft} alt="뒤로가기" height="22" />
-        </button>
+        <HeaderLeftBtnStyle onClick={() => navigate(-1)}>
+          <img src={iconArrowLeft} alt="뒤로가기" />
+        </HeaderLeftBtnStyle>
         <Button
           type="submit"
           size={size}
@@ -116,9 +118,9 @@ export default function Header({
   else if (path.includes(`/follower`) || path.includes(`/following`)) {
     return (
       <HeaderStyle>
-        <button onClick={() => navigate(-1)}>
-          <img src={iconArrowLeft} alt="뒤로가기" height="22" />
-        </button>
+        <HeaderLeftBtnStyle onClick={() => navigate(-1)}>
+          <img src={iconArrowLeft} alt="뒤로가기" />
+        </HeaderLeftBtnStyle>
         <TopChatTitleStyle>{children}</TopChatTitleStyle>
       </HeaderStyle>
     );

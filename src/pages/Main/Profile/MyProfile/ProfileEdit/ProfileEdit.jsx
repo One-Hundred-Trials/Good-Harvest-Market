@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { authAtom } from '_state/auth';
+import MetaDatas from 'components/MetaDatas/MetaDatas';
 import UploadProfileImg from 'components/UploadProfileImg/UploadProfileImg';
 import Input from 'components/common/Input/Input';
 import Header from 'components/common/Header/Header';
@@ -138,6 +139,11 @@ export default function ProfileEdit() {
 
   return (
     <>
+      <MetaDatas
+        title={'내 정보 수정'}
+        desc={'풍년마켓 내 정보 수정하기'}
+        pageURL={'/profile_edit'}
+      />
       <Header size="m" variant="able" onClick={editProfileHandler}>
         저장
       </Header>

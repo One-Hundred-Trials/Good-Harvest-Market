@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import MetaDatas from 'components/MetaDatas/MetaDatas';
 import Header from 'components/common/Header/Header';
 import HomeRenderBlank from 'components/HomeRender/HomeRenderBlank';
 import PostCardList from 'components/PostCardList/PostCardList';
@@ -47,6 +48,11 @@ export default function Home() {
   else {
     return (
       <>
+        <MetaDatas
+          title={'둘러보기'}
+          desc={'풍년마켓 나의 이웃 둘러보기'}
+          pageURL={'/home'}
+        />
         <Header>주말의 즐거운 풍년마켓</Header>
         <ConWrapStyle>
           {hasFollowing ? <PostCardList posts={post} /> : <HomeRenderBlank />}

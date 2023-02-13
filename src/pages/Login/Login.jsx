@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import MetaDatas from '../../components/MetaDatas/MetaDatas';
 import {
   H2IR,
   ContSectionStyle,
@@ -21,33 +21,40 @@ export default function Login() {
   const children = ['이메일로 로그인', '풍년마켓 회원가입'];
 
   return (
-    <ContSectionStyle>
-      <H2IR>풍년마켓 로그인 페이지</H2IR>
-      <LogoiImgStyle src={fullLogo} alt="" />
-      <DuckImgStyle src={duckFarm} alt="" />
-      <Div>
-        <Button size="lg" go="/login/login_email">
-          {children[0]}
-        </Button>
-        <Button go="/login/sign_up" size="lg">
-          {children[1]}
-        </Button>
-        <p>SNS계정으로 로그인하기</p>
-        <SNSFlexDivStyle>
-          <a>
-            <SNSImgStyle src={logoKakao} alt="" />
-            <p>카카오톡</p>
-          </a>
-          <a>
-            <SNSImgStyle src={logoGoogle} alt="" />
-            <p>구글</p>
-          </a>
-          <a>
-            <SNSImgStyle src={logoFacebook} alt="" />
-            <p>페이스북</p>
-          </a>
-        </SNSFlexDivStyle>
-      </Div>
-    </ContSectionStyle>
+    <>
+      <MetaDatas
+        title={'로그인'}
+        desc={'풍년마켓 로그인하기'}
+        pageURL={'/login'}
+      />
+      <ContSectionStyle>
+        <H2IR>풍년마켓 로그인 페이지</H2IR>
+        <LogoiImgStyle src={fullLogo} alt="" />
+        <DuckImgStyle src={duckFarm} alt="" />
+        <Div>
+          <Button size="lg" go="/login/login_email">
+            {children[0]}
+          </Button>
+          <Button go="/login/sign_up" size="lg">
+            {children[1]}
+          </Button>
+          <p>SNS계정으로 로그인하기</p>
+          <SNSFlexDivStyle>
+            <a>
+              <SNSImgStyle src={kakao} alt="" />
+              <p>카카오톡</p>
+            </a>
+            <a>
+              <SNSImgStyle src={google} alt="" />
+              <p>구글</p>
+            </a>
+            <a>
+              <SNSImgStyle src={facebook} alt="" />
+              <p>페이스북</p>
+            </a>
+          </SNSFlexDivStyle>
+        </Div>
+      </ContSectionStyle>
+    </>
   );
 }

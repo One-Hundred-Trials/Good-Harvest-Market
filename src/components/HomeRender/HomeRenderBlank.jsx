@@ -1,5 +1,5 @@
 import React from 'react';
-import Blank from '../Blank/Blank';
+import Blank from 'components/Blank/Blank';
 import DuckBlank from 'assets/img/duck-blank.svg';
 import BlankWrap from './HomeRenderStyle';
 

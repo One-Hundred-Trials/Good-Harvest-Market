@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
+import MetaDatas from 'components/MetaDatas/MetaDatas';
 import PostCard from 'components/PostCard/PostCard';
 import Comment from 'components/Comment/Comment';
 import CommentInput from 'components/CommentInput/CommentInput';
@@ -45,31 +46,38 @@ export default function Post() {
   if (!postData) return <Loading />;
   else {
     return (
-      <PageWrapStyle>
-        <Header id={id} />
-        <ConWrapStyle>
-          <PostCardUlCont>
-            <PostCard post={postData} author={postAuthor} />
-          </PostCardUlCont>
-          <CommentContainerStyle>
-            {commentsList ? (
-              commentsList
-                .map((comment) => (
-                  <Comment
-                    key={comment.id}
-                    comment={comment}
-                    postId={id}
-                    updateDeleteComment={postCommentList}
-                  />
-                ))
-                .reverse()
-            ) : (
-              <p>첫번째 댓글을 달아보세요!</p>
-            )}
-          </CommentContainerStyle>
-        </ConWrapStyle>
-        <CommentInput upDateComment={postCommentList} />
-      </PageWrapStyle>
+      <>
+        <MetaDatas
+          title={'게시글'}
+          desc={'풍년마켓에서 이웃들의 소식 확인하기'}
+          pageURL={`/post/${id}`}
+        />
+        <PageWrapStyle>
+          <Header id={id} />
+          <ConWrapStyle>
+            <PostCardUlCont>
+              <PostCard post={postData} author={postAuthor} />
+            </PostCardUlCont>
+            <CommentContainerStyle>
+              {commentsList ? (
+                commentsList
+                  .map((comment) => (
+                    <Comment
+                      key={comment.id}
+                      comment={comment}
+                      postId={id}
+                      updateDeleteComment={postCommentList}
+                    />
+                  ))
+                  .reverse()
+              ) : (
+                <p>첫번째 댓글을 달아보세요!</p>
+              )}
+            </CommentContainerStyle>
+          </ConWrapStyle>
+          <CommentInput upDateComment={postCommentList} />
+        </PageWrapStyle>
+      </>
     );
   }
 }

@@ -5,14 +5,17 @@ const loading = keyframes`
   0% {
     opacity:1;
   }
-  30% {
+  25% {
     opacity:0.2;
   }
-  60% {
+  50% {
     opacity:1;
   }
-  100% {
+  75%{
     opacity:0.2;
+  }
+ 100%{
+    opacity:1;
   }
 `;
 
@@ -25,7 +28,7 @@ export const LoadingBgDivStyle = styled.div`
   position: absolute;
   display: flex;
   width: 200px;
-  padding: 0 5%;
+  padding: 0 20px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -34,7 +37,10 @@ export const LoadingBgDivStyle = styled.div`
 `;
 
 export const LogoLeafStyle = styled.img`
-  width: 30%;
+  width: 45px;
   margin-top: -48px;
   animation: 1.5s ${loading} ease-in-out infinite;
+  & + img {
+    margin-left: 11px;
+  }
 `;

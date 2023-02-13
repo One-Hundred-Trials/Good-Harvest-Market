@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import MetaDatas from 'components/MetaDatas/MetaDatas';
 import { baseUrl } from 'api/api';
 import getMyProfile from 'api/Profile/getMyProfile';
 import postImage from 'api/ImgUpload/postImage';
@@ -110,38 +111,44 @@ export default function PostUpload() {
   if (!profileImg) return <Loading />;
   else {
     return (
-      <PageWrapStyle>
-        <Header
-          size="ms"
-          variant={isActive ? '' : 'disabled'}
-          onClick={postUploadHandler}
-          disabled={!(text || previewImgUrl)}
-        >
-          업로드
-        </Header>
-        <ConWrapStyle>
-          <H2IR>게시글 작성창</H2IR>
-          <MyProfileImg src={profileImg} alt="내 프로필 이미지" />
-          <PostFormStyle>
-            <TextAreaStyle
-              type="text"
-              placeholder="게시글 입력하기"
-              onChange={textChangeHandler}
-            />
-            {previewImgUrl && (
-              <ImgWrapStyle>
-                <PreviewImgWrapStyle>
-                  <PreviewImg src={previewImgUrl} alt="이미지 미리보기" />
-                  <DeleteImgBtn type="button" onClick={deleteImgHandler} />
-                </PreviewImgWrapStyle>
-              </ImgWrapStyle>
-            )}
-            <BtnWrapStyle>
-              <UploadFileBtn onChange={previewImgHandler} />
-            </BtnWrapStyle>
-          </PostFormStyle>
-        </ConWrapStyle>
-      </PageWrapStyle>
+      <>
+        <MetaDatas
+          title={'새 게시물 작성'}
+          desc={'풍년마켓에서 새 게시물 작성하기'}
+        />
+        <PageWrapStyle>
+          <Header
+            size="ms"
+            variant={isActive ? '' : 'disabled'}
+            onClick={postUploadHandler}
+            disabled={!(text || previewImgUrl)}
+          >
+            업로드
+          </Header>
+          <ConWrapStyle>
+            <H2IR>게시글 작성창</H2IR>
+            <MyProfileImg src={profileImg} alt="내 프로필 이미지" />
+            <PostFormStyle>
+              <TextAreaStyle
+                type="text"
+                placeholder="게시글 입력하기"
+                onChange={textChangeHandler}
+              />
+              {previewImgUrl && (
+                <ImgWrapStyle>
+                  <PreviewImgWrapStyle>
+                    <PreviewImg src={previewImgUrl} alt="이미지 미리보기" />
+                    <DeleteImgBtn type="button" onClick={deleteImgHandler} />
+                  </PreviewImgWrapStyle>
+                </ImgWrapStyle>
+              )}
+              <BtnWrapStyle>
+                <UploadFileBtn onChange={previewImgHandler} />
+              </BtnWrapStyle>
+            </PostFormStyle>
+          </ConWrapStyle>
+        </PageWrapStyle>
+      </>
     );
   }
 }

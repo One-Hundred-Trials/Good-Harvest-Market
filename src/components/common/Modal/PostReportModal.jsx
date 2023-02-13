@@ -1,22 +1,18 @@
+import { logDOM } from '@testing-library/react';
 import React, { useState, useRef, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import ProductAlert from './ProductAlert';
 import {
-  ModalBgtDiv,
   ModalContainerDiv,
   ModalUl,
   ModalBtn,
-} from './ProductModalStyle';
+  ModalBgtDiv,
+} from './ModalStyle';
+import PostReportAlert from '../Alert/PostReportAlert';
 
-export default function ModalSlide({ productId, setModal, GetProductList }) {
+export default function PostReportModal({ setModal, postId, accountName }) {
   const [alert, setAlert] = useState(false);
+
   const alertShow = () => {
     setAlert(true);
-  };
-
-  const navigate = useNavigate();
-  const goEditHandler = () => {
-    navigate(`/product/${productId}/edit`);
   };
 
   const modalRef = useRef();
@@ -39,20 +35,14 @@ export default function ModalSlide({ productId, setModal, GetProductList }) {
       <ModalContainerDiv ref={modalRef}>
         <ModalUl>
           <li>
-            <ModalBtn onClick={alertShow}>삭제</ModalBtn>
-          </li>
-          <li>
-            <ModalBtn onClick={goEditHandler}>수정</ModalBtn>
-          </li>
-          <li>
-            <ModalBtn>웹사이트에서 상품 보기</ModalBtn>
+            <ModalBtn onClick={alertShow}>신고하기</ModalBtn>
           </li>
         </ModalUl>
         {alert && (
-          <ProductAlert
-            productId={productId}
+          <PostReportAlert
+            accountName={accountName}
+            postId={postId}
             setAlert={setAlert}
-            GetProductList={GetProductList}
           />
         )}
       </ModalContainerDiv>

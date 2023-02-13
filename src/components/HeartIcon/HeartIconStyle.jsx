@@ -5,9 +5,10 @@ export const HeartStyle = styled.span`
   align-items: center;
   gap: 8px;
   color: var(--main-grey-76);
+  width: 17px;
+  height: 15px;
 `;
 
 export const HeartImgStyle = styled.img`
   width: 100%;
-  height: 15px;
 `;

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import MetaDatas from 'components/MetaDatas/MetaDatas';
 import Header from 'components/common/Header/Header';
 import Input from 'components/common/Input/Input';
 import { baseUrl } from 'api/api';
@@ -139,55 +140,62 @@ export default function ProductUpload() {
   };
 
   return (
-    <PageWrapStyle>
-      <Header
-        size="ms"
-        variant={btnAble && isItemImage === true ? '' : 'disabled'}
-        disabled={btnAble ? '' : 'disabled'}
-        go={btnAble ? `/my_profile/${accountname}` : ''}
-        onClick={submitProductHandler}
-      >
-        업로드
-      </Header>
-      <ConWrapStyle>
-        <div onChange={imgHandler}>
-          <ProductUploadTitleStyle>이미지 등록</ProductUploadTitleStyle>
-          <ProductImgUploaderStyle>
-            {imageSrc && <img src={imageSrc} alt="미리보기" />}
-            <ImgVaildMessage>{itemImageMessage}</ImgVaildMessage>
-            <UploadFileBtn onChange={uploadImgHandler} />
-          </ProductImgUploaderStyle>
-        </div>
-        <Input
-          label="상품명"
-          id="productName"
-          placeholder="2~15자 이내여야 합니다."
-          min="2"
-          max="15"
-          onChange={itemNameHandler}
-          onKeyUp={btnAbleHandler}
-          message={itemNameMessage}
-        />
-        <Input
-          label="가격"
-          id="productPrice"
-          placeholder="숫자만 입력 가능합니다."
-          min="2"
-          max="12"
-          onChange={priceHandler}
-          onKeyUp={btnAbleHandler}
-          getValue={price}
-          message={priceMessage}
-        />
-        <Input
-          label="판매 링크"
-          id="productURL"
-          placeholder="URL을 입력해 주세요."
-          onChange={linkHandler}
-          onKeyUp={btnAbleHandler}
-          message={linkMessage}
-        />
-      </ConWrapStyle>
-    </PageWrapStyle>
+    <>
+      <MetaDatas
+        title={'상품 등록'}
+        desc={'풍년마켓에서 상품을 새롭게 등록하기'}
+        pageURL={`/product_upload`}
+      />
+      <PageWrapStyle>
+        <Header
+          size="ms"
+          variant={btnAble && isItemImage === true ? '' : 'disabled'}
+          disabled={btnAble ? '' : 'disabled'}
+          go={btnAble ? `/my_profile/${accountname}` : ''}
+          onClick={submitProductHandler}
+        >
+          업로드
+        </Header>
+        <ConWrapStyle>
+          <div onChange={imgHandler}>
+            <ProductUploadTitleStyle>이미지 등록</ProductUploadTitleStyle>
+            <ProductImgUploaderStyle>
+              {imageSrc && <img src={imageSrc} alt="미리보기" />}
+              <ImgVaildMessage>{itemImageMessage}</ImgVaildMessage>
+              <UploadFileBtn onChange={uploadImgHandler} />
+            </ProductImgUploaderStyle>
+          </div>
+          <Input
+            label="상품명"
+            id="productName"
+            placeholder="2~15자 이내여야 합니다."
+            min="2"
+            max="15"
+            onChange={itemNameHandler}
+            onKeyUp={btnAbleHandler}
+            message={itemNameMessage}
+          />
+          <Input
+            label="가격"
+            id="productPrice"
+            placeholder="숫자만 입력 가능합니다."
+            min="2"
+            max="12"
+            onChange={priceHandler}
+            onKeyUp={btnAbleHandler}
+            getValue={price}
+            message={priceMessage}
+          />
+          <Input
+            label="판매 링크"
+            id="productURL"
+            placeholder="URL을 입력해 주세요."
+            onChange={linkHandler}
+            onKeyUp={btnAbleHandler}
+            message={linkMessage}
+          />
+        </ConWrapStyle>
+      </PageWrapStyle>
+    </>
   );
 }

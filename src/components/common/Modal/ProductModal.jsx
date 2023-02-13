@@ -1,24 +1,22 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import ProductAlert from '../Alert/ProductAlert';
 import {
   ModalBgtDiv,
   ModalContainerDiv,
   ModalUl,
   ModalBtn,
-} from './CommentModalStyle';
-import CommentAlert from './CommentAlert';
+} from './ModalStyle';
 
-export default function ModalSlide({
-  setModal,
-  commentId,
-  postId,
-  text,
-  alertAsk,
-  request,
-  onClickHandler,
-}) {
+export default function ModalSlide({ productId, setModal, GetProductList }) {
   const [alert, setAlert] = useState(false);
   const alertShow = () => {
     setAlert(true);
+  };
+
+  const navigate = useNavigate();
+  const goEditHandler = () => {
+    navigate(`/product/${productId}/edit`);
   };
 
   const modalRef = useRef();
@@ -34,24 +32,27 @@ export default function ModalSlide({
       document.removeEventListener('mousedown', modalTouchCloseHandler);
       document.removeEventListener('touchstart', modalTouchCloseHandler);
     };
-  }, [setModal]);
+  });
 
   return (
     <ModalBgtDiv>
       <ModalContainerDiv ref={modalRef}>
         <ModalUl>
           <li>
-            <ModalBtn onClick={alertShow}>{text}</ModalBtn>
+            <ModalBtn onClick={alertShow}>삭제</ModalBtn>
+          </li>
+          <li>
+            <ModalBtn onClick={goEditHandler}>수정</ModalBtn>
+          </li>
+          <li>
+            <ModalBtn>웹사이트에서 상품 보기</ModalBtn>
           </li>
         </ModalUl>
         {alert && (
-          <CommentAlert
-            commentId={commentId}
+          <ProductAlert
+            productId={productId}
             setAlert={setAlert}
-            postId={postId}
-            alertAsk={alertAsk}
-            request={request}
-            onClickHandler={onClickHandler}
+            GetProductList={GetProductList}
           />
         )}
       </ModalContainerDiv>
