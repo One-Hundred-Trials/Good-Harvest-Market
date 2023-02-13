@@ -55,7 +55,10 @@ export default function Nav() {
           <NavLinkStyle to="/home">
             {({ isActive }) => (
               <>
-                <StyledImg src={isActive ? IconHome.fill : IconHome.default} />
+                <StyledImg
+                  src={isActive ? IconHome.fill : IconHome.default}
+                  alt=""
+                />
                 <p>홈</p>
               </>
             )}
@@ -67,6 +70,7 @@ export default function Nav() {
               <>
                 <StyledImg
                   src={isActive ? IconMessage.fill : IconMessage.default}
+                  alt=""
                 />
                 <p>채팅</p>
               </>
@@ -77,7 +81,10 @@ export default function Nav() {
           <NavLinkStyle to="/post_upload">
             {({ isActive }) => (
               <>
-                <StyledImg src={isActive ? IconEdit.fill : IconEdit.default} />
+                <StyledImg
+                  src={isActive ? IconEdit.fill : IconEdit.default}
+                  alt=""
+                />
                 <p>게시글 작성</p>
               </>
             )}
@@ -87,7 +94,10 @@ export default function Nav() {
           <NavLinkStyle to={`/my_profile/${account}`}>
             {({ isActive }) => (
               <>
-                <StyledImg src={isActive ? IconUser.fill : IconUser.default} />
+                <StyledImg
+                  src={isActive ? IconUser.fill : IconUser.default}
+                  alt=""
+                />
                 <p>프로필</p>
               </>
             )}
