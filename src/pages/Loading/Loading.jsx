@@ -1,4 +1,5 @@
 import React from 'react';
+import MetaDatas from 'components/MetaDatas/MetaDatas';
 import IntroLogoLeaf from 'assets/img/intro-logo-leaf.svg';
 import { WrapStyle, LoadingBgDivStyle, LogoLeafStyle } from './LoadingStyle';
 
