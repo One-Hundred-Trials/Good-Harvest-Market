@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ConWrap } from '../../../styles/GlobalStyles';
+import { ConWrap } from 'styles/GlobalStyles';
 
 const ChatListWrapStyle = styled.ul`
   ${ConWrap}

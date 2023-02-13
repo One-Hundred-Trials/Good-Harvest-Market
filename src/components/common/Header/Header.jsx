@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import iconArrowLeft from 'assets/img/icon-arrow-left.png';
-import iconMore from 'assets/img/icon-more-18.png';
-import iconSearch from 'assets/img/icon-search.png';
-import Button from '../Button/Button';
-import LoginModal from '../Modal/LoginModal';
+import iconArrowLeft from 'assets/img/icon-arrow-left.svg';
+import iconMore from 'assets/img/icon-more.svg';
+import iconSearch from 'assets/img/icon-search.svg';
+import Button from 'components/common/Button/Button';
+import LoginModal from 'components/common/Modal/LoginModalAlert/LoginModal';
 import {
   HeaderLeftBtnStyle,
   HeaderRightBtnStyle,

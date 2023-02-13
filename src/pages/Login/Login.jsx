@@ -9,12 +9,13 @@ import {
   SNSFlexDivStyle,
   SNSImgStyle,
 } from './LoginStyle';
-import Button from '../../components/common/Button/Button';
-import fullLogo from '../../assets/img/full-logo.png';
-import duckFarm from '../../assets/img/duck-farm.png';
-import kakao from '../../assets/img/kakako.png';
-import google from '../../assets/img/google.png';
-import facebook from '../../assets/img/facebook.png';
+import Button from 'components/common/Button/Button';
+import fullLogo from 'assets/img/full-logo.svg';
+import duckFarm from 'assets/img/duck-farm.svg';
+import logoKakao from 'assets/img/logo-kakako.svg';
+import logoGoogle from 'assets/img/logo-google.svg';
+import logoFacebook from 'assets/img/logo-facebook.svg';
+import Splash from '../Splash/Splash';
 
 export default function Login() {
   const children = ['이메일로 로그인', '풍년마켓 회원가입'];

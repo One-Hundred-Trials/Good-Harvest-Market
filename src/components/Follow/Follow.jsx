@@ -1,6 +1,6 @@
 import React from 'react';
-import MessageImg from 'assets/img/icon-message-circle-1.png';
-import ShareImg from 'assets/img/icon-share.png';
+import MessageImg from 'assets/img/icon-message-circle.svg';
+import ShareImg from 'assets/img/icon-share.svg';
 import {
   FollowButtons,
   FollowBtnStyle,

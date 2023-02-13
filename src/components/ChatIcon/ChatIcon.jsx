@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import iconMessageCircle from 'assets/img/icon-message-circle.png';
+import iconMessageCircle from 'assets/img/icon-message-circle.svg';
 import ChatBtn from './ChatIconStyle';
 
 export default function ChatIcon() {

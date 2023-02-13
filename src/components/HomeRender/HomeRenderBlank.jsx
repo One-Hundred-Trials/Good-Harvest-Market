@@ -1,6 +1,6 @@
 import React from 'react';
-import DuckBlank from 'assets/img/duck-blank.png';
-import Blank from '../Blank/Blank';
+import Blank from 'components/Blank/Blank';
+import DuckBlank from 'assets/img/duck-blank.svg';
 import BlankWrap from './HomeRenderStyle';
 
 export default function HomeRenderBlank() {

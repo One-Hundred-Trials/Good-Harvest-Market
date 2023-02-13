@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Ellipsis } from '../../styles/GlobalStyles';
+import { Ellipsis } from 'styles/GlobalStyles';
 
 export const CommentContainerStyle = styled.div`
   display: flex;

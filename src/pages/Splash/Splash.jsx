@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import MetaDatas from 'components/MetaDatas/MetaDatas';
-import IntroLogoBg from 'assets/img/intro-logo-bg.png';
-import IntroLogoLeaf from 'assets/img/intro-logo-leaf.png';
-import IntroLogoText from 'assets/img/intro-logo-text.png';
+import IntroLogoBg from 'assets/img/intro-logo-bg.svg';
+import IntroLogoLeaf from 'assets/img/intro-logo-leaf.svg';
+import IntroLogoText from 'assets/img/intro-logo-text.svg';
 import {
   SplashArticleStyle,
   WrapStyle,

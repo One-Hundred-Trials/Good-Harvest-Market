@@ -1,8 +1,8 @@
 import React from 'react';
 import postLiked from 'api/Feed/postLiked';
 import deleteLiked from 'api/Feed/deleteLiked';
-import HeartOff from 'assets/img/icon-heart.png';
-import HeartOn from 'assets/img/icon-heart-on.png';
+import HeartOff from 'assets/img/icon-heart.svg';
+import HeartOn from 'assets/img/icon-heart-on.svg';
 import { HeartStyle, HeartImgStyle } from './HeartIconStyle';
 
 export default function HeartIcon({

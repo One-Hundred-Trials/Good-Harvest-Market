@@ -5,7 +5,7 @@ import Header from 'components/common/Header/Header';
 import ProfileImgAccount from 'components/common/ProfileImgAccount/ProfileImgAccount';
 import Loading from 'pages/Loading/Loading';
 import getSearchUser from 'api/Search/getSearchUser';
-import BlankDuck from 'assets/img/blank-duck.png';
+import BlankDuck from 'assets/img/blank-duck.svg';
 import { PageWrapStyle, ConWrapStyle } from './SearchStyle';
 
 export default function Search() {

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import iconImgLayer from 'assets/img/icon-img-layers.svg';
 
 const ListStyle = styled.li`
   position: relative;
@@ -9,6 +10,8 @@ const ListStyle = styled.li`
     right: 6px;
     width: 20px;
     height: 20px;
+    /* background-image: url(${iconImgLayer});
+    background-size: contain; */
   }
   img {
     display: block;

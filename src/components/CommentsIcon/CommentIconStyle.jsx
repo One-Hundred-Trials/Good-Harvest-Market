@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import CommentImg from '../../assets/img/icon-message-circle.png';
+import CommentImg from 'assets/img/icon-message-circle.svg';
 
 export const CommentWrapStyle = styled.span`
   display: flex;

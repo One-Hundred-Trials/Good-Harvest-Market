@@ -7,7 +7,7 @@ import Button from 'components/common/Button/Button';
 import postMyProfile from 'api/ProfileSetting/postMyProfile';
 import postImage from 'api/ImgUpload/postImage';
 import postAccountNameValid from 'api/ProfileSetting/postAccountNameValid';
-import basicProfile from 'assets/img/basic-profile-50.png';
+import basicProfile from 'assets/img/basic-profile-50.svg';
 import {
   ContSecStyle,
   HeaderStyle,
@@ -108,7 +108,7 @@ export default function SignupUserProfile(porps) {
     const userProfileImage =
       imgFile && !arrayIsEmpty(imgFile)
         ? `https://mandarin.api.weniv.co.kr/${imgFile}`
-        : 'https://mandarin.api.weniv.co.kr/1672571236285.png';
+        : 'https://mandarin.api.weniv.co.kr/1672571236285.svg';
 
     console.log(userProfileImage);
 
