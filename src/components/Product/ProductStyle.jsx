@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Ellipsis } from 'styles/GlobalStyles';
 
-export const ProductWrap = styled.article`
+export const ProductWrap = styled.li`
   width: 140px;
 `;
 

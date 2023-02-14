@@ -77,7 +77,7 @@ export default function PostCard({ post, author }) {
               image={author.image}
             />
           </Link>
-          <PostIconMoreStyle onClick={modalUp} />
+          <PostIconMoreStyle onClick={modalUp} aria-label="더보기" />
         </PostProfileDivStyle>
         <PostDivStyle>
           <PostContentsStyle>{post.content}</PostContentsStyle>
