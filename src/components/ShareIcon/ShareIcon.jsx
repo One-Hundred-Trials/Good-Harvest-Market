@@ -17,7 +17,7 @@ export default function ShareIcon() {
   return (
     <ShareBtn onClick={copyUrl}>
       <img src={iconShare} alt="" />
-      <TextArea ref={copyUrlRef} value={window.location.href} />
+      <TextArea ref={copyUrlRef} defaultValue={window.location.href} />
     </ShareBtn>
   );
 }
