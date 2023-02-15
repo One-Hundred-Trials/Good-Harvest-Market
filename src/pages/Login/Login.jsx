@@ -1,5 +1,10 @@
 import React from 'react';
-import MetaDatas from '../../components/MetaDatas/MetaDatas';
+import Button from 'components/common/Button/Button';
+import fullLogo from 'assets/img/full-logo.svg';
+import duckFarm from 'assets/img/duck-farm.svg';
+import logoKakao from 'assets/img/logo-kakako.svg';
+import logoGoogle from 'assets/img/logo-google.svg';
+import logoFacebook from 'assets/img/logo-facebook.svg';
 import {
   H2IR,
   ContSectionStyle,
@@ -9,13 +14,7 @@ import {
   SNSFlexDivStyle,
   SNSImgStyle,
 } from './LoginStyle';
-import Button from 'components/common/Button/Button';
-import fullLogo from 'assets/img/full-logo.svg';
-import duckFarm from 'assets/img/duck-farm.svg';
-import logoKakao from 'assets/img/logo-kakako.svg';
-import logoGoogle from 'assets/img/logo-google.svg';
-import logoFacebook from 'assets/img/logo-facebook.svg';
-import Splash from '../Splash/Splash';
+import MetaDatas from '../../components/MetaDatas/MetaDatas';
 
 export default function Login() {
   const children = ['이메일로 로그인', '풍년마켓 회원가입'];
@@ -41,15 +40,15 @@ export default function Login() {
           <p>SNS계정으로 로그인하기</p>
           <SNSFlexDivStyle>
             <a>
-              <SNSImgStyle src={kakao} alt="" />
+              <SNSImgStyle src={logoKakao} alt="" />
               <p>카카오톡</p>
             </a>
             <a>
-              <SNSImgStyle src={google} alt="" />
+              <SNSImgStyle src={logoGoogle} alt="" />
               <p>구글</p>
             </a>
             <a>
-              <SNSImgStyle src={facebook} alt="" />
+              <SNSImgStyle src={logoFacebook} alt="" />
               <p>페이스북</p>
             </a>
           </SNSFlexDivStyle>

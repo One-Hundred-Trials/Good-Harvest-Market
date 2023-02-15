@@ -4,6 +4,7 @@ import MetaDatas from 'components/MetaDatas/MetaDatas';
 import icon404Img from 'assets/img/icon-404.svg';
 import Blank from 'components/Blank/Blank';
 import { ContainerSectionStyle, H2IR } from './NotFoundStyle';
+
 export default function NotFound() {
   const navigate = useNavigate();
 
