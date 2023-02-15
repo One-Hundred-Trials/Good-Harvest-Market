@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
-import API from '../../../../../API';
-import { authAtom } from '../../../../../_state/auth';
-import UploadProfileImg from '../../../../../components/UploadProfileImg/UploadProfileImg';
-import Input from '../../../../../components/Input/Input';
-import Header from '../../../../../components/Header/Header';
+import { authAtom } from '_state/auth';
+import MetaDatas from 'components/MetaDatas/MetaDatas';
+import UploadProfileImg from 'components/UploadProfileImg/UploadProfileImg';
+import Input from 'components/common/Input/Input';
+import Header from 'components/common/Header/Header';
+import postImage from 'api/ImgUpload/postImage';
+import getMyProfile from 'api/Profile/getMyProfile';
+import postAccountNameValid from 'api/ProfileSetting/postAccountNameValid';
+import updateMyProfile from 'api/Profile/updateMyProfile';
 import InputFormStyle from '../ProfileEdit/ProfileEditStyle';
 
 export default function ProfileEdit() {
@@ -47,41 +51,27 @@ export default function ProfileEdit() {
   };
 
   const AccountNameHandler = async (e) => {
-    try {
-      const regex = /^[._a-zA-Z0-9]+$/gi;
+    const regex = /^[._a-zA-Z0-9]+$/gi;
 
-      if (!accountName) {
-        setAccountNameError('* 계정 ID는 필수 입력사항입니다.');
-        setIsAccountNameValid(false);
-      } else if (!regex.test(accountName)) {
-        setAccountNameError('* 영문, 숫자, 밑줄, 마침표만 사용할 수 있습니다.');
-        setIsAccountNameValid(false);
-      }
-      const accountNameData = {
-        user: {
-          accountname: accountName,
-        },
-      };
-      const res = await API.post(
-        '/user/accountnamevalid',
-        JSON.stringify(accountNameData),
-        {
-          headers: {
-            'Content-type': 'application/json',
-          },
-          data: accountNameData,
-        }
-      );
-      const json = res.data;
-      if (json.message === '이미 가입된 계정ID 입니다.') {
-        setAccountNameError(`* ${json.message}`);
-        setIsUserNameValid(false);
-      } else if (json.message === '사용 가능한 계정ID 입니다.') {
-        setAccountNameError('');
-        setIsAccountNameValid(true);
-      }
-    } catch (err) {
-      console.error(err);
+    if (!accountName) {
+      setAccountNameError('* 계정 ID는 필수 입력사항입니다.');
+      setIsAccountNameValid(false);
+    } else if (!regex.test(accountName)) {
+      setAccountNameError('* 영문, 숫자, 밑줄, 마침표만 사용할 수 있습니다.');
+      setIsAccountNameValid(false);
+    }
+    const accountNameData = {
+      user: {
+        accountname: accountName,
+      },
+    };
+    const res = await postAccountNameValid(accountNameData);
+    if (res.message === '이미 가입된 계정ID 입니다.') {
+      setAccountNameError(`* ${res.message}`);
+      setIsUserNameValid(false);
+    } else if (res.message === '사용 가능한 계정ID 입니다.') {
+      setAccountNameError('');
+      setIsAccountNameValid(true);
     }
   };
 
@@ -102,50 +92,24 @@ export default function ProfileEdit() {
   const uploadImgHandler = async (e) => {
     const productImage = e.target.files[0];
     formData.append('image', productImage);
-    try {
-      const res = await API.post(`/image/uploadfile`, formData, {
-        headers: {
-          'Content-type': 'multipart/form-data',
-        },
-      });
-      console.log(res);
-      const imgUrl = `https://mandarin.api.weniv.co.kr/${res.data.filename}`;
-      setProfileImg(imgUrl);
-      setPrevProfileImg(imgUrl);
-      console.log(profileImg);
-    } catch (err) {
-      if (err.response) {
-        console.log(err.response.data);
-        console.log(err.response.status);
-        console.log(err.response.headers);
-      } else {
-        console.log(`Error: ${err.message}`);
-      }
-    }
+    const res = await postImage(formData);
+    const imgUrl = `https://mandarin.api.weniv.co.kr/${res[0].filename}`;
+    setProfileImg(imgUrl);
+    setPrevProfileImg(imgUrl);
   };
 
   useEffect(() => {
     const getProfile = async () => {
-      try {
-        const res = await API.get('/user/myinfo', {
-          headers: {
-            Authorization: `Bearer ${auth}`,
-          },
-        });
+      const res = await getMyProfile();
+      const data = res.user;
 
-        const data = res.data.user;
-        console.log(data);
-
-        setUserName(data.username);
-        setIsUserNameValid(true);
-        setAccountName(data.accountname);
-        setIsAccountNameValid(true);
-        setIntro(data.intro);
-        setPrevProfileImg(data.image);
-        setProfileImg(data.image);
-      } catch (err) {
-        console.error(err);
-      }
+      setUserName(data.username);
+      setIsUserNameValid(true);
+      setAccountName(data.accountname);
+      setIsAccountNameValid(true);
+      setIntro(data.intro);
+      setPrevProfileImg(data.image);
+      setProfileImg(data.image);
     };
     getProfile();
   }, []);
@@ -160,20 +124,11 @@ export default function ProfileEdit() {
       },
     };
     if (isUserNameValid && isAccountNameValid) {
-      try {
-        const res = await API.put('/user', userInfo, {
-          headers: {
-            Authorization: `Bearer ${auth}`,
-            'Content-type': 'application/json',
-          },
-        });
-        console.log('update res', res);
-        alert('사용자 정보가 정상적으로 수정되었습니다.');
-        localStorage.setItem('account', JSON.stringify(accountName));
-        navigateToMyProfile();
-      } catch (err) {
-        console.error(err);
-      }
+      const res = await updateMyProfile(userInfo);
+      console.log('update res', res);
+      alert('사용자 정보가 정상적으로 수정되었습니다.');
+      localStorage.setItem('account', JSON.stringify(accountName));
+      navigateToMyProfile();
     } else {
       alert('사용자 정보를 형식에 맞게 입력해주세요.');
     }
@@ -184,6 +139,11 @@ export default function ProfileEdit() {
 
   return (
     <>
+      <MetaDatas
+        title={'내 정보 수정'}
+        desc={'풍년마켓 내 정보 수정하기'}
+        pageURL={'/profile_edit'}
+      />
       <Header size="m" variant="able" onClick={editProfileHandler}>
         저장
       </Header>

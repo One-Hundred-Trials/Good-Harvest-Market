@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
-import { accountAtom, authAtom } from '../../_state/auth';
+import { accountAtom } from '_state/auth';
+import PostModal from 'components/common/Modal/PostModal';
+import PostReportModal from 'components/common/Modal/PostReportModal';
 import HeartIcon from '../HeartIcon/HeartIcon';
 import CommentIcon from '../CommentsIcon/CommentIcon';
-import ProfileImgAccount from '../ProfileImgAccount/ProfileImgAccount';
-import PostModal from '../../components/Modal/PostModalAlert/PostModal';
-import PostReportModal from '../../components/Modal/PostModalAlert/PostReportModal';
+import ProfileImgAccount from '../common/ProfileImgAccount/ProfileImgAccount';
 import {
   PostAccountLiStyle,
   PostProfileDivStyle,
@@ -21,7 +21,6 @@ import {
   PostCountDivStyle,
   PostDateStyle,
 } from './PostCardStyle';
-import API from '../../API';
 
 export default function PostCard({ post, author }) {
   const userAccount = useRecoilValue(accountAtom);
@@ -78,7 +77,7 @@ export default function PostCard({ post, author }) {
               image={author.image}
             />
           </Link>
-          <PostIconMoreStyle onClick={modalUp} />
+          <PostIconMoreStyle onClick={modalUp} aria-label="더보기" />
         </PostProfileDivStyle>
         <PostDivStyle>
           <PostContentsStyle>{post.content}</PostContentsStyle>

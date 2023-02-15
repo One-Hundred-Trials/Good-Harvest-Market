@@ -1,21 +1,18 @@
 import React from 'react';
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import ChatListItem from '../../../components/ChatListItem/ChatListItem';
-import Header from '../../../components/Header/Header';
-import { ConWrap } from '../../../styles/GlobalStyles';
-
-const ChatListWrapStyle = styled.ul`
-  ${ConWrap}
-  padding: 24px 16px;
-  & > li + li {
-    margin-top: 23px;
-  }
-`;
+import MetaDatas from 'components/MetaDatas/MetaDatas';
+import ChatListItem from 'components/ChatListItem/ChatListItem';
+import Header from 'components/common/Header/Header';
+import ChatListWrapStyle from './ChatStyle';
 
 export default function Chat() {
   return (
     <>
+      <MetaDatas
+        title={'이웃 대화 목록'}
+        desc={'풍년마켓에서 이웃들과 대화하기'}
+        pageURL={'/chat'}
+      />
       <Header />
       <ChatListWrapStyle>
         <li>

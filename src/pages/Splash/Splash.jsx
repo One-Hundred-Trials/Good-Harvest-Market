@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import IntroLogoBg from '../../assets/img/intro-logo-bg.png';
-import IntroLogoLeaf from '../../assets/img/intro-logo-leaf.png';
-import IntroLogoText from '../../assets/img/intro-logo-text.png';
-import Login from '../Login/Login';
-import Home from '../Main/Home/Home';
+import { Navigate } from 'react-router-dom';
+import MetaDatas from 'components/MetaDatas/MetaDatas';
+import IntroLogoBg from 'assets/img/intro-logo-bg.svg';
+import IntroLogoLeaf from 'assets/img/intro-logo-leaf.svg';
+import IntroLogoText from 'assets/img/intro-logo-text.svg';
 import {
   SplashArticleStyle,
   WrapStyle,
@@ -24,17 +23,20 @@ export default function Splash() {
 
   if (visibleSplash === true) {
     return (
-      <WrapStyle>
-        <SplashArticleStyle>
-          <IntroLogoBgStyle src={IntroLogoBg} alt="" />
-          <LeafContStyle>
-            <IntroLogoLeafStyle src={IntroLogoLeaf} alt="" />
-            <IntroLogoLeafStyle src={IntroLogoLeaf} alt="" />
-            <IntroLogoLeafStyle src={IntroLogoLeaf} alt="" />
-          </LeafContStyle>
-          <IntroLogoTextStyle src={IntroLogoText} alt="풍년마켓" />
-        </SplashArticleStyle>
-      </WrapStyle>
+      <>
+        <MetaDatas title={'반가워요'} desc={'로드 중...'} />
+        <WrapStyle>
+          <SplashArticleStyle>
+            <IntroLogoBgStyle src={IntroLogoBg} alt="" />
+            <LeafContStyle>
+              <IntroLogoLeafStyle src={IntroLogoLeaf} alt="" />
+              <IntroLogoLeafStyle src={IntroLogoLeaf} alt="" />
+              <IntroLogoLeafStyle src={IntroLogoLeaf} alt="" />
+            </LeafContStyle>
+            <IntroLogoTextStyle src={IntroLogoText} alt="풍년마켓" />
+          </SplashArticleStyle>
+        </WrapStyle>
+      </>
     );
   } else {
     return localStorage.length === 0 ? (

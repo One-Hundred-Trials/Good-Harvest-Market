@@ -1,6 +1,5 @@
-import { Link } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
-import { Wrap } from '../../styles/GlobalStyles';
+import { Wrap, IR } from 'styles/GlobalStyles';
 
 const loginFadeIn = keyframes`
   0% {
@@ -78,6 +77,10 @@ const SNSImgStyle = styled.img`
   height: 18px;
 `;
 
+const H2IR = styled.h2`
+  ${IR}
+`;
+
 const SNSFlexDivStyle = styled.div`
   display: flex;
   align-items: center;
@@ -100,6 +103,7 @@ const SNSFlexDivStyle = styled.div`
 `;
 
 export {
+  H2IR,
   ContSectionStyle,
   LogoiImgStyle,
   DuckImgStyle,

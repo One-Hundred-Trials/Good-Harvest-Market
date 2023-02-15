@@ -1,20 +1,26 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { useRecoilValue } from 'recoil';
-import { authAtom, accountAtom } from '../../../../_state/auth';
-import { ConWrap } from '../../../../styles/GlobalStyles';
-import Profile from '../../../../components/Profile/Profile';
-import ProductList from '../../../../components/ProductList/ProductList';
-import PostCard from '../../../../components/PostCardList/PostCardList';
-import ListOrAlbum from '../../../../components/ListOrAlbum/ListOrAlbum';
-import PostAlbum from '../../../../components/PostAlbum/PostAlbum';
-import Header from '../../../../components/Header/Header';
-import API from '../../../../API';
-import Button from '../../../../components/Button/Button';
-import ChatIcon from '../../../../components/ChatIcon/ChatIcon';
-import ShareIcon from '../../../../components/ShareIcon/ShareIcon';
-import Loading from '../../../Loading/Loading';
+import { authAtom, accountAtom } from '_state/auth';
+import MetaDatas from 'components/MetaDatas/MetaDatas';
+import { ConWrap } from 'styles/GlobalStyles';
+import Profile from 'components/Profile/Profile';
+import ProductList from 'components/ProductList/ProductList';
+import PostCard from 'components/PostCardList/PostCardList';
+import ListOrAlbum from 'components/ListOrAlbum/ListOrAlbum';
+import PostAlbum from 'components/PostAlbum/PostAlbum';
+import Header from 'components/common/Header/Header';
+import Button from 'components/common/Button/Button';
+import ChatIcon from 'components/ChatIcon/ChatIcon';
+import ShareIcon from 'components/ShareIcon/ShareIcon';
+import Loading from 'pages/Loading/Loading';
+import getUserFeedData from 'api/Profile/getUserFeedData';
+import getUserFollowerList from 'api/Profile/getUserFollowerList';
+import getUserProfile from 'api/Profile/getUserProfile';
+import getUserProduct from 'api/Profile/getUserProduct';
+import addFollow from 'api/Profile/addFollow';
+import deleteFollow from 'api/Profile/deleteFollow';
 
 const ConWrapStyle = styled.main`
   ${ConWrap}
@@ -48,63 +54,28 @@ export default function UserProfile() {
   const [loading, setLoading] = useState(false);
   const target = useRef();
 
-  useEffect(() => {
-    const getFollowerList = async () => {
-      try {
-        const res = await API.get(`/profile/${account}/follower?limit=100`, {
-          headers: {
-            'Content-type': 'application/json',
-            Authorization: `Bearer ${auth}`,
-          },
-        });
+  const getFollowerList = useCallback(async () => {
+    const res = await getUserFollowerList(account, id);
+    const filteraccount = Object.values(res).filter(
+      (list) => list.accountname === id
+    );
+    if (filteraccount[0] !== undefined) {
+      setIsFollow(filteraccount[0].isfollow);
+    }
+  }, [id, account]);
 
-        const { data } = res;
-        const filteraccount = Object.values(res.data).filter(
-          (list) => list.accountname === id
-        );
-        if (filteraccount[0] !== undefined) {
-          setIsFollow(filteraccount[0].isfollow);
-        }
-      } catch (err) {
-        if (err.response) {
-          console.log(err.response.data);
-          console.log(err.response.status);
-          console.log(err.response.headers);
-        } else {
-          console.log(`Error: ${err.message}`);
-        }
-      }
-    };
+  useEffect(() => {
     getFollowerList();
-  }, [auth, id, account]);
+  }, [getFollowerList, isfollow]);
 
   const handleSubmitFollow = async () => {
-    try {
-      const res = await API.post(`/profile/${id}/follow`, JSON.stringify(), {
-        headers: {
-          Authorization: `Bearer ${auth}`,
-          'Content-type': 'application/json',
-        },
-      });
-
-      setIsFollow(res.data.profile.isfollow);
-    } catch (err) {
-      console.error(err);
-    }
+    const res = await addFollow(id);
+    setIsFollow(res.profile.isfollow);
   };
 
   const handleSubmitUnFollow = async () => {
-    try {
-      const res = await API.delete(`/profile/${id}/unfollow`, {
-        headers: {
-          Authorization: `Bearer ${auth}`,
-          'Content-type': 'application/json',
-        },
-      });
-      setIsFollow(res.data.profile.isfollow);
-    } catch (err) {
-      console.error(err);
-    }
+    const res = await deleteFollow(id);
+    setIsFollow(res.profile.isfollow);
   };
 
   const handleFollowBtn = () => {
@@ -121,80 +92,35 @@ export default function UserProfile() {
 
   const loadMore = () => setPageNumber((prev) => prev + 3);
 
-  const GetUserPostData = async () => {
-    try {
-      const res = await API.get(`/post/${id}/userpost?limit=${pageNumber}`, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${auth}`,
-        },
-      });
-      const { post } = res.data;
-      const haveImage = post.filter((v) => v.image);
-      setPostsAlbum(haveImage);
-      setPosts(post);
-      setLoading(true);
-    } catch (err) {
-      if (err.response) {
-        console.log(err.response.data);
-        console.log(err.response.status);
-        console.log(err.response.headers);
-      } else {
-        console.log(`Error: ${err.message}`);
-      }
-    }
-  };
-  const GetUserProfileData = async () => {
-    try {
-      const res = await API.get(`/profile/${id}`, {
-        headers: {
-          Authorization: `Bearer ${auth}`,
-        },
-      });
-      const { profile } = res.data;
-      setUserProfile(profile);
-    } catch (err) {
-      if (err.response) {
-        // 응답코드 2xx가 아닌 경우
-        console.log(err.response.data);
-        console.log(err.response.status);
-        console.log(err.response.headers);
-      } else {
-        console.log(`Error: ${err.message}`);
-      }
-    }
-  };
+  const GetUserPostData = useCallback(async () => {
+    const res = await getUserFeedData(id, pageNumber);
+    const { post } = res;
+    const haveImage = post.filter((v) => v.image);
+    setPostsAlbum(haveImage);
+    setPosts(post);
+    setLoading(true);
+  }, [id, pageNumber]);
+
+  useEffect(() => {
+    GetUserPostData();
+  }, [GetUserPostData]);
+
+  const GetUserProfileData = useCallback(async () => {
+    const res = await getUserProfile(id, isfollow);
+    const { profile } = res;
+    setUserProfile(profile);
+  }, [id, isfollow]);
 
   // 등록된 상품 목록 가져오기
-  const GetProductList = async () => {
-    try {
-      const res = await API.get(`/product/${id}`, {
-        headers: {
-          Authorization: `Bearer ${auth}`,
-          'Content-type': 'application/json',
-        },
-      });
-      setProductList(res.data.product);
-    } catch (err) {
-      if (err.response) {
-        // 응답코드 2xx가 아닌 경우
-        console.log(err.response.data);
-        console.log(err.response.status);
-        console.log(err.response.headers);
-      } else {
-        console.log(`Error: ${err.message}`);
-      }
-    }
-  };
+  const GetProductList = useCallback(async () => {
+    const res = await getUserProduct(id);
+    setProductList(res.product);
+  }, [id]);
 
   useEffect(() => {
     GetUserProfileData();
     GetProductList();
-  }, []);
-
-  useEffect(() => {
-    GetUserPostData();
-  }, [pageNumber]);
+  }, [GetUserProfileData, GetProductList]);
 
   useEffect(() => {
     if (loading) {
@@ -214,6 +140,11 @@ export default function UserProfile() {
   else {
     return (
       <>
+        <MetaDatas
+          title={`이웃들의 게시물`}
+          desc={`풍년마켓 이웃들의 게시물`}
+          pageURL={`/user_profile/${id}`}
+        />
         <Header />
         <ConWrapStyle>
           <ContDivStyle>

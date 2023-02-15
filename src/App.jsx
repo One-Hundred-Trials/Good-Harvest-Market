@@ -1,26 +1,27 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { GlobalStyle } from './styles/GlobalStyles';
-import Home from './pages/Main/Home/Home';
-import Login from './pages/Login/Login';
-import LoginEmail from './pages/Login/LoginEmail/LoginEmail';
-import Signup from './pages/Signup/Register';
-import MyProfile from './pages/Main/Profile/MyProfile/MyProfile';
-import UserProfile from './pages/Main/Profile/UserProfile/UserProfile';
-import PostUpload from './pages/Main/Post/PostUpload/PostUpload';
-import Chat from './pages/Main/Chat/Chat';
-import NotFound from './pages/NotFound/NotFound';
-import Root from './pages/Root';
-import Search from './pages/Main/Home/Search/Search';
-import ProfileEdit from './pages/Main/Profile/MyProfile/ProfileEdit/ProfileEdit';
-import ProductUpload from './pages/Main/Profile/MyProfile/Product/ProductUpload/ProductUpload';
-import ProductEdit from './pages/Main/Profile/MyProfile/Product/ProductEdit/ProductEdit';
-import Post from './pages/Main/Post/Post';
-import PostEdit from './pages/Main/Post/PostEdit/PostEdit';
-import ChatRoom from './pages/Main/Chat/ChatRoom/ChatRoom';
-import FollowingList from './pages/Main/Profile/MyProfile/FollowingList/FollowingList';
-import FollowerList from './pages/Main/Profile/FollowerList/FollowerList';
-import Splash from './pages/Splash/Splash';
+import { GlobalStyle } from 'styles/GlobalStyles';
+import Home from 'pages/Main/Home/Home';
+import Login from 'pages/Login/Login';
+import LoginEmail from 'pages/Login/LoginEmail/LoginEmail';
+import Signup from 'pages/Signup/Register';
+import MyProfile from 'pages/Main/Profile/MyProfile/MyProfile';
+import UserProfile from 'pages/Main/Profile/UserProfile/UserProfile';
+import PostUpload from 'pages/Main/Post/PostUpload/PostUpload';
+import Chat from 'pages/Main/Chat/Chat';
+import NotFound from 'pages/NotFound/NotFound';
+import Root from 'pages/Root';
+import Search from 'pages/Main/Home/Search/Search';
+import ProfileEdit from 'pages/Main/Profile/MyProfile/ProfileEdit/ProfileEdit';
+import ProductUpload from 'pages/Main/Profile/MyProfile/Product/ProductUpload/ProductUpload';
+import ProductEdit from 'pages/Main/Profile/MyProfile/Product/ProductEdit/ProductEdit';
+import Post from 'pages/Main/Post/Post';
+import PostEdit from 'pages/Main/Post/PostEdit/PostEdit';
+import ChatRoom from 'pages/Main/Chat/ChatRoom/ChatRoom';
+import FollowingList from 'pages/Main/Profile/MyProfile/FollowingList/FollowingList';
+import FollowerList from 'pages/Main/Profile/MyProfile/FollowerList/FollowerList';
+import Splash from 'pages/Splash/Splash';
+import 'styles/font.css';
 
 const router = createBrowserRouter([
   {

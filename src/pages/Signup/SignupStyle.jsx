@@ -1,10 +1,9 @@
 import styled from 'styled-components';
-import { Wrap } from '../../styles/GlobalStyles';
+import { Wrap } from 'styles/GlobalStyles';
 
 export const ContSecStyle = styled.section`
   ${Wrap}
   text-align: center;
-  /* background-color: var(--sub-grey-C4); */
   color: var(--main-grey-76);
 `;
 
@@ -35,4 +34,8 @@ export const InputFormStyle = styled.form`
       border-bottom: 2px solid var(--point-green);
     }
   }
+`;
+
+export const BtnContainerStyle = styled.div`
+  margin-top: 14px;
 `;

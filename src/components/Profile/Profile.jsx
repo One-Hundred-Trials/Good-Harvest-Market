@@ -5,13 +5,9 @@ import {
   ContDivStyle,
   DivFlexStyle,
 } from './ProfileStyle';
-import ProfileAccount from '../ProfileAccount/ProfileAccount';
+import ProfileAccount from '../common/ProfileAccount/ProfileAccount';
 import FollowersCount from '../FollowersCount/FollowersCount';
-import ProfileImg from '../ProfileImg/ProfileImg';
-import ChatIcon from '../../components/ChatIcon/ChatIcon';
-import Button from '../../components/Button/Button';
-import ShareIcon from '../../components/ShareIcon/ShareIcon';
-import DefaultProfileImg from '../../assets/img/basic-profile.png';
+import ProfileImg from '../common/ProfileImg/ProfileImg';
 
 export default function Profile({
   myProfile,

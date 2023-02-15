@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import iconUploadFileFill from '../../assets/img/icon-upload-file-fill.png';
+import iconUploadFileFill from 'assets/img/icon-upload-file-fill.svg';
 
 export const InputFileFormStyle = styled.div`
   height: 110px;

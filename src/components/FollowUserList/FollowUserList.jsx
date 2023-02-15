@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useRecoilValue } from 'recoil';
-import { authAtom } from '../../_state/auth';
-import API from '../../API';
-import Button from '../Button/Button';
-import ProfileImgAccount from '../ProfileImgAccount/ProfileImgAccount';
+import addFollow from 'api/Profile/addFollow';
+import deleteFollow from 'api/Profile/deleteFollow';
+import { accountAtom } from '_state/auth';
+import Button from '../common/Button/Button';
+import ProfileImgAccount from '../common/ProfileImgAccount/ProfileImgAccount';
 import FollowListStyle from './FollowUserListStyle';
 
 export default function FollowUserList({
@@ -15,39 +16,16 @@ export default function FollowUserList({
   isfollow,
 }) {
   const [follow, setFollow] = useState(isfollow);
-  const auth = useRecoilValue(authAtom);
+  const account = useRecoilValue(accountAtom);
 
   const handleSubmitFollow = async () => {
-    try {
-      const res = await API.post(
-        `/profile/${accountname}/follow`,
-        JSON.stringify(),
-        {
-          headers: {
-            Authorization: `Bearer ${auth}`,
-            'Content-type': 'application/json',
-          },
-        }
-      );
-
-      setFollow(res.data.profile.isfollow);
-    } catch (err) {
-      console.error(err);
-    }
+    const res = await addFollow(accountname);
+    setFollow(res.profile.isfollow);
   };
 
   const handleSubmitUnFollow = async () => {
-    try {
-      const res = await API.delete(`/profile/${accountname}/unfollow`, {
-        headers: {
-          Authorization: `Bearer ${auth}`,
-          'Content-type': 'application/json',
-        },
-      });
-      setFollow(res.data.profile.isfollow);
-    } catch (err) {
-      console.error(err);
-    }
+    const res = await deleteFollow(accountname);
+    setFollow(res.profile.isfollow);
   };
 
   const handleFollowBtn = () => {
@@ -69,15 +47,17 @@ export default function FollowUserList({
         username={username}
         accountname={accountname}
       />
-      {follow === true ? (
-        <Button size="s" variant="active" onClick={handleFollowBtn}>
-          취소
-        </Button>
-      ) : (
-        <Button size="s" variant="able" onClick={handleFollowBtn}>
-          팔로우
-        </Button>
-      )}
+
+      {account !== accountname &&
+        (follow === true ? (
+          <Button size="s" variant="active" onClick={handleFollowBtn}>
+            취소
+          </Button>
+        ) : (
+          <Button size="s" variant="able" onClick={handleFollowBtn}>
+            팔로우
+          </Button>
+        ))}
     </FollowListStyle>
   );
 }

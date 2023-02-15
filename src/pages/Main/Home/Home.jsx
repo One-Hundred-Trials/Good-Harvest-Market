@@ -1,22 +1,14 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useRecoilValue } from 'recoil';
-import styled from 'styled-components';
-import Header from '../../../components/Header/Header';
-import HomeRenderBlank from '../../../components/HomeRender/HomeRenderBlank';
-import PostCardList from '../../../components/PostCardList/PostCardList';
-import { ConWrap } from '../../../styles/GlobalStyles';
-import API from '../../../API';
-import { authAtom } from '../../../_state/auth';
-import Loading from '../../Loading/Loading';
-
-const ConWrapStyle = styled.main`
-  ${ConWrap}
-  padding: 20px 16px;
-`;
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import MetaDatas from 'components/MetaDatas/MetaDatas';
+import Header from 'components/common/Header/Header';
+import HomeRenderBlank from 'components/HomeRender/HomeRenderBlank';
+import PostCardList from 'components/PostCardList/PostCardList';
+import getFollowFeed from 'api/Feed/getFollowFeed';
+import Loading from 'pages/Loading/Loading';
+import ConWrapStyle from './HomeStyle';
 
 export default function Home() {
   const [post, setPost] = useState(null);
-  const auth = useRecoilValue(authAtom);
   const [hasFollowing, setHasFollowing] = useState(null);
   const [pageNumber, setPageNumber] = useState(5);
   const [loading, setLoading] = useState(false);
@@ -24,34 +16,19 @@ export default function Home() {
 
   const loadMore = () => setPageNumber((prev) => prev + 3);
 
-  const userFollowingData = async () => {
-    try {
-      const res = await API.get(`/post/feed?limit=${pageNumber}`, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${auth}`,
-        },
-      });
-      const { posts } = res.data;
-      setPost(posts);
-      setLoading(true);
-      if (res.data.posts.length > 0) {
-        setHasFollowing(true);
-      }
-    } catch (err) {
-      if (err.response) {
-        console.log(err.response.data);
-        console.log(err.response.status);
-        console.log(err.response.headers);
-      } else {
-        console.log(`Error: ${err.message}`);
-      }
+  const userFollowingData = useCallback(async () => {
+    const res = await getFollowFeed(pageNumber);
+    const { posts } = res;
+    setPost(posts);
+    setLoading(true);
+    if (posts.length > 0) {
+      setHasFollowing(true);
     }
-  };
+  }, [pageNumber]);
 
   useEffect(() => {
     userFollowingData();
-  }, [pageNumber]);
+  }, [userFollowingData]);
 
   useEffect(() => {
     if (loading) {
@@ -71,6 +48,11 @@ export default function Home() {
   else {
     return (
       <>
+        <MetaDatas
+          title={'둘러보기'}
+          desc={'풍년마켓 나의 이웃 둘러보기'}
+          pageURL={'/home'}
+        />
         <Header>주말의 즐거운 풍년마켓</Header>
         <ConWrapStyle>
           {hasFollowing ? <PostCardList posts={post} /> : <HomeRenderBlank />}

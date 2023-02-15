@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import { authAtom, accountAtom } from '../../../../_state/auth';
-import API from '../../../../API';
+import { useNavigate, useParams } from 'react-router-dom';
+import MetaDatas from 'components/MetaDatas/MetaDatas';
+import Header from 'components/common/Header/Header';
+import UploadFileBtn from 'components/common/UploadFileBtn/UploadFileBtn';
+import { baseUrl } from 'api/api';
+import getMyProfile from 'api/Profile/getMyProfile';
+import getPost from 'api/Feed/getPost';
+import postImage from 'api/ImgUpload/postImage';
+import putPost from 'api/Feed/putPost';
 import {
   PageWrapStyle,
   ConWrapStyle,
@@ -15,13 +20,10 @@ import {
   PreviewImg,
   DeleteImgBtn,
 } from '../PostUpload/PostUploadStyle';
-import Header from '../../../../components/Header/Header';
-import UploadFileBtn from '../../../../components/Button/UploadFileBtn/UploadFileBtn';
 
 export default function PostEdit() {
+  const accountName = JSON.parse(localStorage.getItem('account'));
   const navigate = useNavigate();
-  const auth = useRecoilValue(authAtom);
-  const account = useRecoilValue(accountAtom);
   const { id } = useParams();
   const [profileImg, setProfileImg] = useState('');
   const [isActive, setIsActive] = useState(false);
@@ -32,55 +34,26 @@ export default function PostEdit() {
 
   useEffect(() => {
     const getMyProfileImg = async () => {
-      try {
-        const res = await API.get('/user/myinfo', {
-          headers: {
-            Authorization: `Bearer ${auth}`,
-          },
-        });
-        setProfileImg(res.data.user.image);
-      } catch (err) {
-        if (err.response) {
-          console.log(err.response.data);
-          console.log(err.response.status);
-          console.log(err.response.headers);
-        } else {
-          console.log(`Error: ${err.message}`);
-        }
-      }
+      const res = await getMyProfile();
+      setProfileImg(res.user.image);
     };
     getMyProfileImg();
   }, []);
 
   useEffect(() => {
     const getPostData = async () => {
-      try {
-        const res = await API.get(`/post/${id}`, {
-          headers: {
-            Authorization: `Bearer ${auth}`,
-            'Content-type': 'application/json',
-          },
-        });
-        const { post } = res.data;
-        if (post.content) {
-          setText(post.content);
-        }
-        if (post.image) {
-          setPrevImgFile(post.image);
-          setPreviewImgUrl(post.image);
-        }
-      } catch (err) {
-        if (err.response) {
-          console.log(err.response.data);
-          console.log(err.response.status);
-          console.log(err.response.headers);
-        } else {
-          console.log(`Error: ${err.message}`);
-        }
+      const res = await getPost(id);
+      const { post } = res;
+      if (post.content) {
+        setText(post.content);
+      }
+      if (post.image) {
+        setPrevImgFile(post.image);
+        setPreviewImgUrl(post.image);
       }
     };
     getPostData();
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     if (text || previewImgUrl) {
@@ -92,32 +65,6 @@ export default function PostEdit() {
 
   const textChangeHandler = (e) => {
     setText(e.target.value);
-  };
-
-  const imgUploadHandler = async (file) => {
-    if (!file) {
-      return prevImgFile;
-    }
-    const formData = new FormData();
-    formData.append('image', file);
-    try {
-      const res = await API.post('/image/uploadfile', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-      const feedImgUrl = `https://mandarin.api.weniv.co.kr/${res.data.filename}`;
-      return feedImgUrl;
-    } catch (err) {
-      if (err.response) {
-        console.log(err.response.data);
-        console.log(err.response.status);
-        console.log(err.response.headers);
-      } else {
-        console.log(`Error: ${err.message}`);
-      }
-      return null;
-    }
   };
 
   const previewImgHandler = (e) => {
@@ -141,7 +88,7 @@ export default function PostEdit() {
       setImgFile(file);
     }
     fileReader.onload = () => {
-      setPreviewImgUrl(fileReader.result);
+      setPreviewImgUrl((preview) => [...preview, fileReader.result]);
       e.target.value = null;
     };
   };
@@ -153,6 +100,21 @@ export default function PostEdit() {
     e.target.value = null;
   };
 
+  const imgUploadHandler = async (file) => {
+    if (!file) {
+      return prevImgFile;
+    }
+    const formData = new FormData();
+    formData.append('image', file);
+    if (file) {
+      const res = await postImage(formData);
+      const feedImgUrl = `${baseUrl}/${res[0].filename}`;
+      return feedImgUrl;
+    } else {
+      return null;
+    }
+  };
+
   const editUploadHandler = async () => {
     const image = await imgUploadHandler(imgFile);
     const postData = {
@@ -161,62 +123,50 @@ export default function PostEdit() {
         image,
       },
     };
-    try {
-      if (!text && imgFile.length === 0) {
-        alert('내용 또는 이미지를 입력해주세요.');
-        return;
-      }
-      const res = await API.put(`/post/${id}`, JSON.stringify(postData), {
-        headers: {
-          Authorization: `Bearer ${auth}`,
-          'Content-type': 'application/json',
-        },
-      });
-      navigate(`/my_profile/${account}`);
-    } catch (err) {
-      if (err.response) {
-        console.log(err.response.data);
-        console.log(err.response.status);
-        console.log(err.response.headers);
-      } else {
-        console.log(`Error: ${err.message}`);
-      }
-    }
+    const res = await putPost(id, postData);
+    navigate(`/my_profile/${accountName}`);
   };
 
   return (
-    <PageWrapStyle>
-      <Header
-        id={id}
-        size="ms"
-        variant={isActive ? '' : 'disabled'}
-        onClick={editUploadHandler}
-        disabled={!(text || previewImgUrl)}
-      >
-        업로드
-      </Header>
-      <ConWrapStyle>
-        <MyProfileImg src={profileImg} alt="내 프로필 이미지" />
-        <PostFormStyle>
-          <TextAreaStyle
-            type="text"
-            value={text}
-            placeholder="게시글 입력하기"
-            onChange={textChangeHandler}
-          />
-          {previewImgUrl && (
-            <ImgWrapStyle>
-              <PreviewImgWrapStyle>
-                <PreviewImg src={previewImgUrl} alt="이미지 미리보기" />
-                <DeleteImgBtn type="button" onClick={deleteImgHandler} />
-              </PreviewImgWrapStyle>
-            </ImgWrapStyle>
-          )}
-          <BtnWrapStyle>
-            <UploadFileBtn onChange={previewImgHandler} />
-          </BtnWrapStyle>
-        </PostFormStyle>
-      </ConWrapStyle>
-    </PageWrapStyle>
+    <>
+      <MetaDatas
+        title={'게시물 수정'}
+        desc={'풍년마켓에서 게시물 수정하기'}
+        pageURL={`/post/${id}/edit`}
+      />
+      <PageWrapStyle>
+        <Header
+          id={id}
+          size="ms"
+          variant={isActive ? '' : 'disabled'}
+          onClick={editUploadHandler}
+          disabled={!(text || previewImgUrl)}
+        >
+          업로드
+        </Header>
+        <ConWrapStyle>
+          <MyProfileImg src={profileImg} alt="내 프로필 이미지" />
+          <PostFormStyle>
+            <TextAreaStyle
+              type="text"
+              value={text}
+              placeholder="게시글 입력하기"
+              onChange={textChangeHandler}
+            />
+            {previewImgUrl && (
+              <ImgWrapStyle>
+                <PreviewImgWrapStyle>
+                  <PreviewImg src={previewImgUrl} alt="이미지 미리보기" />
+                  <DeleteImgBtn type="button" onClick={deleteImgHandler} />
+                </PreviewImgWrapStyle>
+              </ImgWrapStyle>
+            )}
+            <BtnWrapStyle>
+              <UploadFileBtn onChange={previewImgHandler} />
+            </BtnWrapStyle>
+          </PostFormStyle>
+        </ConWrapStyle>
+      </PageWrapStyle>
+    </>
   );
 }

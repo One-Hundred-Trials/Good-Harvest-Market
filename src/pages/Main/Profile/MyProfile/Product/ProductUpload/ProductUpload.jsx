@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
-import { useRecoilValue } from 'recoil';
-import Header from '../../../../../../components/Header/Header';
-import Input from '../../../../../../components/Input/Input';
+import MetaDatas from 'components/MetaDatas/MetaDatas';
+import Header from 'components/common/Header/Header';
+import Input from 'components/common/Input/Input';
+import { baseUrl } from 'api/api';
+import postImage from 'api/ImgUpload/postImage';
+import UploadFileBtn from 'components/common/UploadFileBtn/UploadFileBtn';
+import uploadProduct from 'api/Product/uploadProduct';
 import {
   PageWrapStyle,
   ConWrapStyle,
@@ -9,13 +13,9 @@ import {
   ProductImgUploaderStyle,
   ImgVaildMessage,
 } from './ProductUploadStyle';
-import API from '../../../../../../API';
-import { authAtom, accountAtom } from '../../../../../../_state/auth';
-import UploadFileBtn from '../../../../../../components/Button/UploadFileBtn/UploadFileBtn';
 
 export default function ProductUpload() {
-  const auth = useRecoilValue(authAtom);
-  const accountname = useRecoilValue(accountAtom);
+  const accountname = JSON.parse(localStorage.getItem('account'));
 
   const [itemName, setItemName] = useState('');
   const [price, setPrice] = useState('');
@@ -110,12 +110,8 @@ export default function ProductUpload() {
     const productImage = e.target.files[0];
     formData.append('image', productImage);
     try {
-      const res = await API.post(`/image/uploadfile`, formData, {
-        headers: {
-          'Content-type': 'multipart/form-data',
-        },
-      });
-      const imgUrl = `https://mandarin.api.weniv.co.kr/${res.data.filename}`;
+      const res = await postImage(formData);
+      const imgUrl = `${baseUrl}/${res[0].filename}`;
       setItemImage(imgUrl);
       saveImgFile(productImage);
     } catch (err) {
@@ -139,76 +135,67 @@ export default function ProductUpload() {
     },
   };
 
-  const submitProductHandler = async () => {
-    try {
-      const res = await API.post('/product', JSON.stringify(productData), {
-        headers: {
-          Authorization: `Bearer ${auth}`,
-          'Content-type': 'application/json',
-        },
-      });
-      console.log(res);
-    } catch (err) {
-      if (err.response) {
-        console.log(err.response.data);
-        console.log(err.response.status);
-        console.log(err.response.headers);
-      } else {
-        console.log(`Error: ${err.message}`);
-      }
-    }
+  const submitProductHandler = () => {
+    uploadProduct(productData);
   };
 
   return (
-    <PageWrapStyle>
-      <Header
-        size="ms"
-        variant={btnAble && isItemImage === true ? '' : 'disabled'}
-        disabled={btnAble ? '' : 'disabled'}
-        go={btnAble ? `/my_profile/${accountname}` : ''}
-        onClick={submitProductHandler}
-      >
-        업로드
-      </Header>
-      <ConWrapStyle>
-        <div onChange={imgHandler}>
-          <ProductUploadTitleStyle>이미지 등록</ProductUploadTitleStyle>
-          <ProductImgUploaderStyle>
-            {imageSrc && <img src={imageSrc} alt="미리보기" />}
-            <ImgVaildMessage>{itemImageMessage}</ImgVaildMessage>
-            <UploadFileBtn onChange={uploadImgHandler} />
-          </ProductImgUploaderStyle>
-        </div>
-        <Input
-          label="상품명"
-          id="productName"
-          placeholder="2~15자 이내여야 합니다."
-          min="2"
-          max="15"
-          onChange={itemNameHandler}
-          onKeyUp={btnAbleHandler}
-          message={itemNameMessage}
-        />
-        <Input
-          label="가격"
-          id="productPrice"
-          placeholder="숫자만 입력 가능합니다."
-          min="2"
-          max="12"
-          onChange={priceHandler}
-          onKeyUp={btnAbleHandler}
-          getValue={price}
-          message={priceMessage}
-        />
-        <Input
-          label="판매 링크"
-          id="productURL"
-          placeholder="URL을 입력해 주세요."
-          onChange={linkHandler}
-          onKeyUp={btnAbleHandler}
-          message={linkMessage}
-        />
-      </ConWrapStyle>
-    </PageWrapStyle>
+    <>
+      <MetaDatas
+        title={'상품 등록'}
+        desc={'풍년마켓에서 상품을 새롭게 등록하기'}
+        pageURL={`/product_upload`}
+      />
+      <PageWrapStyle>
+        <Header
+          size="ms"
+          variant={btnAble && isItemImage === true ? '' : 'disabled'}
+          disabled={btnAble ? '' : 'disabled'}
+          go={btnAble ? `/my_profile/${accountname}` : ''}
+          onClick={submitProductHandler}
+        >
+          업로드
+        </Header>
+        <ConWrapStyle>
+          <div onChange={imgHandler}>
+            <ProductUploadTitleStyle>이미지 등록</ProductUploadTitleStyle>
+            <ProductImgUploaderStyle>
+              {imageSrc && <img src={imageSrc} alt="미리보기" />}
+              <ImgVaildMessage>{itemImageMessage}</ImgVaildMessage>
+              <UploadFileBtn onChange={uploadImgHandler} />
+            </ProductImgUploaderStyle>
+          </div>
+          <Input
+            label="상품명"
+            id="productName"
+            placeholder="2~15자 이내여야 합니다."
+            min="2"
+            max="15"
+            onChange={itemNameHandler}
+            onKeyUp={btnAbleHandler}
+            message={itemNameMessage}
+          />
+          <Input
+            label="가격"
+            id="productPrice"
+            placeholder="숫자만 입력 가능합니다."
+            min="2"
+            max="12"
+            onChange={priceHandler}
+            onKeyUp={btnAbleHandler}
+            getValue={price}
+            message={priceMessage}
+          />
+          <Input
+            label="판매 링크"
+            id="productURL"
+            placeholder="URL을 입력해 주세요."
+            onChange={linkHandler}
+            onKeyUp={btnAbleHandler}
+            message={linkMessage}
+          />
+        </ConWrapStyle>
+      </PageWrapStyle>
+    </>
   );
 }
