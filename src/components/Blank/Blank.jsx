@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from 'components/common/Button/Button';
+import Button from 'components/Common/Button/Button';
 import { BlankImgStyle, BlankTextStyle } from './BlankStyle';
 
 export default function Blank({ src, width, text, children, go, onClick }) {

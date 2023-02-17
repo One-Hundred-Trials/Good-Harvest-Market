@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ProductAlert from '../Alert/ProductAlert';
+import ProductAlert from 'components/Common/Alert/ProductAlert';
 import {
   ModalBgtDiv,
   ModalContainerDiv,

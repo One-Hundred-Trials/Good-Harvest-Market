@@ -1,5 +1,5 @@
 import React from 'react';
-import PostCard from '../PostCard/PostCard';
+import PostCard from 'components/PostCard/PostCard';
 import ContUlStyle from './PostCardListStyle';
 
 export default function PostCardList({ posts }) {

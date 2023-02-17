@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import MetaDatas from 'components/MetaDatas/MetaDatas';
-import Button from '../../../components/common/Button/Button';
-import Input from '../../../components/common/Input/Input';
-import { authAtom } from '../../../_state/auth';
+import Button from 'components/Common/Button/Button';
+import Input from 'components/Common/Input/Input';
+import postUserLogin from 'api/Login/postUserLogin';
+import { authAtom } from '_state/auth';
 import { ContSecStyle, HeaderStyle, InputFormStyle } from './LoginEmailStyle';
-import postUserLogin from '../../../api/Login/postUserLogin';
 
 export default function LoginEmail() {
   const navigate = useNavigate();

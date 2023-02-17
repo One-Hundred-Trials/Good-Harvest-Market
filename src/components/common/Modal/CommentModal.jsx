@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
+import CommentAlert from 'components/Common/Alert/CommentAlert';
 import {
   ModalBgtDiv,
   ModalContainerDiv,
   ModalUl,
   ModalBtn,
 } from './ModalStyle';
-import CommentAlert from '../Alert/CommentAlert';
 
 export default function ModalSlide({
   setModal,

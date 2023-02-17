@@ -4,9 +4,9 @@ import MetaDatas from 'components/MetaDatas/MetaDatas';
 import { baseUrl } from 'api/api';
 import getMyProfile from 'api/Profile/getMyProfile';
 import postImage from 'api/ImgUpload/postImage';
-import createPost from 'api/Feed/createPost';
-import Header from 'components/common/Header/Header';
-import UploadFileBtn from 'components/common/UploadFileBtn/UploadFileBtn';
+import createPost from 'api/Post/createPost';
+import Header from 'components/Common/Header/Header';
+import UploadFileBtn from 'components/Common/UploadFileBtn/UploadFileBtn';
 import Loading from 'pages/Loading/Loading';
 import {
   PageWrapStyle,
