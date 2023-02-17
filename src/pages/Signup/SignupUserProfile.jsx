@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MetaDatas from 'components/MetaDatas/MetaDatas';
-import Input from 'components/common/Input/Input';
+import Input from 'components/Common/Input/Input';
 import UploadProfileImg from 'components/UploadProfileImg/UploadProfileImg';
-import Button from 'components/common/Button/Button';
+import Button from 'components/Common/Button/Button';
+import { baseUrl } from 'api/api';
 import postMyProfile from 'api/ProfileSetting/postMyProfile';
 import postImage from 'api/ImgUpload/postImage';
 import postAccountNameValid from 'api/ProfileSetting/postAccountNameValid';
@@ -107,8 +108,8 @@ export default function SignupUserProfile(porps) {
 
     const userProfileImage =
       imgFile && !arrayIsEmpty(imgFile)
-        ? `https://mandarin.api.weniv.co.kr/${imgFile}`
-        : 'https://mandarin.api.weniv.co.kr/1672571236285.svg';
+        ? `${baseUrl}/${imgFile}`
+        : `${baseUrl}/1672571236285.svg`;
 
     console.log(userProfileImage);
 
@@ -143,7 +144,7 @@ export default function SignupUserProfile(porps) {
           <UploadProfileImg
             src={
               imgFile && !arrayIsEmpty(imgFile)
-                ? `https://mandarin.api.weniv.co.kr/${imgFile}`
+                ? `${baseUrl}/${imgFile}`
                 : basicProfile
             }
             name="proflieImg"
