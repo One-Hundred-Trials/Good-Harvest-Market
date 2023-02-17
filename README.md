@@ -267,93 +267,105 @@ JS : `camelCase`<br>
 
 ## 8. 폴더 구조
 ```
+
+
 📦public
- ├─ 📃index.html
+ ┣ 📃index.html
 📦src
-   ├─ 📃API.jsx
-   ├─ 📃App.jsx
-   ├─ 📃index.js
-   ├─ 📂_state
-   │  └─ 📃auth.js
-   ├─ 📂assets
-   │  └─ 📁img
-   ├─ 📂components
-   │  ├─ 📁AlbumIcon
-   │  ├─ 📁Blank
-   │  ├─ 📁Button
-   │  │  ├─ 📃Button.jsx
-   │  │  └─ 📁UploadFileBtn
-   │  ├─ 📁Chat
-   │  │  ├─ 📁ChatListItem
-   │  │  └─ 📁ChatRoom
-   │  │     ├─ 📁ChatComment
-   │  │     └─ 📁ChatItem
-   │  ├─ 📁ChatIcon
-   │  ├─ 📁Comment
-   │  ├─ 📁CommentInput
-   │  ├─ 📁CommentsIcon
-   │  ├─ 📁Follow
-   │  ├─ 📁FollowUserList
-   │  ├─ 📁FollowersCount
-   │  ├─ 📁Header
-   │  ├─ 📁HomeRender
-   │  ├─ 📁Input
-   │  ├─ 📁LikeBtn
-   │  ├─ 📁ListIcon
-   │  ├─ 📁ListOrAlbum
-   │  ├─ 📁Modal
-   │  │  ├─ 📁LoginModalAlert
-   │  │  ├─ 📁PostModalAlert
-   │  │  └─ 📁ProductModalAlert
-   │  ├─ 📁Nav
-   │  ├─ 📁PostAlbum
-   │  ├─ 📁PostAlbumList
-   │  ├─ 📁PostCard
-   │  ├─ 📁PostCardList
-   │  ├─ 📁PostTxt
-   │  ├─ 📁Product
-   │  ├─ 📁ProductList
-   │  ├─ 📁Profile
-   │  ├─ 📁ProfileAccount
-   │  ├─ 📁ProfileImg
-   │  ├─ 📁ProfileImgAccount
-   │  ├─ 📁ShareIcon
-   │  └─ 📁UploadProfileImg
-   ├─ 📂pages
-   │  ├─ 📁Login
-   │  │  ├─ 📃Login.jsx
-   │  │  ├─ 📁LoginEmail
-   │  ├─ 📁Main
-   │  │  ├─ 📁Chat
-   │  │  │  ├─ 📃Chat.jsx
-   │  │  │  └─ 📁ChatRoom
-   │  │  ├─ 📁Home
-   │  │  │  ├─ 📃Home.jsx
-   │  │  │  └─ 📁Search
-   │  │  ├─📁 Post
-   │  │  │  ├─ 📃Post.jsx
-   │  │  │  ├─ 📁PostEdit
-   │  │  │  └─ 📁PostUpload
-   │  │  └─ 📁Profile
-   │  │     ├─ 📁MyProfile
-   │  │     │  ├─ 📁FollowList
-   │  │     │  ├─ 📃MyProfile.jsx
-   │  │     │  ├─ 📁Product
-   │  │     │  │  ├─ 📁ProductEdit
-   │  │     │  │  └─ 📁ProductUpload
-   │  │     │  └─ 📁ProfileEdit
-   │  │     └─ 📁UserProfile
-   │  │        ├─📁 FollowList
-   │  │        └─ 📃UserProfile.jsx
-   │  ├─ 📁NotFound
-   │  ├─ 📃Root.jsx
-   │  ├─ 📁Signup
-   │  │  ├─ 📃Register.jsx
-   │  │  ├─ 📃Signup.jsx
-   │  │  ├─ 📃SignupUserProfile.jsx
-   │  └─ 📁Splash
-   └─ 📂styles
-      └─ 📃GlobalStyles.jsx
+ ┣ 📂_state
+ ┃ ┗ 📜auth.js
+ ┣ 📂api
+ ┃ ┣ 📂Comment
+ ┃ ┣ 📂Feed
+ ┃ ┣ 📂Follow
+ ┃ ┣ 📂ImgUpload
+ ┃ ┣ 📂Login
+ ┃ ┣ 📂Post
+ ┃ ┣ 📂Product
+ ┃ ┣ 📂Profile
+ ┃ ┣ 📂ProfileSetting
+ ┃ ┣ 📂Search
+ ┃ ┣ 📂SignUp
+ ┃ ┗ 📜api.js
+ ┣ 📂assets
+ ┃ ┣ 📂fonts
+ ┃ ┃ ┗ 📂SpoqaHanSansNeo
+ ┃ ┣ 📂img
+ ┣ 📂components
+ ┃ ┣ 📂AlbumIcon
+ ┃ ┣ 📂Blank
+ ┃ ┣ 📂ChatCommentInput
+ ┃ ┣ 📂ChatIcon
+ ┃ ┣ 📂ChatItem
+ ┃ ┣ 📂ChatListItem
+ ┃ ┣ 📂Comment
+ ┃ ┣ 📂CommentInput
+ ┃ ┣ 📂CommentsIcon
+ ┃ ┣ 📂Common
+ ┃ ┃ ┣ 📂Alert
+ ┃ ┃ ┣ 📂Button
+ ┃ ┃ ┣ 📂Header
+ ┃ ┃ ┣ 📂Input
+ ┃ ┃ ┣ 📂Modal
+ ┃ ┃ ┣ 📂Nav
+ ┃ ┃ ┣ 📂ProfileAccount
+ ┃ ┃ ┣ 📂ProfileImg
+ ┃ ┃ ┣ 📂ProfileImgAccount
+ ┃ ┃ ┗ 📂UploadFileBtn
+ ┃ ┣ 📂Follow
+ ┃ ┣ 📂FollowUserList
+ ┃ ┣ 📂FollowersCount
+ ┃ ┣ 📂HeartIcon
+ ┃ ┣ 📂HomeRender
+ ┃ ┣ 📂ListIcon
+ ┃ ┣ 📂ListOrAlbum
+ ┃ ┣ 📂MetaDatas
+ ┃ ┣ 📂PostAlbum
+ ┃ ┣ 📂PostCard
+ ┃ ┣ 📂PostCardList
+ ┃ ┣ 📂Product
+ ┃ ┣ 📂ProductList
+ ┃ ┣ 📂Profile
+ ┃ ┣ 📂ShareIcon
+ ┃ ┣ 📂UploadProfileImg
+ ┣ 📂pages
+ ┃ ┣ 📂Loading
+ ┃ ┣ 📂Login
+ ┃ ┃ ┣ 📂LoginEmail
+ ┃ ┃ ┣ 📜Login.jsx
+ ┃ ┣ 📂Main
+ ┃ ┃ ┣ 📂Chat
+ ┃ ┃ ┃ ┣ 📂ChatRoom
+ ┃ ┃ ┃ ┣ 📜Chat.jsx
+ ┃ ┃ ┣ 📂Home
+ ┃ ┃ ┃ ┣ 📂Search
+ ┃ ┃ ┃ ┣ 📜Home.jsx
+ ┃ ┃ ┣ 📂Post
+ ┃ ┃ ┃ ┣ 📂PostEdit
+ ┃ ┃ ┃ ┣ 📂PostUpload
+ ┃ ┃ ┃ ┣ 📜Post.jsx
+ ┃ ┃ ┣ 📂Profile
+ ┃ ┃ ┃ ┣ 📂MyProfile
+ ┃ ┃ ┃ ┃ ┣ 📂FollowerList
+ ┃ ┃ ┃ ┃ ┣ 📂FollowingList
+ ┃ ┃ ┃ ┃ ┣ 📂Product
+ ┃ ┃ ┃ ┃ ┃ ┣ 📂ProductEdit
+ ┃ ┃ ┃ ┃ ┃ ┗ 📂ProductUpload
+ ┃ ┃ ┃ ┃ ┣ 📂ProfileEdit
+ ┃ ┃ ┃ ┃ ┗ 📜MyProfile.jsx
+ ┃ ┃ ┃ ┗ 📂UserProfile
+ ┃ ┣ 📂NotFound
+ ┃ ┣ 📂Signup
+ ┃ ┃ ┣ 📜Register.jsx
+ ┃ ┃ ┣ 📜Signup.jsx
+ ┃ ┃ ┣ 📜SignupUserProfile.jsx
+ ┃ ┣ 📂Splash
+ ┃ ┣ 📜Root.jsx
+ ┣ 📂styles
+ ┃ ┣ 📜GlobalStyles.jsx
+ ┃ ┗ 📜font.css
+ ┣ 📜App.jsx
+ ┗ 📜index.js
 ```
 
 <p align="right"><a href="#top">(🔼 Top)</a></p>
