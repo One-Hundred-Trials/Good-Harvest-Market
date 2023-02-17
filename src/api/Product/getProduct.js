@@ -1,9 +1,8 @@
-import { axiosPrivate } from '../api';
+import { axiosPrivate } from 'api/api';
 
 const getProduct = async (id) => {
   try {
     const res = await axiosPrivate.get(`/product/detail/${id}`);
-    console.log(res);
     return res.data;
   } catch (err) {
     if (err.response) {

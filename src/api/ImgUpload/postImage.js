@@ -1,4 +1,4 @@
-import { imgInstance } from '../api';
+import { imgInstance } from 'api/api';
 
 const postImage = async (imgData) => {
   try {

@@ -1,11 +1,9 @@
 import { axiosPrivate } from 'api/api';
 
-const reportComment = async (postId, comment, commentReport) => {
+const getPost = async (id) => {
   try {
-    const res = await axiosPrivate.post(
-      `/post/${postId}/comments/${comment.id}/report`,
-      JSON.stringify(commentReport)
-    );
+    const res = await axiosPrivate.get(`/post/${id}`);
+    return res.data;
   } catch (err) {
     if (err.response) {
       console.log(err.response.data);
@@ -15,6 +13,7 @@ const reportComment = async (postId, comment, commentReport) => {
       console.log(`Error: ${err.message}`);
     }
   }
+  return null;
 };
 
-export default reportComment;
+export default getPost;

@@ -1,4 +1,4 @@
-import { axiosPrivate } from '../api';
+import { axiosPrivate } from 'api/api';
 
 const getUserProduct = async (id) => {
   try {
@@ -6,7 +6,6 @@ const getUserProduct = async (id) => {
     return response.data;
   } catch (err) {
     if (err.response) {
-      // 응답코드 2xx가 아닌 경우
       console.log(err.response.data);
       console.log(err.response.status);
       console.log(err.response.headers);
