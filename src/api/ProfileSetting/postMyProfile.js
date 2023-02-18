@@ -1,10 +1,9 @@
-import { instance } from '../api';
+import { instance } from 'api/api';
 
 const postMyProfile = async (formData) => {
   try {
-    console.log(formData);
-    const response = await instance.post('/user', formData);
-    return response.data;
+    const res = await instance.post('/user', formData);
+    return res.data;
   } catch (err) {
     if (err.response) {
       console.log(err.response.data);

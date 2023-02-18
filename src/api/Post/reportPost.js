@@ -1,8 +1,8 @@
-import { axiosPrivate } from '../api';
+import { axiosPrivate } from 'api/api';
 
-const getPost = async (id) => {
+const deletePost = async (postId) => {
   try {
-    const res = await axiosPrivate.get(`/post/${id}`);
+    const res = await axiosPrivate.delete(`/post/${postId}`);
     return res.data;
   } catch (err) {
     if (err.response) {
@@ -16,4 +16,4 @@ const getPost = async (id) => {
   return null;
 };
 
-export default getPost;
+export default deletePost;

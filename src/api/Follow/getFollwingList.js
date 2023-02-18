@@ -1,11 +1,11 @@
-import { axiosPrivate } from '../api';
+import { axiosPrivate } from 'api/api';
 
 const getFollowingsList = async (account) => {
   try {
-    const response = await axiosPrivate.get(
+    const res = await axiosPrivate.get(
       `/profile/${account}/following?limit=1000`
     );
-    return response.data;
+    return res.data;
   } catch (err) {
     if (err.response) {
       console.log(err.response.data);

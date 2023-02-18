@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import MetaDatas from 'components/MetaDatas/MetaDatas';
 import BlankList from 'components/Blank/BlankList';
-import Header from 'components/common/Header/Header';
-import ProfileImgAccount from 'components/common/ProfileImgAccount/ProfileImgAccount';
+import Header from 'components/Common/Header/Header';
+import ProfileImgAccount from 'components/Common/ProfileImgAccount/ProfileImgAccount';
 import Loading from 'pages/Loading/Loading';
 import getSearchUser from 'api/Search/getSearchUser';
 import BlankDuck from 'assets/img/blank-duck.svg';

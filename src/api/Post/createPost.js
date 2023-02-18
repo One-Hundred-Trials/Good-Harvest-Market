@@ -1,8 +1,8 @@
-import { axiosPrivate } from '../api';
+import { axiosPrivate } from 'api/api';
 
-const postLiked = async (postId) => {
+const createPost = async (formData) => {
   try {
-    const res = await axiosPrivate.post(`/post/${postId}/heart`);
+    const res = await axiosPrivate.post('/post', JSON.stringify(formData));
     return res.data;
   } catch (err) {
     if (err.response) {
@@ -16,4 +16,4 @@ const postLiked = async (postId) => {
   return null;
 };
 
-export default postLiked;
+export default createPost;

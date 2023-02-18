@@ -4,7 +4,7 @@ import MetaDatas from 'components/MetaDatas/MetaDatas';
 import PostCard from 'components/PostCard/PostCard';
 import Comment from 'components/Comment/Comment';
 import CommentInput from 'components/CommentInput/CommentInput';
-import Header from 'components/common/Header/Header';
+import Header from 'components/Common/Header/Header';
 import Loading from 'pages/Loading/Loading';
 import getComment from 'api/Comment/getComment';
 import getPost from 'api/Post/getPost';

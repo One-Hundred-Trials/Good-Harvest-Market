@@ -1,17 +1,15 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
-import styled from 'styled-components';
 import { useRecoilValue } from 'recoil';
 import { authAtom, accountAtom } from '_state/auth';
 import MetaDatas from 'components/MetaDatas/MetaDatas';
-import { ConWrap } from 'styles/GlobalStyles';
 import Profile from 'components/Profile/Profile';
 import ProductList from 'components/ProductList/ProductList';
 import PostCard from 'components/PostCardList/PostCardList';
 import ListOrAlbum from 'components/ListOrAlbum/ListOrAlbum';
 import PostAlbum from 'components/PostAlbum/PostAlbum';
-import Header from 'components/common/Header/Header';
-import Button from 'components/common/Button/Button';
+import Header from 'components/Common/Header/Header';
+import Button from 'components/Common/Button/Button';
 import ChatIcon from 'components/ChatIcon/ChatIcon';
 import ShareIcon from 'components/ShareIcon/ShareIcon';
 import Loading from 'pages/Loading/Loading';
@@ -21,22 +19,7 @@ import getUserProfile from 'api/Profile/getUserProfile';
 import getUserProduct from 'api/Profile/getUserProduct';
 import addFollow from 'api/Profile/addFollow';
 import deleteFollow from 'api/Profile/deleteFollow';
-
-const ConWrapStyle = styled.main`
-  ${ConWrap}
-  display: flex;
-  flex-direction: column;
-  & > ul {
-    padding: 16px;
-  }
-`;
-
-const ContDivStyle = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  background-color: var(--bg-color);
-`;
+import { ConWrapStyle, ContDivStyle } from './UserProfileStyle';
 
 export default function UserProfile() {
   const auth = useRecoilValue(authAtom);

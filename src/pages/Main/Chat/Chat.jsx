@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import MetaDatas from 'components/MetaDatas/MetaDatas';
 import ChatListItem from 'components/ChatListItem/ChatListItem';
-import Header from 'components/common/Header/Header';
+import Header from 'components/Common/Header/Header';
 import ChatListWrapStyle from './ChatStyle';
 
 export default function Chat() {

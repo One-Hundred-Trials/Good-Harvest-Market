@@ -1,5 +1,5 @@
 import React from 'react';
-import PostAlbumList from '../PostAlbumList/PostAlbumList';
+import PostAlbumList from 'components/PostAlbumList/PostAlbumList';
 import { UlStyle, H2IR } from './PostAlbumStyle';
 
 export default function PostAlbum({ posts }) {
