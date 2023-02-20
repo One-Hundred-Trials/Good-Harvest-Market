@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MetaDatas from 'components/MetaDatas/MetaDatas';
-import Input from 'components/Common/Input/Input';
+import Input from 'components/common/Input/Input';
 import UploadProfileImg from 'components/UploadProfileImg/UploadProfileImg';
-import Button from 'components/Common/Button/Button';
+import Button from 'components/common/Button/Button';
 import { baseUrl } from 'api/api';
 import postMyProfile from 'api/ProfileSetting/postMyProfile';
 import postImage from 'api/ImgUpload/postImage';

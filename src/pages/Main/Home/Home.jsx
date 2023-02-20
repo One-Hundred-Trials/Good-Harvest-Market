@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import MetaDatas from 'components/MetaDatas/MetaDatas';
-import Header from 'components/Common/Header/Header';
+import Header from 'components/common/Header/Header';
 import HomeRenderBlank from 'components/HomeRender/HomeRenderBlank';
 import PostCardList from 'components/PostCardList/PostCardList';
 import getFollowFeed from 'api/Feed/getFollowFeed';

@@ -1,7 +1,7 @@
 import React from 'react';
-import ProfileAccount from 'components/Common/ProfileAccount/ProfileAccount';
+import ProfileAccount from 'components/common/ProfileAccount/ProfileAccount';
 import FollowersCount from 'components/FollowersCount/FollowersCount';
-import ProfileImg from 'components/Common/ProfileImg/ProfileImg';
+import ProfileImg from 'components/common/ProfileImg/ProfileImg';
 import {
   FollowStyle,
   ProfileIntroStyle,

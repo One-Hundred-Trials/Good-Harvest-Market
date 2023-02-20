@@ -1,6 +1,6 @@
 import React from 'react';
 import MetaDatas from 'components/MetaDatas/MetaDatas';
-import Button from 'components/Common/Button/Button';
+import Button from 'components/common/Button/Button';
 import fullLogo from 'assets/img/full-logo.svg';
 import duckFarm from 'assets/img/duck-farm.svg';
 import logoKakao from 'assets/img/logo-kakako.svg';

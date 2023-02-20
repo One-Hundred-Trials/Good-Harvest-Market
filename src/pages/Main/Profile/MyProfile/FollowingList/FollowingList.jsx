@@ -4,7 +4,7 @@ import { useRecoilValue } from 'recoil';
 import { authAtom } from '_state/auth';
 import MetaDatas from 'components/MetaDatas/MetaDatas';
 import getFollowingsList from 'api/Follow/getFollwingList';
-import Header from 'components/Common/Header/Header';
+import Header from 'components/common/Header/Header';
 import FollowUserList from 'components/FollowUserList/FollowUserList';
 import Loading from 'pages/Loading/Loading';
 import {

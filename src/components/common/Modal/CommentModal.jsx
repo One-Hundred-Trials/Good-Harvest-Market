@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import CommentAlert from 'components/Common/Alert/CommentAlert';
+import CommentAlert from 'components/common/Alert/CommentAlert';
 import {
   ModalBgtDiv,
   ModalContainerDiv,

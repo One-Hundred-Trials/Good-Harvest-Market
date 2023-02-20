@@ -2,7 +2,7 @@ import React from 'react';
 import MetaDatas from 'components/MetaDatas/MetaDatas';
 import ChatCommentInput from 'components/ChatCommentInput/ChatCommentInput';
 import ChatItem from 'components/ChatItem/ChatItem';
-import Header from 'components/Common/Header/Header';
+import Header from 'components/common/Header/Header';
 import chatSendImg from 'assets/img/chat-send.svg';
 import {
   H2IR,

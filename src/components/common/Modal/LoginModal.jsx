@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import LoginAlert from 'components/Common/Alert/LoginAlert';
+import LoginAlert from 'components/common/Alert/LoginAlert';
 import {
   ModalBgtDiv,
   ModalContainerDiv,

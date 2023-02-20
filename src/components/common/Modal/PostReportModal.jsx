@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { logDOM } from '@testing-library/react';
-import PostReportAlert from 'components/Common/Alert/PostReportAlert';
+import PostReportAlert from 'components/common/Alert/PostReportAlert';
 import {
   ModalContainerDiv,
   ModalUl,

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import MetaDatas from 'components/MetaDatas/MetaDatas';
-import Input from 'components/Common/Input/Input';
-import Button from 'components/Common/Button/Button';
+import Input from 'components/common/Input/Input';
+import Button from 'components/common/Button/Button';
 import postUserSignUp from 'api/SignUp/postUserSignUp';
 import {
   ContSecStyle,

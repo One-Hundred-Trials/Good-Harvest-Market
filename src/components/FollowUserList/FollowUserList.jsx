@@ -3,8 +3,8 @@ import { useRecoilValue } from 'recoil';
 import addFollow from 'api/Profile/addFollow';
 import deleteFollow from 'api/Profile/deleteFollow';
 import { accountAtom } from '_state/auth';
-import Button from 'components/Common/Button/Button';
-import ProfileImgAccount from 'components/Common/ProfileImgAccount/ProfileImgAccount';
+import Button from 'components/common/Button/Button';
+import ProfileImgAccount from 'components/common/ProfileImgAccount/ProfileImgAccount';
 import FollowListStyle from './FollowUserListStyle';
 
 export default function FollowUserList({

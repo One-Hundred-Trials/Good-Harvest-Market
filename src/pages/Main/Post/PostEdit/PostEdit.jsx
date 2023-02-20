@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import MetaDatas from 'components/MetaDatas/MetaDatas';
-import Header from 'components/Common/Header/Header';
-import UploadFileBtn from 'components/Common/UploadFileBtn/UploadFileBtn';
+import Header from 'components/common/Header/Header';
+import UploadFileBtn from 'components/common/UploadFileBtn/UploadFileBtn';
 import { baseUrl } from 'api/api';
 import getMyProfile from 'api/Profile/getMyProfile';
 import getPost from 'api/Post/getPost';

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import MetaDatas from 'components/MetaDatas/MetaDatas';
-import Header from 'components/Common/Header/Header';
-import Input from 'components/Common/Input/Input';
-import UploadFileBtn from 'components/Common/UploadFileBtn/UploadFileBtn';
+import Header from 'components/common/Header/Header';
+import Input from 'components/common/Input/Input';
+import UploadFileBtn from 'components/common/UploadFileBtn/UploadFileBtn';
 import Loading from 'pages/Loading/Loading';
 import getProduct from 'api/Product/getProduct';
 import postImage from 'api/ImgUpload/postImage';

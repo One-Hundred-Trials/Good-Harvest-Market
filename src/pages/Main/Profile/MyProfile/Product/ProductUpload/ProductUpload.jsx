@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import MetaDatas from 'components/MetaDatas/MetaDatas';
-import Header from 'components/Common/Header/Header';
-import Input from 'components/Common/Input/Input';
+import Header from 'components/common/Header/Header';
+import Input from 'components/common/Input/Input';
 import { baseUrl } from 'api/api';
 import postImage from 'api/ImgUpload/postImage';
-import UploadFileBtn from 'components/Common/UploadFileBtn/UploadFileBtn';
+import UploadFileBtn from 'components/common/UploadFileBtn/UploadFileBtn';
 import uploadProduct from 'api/Product/uploadProduct';
 import {
   PageWrapStyle,

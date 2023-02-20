@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import deleteComment from 'api/Comment/deleteComment';
 import reportComment from 'api/Comment/reportComment';
 import iconMoreImg from 'assets/img/icon-more.svg';
-import CommentModal from 'components/Common/Modal/CommentModal';
-import ProfileImg from 'components/Common/ProfileImg/ProfileImg';
+import CommentModal from 'components/common/Modal/CommentModal';
+import ProfileImg from 'components/common/ProfileImg/ProfileImg';
 import {
   CommentContainerStyle,
   InfoStyle,
