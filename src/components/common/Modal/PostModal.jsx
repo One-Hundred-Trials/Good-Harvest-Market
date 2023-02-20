@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import PostDeleteAlert from '../Alert/PostDeleteAlert';
+import PostDeleteAlert from 'components/common/Alert/PostDeleteAlert';
 import {
   ModalContainerDiv,
   ModalUl,

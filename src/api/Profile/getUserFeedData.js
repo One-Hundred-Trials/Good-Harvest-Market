@@ -1,4 +1,4 @@
-import { axiosPrivate } from '../api';
+import { axiosPrivate } from 'api/api';
 
 const getUserFeedData = async (id, pageNumber) => {
   try {

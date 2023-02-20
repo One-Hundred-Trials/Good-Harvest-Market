@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
 import iconUploadFile from 'assets/img/icon-upload-file.svg';
-// import iconUploadFileFill from '../../../assets/img/icon-upload-file-fill.svg';
 
 export const UploadFileStyle = css`
   content: '';

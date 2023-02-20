@@ -1,13 +1,13 @@
 import React from 'react';
+import ProfileAccount from 'components/common/ProfileAccount/ProfileAccount';
+import FollowersCount from 'components/FollowersCount/FollowersCount';
+import ProfileImg from 'components/common/ProfileImg/ProfileImg';
 import {
   FollowStyle,
   ProfileIntroStyle,
   ContDivStyle,
   DivFlexStyle,
 } from './ProfileStyle';
-import ProfileAccount from '../common/ProfileAccount/ProfileAccount';
-import FollowersCount from '../FollowersCount/FollowersCount';
-import ProfileImg from '../common/ProfileImg/ProfileImg';
 
 export default function Profile({
   myProfile,

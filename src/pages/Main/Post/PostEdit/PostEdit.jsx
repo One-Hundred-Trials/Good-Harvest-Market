@@ -5,9 +5,9 @@ import Header from 'components/common/Header/Header';
 import UploadFileBtn from 'components/common/UploadFileBtn/UploadFileBtn';
 import { baseUrl } from 'api/api';
 import getMyProfile from 'api/Profile/getMyProfile';
-import getPost from 'api/Feed/getPost';
+import getPost from 'api/Post/getPost';
 import postImage from 'api/ImgUpload/postImage';
-import putPost from 'api/Feed/putPost';
+import putPost from 'api/Post/putPost';
 import {
   PageWrapStyle,
   ConWrapStyle,

@@ -6,11 +6,12 @@ import MetaDatas from 'components/MetaDatas/MetaDatas';
 import UploadProfileImg from 'components/UploadProfileImg/UploadProfileImg';
 import Input from 'components/common/Input/Input';
 import Header from 'components/common/Header/Header';
+import { baseUrl } from 'api/api';
 import postImage from 'api/ImgUpload/postImage';
 import getMyProfile from 'api/Profile/getMyProfile';
 import postAccountNameValid from 'api/ProfileSetting/postAccountNameValid';
 import updateMyProfile from 'api/Profile/updateMyProfile';
-import InputFormStyle from '../ProfileEdit/ProfileEditStyle';
+import InputFormStyle from './ProfileEditStyle';
 
 export default function ProfileEdit() {
   const auth = useRecoilValue(authAtom);
@@ -93,7 +94,7 @@ export default function ProfileEdit() {
     const productImage = e.target.files[0];
     formData.append('image', productImage);
     const res = await postImage(formData);
-    const imgUrl = `https://mandarin.api.weniv.co.kr/${res[0].filename}`;
+    const imgUrl = `${baseUrl}/${res[0].filename}`;
     setProfileImg(imgUrl);
     setPrevProfileImg(imgUrl);
   };
@@ -133,9 +134,6 @@ export default function ProfileEdit() {
       alert('사용자 정보를 형식에 맞게 입력해주세요.');
     }
   };
-
-  console.log('isUserNameValid', isUserNameValid);
-  console.log('isAccountNameValid', isAccountNameValid);
 
   return (
     <>

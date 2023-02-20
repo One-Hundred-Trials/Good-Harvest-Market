@@ -1,4 +1,5 @@
 import React from 'react';
+import MetaDatas from 'components/MetaDatas/MetaDatas';
 import Button from 'components/common/Button/Button';
 import fullLogo from 'assets/img/full-logo.svg';
 import duckFarm from 'assets/img/duck-farm.svg';
@@ -14,7 +15,6 @@ import {
   SNSFlexDivStyle,
   SNSImgStyle,
 } from './LoginStyle';
-import MetaDatas from '../../components/MetaDatas/MetaDatas';
 
 export default function Login() {
   const children = ['이메일로 로그인', '풍년마켓 회원가입'];

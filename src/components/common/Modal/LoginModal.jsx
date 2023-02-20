@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
+import LoginAlert from 'components/common/Alert/LoginAlert';
 import {
   ModalBgtDiv,
   ModalContainerDiv,
   ModalUl,
   ModalBtn,
 } from './ModalStyle';
-import LoginAlert from '../Alert/LoginAlert';
 
 export default function ModalSlide({ setModal }) {
   const [alert, setAlert] = useState(false);

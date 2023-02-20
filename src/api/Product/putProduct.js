@@ -1,4 +1,4 @@
-import { axiosPrivate } from '../api';
+import { axiosPrivate } from 'api/api';
 
 const editProduct = async (id, product) => {
   try {

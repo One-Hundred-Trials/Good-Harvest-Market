@@ -1,4 +1,4 @@
-import { axiosPrivate } from '../api';
+import { axiosPrivate } from 'api/api';
 
 const reportComment = async (postId, comment, commentReport) => {
   try {
@@ -6,7 +6,6 @@ const reportComment = async (postId, comment, commentReport) => {
       `/post/${postId}/comments/${comment.id}/report`,
       JSON.stringify(commentReport)
     );
-    console.log(res);
   } catch (err) {
     if (err.response) {
       console.log(err.response.data);

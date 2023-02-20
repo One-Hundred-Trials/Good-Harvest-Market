@@ -1,5 +1,5 @@
 import React from 'react';
-import deletePost from 'api/Feed/deletePost';
+import deletePost from 'api/Post/deletePost';
 import {
   ModalAlertDiv,
   AlertBox,

@@ -1,12 +1,12 @@
-import { logDOM } from '@testing-library/react';
 import React, { useState, useRef, useEffect } from 'react';
+import { logDOM } from '@testing-library/react';
+import PostReportAlert from 'components/common/Alert/PostReportAlert';
 import {
   ModalContainerDiv,
   ModalUl,
   ModalBtn,
   ModalBgtDiv,
 } from './ModalStyle';
-import PostReportAlert from '../Alert/PostReportAlert';
 
 export default function PostReportModal({ setModal, postId, accountName }) {
   const [alert, setAlert] = useState(false);

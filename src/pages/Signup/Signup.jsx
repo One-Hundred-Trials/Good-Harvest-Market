@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import MetaDatas from 'components/MetaDatas/MetaDatas';
-import postUserSignUp from 'api/SignUp/postUserSignUp';
 import Input from 'components/common/Input/Input';
 import Button from 'components/common/Button/Button';
+import postUserSignUp from 'api/SignUp/postUserSignUp';
 import {
   ContSecStyle,
   HeaderStyle,

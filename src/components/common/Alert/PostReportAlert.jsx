@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
-import API from 'API';
 import { authAtom } from '_state/auth';
+import reportPost from 'api/Post/reportPost';
 import {
   ModalAlertDiv,
   AlertBox,
@@ -30,16 +30,7 @@ export default function PostReportAlert({ setAlert, postId, accountName }) {
   const reportHandler = async () => {
     setAlert(true);
     try {
-      const res = await API.post(
-        `/post/${postId}/report`,
-        JSON.stringify(reportData),
-        {
-          headers: {
-            Authorization: `Bearer ${auth}`,
-            'Content-type': 'application/json',
-          },
-        }
-      );
+      const res = reportPost(postId);
       console.log(res);
       if (res) {
         alert('신고가 접수되었습니다.');

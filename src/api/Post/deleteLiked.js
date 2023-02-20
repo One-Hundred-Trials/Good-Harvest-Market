@@ -1,8 +1,8 @@
-import { axiosPrivate } from '../api';
+import { axiosPrivate } from 'api/api';
 
-const getPost = async (id) => {
+const reportPost = async (postId) => {
   try {
-    const res = await axiosPrivate.get(`/post/${id}`);
+    const res = await axiosPrivate.post(`/post/${postId}/report`);
     return res.data;
   } catch (err) {
     if (err.response) {
@@ -16,4 +16,4 @@ const getPost = async (id) => {
   return null;
 };
 
-export default getPost;
+export default reportPost;

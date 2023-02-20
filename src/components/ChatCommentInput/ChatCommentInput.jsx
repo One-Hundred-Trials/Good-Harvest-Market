@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import UploadFileBtn from '../common/UploadFileBtn/UploadFileBtn';
+import UploadFileBtn from 'components/common/UploadFileBtn/UploadFileBtn';
 import {
   MessageFormStyle,
   MessageInputStyle,

@@ -1,8 +1,8 @@
-import { axiosPrivate } from '../api';
+import { axiosPrivate } from 'api/api';
 
-const createPost = async (formData) => {
+const deletePost = async (postId) => {
   try {
-    const res = await axiosPrivate.post('/post', JSON.stringify(formData));
+    const res = await axiosPrivate.delete(`/post/${postId}`);
     return res.data;
   } catch (err) {
     if (err.response) {
@@ -16,4 +16,4 @@ const createPost = async (formData) => {
   return null;
 };
 
-export default createPost;
+export default deletePost;

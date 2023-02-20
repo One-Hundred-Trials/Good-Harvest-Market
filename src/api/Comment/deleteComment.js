@@ -1,11 +1,10 @@
-import { axiosPrivate } from '../api';
+import { axiosPrivate } from 'api/api';
 
 const deleteComment = async (postId, comment) => {
   try {
     const res = await axiosPrivate.delete(
       `/post/${postId}/comments/${comment.id}`
     );
-    console.log(res);
   } catch (err) {
     if (err.response) {
       console.log(err.response.data);

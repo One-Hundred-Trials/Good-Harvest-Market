@@ -52,7 +52,6 @@ export default function ProductUpload() {
     const getData = async () => {
       const res = await getProduct(id);
       const resData = res.product;
-      console.log(resData);
       setItemImage(resData.itemImage);
       setItemName(resData.itemName);
       setPrice(new Intl.NumberFormat().format(resData.price));
