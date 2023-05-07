@@ -1,5 +1,5 @@
 # <span id="top">🥬 풍년마켓 🥬</span>
-* 🔗 [배포 URL](https://pungnyeon.netlify.app/)
+* 🔗 [배포 URL](https://pungnyeon.netlify.app/)  **❗️현재 api 주소가 변경되어 수정중이므로 배포 URL이 실행되지 않습니다.❗️**
 * 🔒 서비스 이용 계정
   - ID: pung@naver.com
   - PW : pung100
