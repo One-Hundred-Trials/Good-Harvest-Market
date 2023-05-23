@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const baseUrl = 'https://mandarin.api.weniv.co.kr';
+export const baseUrl = 'https://api.mandarin.weniv.co.kr/';
 
 export const instance = axios.create({
   baseURL: baseUrl,
